@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>the Home of MuZhen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="the Home of MuZhen">
+<meta property="og:url" content="http://www.muzhen.tk/page/14/index.html">
+<meta property="og:site_name" content="the Home of MuZhen">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="the Home of MuZhen">
+  
+    <link rel="alternate" href="/atom.xml" title="the Home of MuZhen" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">the Home of MuZhen</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.muzhen.tk"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-machine learning/dimensionality reduction/PCA" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/13/machine learning/dimensionality reduction/PCA/" class="article-date">
+  <time datetime="2017-04-13T04:34:18.000Z" itemprop="datePublished">2017-04-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/dimensionality-reduction/">dimensionality reduction</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/13/machine learning/dimensionality reduction/PCA/">PCA</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="PCA原理"><a href="#PCA原理" class="headerlink" title="PCA原理"></a>PCA原理</h1><p><a href="http://blog.codinglabs.org/articles/pca-tutorial.html" target="_blank" rel="noopener">PCA的数学原理</a> 这篇blog已经做非常好的说明。我在这里简单归纳下。</p>
+<p>PCA是一种降维技术。它希望降维后样本的新生成的特征方差尽可能大，同时特征之间的相关性尽可能小，以此来尽可能的保留全部信息信息。</p>
+<p>方差尽可能大的直观理解是数据越分散，差异性越大，体现的信息越多。</p>
+<p>特征间相关性尽可能小的直观理解是避免相同信息在不同特征中重复出现。</p>
+<h1 id="PCA进一步讨论"><a href="#PCA进一步讨论" class="headerlink" title="PCA进一步讨论"></a>PCA进一步讨论</h1><p>传统PCA是使用协方差度量相关性。因此所度量的也只是线性相关性。对于非线性相关，可以考虑使用KernelPCA，通过Kernel函数将非线性相关转为线性相关。</p>
+<p>PCA假设数据各主特征是分布在正交方向上，如果在非正交方向上存在几个方差较大的方向，PCA的效果就大打折扣了。</p>
+<h1 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h1><ol>
+<li><p>PCA在使用过程中必须标准化么？为什么？<br>PCA追求特征之间的协方差为0.而计算协方差需要对特征去中心化。<br>[TBC]不去中心化会有什么坏处？是否需要归一化消除量纲？</p>
+</li>
+<li><p>为什么协方差可以度量相关性？并且是线性相关性？<br>根本上是使用内积进行相似性度量，消除量纲后就是单位向量间的夹角余弦值。<br>从线性拟合和最小二乘的角度来看，拟合效果越好，相关系数绝对值越接近于1。从这个角度可以说相关系数刻画的是线性相关关系。（《概率论与数理统计》陈希孺 中科大出版社 第三章3.3节）</p>
+</li>
+<li><p>相关系数和修正余弦相似度区别？<br>根本上都是使用内积进行相似性度量，消除量纲后就是单位向量间的夹角余弦值。<br>区别在于去中心化上。<br>相关系数考虑的是消除不同样本的基数差异。比如A可能对所有电影的打分都虚高，而B都会压低，相关系数可以消除这样的基数。<br>修正余弦相似度考虑的是消除不同特征之间的量纲差异。比如电影a的评分水平高于电影b，消除之后就不会令电影a对于相似性度量带来更大的影响。保持不同电影权重相同。<br>数据稀疏时选择修正余弦相似度更好。</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/04/13/machine learning/dimensionality reduction/PCA/" data-id="cjsldc0to00are4v541wbg5zs" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PCA/">PCA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dimensionality-reduction/">dimensionality reduction</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-python/discuss" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/12/python/discuss/" class="article-date">
+  <time datetime="2017-04-12T08:30:57.000Z" itemprop="datePublished">2017-04-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/12/python/discuss/">discuss</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="the-differences-between-package-and-module"><a href="#the-differences-between-package-and-module" class="headerlink" title="the differences between package and module"></a>the differences between package and module</h1><ul>
+<li>the <strong>name</strong> of module from where?</li>
+</ul>
+<h1 id="the-effects-of-init-py"><a href="#the-effects-of-init-py" class="headerlink" title="the effects of init.py"></a>the effects of <strong>init</strong>.py</h1><h1 id="the-process-of-import"><a href="#the-process-of-import" class="headerlink" title="the process of import"></a>the process of import</h1><h1 id="the-meanings-of-and"><a href="#the-meanings-of-and" class="headerlink" title="the meanings of _ and __"></a>the meanings of _ and __</h1><h1 id="if-name-‘main‘"><a href="#if-name-‘main‘" class="headerlink" title="if name == ‘main‘"></a>if <strong>name</strong> == ‘<strong>main</strong>‘</h1><h1 id="class中def如果是做有关self修改，可以不需要return。而self自己就会变化么？"><a href="#class中def如果是做有关self修改，可以不需要return。而self自己就会变化么？" class="headerlink" title="class中def如果是做有关self修改，可以不需要return。而self自己就会变化么？"></a>class中def如果是做有关self修改，可以不需要return。而self自己就会变化么？</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/04/12/python/discuss/" data-id="cjsldc0os000pe4v55cntq2de" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/python/discuss" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/12/machine learning/python/discuss/" class="article-date">
+  <time datetime="2017-04-12T08:30:57.000Z" itemprop="datePublished">2017-04-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/12/machine learning/python/discuss/">discuss</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="the-differences-between-package-and-module"><a href="#the-differences-between-package-and-module" class="headerlink" title="the differences between package and module"></a>the differences between package and module</h1><ul>
+<li>the <strong>name</strong> of module from where?</li>
+</ul>
+<h1 id="the-effects-of-init-py"><a href="#the-effects-of-init-py" class="headerlink" title="the effects of init.py"></a>the effects of <strong>init</strong>.py</h1><h1 id="the-process-of-import"><a href="#the-process-of-import" class="headerlink" title="the process of import"></a>the process of import</h1><h1 id="the-meanings-of-and"><a href="#the-meanings-of-and" class="headerlink" title="the meanings of _ and __"></a>the meanings of _ and __</h1><h1 id="if-name-‘main‘"><a href="#if-name-‘main‘" class="headerlink" title="if name == ‘main‘"></a>if <strong>name</strong> == ‘<strong>main</strong>‘</h1><h1 id="class中def如果是做有关self修改，可以不需要return。而self自己就会变化么？"><a href="#class中def如果是做有关self修改，可以不需要return。而self自己就会变化么？" class="headerlink" title="class中def如果是做有关self修改，可以不需要return。而self自己就会变化么？"></a>class中def如果是做有关self修改，可以不需要return。而self自己就会变化么？</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/04/12/machine learning/python/discuss/" data-id="cjsldc0ut00dxe4v59jil44x7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/NN/rnn" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/11/machine learning/NN/rnn/" class="article-date">
+  <time datetime="2017-04-11T12:09:22.000Z" itemprop="datePublished">2017-04-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/NN/">NN</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/11/machine learning/NN/rnn/">rnn</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+<h1 id="lstm"><a href="#lstm" class="headerlink" title="lstm"></a>lstm</h1><p>此处先说明tensorflow中以下代码的输出<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">outputs,final_state = tf<span class="selector-class">.nn</span><span class="selector-class">.dynamic_rnn</span>(lstm_cell,x_in,initial_state=init_state,time_major=False)</span><br></pre></td></tr></table></figure></p>
+<p>outputs储存每个时刻的输出，也就是下面的分线输出（它也同时被复制为当时时刻的外部输出）,它的形状是[batch_size,n_steps,n_hidden_units]（如果一开始的输入形式为[n_steps,batch_size,n_inputs]，则time_major=True，output形状为[n_steps,batch_size,n_hidden_units]）</p>
+<p>final_state仅仅只记录最后时刻的主线状态和分线状态，默认以元组形式保存，主线状态在前。</p>
+<p>因此，分线state和outputs最后一个时刻的记录是相同的，至少在基础lstm上。</p>
+<p>lstm一开始需要定义的初始状态应该就是指一开始的主线和分线state。</p>
+<p><img src="http://i2.muimg.com/567571/e28747d6a50b8fad.png" alt></p>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://blog.csdn.net/mydear_11000/article/details/52414342" target="_blank" rel="noopener">解读tensorflow之rnn</a><br><a href="http://www.jianshu.com/p/9dc9f41f0b29" target="_blank" rel="noopener">[译] 理解 LSTM 网络</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/04/11/machine learning/NN/rnn/" data-id="cjsldc0t6009ee4v5i8prbmar" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NN/">NN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/NLP/WMD" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/02/machine learning/NLP/WMD/" class="article-date">
+  <time datetime="2017-04-02T14:17:37.000Z" itemprop="datePublished">2017-04-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/NLP/">NLP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/02/machine learning/NLP/WMD/">WMD</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script type"text javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="文章出处"><a href="#文章出处" class="headerlink" title="文章出处"></a>文章出处</h1><p>本文为<a href="https://github.com/RaRe-Technologies/gensim/blob/develop/docs/notebooks/WMD_tutorial.ipynb" target="_blank" rel="noopener">WMD_tutorial</a>的翻译。</p>
+<h1 id="使用W2V和WMD发现文档的相似性"><a href="#使用W2V和WMD发现文档的相似性" class="headerlink" title="使用W2V和WMD发现文档的相似性"></a>使用W2V和WMD发现文档的相似性</h1><p>WMD（Word Mover’s Distance）是机器学习中一个有前途的新工具，它允许我们提交查询并返回最相似的文档。例如，在博客<a href="http://tech.opentable.com/2015/08/11/navigating-themes-in-restaurant-reviews-with-word-movers-distance/" target="_blank" rel="noopener">OpenTable</a>中，使用了WMD分析了餐厅评论。通过使用这种方法，他们能够从评论中挖掘出不同的方面。这本教程的第二部分，我们展示了如何使用gensim的WmdSimilarity去做类似与opentable所做的事情。在第一部分，我们说明了如何使用wmdistance去计算两个文档的WMD距离。如果你的目的是想使用WmdSimilarity，第一部分可以选读，但它是有意义的。</p>
+<p>不管怎样，首先，我们浏览下关于wmd是什么的基础知识。</p>
+<h1 id="WMD基础"><a href="#WMD基础" class="headerlink" title="WMD基础"></a>WMD基础</h1><p>wmd允许我们用一种有意义的方式去评估两个文档之间的距离，即使他们之间没有共同词汇。他使用w2v进行词向量嵌入。它的表现优于很多最先进的k近邻分类方法。</p>
+<p>wmd被下面两个非常相似的句子所阐明（图例来源于<a href="http://vene.ro/blog/word-movers-distance-in-python.html" target="_blank" rel="noopener">Vlad Niculae’s blog</a>）。两个句子之间没有共同词汇，但是通过匹配相关词，wmd能够精确度量两个句子之间的相似性。这个方法也使用了文档的词袋表征（简单的说，文档的词频），在下面的图中被标记为d。该方法的直观理解是我们发现文档之间最小的”traveling distance”，换句话说将文档1的分布移向文档2的最有效方式。</p>
+<p><img src="http://i1.piimg.com/567571/651dd1b6e0d46b4b.png" alt></p>
+<p>这个方法已经在文章<a href="http://jmlr.org/proceedings/papers/v37/kusnerb15.pdf" target="_blank" rel="noopener">“From Word Embeddings To Document Distances” by Matt Kusner et al.</a>中被介绍。它被”Earth Mover’s Distance”激发灵感，并且利用了 “transportation problem”的一个解法。</p>
+<p>在本教程中，我们将学习如何使用gensim的wmd函数。它由进行距离计算的wmdistance方法和基于相似查询的corpus计算的WmdSimilarity类构成。</p>
+<blockquote>
+<p>注意：<br>  如果你使用这个软件，请留意引用[1]，[2]和[3]。</p>
+</blockquote>
+<h1 id="运行notebook"><a href="#运行notebook" class="headerlink" title="运行notebook"></a>运行notebook</h1><p>你可以下载这个<a href="http://ipython.org/notebook.html" target="_blank" rel="noopener">iPython Notebook</a>，并在你自己电脑上运行它，如果你已经安装了gensim，pyemd，nltk，并下载了必要的数据。</p>
+<p>这个notebook被运行在i7-4770cpu 3.40GHz (8 cores) 和 32 GB memory的ubuntu机器上。在这台机器上运行整个notebook需要话费3分钟。</p>
+<h1 id="第一部分：计算词移距离（Word-Mover’s-Distance）"><a href="#第一部分：计算词移距离（Word-Mover’s-Distance）" class="headerlink" title="第一部分：计算词移距离（Word Mover’s Distance）"></a>第一部分：计算词移距离（Word Mover’s Distance）</h1><p>为了使用wmd，我们首先需要一些词嵌入。你需要在一些corpus上训练一个w2v模型（<a href="https://rare-technologies.com/word2vec-tutorial/" target="_blank" rel="noopener">教程</a>），但是我们将通过下载一些预训练的w2v嵌入模型来开始。下载 <a href="https://code.google.com/archive/p/word2vec/" target="_blank" rel="noopener">GoogleNews-vectors-negative300.bin.gz</a>（警告：1.5GB，第二部分并不需要这些文件）。训练你自己的嵌入模型是有益处的，但为了简化本教程，我们将首先使用预训练的嵌入。</p>
+<p>让我们拿一些句子来计算它们之间的相似度。</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">from</span> <span class="built_in">time</span> import <span class="built_in">time</span></span><br><span class="line">start_nb = <span class="built_in">time</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialize logging.</span></span><br><span class="line">import logging</span><br><span class="line">logging.basicConfig(<span class="built_in">format</span>=<span class="string">'%(asctime)s : %(levelname)s : %(message)s'</span>)</span><br><span class="line"></span><br><span class="line">sentence_obama = <span class="string">'Obama speaks to the media in Illinois'</span></span><br><span class="line">sentence_president = <span class="string">'The president greets the press in Chicago'</span></span><br><span class="line">sentence_obama = sentence_obama.<span class="built_in">lower</span>().<span class="built_in">split</span>()</span><br><span class="line">sentence_president = sentence_president.<span class="built_in">lower</span>().<span class="built_in">split</span>()</span><br></pre></td></tr></table></figure>
+<p>这些句子有很相似的内容，因此wmd应该低。在我们计算wmd之前，我们想要移除停用词（”the”, “to”, etc.），因为它们对句子信息并没有很多贡献。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import and download stopwords from NLTK.</span></span><br><span class="line"><span class="keyword">from</span> nltk.corpus <span class="keyword">import</span> stopwords</span><br><span class="line"><span class="keyword">from</span> nltk <span class="keyword">import</span> download</span><br><span class="line">download(<span class="string">'stopwords'</span>)  <span class="comment"># Download stopwords list.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Remove stopwords.</span></span><br><span class="line">stop_words = stopwords.words(<span class="string">'english'</span>)</span><br><span class="line">sentence_obama = [w <span class="keyword">for</span> w <span class="keyword">in</span> sentence_obama <span class="keyword">if</span> w <span class="keyword">not</span> <span class="keyword">in</span> stop_words]</span><br><span class="line">sentence_president = [w <span class="keyword">for</span> w <span class="keyword">in</span> sentence_president <span class="keyword">if</span> w <span class="keyword">not</span> <span class="keyword">in</span> stop_words]</span><br></pre></td></tr></table></figure>
+<p>现在，正如先前提到的，我们将使用一些下载的预训练嵌入。我们加载这些进入gensim的w2v模型类中。注意我们这里选择的嵌入需要很多内存。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">start</span> = <span class="built_in">time</span>()</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> gensim.models <span class="keyword">import</span> KeyedVectors</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">'/data/w2v_googlenews/GoogleNews-vectors-negative300.bin.gz'</span>):</span><br><span class="line">    <span class="keyword">raise</span> ValueError(<span class="string">"SKIP: You need to download the google news model"</span>)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">model</span> = KeyedVectors.load_word2vec_format(<span class="string">'/data/w2v_googlenews/GoogleNews-vectors-negative300.bin.gz'</span>, <span class="built_in">binary</span>=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">'Cell took %.2f seconds to run.'</span> % (<span class="built_in">time</span>() - <span class="keyword">start</span>))</span><br></pre></td></tr></table></figure>
+<p>因此让我们使用wmdistance方法计算wmd。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">distance</span> = model.wmdistance(sentence_obama, sentence_president)</span><br><span class="line"><span class="built_in">print</span> '<span class="built_in">distance</span> = %.4f' % <span class="built_in">distance</span></span><br></pre></td></tr></table></figure>
+<p>让我们对完全不相关的句子做相同的操作。注意距离变大了。</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sentence_orange = <span class="string">'Oranges are my favorite fruit'</span></span><br><span class="line">sentence_orange = sentence_orange.<span class="built_in">lower</span>().<span class="built_in">split</span>()</span><br><span class="line">sentence_orange = [w <span class="keyword">for</span> w <span class="keyword">in</span> sentence_orange <span class="keyword">if</span> w <span class="keyword">not</span> <span class="keyword">in</span> stop_words]</span><br><span class="line"></span><br><span class="line">distance = model.wmdistance(sentence_obama, sentence_orange)</span><br><span class="line">print <span class="string">'distance = %.4f'</span> % distance</span><br></pre></td></tr></table></figure>
+<h1 id="正则化w2v向量"><a href="#正则化w2v向量" class="headerlink" title="正则化w2v向量"></a>正则化w2v向量</h1><p>当使用wmdistance方法时，首先正则化w2v向量是有益的，因此它们都有相同的长度。为了实现正则化，简单的调用model.init_sims(replace=True)，gensim会为你实现它。</p>
+<p>通常，使用<a href="https://en.wikipedia.org/wiki/Cosine_similarity" target="_blank" rel="noopener">余弦距离</a>度量两个w2v向量之间的距离。余弦距离度量的是两个向量之间的夹角。另一方面，wmd使用欧式距离。两个向量之间的欧式距离可能会因为她们之间的长度区别而变得很大，但是因为它们之间的夹角很小因此余弦距离很小。我们可以通过正则化向量减轻这个问题。</p>
+<p>注意正则化向量会花费一些时间，特别是你有一个大的词汇表 和/或 大的向量集。</p>
+<p>用法在下面的例子中被阐明。碰巧我们下载的向量已经被正则化了。因此，在这个例子中我们不会作出什么差别。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Normalizing word2vec vectors.</span></span><br><span class="line"><span class="keyword">start</span> = <span class="built_in">time</span>()</span><br><span class="line"></span><br><span class="line">model.init_sims(<span class="keyword">replace</span>=<span class="literal">True</span>)  <span class="comment"># Normalizes the vectors in the word2vec class.</span></span><br><span class="line"></span><br><span class="line">distance = model.wmdistance(sentence_obama, sentence_president)  <span class="comment"># Compute WMD as normal.</span></span><br><span class="line"></span><br><span class="line">print <span class="string">'Cell took %.2f seconds to run.'</span> %(<span class="built_in">time</span>() - <span class="keyword">start</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="第二部分：使用WmdSimilarity进行相似度查询"><a href="#第二部分：使用WmdSimilarity进行相似度查询" class="headerlink" title="第二部分：使用WmdSimilarity进行相似度查询"></a>第二部分：使用WmdSimilarity进行相似度查询</h1><p>你可以通过WmdSimilarity类，使用wmd得到一个查询对应的最相似的文档。它的交互过程相似于在gensim教程<a href="https://radimrehurek.com/gensim/tut3.html" target="_blank" rel="noopener">Similarity Queries</a>中所描绘的。</p>
+<blockquote>
+<p>重要注意<br> wmd是一种距离度量。WmdSimilarity中的相似度是简单的负距离。注意不要混淆距离和相似度。两个相似文档将有一个高相似得分和一个小距离;两个差异文档将有低的相似得分和一个大距离。</p>
+</blockquote>
+<h2 id="Yelp-data"><a href="#Yelp-data" class="headerlink" title="Yelp data"></a>Yelp data</h2><p>让我们使用一些真实世界数据来尝试下相似度查询。为此我们使用<a href="https://www.yelp.com/dataset_challenge" target="_blank" rel="noopener">yelp评论</a>。特别的，我们将使用单一餐馆也就是<a href="https://en.yelp.be/biz/mon-ami-gabi-las-vegas-2" target="_blank" rel="noopener">Mon Ami Gabi</a>的评论。</p>
+<p>为了得到yelp数据，你需要使用名字和邮箱进行注册。数据是775MB。</p>
+<p>这一次，我们将用我们自己的数据去训练W2V嵌入。一个餐馆的数据并不足以合适的训练出w2v，因此我们使用了6个餐馆的数据进行训练。但是仅仅在他们中的一个进行相似度查询试验。除了上面提到的Mon Ami Gabi，我们还将使用：</p>
+<ul>
+<li>Earl of Sandwich.</li>
+<li>Wicked Spoon.</li>
+<li>Serendipity 3.</li>
+<li>Bacchanal Buffet.</li>
+<li>The Buffet.</li>
+</ul>
+<p>我们选择的餐馆是yelp数据集中那些具有最高数量评论的餐馆。顺带一提，它们都在Las Vegas Boulevard中。我们用于训练w2v的corpus具有18957条文档（评论），而用于WmdSimilarity的corpus具有4137条文档。</p>
+<p>下面代码是一个yelp评论的json文件被按行读取，文本被抽取，分词，停用词和标点符号被移除。</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Pre-processing a document.</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">from</span> nltk import word_tokenize</span><br><span class="line">download(<span class="string">'punkt'</span>)  <span class="comment"># Download data for tokenizer.</span></span><br><span class="line"></span><br><span class="line">def preprocess(doc):</span><br><span class="line">    doc = doc.<span class="built_in">lower</span>()  <span class="comment"># Lower the text.</span></span><br><span class="line">    doc = word_tokenize(doc)  <span class="comment"># Split into words.</span></span><br><span class="line">    doc = [w <span class="keyword">for</span> w <span class="keyword">in</span> doc <span class="keyword">if</span> <span class="keyword">not</span> w <span class="keyword">in</span> stop_words]  <span class="comment"># Remove stopwords.</span></span><br><span class="line">    doc = [w <span class="keyword">for</span> w <span class="keyword">in</span> doc <span class="keyword">if</span> w.isalpha()]  <span class="comment"># Remove numbers and punctuation.</span></span><br><span class="line">    <span class="literal">return</span> doc</span><br><span class="line"></span><br><span class="line"><span class="built_in">start</span> = <span class="built_in">time</span>()</span><br><span class="line"></span><br><span class="line">import json</span><br><span class="line"></span><br><span class="line"><span class="comment"># Business IDs of the restaurants.</span></span><br><span class="line">ids = [<span class="string">'4bEjOyTaDG24SY5TxsaUNQ'</span>, <span class="string">'2e2e7WgqU1BnpxmQL5jbfw'</span>, <span class="string">'zt1TpTuJ6y9n551sw9TaEg'</span>,</span><br><span class="line">      <span class="string">'Xhg93cMdemu5pAMkDoEdtQ'</span>, <span class="string">'sIyHTizqAiGu12XMLX3N3g'</span>, <span class="string">'YNQgak-ZLtYJQxlDwN-qIg'</span>]</span><br><span class="line"></span><br><span class="line">w2v_corpus = []  <span class="comment"># Documents to train word2vec on (all 6 restaurants).</span></span><br><span class="line">wmd_corpus = []  <span class="comment"># Documents to run queries against (only one restaurant).</span></span><br><span class="line">documents = []  <span class="comment"># wmd_corpus, with no pre-processing (so we can see the original documents).</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">'/data/yelp_academic_dataset_review.json'</span>) <span class="keyword">as</span> data_file:</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">line</span> <span class="keyword">in</span> data_file:</span><br><span class="line">        json_line = json.loads(<span class="built_in">line</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> json_line[<span class="string">'business_id'</span>] <span class="keyword">not</span> <span class="keyword">in</span> ids:</span><br><span class="line">            <span class="comment"># Not one of the 6 restaurants.</span></span><br><span class="line">            continue</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># Pre-process document.</span></span><br><span class="line">        <span class="keyword">text</span> = json_line[<span class="string">'text'</span>]  <span class="comment"># Extract text from JSON object.</span></span><br><span class="line">        <span class="keyword">text</span> = preprocess(<span class="keyword">text</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># Add to corpus for training Word2Vec.</span></span><br><span class="line">        w2v_corpus.append(<span class="keyword">text</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> json_line[<span class="string">'business_id'</span>] == ids[<span class="number">0</span>]:</span><br><span class="line">            <span class="comment"># Add to corpus for similarity queries.</span></span><br><span class="line">            wmd_corpus.append(<span class="keyword">text</span>)</span><br><span class="line">            documents.append(json_line[<span class="string">'text'</span>])</span><br><span class="line"></span><br><span class="line">print <span class="string">'Cell took %.2f seconds to run.'</span> %(<span class="built_in">time</span>() - <span class="built_in">start</span>)</span><br></pre></td></tr></table></figure>
+<p>下面是一个文档长度的直方图，该图中也包含了平均文档长度。注意这些是经过预处理的文档，也就是说停用词已经被移除，标点符号已经被移除，等等。文档长度对wmd的运行时间有很大的影响，因此当和本次实验比较运行时间时，查询corpus的文档数量（大约4000）和文档长度（大约平均62个词）应该被考虑在内。</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">from</span> matplotlib import pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="comment"># Document lengths.</span></span><br><span class="line">lens = [<span class="built_in">len</span>(doc) <span class="keyword">for</span> doc <span class="keyword">in</span> wmd_corpus]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot.</span></span><br><span class="line">plt.rc(<span class="string">'figure'</span>, figsize=(<span class="number">8</span>,<span class="number">6</span>))</span><br><span class="line">plt.rc(<span class="string">'font'</span>, size=<span class="number">14</span>)</span><br><span class="line">plt.rc(<span class="string">'lines'</span>, linewidth=<span class="number">2</span>)</span><br><span class="line">plt.rc(<span class="string">'axes'</span>, color_cycle=(<span class="string">'#377eb8'</span>,<span class="string">'#e41a1c'</span>,<span class="string">'#4daf4a'</span>,</span><br><span class="line">                            <span class="string">'#984ea3'</span>,<span class="string">'#ff7f00'</span>,<span class="string">'#ffff33'</span>))</span><br><span class="line"><span class="comment"># Histogram.</span></span><br><span class="line">plt.hist(lens, bins=<span class="number">20</span>)</span><br><span class="line">plt.hold(True)</span><br><span class="line"><span class="comment"># Average length.</span></span><br><span class="line">avg_len = <span class="built_in">sum</span>(lens) / float(<span class="built_in">len</span>(lens))</span><br><span class="line">plt.axvline(avg_len, color=<span class="string">'#e41a1c'</span>)</span><br><span class="line">plt.hold(False)</span><br><span class="line">plt.title(<span class="string">'Histogram of document lengths.'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'Length'</span>)</span><br><span class="line">plt.<span class="keyword">text</span>(<span class="number">100</span>, <span class="number">800</span>, <span class="string">'mean = %.2f'</span> % avg_len)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://i2.muimg.com/567571/479272b7085337df.png" alt></p>
+<p>现在，我们想要用corpus和w2v初始化相似类（提供了嵌入和wmdistance方法）。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Train Word2Vec on all the restaurants.</span></span><br><span class="line">model = Word2Vec(w2v_corpus, <span class="attribute">workers</span>=3, <span class="attribute">size</span>=100)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialize WmdSimilarity.</span></span><br><span class="line"><span class="keyword">from</span> gensim.similarities import WmdSimilarity</span><br><span class="line">num_best = 10</span><br><span class="line">instance = WmdSimilarity(wmd_corpus, model, <span class="attribute">num_best</span>=10)</span><br></pre></td></tr></table></figure>
+<p>num_best参数决定了查询返回的结果数量。现在让我们来做个查询。输出是corpus中文档相似度和索引的一个列表，按照相似度排序。</p>
+<p>注意当num_best为None（也就是没有指定参数）时输出形式有些不同。在这种情况下，你得到一个涵盖corpus中每个文档的相似度数组。</p>
+<p>下面的查询直接取自corpus中的一条评论。让我们看看是否有其他的评论相似于这一条。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">start</span> = <span class="built_in">time</span>()</span><br><span class="line"></span><br><span class="line">sent = <span class="string">'Very good, you should seat outdoor.'</span></span><br><span class="line"><span class="keyword">query</span> = preprocess(sent)</span><br><span class="line"></span><br><span class="line">sims = <span class="keyword">instance</span>[<span class="keyword">query</span>]  <span class="comment"># A query is simply a "look-up" in the similarity class.</span></span><br><span class="line"></span><br><span class="line">print <span class="string">'Cell took %.2f seconds to run.'</span> %(<span class="built_in">time</span>() - <span class="keyword">start</span>)</span><br></pre></td></tr></table></figure>
+<p>查询和最相似的文档，以及它们的相似度，在下面被打印出来。我们看到被检索到的文档讨论着和查询一样的事情，尽管使用了不同的单词。查询谈论的是得到一个户外的座位，而结果谈论的是坐在外面，结果中的一个说的是餐馆有一个好的景观。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># Print the query and the retrieved documents, together with their similarities.</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">'Query:'</span></span><br><span class="line"><span class="keyword">print</span> sent</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(num_best):</span><br><span class="line">    <span class="keyword">print</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'sim = %.4f'</span> % sims[i][<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">print</span> documents[sims[i][<span class="number">0</span>]]</span><br></pre></td></tr></table></figure>
+<p>让我们尝试一个不同的查询，同样直接取自corpus评论中的一个。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">start</span> = <span class="built_in">time</span>()</span><br><span class="line"></span><br><span class="line">sent = <span class="string">'I felt that the prices were extremely reasonable for the Strip'</span></span><br><span class="line"><span class="keyword">query</span> = preprocess(sent)</span><br><span class="line"></span><br><span class="line">sims = <span class="keyword">instance</span>[<span class="keyword">query</span>]  <span class="comment"># A query is simply a "look-up" in the similarity class.</span></span><br><span class="line"></span><br><span class="line">print <span class="string">'Query:'</span></span><br><span class="line">print sent</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="keyword">range</span>(num_best):</span><br><span class="line">    print</span><br><span class="line">    print <span class="string">'sim = %.4f'</span> % sims[i][<span class="number">1</span>]</span><br><span class="line">    print documents[sims[i][<span class="number">0</span>]]</span><br><span class="line"></span><br><span class="line">print <span class="string">'\nCell took %.2f seconds to run.'</span> %(<span class="built_in">time</span>() - <span class="keyword">start</span>)</span><br></pre></td></tr></table></figure>
+<p>这次，结果更加直接。检索到的文档基本包含了与查询相同的词。</p>
+<p>WmdSimilarity默认正则化了词嵌入（使用init_sims()，正如前面解释的），但你可以改变这个行为通过调用WmdSimilarity,并设置normalize_w2v_and_replace=False。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print 'Notebook took %<span class="number">.2</span>f seconds <span class="keyword">to</span> <span class="built_in">run</span>.' %(<span class="built_in">time</span>() - start_nb)</span><br></pre></td></tr></table></figure>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ol>
+<li>Ofir Pele and Michael Werman, A linear time histogram metric for improved SIFT matching, 2008.</li>
+<li>Ofir Pele and Michael Werman, Fast and robust earth mover’s distances, 2009.</li>
+<li>Matt Kusner et al. From Embeddings To Document Distances, 2015.</li>
+<li>Thomas Mikolov et al. Efficient Estimation of Word Representations in Vector Space, 2013.</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/04/02/machine learning/NLP/WMD/" data-id="cjsldc19901mhe4v5f9lkp1n4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WMD/">WMD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/NLP/idf" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/30/machine learning/NLP/idf/" class="article-date">
+  <time datetime="2017-03-30T06:59:25.000Z" itemprop="datePublished">2017-03-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/NLP/">NLP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/30/machine learning/NLP/idf/">idf</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script type"text javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="idf-计算技巧"><a href="#idf-计算技巧" class="headerlink" title="idf 计算技巧"></a>idf 计算技巧</h1><p>假设不同词共有N个，文档共有M个，单文档最大长度是L。</p>
+<p>我们看如下两种计算方式。</p>
+<p>第一种是先作出所有词的词典，然后对每个词进行遍历，看它在多少个文档中出现，复杂度是N×M： </p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">from collections import Counter</span><br><span class="line"><span class="comment">#word frequency by words</span></span><br><span class="line">w_freq = Counter(<span class="string">' '</span>.join(train_que).<span class="keyword">split</span>())</span><br><span class="line"><span class="comment">#word frequency by docs</span></span><br><span class="line">d_freq = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> i in w_freq.keys():</span><br><span class="line">    <span class="keyword">for</span> j in train_que:</span><br><span class="line">        <span class="keyword">if</span> i in j:</span><br><span class="line">            <span class="keyword">if</span> i <span class="keyword">not</span> in d_freq:</span><br><span class="line">                d_fre<span class="string">q[i]</span> = <span class="number">0</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                d_fre<span class="string">q[i]</span> += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>第二种是遍历所有文档，记录每个文档中出现的词，复杂度是M×L：<br><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">from collections import Counter</span><br><span class="line"><span class="comment">#word frequency by words</span></span><br><span class="line">w_freq = Counter(<span class="string">' '</span>.join(train_que).<span class="keyword">split</span>())</span><br><span class="line"><span class="comment">#word frequency by docs</span></span><br><span class="line">d_freq = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> text in train_que:</span><br><span class="line">    <span class="keyword">for</span> i in set(text.<span class="keyword">split</span>()):</span><br><span class="line">        try:</span><br><span class="line">            d_fre<span class="string">q[i]</span> += <span class="number">1</span></span><br><span class="line">        except:</span><br><span class="line">            d_fre<span class="string">q[i]</span> = <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+<p>显然，两者效率相差极大。一般L不过在10左右，而N却可以高达上万。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/30/machine learning/NLP/idf/" data-id="cjsldc0sr007se4v5a5rqkemf" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TF-IDF/">TF-IDF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/competition/trick" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/27/machine learning/competition/trick/" class="article-date">
+  <time datetime="2017-03-27T13:02:22.000Z" itemprop="datePublished">2017-03-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/competition/">competition</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/27/machine learning/competition/trick/">trick</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="benchmark"><a href="#benchmark" class="headerlink" title="benchmark"></a>benchmark</h1><p>就0-1分类问题而言，可以将训练集target整体均值作为测试集每个样本的预测概率。从而找到最基本的benchmark。</p>
+<p><a href="https://www.kaggle.com/davidthaler/quora-question-pairs/how-many-1-s-are-in-the-public-lb" target="_blank" rel="noopener">而且，还可以根据提交得分反推出1类占比。</a></p>
+<p>\begin{split} logloss &amp;&amp;= - \frac{1}{n} \sum y_i \log p + (1 - y_i) \log (1-p) \newline<br>&amp;&amp;= - (r \log p + (1 - r) \log (1 - p)) \newline<br>&amp;&amp;= r \log \frac{1-p}{p} - \log (1 - p)\end{split}<br>由此推得1类占比：<br>\begin{split} r = (logloss + \log (1-p))/ \log \frac{1-p}{p}\end{split}</p>
+<h1 id="score"><a href="#score" class="headerlink" title="score"></a>score</h1><p>以logloss得分为例。</p>
+<p>假设原训练集不均衡。在建模时通过采样使得训练集均衡，然后对测试集进行预测。通过设定threshold，将预测概率0-1化，计算准确率是没有问题的。</p>
+<p>但是，由于采用logloss评分，实际上预测概率会偏大！因为真实的正负样本比例小于0.5！最简单的方法就是将预测结果除以采样后正负样本比例再乘以真实比例！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/27/machine learning/competition/trick/" data-id="cjsldc0th00a8e4v5q0ckkf81" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/competition/">competition</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/optimization/非参方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/27/machine learning/optimization/非参方法/" class="article-date">
+  <time datetime="2017-03-27T02:32:01.000Z" itemprop="datePublished">2017-03-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/optimization/">optimization</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/27/machine learning/optimization/非参方法/">非参方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="参数学习方法："><a href="#参数学习方法：" class="headerlink" title="参数学习方法："></a>参数学习方法：</h1><p>假设了一个在整个输入空间上有效的模型，将问题归结为在样本上估计少量参数，(如:线性模型估计w，高斯分布估计mu和sigma).参数学习方法假定了一个模型，当模型假定不成立，或者样本不是一个分组，可能导致很大的误差。(如:语音识别，由于不同口音、性别、年龄、发音等，没有单个同样的模型).</p>
+<h1 id="半参数方法："><a href="#半参数方法：" class="headerlink" title="半参数方法："></a>半参数方法：</h1><p>为样本每个分组假定一个参数模型，(如:使用混合分布估计输入样本).</p>
+<h1 id="非参数方法："><a href="#非参数方法：" class="headerlink" title="非参数方法："></a>非参数方法：</h1><p>只假定相似输入具有相似输出(如:k近邻)，非参数方法使用合适的聚类度量相似性，对于输入样本，从训练集中找出它们的相似示例(输入样本的邻域)，并由相似的实例插值得到正确的输入。参数模型定义了一个全局模型，所以训练样本都影响最终估计，而非参数方法不存在全局模型，需要时估计局部模型(如:局部加权线性回归),它们只受邻近训练样本影响,是局部响应.因此非参数模型不是固定的，复杂性依赖训练集大小，非参数学习方法又称基于实例或基于记忆的方法，输入样本搜索训练集中相似样本，并基于相似子集插值。</p>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://blog.csdn.net/u013395544/article/details/53170207" target="_blank" rel="noopener">非参数方法、参数方法与半参数方法</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/27/machine learning/optimization/非参方法/" data-id="cjsldc0ur00dqe4v5se3bbahf" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nonparametric-approach/">nonparametric approach</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/optimization/">optimization</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/ensemble/GBM and Xgboost" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/26/machine learning/ensemble/GBM and Xgboost/" class="article-date">
+  <time datetime="2017-03-26T14:41:49.000Z" itemprop="datePublished">2017-03-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ensemble/">ensemble</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/26/machine learning/ensemble/GBM and Xgboost/">GBM and Xgboost</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script type"text javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="GBDT概述"><a href="#GBDT概述" class="headerlink" title="GBDT概述"></a>GBDT概述</h1><p>与Adaboost不同，GBM虽然也是加性模型，但它却是通过不断拟合残差来逐步提高模型效果。  </p>
+<p><strong><em>需要强调的是，融合模型融合的是函数空间，而不是参数空间！！！*</em></strong></p>
+<h1 id="梯度提升"><a href="#梯度提升" class="headerlink" title="梯度提升"></a>梯度提升</h1><p>t轮迭代的损失函数为：<br>\begin{split} J_t = L(y,F_t(x)) = L(y,\sum_{t=0}^t h_t(x))\end{split}</p>
+<p>通过梯度下降法优化损失函数：<br>\begin{split} F_{t+1}(x) := F_t(x) - \rho_t \frac{\partial J_t}{\partial F_t(x)} \end{split}<br><strong><em>注意，这里直接优化的是分类器！$\rho$是加法模型的系数（类似于adaboost的系数）,利用牛顿法最小化$J_{t+1}$求得。</em></strong>[TBC]学习率真的是这样??</p>
+<p>注意shrinkage与学习率是两个不同概念,它是在得到新拟合出的模型之后通过乘以收缩率去控制过拟合，类似于动量。也就是说，最终应该有：<br>\begin{split} F_{t+1}(x) = (1 - \text{shrinkage})F_t(x) - \text{shrinkage } \rho_t \frac{\partial J_t}{\partial F_t(x)} \end{split}<br>[TBC]？？是每次迭代之后都直接使用shinkage，还是建好模型以后统一使用shrinkage？</p>
+<p><strong><em>GBM用的都是回归树！</em></strong> 应该是为了计算方便和更加精确。如果是分类问题，最后再对结果进行转换。</p>
+<h1 id="Xgboost"><a href="#Xgboost" class="headerlink" title="Xgboost"></a>Xgboost</h1><p>相较于GBM，引入了L2正则项，将叶节点数和叶节点得分作为罚项显化，并且利用泰勒展开进行优化求解。</p>
+<p>利用得分增益进行树的分裂。</p>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://zkread.com/article/1012129.html" target="_blank" rel="noopener">GBDT（梯度提升决策树）</a></p>
+<p><a href="http://www-stat.stanford.edu/~jhf/ftp/trebst.pdf" target="_blank" rel="noopener">Greedy function approximation: a gradient boosting machine</a></p>
+<p><a href="http://www.chengli.io/tutorials/gradient_boosting.pdf" target="_blank" rel="noopener">A Gentle Introduction to Gradient Boosting</a></p>
+<p><a href="http://xgboost.readthedocs.io/en/latest/model.html" target="_blank" rel="noopener">Xgboost</a></p>
+<p><a href="http://blog.csdn.net/shenxiaoming77/article/details/51542982" target="_blank" rel="noopener">一步一步理解GB、GBDT、xgboost</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/26/machine learning/ensemble/GBM and Xgboost/" data-id="cjsldc0tt00b8e4v52k8sam8t" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GBM/">GBM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Xgboost/">Xgboost</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ensemble/">ensemble</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/machine learning/高维稀疏特征建模" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/26/machine learning/machine learning/高维稀疏特征建模/" class="article-date">
+  <time datetime="2017-03-26T08:22:40.000Z" itemprop="datePublished">2017-03-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/machine-learning/">machine learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/26/machine learning/machine learning/高维稀疏特征建模/">高维稀疏特征建模</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script type"text javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script><br>[TBC]为什么对于高维稀疏特征，很多算法无效。比如gbm？</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/26/machine learning/machine learning/高维稀疏特征建模/" data-id="cjsldc0un00dbe4v57e3vdutq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GBM/">GBM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ensemble/">ensemble</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/ensemble/adaboost" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/25/machine learning/ensemble/adaboost/" class="article-date">
+  <time datetime="2017-03-25T12:13:44.000Z" itemprop="datePublished">2017-03-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ensemble/">ensemble</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/25/machine learning/ensemble/adaboost/">adaboost</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script type"text javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="adaboost原理"><a href="#adaboost原理" class="headerlink" title="adaboost原理"></a>adaboost原理</h1><p>adaboost通过集成弱分类器来最终实现一个强分类器。</p>
+<p>以下的讨论局限于二分类问题。并且注意正类标记为1,负类标记为-1。</p>
+<p>弱分类器：优于随机水平。事实上，这很容易达到，因为对于低于随机水平的，只需要反转预测的label就可以高于随机水平了。</p>
+<p>adaboost是一个加法模型，最终模型形如：<br>$$F(x) = \sum_{t=1}^T \alpha_t h_t(x)$$<br>$$H(x) = sign[F(x)]$$<br>其中，T是总迭代次数。$\alpha$是模型的权重，也就是需要求解的模型参数之一。另一部分参数就是各个基分类器。</p>
+<p>我们的优化目标自然是最小化误差：<br>$$\arg \min Err(H;D) = \arg \min \frac{1}{m} \sum_{i=1}^m I(h(x_i) \neq y_i)$$<br>其中，m是样本数。</p>
+<h1 id="权重调整"><a href="#权重调整" class="headerlink" title="权重调整"></a>权重调整</h1><p>adaboost通过调整误分类样本权重重新建模，来改进模型效果。<br>初始权重为$\frac{1}{m}$。</p>
+<p>通过如下公式进行权重调整：<br>$$D_{t+1}(i) = \frac{1}{Z_t} D_t(i) \exp[-\alpha_t y_i h_t(x_i)]$$<br>其中，$Z_t$是规范化因子，保证权重大于等于0,和为1。$D_t(i)$是t轮迭代的样本权重。显然，当预测正确时，$y_i h_t(x_i) = 1$，新权重会减小;预测错误时，$y_i h_t(x_i) = -1$，新权重会增大。</p>
+<p>因此，可以得到递推公式：<br>\begin{split} D_{t+1}(i) &amp;&amp;= \frac{1}{Z_t} D_t(i) \exp[-\alpha_t y_i h_t(x_i)] \newline<br>&amp;&amp;= \frac{1}{Z_t Z_{t-1}} D_{t-1}(i) \exp[-y_i(\alpha_t h_t(x_i) + \alpha_{t-1} h_{t-1}(x_i))] \newline<br>&amp;&amp;= \frac{1}{Z_t … Z_{1}} D_{1}(i) \exp[-y_i(\alpha_t h_t(x_i) + …+\alpha_{1} h_{1}(x_i))] \newline<br>&amp;&amp;= \frac{1}{Z_t … Z_{1}} D_{1}(i) \exp[-y_i F(x_i)] \end{split}</p>
+<p>左右两边同时求和有：<br>\begin{split} 1 = \sum_{i=1}^m D_{t+1}(i) = \frac{1}{Z_t … Z_{1}} \frac{1}{m} \sum_{i=1}^m \exp[-y_i F(x_i)] \end{split}<br>\begin{split} Z = Z_t … Z_{1} = \frac{1}{m} \sum_{i=1}^m \exp[-y_i F(x_i)] \end{split}</p>
+<h1 id="adaboost误差上界"><a href="#adaboost误差上界" class="headerlink" title="adaboost误差上界"></a>adaboost误差上界</h1><p>adaboost通过优化误差上界来优化模型效果。</p>
+<p>下面证明：<br>$$ Err(H) = \frac{1}{m} \sum_{i=1}^m I(h(x_i) \neq y_i) \leq Z = \frac{1}{m} \sum_{i=1}^m \exp[-y_i F(x_i)]$$</p>
+<p>证明如下：</p>
+<p>对于求和的每一项有：<br>\begin{split} \text{If } H(x_i) \neq y_i \text{ then the LHS } = 1 \leq \text{RHS } = e^{+|F(x_i)|} \newline<br>\text{If } H(x_i) = y_i \text{ then the LHS } = 0 \leq \text{RHS } = e^{-|F(x_i)|} \end{split}<br>显然求和后不等式依旧成立。故而得证。</p>
+<p>因此，我们的问题转化为优化Z。同时，我们采用step-wise的方法去进行优化，也就是逐步优化$Z_1,Z_2,Z_3,…,Z_t$。</p>
+<h1 id="权重系数求解"><a href="#权重系数求解" class="headerlink" title="权重系数求解"></a>权重系数求解</h1><p>对$Z_t$最小化，令导数为0。</p>
+<p>\begin{split} Z_t(\alpha_t,h_t) &amp;&amp;= \sum_{x_i \in A} D_t(x_i) exp[-\alpha_t] + \sum_{x_i \in \bar{A}} D_t(x_i) exp[-\alpha_t] \newline<br>\frac{d Z_t(\alpha_t,h_t)}{d \alpha_t} &amp;&amp;= \sum_{x_i \in A} -D_t(x_i) exp[-\alpha_t] + \sum_{x_i \in \bar{A}} D_t(x_i) exp[-\alpha_t] = 0 \newline<br>\sum_{x_i \in A} D_t(x_i) &amp;&amp;= \sum_{x_i \in \bar{A}} D_t(x_i) exp[2 \alpha_t] \end{split}</p>
+<p>我们定义加权误差：<br>\begin{split} \epsilon_t(h) = \sum_{i=1}^m D_t(x_i)I(h(x_i) \neq y_i) = \sum_{x_i \in \bar{A}} D_t(x_i) \end{split}</p>
+<p>因此有：<br>\begin{split} \alpha_t = \frac{1}{2} \ln \frac{1-\epsilon_t(h_t)}{\epsilon_t(h_t)} \end{split}</p>
+<p><strong>由于每个分类器都要求是弱分类器。也就是要求每个基分类器的 <em>加权误差率</em> 小于0.5。</strong><br>因此，$\alpha_t$显然都大于0。</p>
+<h1 id="误差分析"><a href="#误差分析" class="headerlink" title="误差分析"></a>误差分析</h1><p>将解出的权重系数带回：</p>
+<p>\begin{split} Z_t(\alpha_t,h_t) &amp;&amp;= \sum_{x_i \in A} D_t(x_i) exp[-\alpha_t] + \sum_{x_i \in \bar{A}} D_t(x_i) exp[-\alpha_t] \newline<br>&amp;&amp;= (1-\epsilon_t(h_t))\sqrt{\frac{\epsilon_t(h_t)}{1-\epsilon_t(h_t)}} + \epsilon_t(h_t)\sqrt{\frac{1-\epsilon_t(h_t)}{\epsilon_t(h_t)}} \newline<br>&amp;&amp;= 2\sqrt{\epsilon_t(h_t) (1-\epsilon_t(h_t))}\end{split}</p>
+<p>令:<br>\begin{split} \gamma_t = \frac{1}{2} - \epsilon_t(h_t) , \gamma_t \in (0,\frac{1}{2}]\end{split}</p>
+<p>则有：</p>
+<p>\begin{split} Z_t(\alpha_t,h_t) &amp;&amp;= 2\sqrt{\epsilon_t(h_t) (1-\epsilon_t(h_t))} \newline<br>&amp;&amp;= \sqrt{1-4\gamma_t^2} \newline<br>&amp;&amp; \leq \exp[-2 \gamma_t^2]\end{split}</p>
+<p>因此：</p>
+<p>\begin{split} Err(H) \leq Z \leq \exp[-2\sum_{t=1}^T \gamma_t^2] \end{split}</p>
+<p>随着迭代次数增加，误差上界以指数级减小。</p>
+<h1 id="过拟合问题"><a href="#过拟合问题" class="headerlink" title="过拟合问题"></a>过拟合问题</h1><p>adaboost在使用中常常不容易过拟合。也就是说验证集可以随着训练集精度提升而提升，并不存在一个下降的拐点。</p>
+<p>一些相关的理论解释：</p>
+<blockquote>
+<p>作者：知乎用户<br>链接：<a href="https://www.zhihu.com/question/41047671/answer/127832345" target="_blank" rel="noopener">https://www.zhihu.com/question/41047671/answer/127832345</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。<br>AdaBoost提出的论文对AdaBoost的泛化界进行了分析，使用了通常的学习器泛化界：<br>泛化错误（泛化错误可理解为测试错误） &lt; 训练错误 + 学习算法容量相关项     (1)<br>由(1)式可见，当训练错误不变时，应当选择简单的学习模型，从而减少学习算法容量。然而在实验中已经观察到，在一些情况，训练错误已经是0了，继续训练还能进一步减小泛化错误，这里的继续训练意味着增加学习算法容量，理应导致泛化错误上升才对。因此(1)直接套上AdaBoost是解释不通的。更有JMLR 2008的论文发现，更多的实验观察与Boosting的理论及其统计解释都不符合，例如使用多层的决策树竟然比使用一层的简单决策树更好。理论不能解释实验肯定是理论的问题，于是人们觉得，(1)式不够好，可能把更加细微的因素忽略了。<br>于是AdaBoost的作者针对这一情况，提出了新的学习器泛化界：<br>泛化错误 &lt; 训练Margin项 + 学习算法容量相关项     (2)<br>(1)中的训练错误是指一个数据样本分类对了就是0，错了就是1，而(2)里的“训练Margin”不仅看分类对错，还要看对的信心有多少，例如对于一个正类+1，分类器A输出+0.1，B输出+2，虽然都分类正确了，但B的信心更多。这样(2)就比(1)更加细致的刻画了学习器的表现。实验一看，果然AdaBoost在训练错误为0后，继续训练不能再减少训练错误了，确能够进一步减少训练Margin，也就是信心更足了。<br>看似解决了AdaBoost不容易过拟合的问题，然而好景不长，统计大牛Leo Breiman（bagging，random forest出自他手）来了个比 (2) 更紧的界（更紧就是更接近真实）：<br>泛化错误 &lt; 训练Margin的最小值 + 学习算法容量相关项     (3)<br>（3）的容量相关项目更小，但这不是关键，关键是根据这一理论，就应该去看训练Margin的最小值，也就是分类器在所有样本上信心最不足的那个。然而根据这一理论，Breiman设计了另一种Boosting算法arc-gv，最小训练Margin更小了，但实验效果比AdaBoost差了很多。于是乎Breiman的结论是，这个用训练Margin来刻画泛化错误整个就是不对的。大家都傻眼了，AdaBoost不容易过拟合的问题无解了。<br>7年之后。。。AdaBoost作者之一的工作发现，Breiman的实验竟然有问题：没有很好的控制决策树的复杂性，也就是说，AdaBoost和arc-gv关于“学习算法容量相关项”的值并不一样，虽然arc-gv的最小训练Margin更小，但后面一项更大啊，因此泛化错误就更大了。于是重做实验，都用一层决策树，这样后面一项都一样了，一看AdaBoost更好了，也就是说原来的Margin理论并没有错误，松了口气。该论文获ICML’06最佳论文奖。<br>但是这篇最佳论文奖并没有终结问题，当都用一层决策树时，AdaBoost的最小训练Margin比arc-gv还要小，也就是说，并没有否定(3)式。然而在实验中，最小化这个最小Margin的效果并不好。这篇论文也指出，可能要看Margin的分布，也就是算法在所有样本上的信心，而不是最差的那个样本上的信心。但这只是“可能”，理论研究者最求的是更紧的界。接下来都是我国研究者的贡献了，北京大学王立威等人的到了比(3)更紧的界，其中“训练Margin的最小值” 被替代为 “训练Margin的某一个值”，这某一个要解一个均衡式，但不管怎么说，最小Margin被替代掉了。南京大学的高尉和周志华教授推导出了“第k Margin界”，（3）和 “训练Margin的某一个值” 都是其k赋特定值的特例，并由此得到了基于“算法在所有样本上的信心”的界，比（3）式更好。<br>以上内容可见：<a href="https://wenku.baidu.com/view/8efc9b880975f46527d3e1cb.html" target="_blank" rel="noopener">CCL2014_keynote-周志华</a><br>Margin理论讨论的主要是学习算法在训练样本上的信心，学习算法的容量是不是随着训练轮数的增加而增加呢，其实并不一定，近来有工作表明，有差异的学习器的组合，能够起到正则化的作用，也就是减少学习算法容量（<a href="http://lamda.nju.edu.cn/yuy/GetFile.aspx?File=papers/ecml12-divprune.pdf" target="_blank" rel="noopener">Diversity regularized ensemble pruning. ECML’12</a>; <a href="https://arxiv.org/abs/1511.07110" target="_blank" rel="noopener">On the Generalization Error Bounds of Neural Networks under Diversity-Inducing Mutual Angular Regularization</a>）。在许多variance-bias 分解实验中也观察到，AdaBoost不仅是减少了bias，同时也减少了variance，variance的减少往往与算法容量减少有关。<br>总之这一方面还值得进一步探索，新原理的发型，有可能导致新型高效学习算法的发明，意义重大。</p>
+</blockquote>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="https://www.cse.buffalo.edu/~jcorso/t/CSE555/files/lecture_boosting.pdf" target="_blank" rel="noopener">boosting and adaboost</a></p>
+<p><a href="https://www.zhihu.com/question/41047671" target="_blank" rel="noopener">adaboost为什么不容易过拟合呢？</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/25/machine learning/ensemble/adaboost/" data-id="cjsldc19c01mke4v5lpi6qhj4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/adaboost/">adaboost</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ensemble/">ensemble</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/machine learning/线性判别分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/24/machine learning/machine learning/线性判别分析/" class="article-date">
+  <time datetime="2017-03-24T07:32:44.000Z" itemprop="datePublished">2017-03-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/machine-learning/">machine learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/24/machine learning/machine learning/线性判别分析/">线性判别分析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="LDA思想"><a href="#LDA思想" class="headerlink" title="LDA思想"></a>LDA思想</h1><p>将训练样例投影到一条直线上，使得同类样例尽可能近，异类样例尽可能远。在对新样例进行分类时，将其投影到同样的这条直线上，在根据投影点位置来确定样例类别。</p>
+<p><img src="http://i1.piimg.com/588926/e3666f601ae4b470.png" alt><br>其中，$\omega$是直线方向向量，x是样例向量，两者内积就是样例在直线上投影。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/24/machine learning/machine learning/线性判别分析/" data-id="cjsldc0um00d6e4v51zo6kfxa" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LDA/">LDA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/NN/《神经网络和深度学习》第五章——深度神经网络为何很难训练" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/24/machine learning/NN/《神经网络和深度学习》第五章——深度神经网络为何很难训练/" class="article-date">
+  <time datetime="2017-03-24T01:56:27.000Z" itemprop="datePublished">2017-03-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/NN/">NN</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/24/machine learning/NN/《神经网络和深度学习》第五章——深度神经网络为何很难训练/">《神经网络和深度学习》第五章——深度神经网络为何很难训练</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="不稳定的梯度问题"><a href="#不稳定的梯度问题" class="headerlink" title="不稳定的梯度问题"></a>不稳定的梯度问题</h1><p><img src="http://p1.bpimg.com/567571/c337283e1a426f2f.png" alt>  </p>
+<p>以上图为例，会出现：</p>
+<ol>
+<li><p><strong>消失的梯度问题</strong>：<br>当$\omega_i\sigma_i^{‘}$小于1时。由于一般初始权重在0附近，且使用sigmoid神经元，所以消失的梯度问题更容易出现。<br>其实，即使权重很大，对于sigmoid函数而言，越大的权重会导致对应的sigmoid函数倒数越接近0,因此更容易梯度消失。</p>
+</li>
+<li><p><strong>激增的梯度问题</strong>：<br>当$\omega_i\sigma_i^{‘}$大于1时。当初始权重很大时出现。</p>
+</li>
+</ol>
+<p>根本问题是因为前面层上的梯度是来自后面层上项的乘积。当存在过多的层次时，就出现了内在本质上的不稳定场景。<br>所以，如果我们使用标准的基于梯度的学习算法，在网络中的不同层就会出现按照不同学习速度学习的情况。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/24/machine learning/NN/《神经网络和深度学习》第五章——深度神经网络为何很难训练/" data-id="cjsldc0tc009xe4v5nmq99vny" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NN/">NN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/NN/《神经网络和深度学习》第六章——深度学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/24/machine learning/NN/《神经网络和深度学习》第六章——深度学习/" class="article-date">
+  <time datetime="2017-03-24T01:56:23.000Z" itemprop="datePublished">2017-03-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/NN/">NN</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/24/machine learning/NN/《神经网络和深度学习》第六章——深度学习/">《神经网络和深度学习》第六章——深度学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h1><p>充分利用空间特征。</p>
+<ul>
+<li><p>局部感受野<br>隐藏层中每个神经元链接到输入神经元的一个小区域。</p>
+</li>
+<li><p>共享权重和偏置<br>即是应用相同的特征检测器。因此也可以很好的适应图像的平移不变性。<br>我们有时候把从输入层到隐藏层的映射称为一个特征映射。我们把定义特征映射的权重称为共享权重。我们把以这种方式定义特征映射的偏置称为共享偏置。<br>共享权重和偏置经常被称为一个卷积核或者滤波器。</p>
+</li>
+<li><p>混合层（pooling layers）<br>混合层通常紧接着在卷积层之后使用。用于简化从卷积层输出的信息。</p>
+</li>
+</ul>
+<p>一些常用的混合程序：</p>
+<ul>
+<li>最大值混合（max-pooling）：取最大值</li>
+<li>L2混合（L2-pooling）：取激活值平方和的平方根</li>
+</ul>
+<p>一个使用5×5局部感受野和3个特征映射，以及应用于2×2区域的最大值混合层如下所示：</p>
+<p><img src="http://i4.buimg.com/567571/3dae256ad7f99167.png" alt></p>
+<p>[TBC]卷积网络中的反向传播？</p>
+<h1 id="CNN实践"><a href="#CNN实践" class="headerlink" title="CNN实践"></a>CNN实践</h1><ul>
+<li><p>加入第二个卷积-混合层<br>地一个卷积-混合层的输出是经过抽象和凝缩过的版本，但仍然有大量的空间结构。因此使用第二个卷积-混合层是有意义的。<br>以上例来说，输出是3×12×12,那么第二个卷积层的局部感受野应该是3×k×k。也就是说使用前面所有混合层数据。这是一个需要注意的地方。</p>
+</li>
+<li><p>切换激活函数<br>tanh，relu等。</p>
+</li>
+<li><p>扩展训练数据</p>
+</li>
+<li><p>插入额外的全连接层</p>
+</li>
+<li><p>使用组合网络<br>训练多个网络进行投票</p>
+</li>
+<li><p>对全连接层进行dropout<br>卷积层先天可以抵抗过拟合。原因是共享权重意味着卷积滤波器被强制从整个图像中学习。这使他们不太可能去选择在训练数据中的局部特质。于是就很少有必要来应用其他规范化，例如弃权。</p>
+</li>
+</ul>
+<h1 id="为什么我们能够训练"><a href="#为什么我们能够训练" class="headerlink" title="为什么我们能够训练"></a>为什么我们能够训练</h1><p>我们是如何克服不稳定的梯度问题的？</p>
+<ul>
+<li>使用卷积层极大的减少了这些层中的参数的数目，使学习的问题更容易</li>
+<li>使用更多强有力的规范化技术（尤其是弃权和卷积层）来减少过度拟合</li>
+<li>使用修正线性单元而不是S型神经元，来加速训练 [TBC]?</li>
+<li>使用GPU并愿意长时间训练</li>
+</ul>
+<p>以及其他技巧：</p>
+<ul>
+<li>使用充分大的数据集（避免过拟合）</li>
+<li>使用正确的代价函数（避免学习减速）</li>
+<li>使用好的权重初始化（避免神经元饱和和其引起的学习减速）</li>
+</ul>
+<h1 id="TBC-一些问题"><a href="#TBC-一些问题" class="headerlink" title="[TBC]一些问题"></a>[TBC]一些问题</h1><ul>
+<li><p>对relu使用sigmoid函数的初始化方法会怎么样？</p>
+</li>
+<li><p>前面不稳定的梯度问题是针对sigmoid函数讨论的，对relu，会有什么差异？</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/24/machine learning/NN/《神经网络和深度学习》第六章——深度学习/" data-id="cjsldc0te00a1e4v54n4kld8i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NN/">NN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deep-learning/">deep learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/machine learning/分类和回归" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/23/machine learning/machine learning/分类和回归/" class="article-date">
+  <time datetime="2017-03-23T08:55:41.000Z" itemprop="datePublished">2017-03-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/machine-learning/">machine learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/23/machine learning/machine learning/分类和回归/">分类和回归</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="分类和回归区别"><a href="#分类和回归区别" class="headerlink" title="分类和回归区别"></a>分类和回归区别</h1><ul>
+<li><p>从输出上说，分类输出是离散值，回归输出是连续值。</p>
+</li>
+<li><p>从预测过程上说，分类是找寻分离超平面，回归是找寻一个超平面使得目标值是样本点到超平面距离？<br>显然不能如此理解，因为线性回归就不符合。</p>
+</li>
+</ul>
+<h1 id="模型比较"><a href="#模型比较" class="headerlink" title="模型比较"></a>模型比较</h1><ul>
+<li><p>CART<br>作为回归树，分类结果是叶节点y值均值。<br>作为分类树，分类结果是叶节点类别众数。  </p>
+</li>
+<li><p>线性回归<br>对于经典线性回归，是线性拟合结果。<br>对于logistic回归，是线性拟合结果的S型变换。</p>
+</li>
+<li><p>支持向量机<br>[TBC]SVR。<br>SVM则是将该距离使用符号函数改为分类结果。</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/23/machine learning/machine learning/分类和回归/" data-id="cjsldc0ug00cse4v5jopkk1sp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/optimization/EM算法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/23/machine learning/optimization/EM算法/" class="article-date">
+  <time datetime="2017-03-23T08:51:54.000Z" itemprop="datePublished">2017-03-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/optimization/">optimization</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/23/machine learning/optimization/EM算法/">EM算法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="实际问题"><a href="#实际问题" class="headerlink" title="实际问题"></a>实际问题</h1><p>假设我们有一个样本集$\{x_1,x_2,…,x_n\}$，各样本独立。但是，各样本对应的分布$z_i$未知。换言之，该样本集并不是从同一分布中取出，而是从多个分布中的某一个取出。$z$ 是隐含变量，表示服从哪个分布。<br>在此种情况下，使用极大似然法，求使得似然概率最大的参数$\theta$（没有先验，也就谈不上后验概率）。</p>
+<h1 id="极大似然法"><a href="#极大似然法" class="headerlink" title="极大似然法"></a>极大似然法</h1><p>依旧希望似然概率最大，即：<br>$$\arg \max_\theta \sum_{x_i} \log p(x_i;\theta)$$</p>
+<blockquote>
+<p><strong>由于无法直接求出似然函数解析解，EM算法通过不断寻找似然函数的紧密下界，然后寻找使下界最优的$\theta$（由于紧密，往往也可以优化似然函数），如此不断迭代至似然函数最优。正是因为这个想法，才会想到使用Jensen不等式去找寻下界。</strong></p>
+</blockquote>
+<p>其中,根据Jensen不等式可推得：<br>\begin{eqnarray} l(\theta) = \sum_{x_i} \log p(x_i;\theta) &amp;&amp; = \sum_{x_i} \log \sum_{z_j} p(x_i,z_j;\theta)  \tag{1} \newline<br>&amp;&amp; = \sum_{x_i} \log \sum_{z_j} p(z_j) \frac{p(x_i,z_j;\theta)}{p(z_j)} \tag{2} \newline<br>&amp;&amp; \geq \sum_{x_i} \sum_{z_j} p(z_j) \log \frac{p(x_i,z_j;\theta)}{p(z_j)} \tag{3}\end{eqnarray}</p>
+<p>因此，可以通过不断优化（3）式来不断提高似然函数下界，最终使之收敛到最优$\theta$。  </p>
+<blockquote>
+<p>这里需要说明，$p(z)$是为了数学优化目的而出现的一个概率分布列，它和隐变量分布的参数并不等同。事实上，它是给定参数(包括隐变量参数和各分布参数)和样本情况下的后验概率。</p>
+</blockquote>
+<h1 id="EM算法"><a href="#EM算法" class="headerlink" title="EM算法"></a>EM算法</h1><p><img src="http://p1.bqimg.com/519918/5b876e7671bd61e7.png" alt><br>(图中Q(z)即指p(z))</p>
+<blockquote>
+<ol>
+<li>首先固定$\theta$，寻找合适的$p(z)$，使（3）成为似然函数的合宜下界。显然，在（1）=（3）时最为合宜。因为合宜，故而在此时，我们可以理解为（3）和（1）有相近的性质;</li>
+<li>然后固定求得的$p(z)$,求使得（3）式达到最大值的$\theta$。因为（3）和（1）有相近的性质，因此使得（3）式达到最大值的$\theta$应该可以让似然函数变大;</li>
+<li>不断迭代最终得到最优解。<br>（严格证明见下一部分）</li>
+</ol>
+</blockquote>
+<p>由于$\log x$严格凹，$\lambda_i &gt; 0$,当且仅当自变量为常数时取等号:<br>\begin{split}&amp;&amp; \sum_i \log \lambda_i x_i \geq \sum_i \lambda_i \log x_i \newline<br>&amp;&amp; \text{equality is true,if and only if } \quad x_i = c,i=1,2,3,…<br>\end{split}</p>
+<p>因此，当（1）=（3）时：<br>\begin{split}\frac{p(x_i,z_j;\theta)}{p(z_j)} = c,i=1,2,3,…\end{split}<br>由于多个等式分子分母相加不变：<br>\begin{split}c = \frac{\sum_j p(x_i,z_j;\theta)}{\sum_j p(z_j)} = \sum_j p(x_i,z_j;\theta) = p(x_i;\theta)\end{split}<br>因此：<br>\begin{eqnarray} p(z_j) &amp;&amp;= \frac{p(x_i,z_j;\theta)}{c} \tag{4} \newline<br>&amp;&amp;= \frac{p(x_i,z_j;\theta)}{\sum_j p(x_i,z_j;\theta)} \tag{5} \newline<br>&amp;&amp;= \frac{p(x_i,z_j;\theta)}{p(x_i;\theta)}  \tag{6} \newline<br>&amp;&amp;= p(z_j|x_i;\theta) \tag{7} \end{eqnarray}</p>
+<p>另一方面：<br>\begin{eqnarray} p(x_i;\theta) = \sum_j p(x_i,z_j;\theta) = \sum_j p(z_j;\theta) p(x_i|z_j;\theta) \tag{8} \end{eqnarray}</p>
+<blockquote>
+<p>这里需要作出一些重要说明，我所看到的部分EM讲解（references中已列出部分）将z的角标也用成i，我在这里区分为j。同时，它们往往给出（7）式就结束，并没有明确说明如何求出p(z)。我在这里说明下我对其求法的理解:</p>
+<ol>
+<li>$p(z)$一般是多项分布的概率分布列，z取值个数已知（[TBC]如果z是连续值呢？）;</li>
+<li>$p(z_j)$应该是通过（6）式即贝叶斯公式求得。其中分母利用（8）式求得;</li>
+<li>显见的，对于每一个$x_i$，都可以求出整体$p(z_j),j=1,2,3,…$,标记为$p_{x_i}(z_j)$。故而，最终应该有:<br>\begin{eqnarray} p(z_j) = \sum_{x_i} p_{x_i}(z_j),j = 1,2,3,… \tag{9}\end{eqnarray}<br>正是因为（9），E步叫做求期望。（我是这样理解的～但貌似不对？） </li>
+</ol>
+</blockquote>
+<p>EM算法整体步骤：  </p>
+<ol>
+<li>给定参数初值(包括隐变量参数和各分布参数)，</li>
+<li>（E步，求期望）根据上一步给定的$\theta$,计算后验概率$p(z)$  </li>
+<li>（M步，最大化）根据计算出的$p(z)$，带回（3）式，求使之最大的$\theta$<br>循环往复，直至收敛。</li>
+</ol>
+<p>期望-最大算法不是指最大化期望！只是两个步骤而已。</p>
+<h1 id="收敛性证明"><a href="#收敛性证明" class="headerlink" title="收敛性证明"></a>收敛性证明</h1><p>首先明确顺序问题：初始状态，给定初始$\theta^{(1)}$和$p^{(0)}(z)$;第一次迭代，E步求出$p^{(1)}(z)$，然后M步求出$\theta^{(2)}$;第t次迭代，给定$\theta^{(t)}$，E步求出$p^{(t)}(z)$，然后M步求出$\theta^{(t+1)}$。</p>
+<p>那么，因为在t时刻是根据（1）=（3）求出$p^{(t)}(z)$，那么有：<br>$$ l(\theta^{(t)}) = \sum_{x_i} \sum_{z_j} p^{(t)}(z_j) \log \frac{p(x_i,z_j;\theta^{(t)})}{p^{(t)}(z_j)}$$<br>而$\theta^{(t+1)}$是对上式右边求最大值得到的，因此显然有：<br>$$\sum_{x_i} \sum_{z_j} p^{(t)}(z_j) \log \frac{p(x_i,z_j;\theta^{(t+1)})}{p^{(t)}(z_j)} \geq \sum_{x_i} \sum_{z_j} p^{(t)}(z_j) \log \frac{p(x_i,z_j;\theta^{(t)})}{p^{(t)}(z_j)} = l(\theta^{(t)})$$<br>另一方面：<br>\begin{eqnarray} l(\theta^{(t+1)}) = \sum_{x_i} \log p(x_i;\theta^{(t+1)}) &amp;&amp; = \sum_{x_i} \log \sum_{z_j} p(x_i,z_j;\theta^{(t+1)}) \newline<br>&amp;&amp; = \sum_{x_i} \log \sum_{z_j} p(z_j) \frac{p(x_i,z_j;\theta^{(t+1)})}{p(z_j)} \newline<br>&amp;&amp; \geq \sum_{x_i} \sum_{z_j} p(z_j) \log \frac{p(x_i,z_j;\theta^{(t+1)})}{p(z_j)} \newline<br>&amp;&amp; \geq \sum_{x_i} \sum_{z_j} p^{(t)}(z_j) \log \frac{p(x_i,z_j;\theta^{(t)})}{p^{(t)}(z_j)} \newline<br>&amp;&amp; = l(\theta^{(t)})\end{eqnarray}<br>如此就可以证明迭代过程中似然函数的单调增性。单调有界故而收敛。<br>似然函数是凸函数才能收敛到全局最优值。</p>
+<h1 id="实例：三硬币模型"><a href="#实例：三硬币模型" class="headerlink" title="实例：三硬币模型"></a>实例：三硬币模型</h1><p>参 李航《统计学习方法——EM算法》</p>
+<h1 id="PRML角度"><a href="#PRML角度" class="headerlink" title="PRML角度"></a>PRML角度</h1><p>[TBC]PRML角度<br><a href="https://mqshen.gitbooks.io/prml/Chapter9/general_em.html?q=" target="_blank" rel="noopener">PRML EM</a></p>
+<h1 id="EM-amp-K-means"><a href="#EM-amp-K-means" class="headerlink" title="EM &amp; K-means"></a>EM &amp; K-means</h1><p>K-means的损失函数可以写成：<br>$$J(C,\mu) = \sum_i || x_i - \mu_C||^2$$<br>其中，C是类分配，$\mu$是类重心。因此可以将K-means视为坐标上升或者EM算法。</p>
+<h1 id="高斯混合模型"><a href="#高斯混合模型" class="headerlink" title="高斯混合模型"></a>高斯混合模型</h1><p>[TBC]</p>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://blog.csdn.net/zouxy09/article/details/8537620" target="_blank" rel="noopener">从最大似然到EM算法浅解</a></p>
+<p><a href="http://www.cnblogs.com/jerrylead/archive/2011/04/06/2006936.html" target="_blank" rel="noopener">The EM Algorithm</a></p>
+<p>李航《统计学习方法》</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/23/machine learning/optimization/EM算法/" data-id="cjsldc0un00dce4v5g8df3xws" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/EM/">EM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/optimization/">optimization</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/parameter-estimation/">parameter estimation</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-development/datacenter/Detecting Large-Scale System Problems by Mining Console Logs" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/23/development/datacenter/Detecting Large-Scale System Problems by Mining Console Logs/" class="article-date">
+  <time datetime="2017-03-23T06:49:20.000Z" itemprop="datePublished">2017-03-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/datacenter/">datacenter</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/23/development/datacenter/Detecting Large-Scale System Problems by Mining Console Logs/">Detecting Large-Scale System Problems by Mining Console Logs</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="原文链接"><a href="#原文链接" class="headerlink" title="原文链接"></a>原文链接</h1><p><a href="http://iiis.tsinghua.edu.cn/~weixu/files/sosp09.pdf" target="_blank" rel="noopener">Detecting Large-Scale System Problems by Mining Console Logs</a></p>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>console log是被独立开发者所写的许多软件反馈信息的混合。惊奇的是，log很少能够帮助操作者侦测大规模数据中心服务器的问题。我们提出了一个一般方法论去通过这里丰富的信息源去自动侦测系统运行问题。<br>首先，我们结合源码分析和信息检索去解析log，以此来创造合成特征。然后，我们使用机器学习去分析这些特征来侦测系统问题。由于我们的方法具有较高的创造合成特征的能力，因此它可以分析出那些先前方法分析不出的问题。<br>我们同样展示了怎样提炼我们的分析结果到一个操作友好的单页决策树去列出一些对于所侦测问题至关重要的信息。我们使用Darkstar在线游戏服务和Hadoop文件系统数据集验证了我们的方法，它们以高精度和低假阳性率侦测出了许多真实问题。<br>在Hadoop案例中，我们能够在3min中内分析24百万条log。我们的方法可以工作于任意大小的log源数据上，不需要对服务软件进行修改，不需要人为输入，也不需要关于软件核心的知识。</p>
+<h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h1><p>当一个由成百上千个运行着成百上千软件的电脑组成的大规模数据中心出现问题时，运维人员需要使用各种工具去侦测系统问题。<br>讽刺的是，有一个信息源，它囊括了几乎每种软件的细节信息，但却被经常忽略，它就是精简的console log。那些细节信息反映了软件原始开发者对于显著和不寻常活动的想法。</p>
+<p>由于不同软件log形式不一致，而且由于软件的频繁修订和更新，导致log很混乱。我们的目标就是提供更好的工具去从log中提取价值。</p>
+<p>由于log数据太庞大以至于不能人工检查，同时太不结构化以至于无法自动分析，因此运维人员往往通过搜索‘eroor’，’critical’之类关键词的方式来提取信息，但这已被表明对于侦测问题而言是不充分的。<br>而基于规则的处理过程是一个改进，但由于缺乏关于特殊软件成分的细节性知识，以及被各成分的交互所影响，依旧难以写出规则，去检出最相关的log。<br>代替要求用户去检测这一方式，我们提供了工具去自动发现有效的log信息。</p>
+<p>由于不寻常的log信息通常表明了问题的根源，将之格式化机器学习中的异常检测问题是合理的。但是，用现有的方法并不能很好的解决这个问题，他是一个在不同种类log信息及其关系中进行异常检测的问题。<br>因此，相较于分析log中的字词，我们创造特征去精确捕获log之间各种各样的相关关系，然后通过这些特征去进行异常检测。创造这些特征需要利用源码信息去扩充log解析过程，这正是我们方法贡献的一部分。</p>
+<p>我们研究很多应用于网络服务上的流行软件系统的log和源码，观察到console log比他看起来的更有结构性：‘schema’的定义隐含在log中，并可以从程序源码中发现。这个发现是我们log解析方法的关键，将可以导出细节和精确的特征。<br>我们相信开源软件开源代码的获取并不是我们方法的实践缺点。</p>
+<p>我们的贡献是一个一般的四步法，它允许机器学习和信息检索技术被用于大海捞针，发现系统问题，而不需要人工输入。特别的，我们的方法包含了以下四个贡献：</p>
+<ol>
+<li>通过分析源码来发现log中隐含结构的技术;</li>
+<li>log中信息的识别和特征的创造生成;</li>
+<li>从大数据集中有效侦测异常的机器学习和信息检索方法论的证明;</li>
+<li>异常侦测结果的一个合适、自动、用户友好的可视化构建方法。</li>
+</ol>
+<p>我们对log的分析可以深入细节层，可以并行化。</p>
+<p>我们使用两个数据集做了验证。在Darkstar中，我们可以即时检测行为异常并提供异常原因的线索。在Hadoop中，我们可以探测运行时间异常这一经常被忽视的问题，并将结果可视化。</p>
+<p>第二部分提供了我们方法的概要，第三部分从细节层面描述了我们的log解析技术，第四和第五部分阐明了特征创造和异常检测的结果，<br>第六部分评估了我们的方法并讨论了可视化技术，第七部分讨论了一些扩展和提出了改进log质量的建议，第八部分总结了相关工作，第九部分描述了一些结论。</p>
+<h1 id="2-方法概览"><a href="#2-方法概览" class="headerlink" title="2. 方法概览"></a>2. 方法概览</h1><h2 id="2-1-信息被埋藏在log之中"><a href="#2-1-信息被埋藏在log之中" class="headerlink" title="2.1 信息被埋藏在log之中"></a>2.1 信息被埋藏在log之中</h2><p>重要信息被埋藏在大量log之中。为了自动分析log，我们需要创造高质量特征，实现log信息的数值表示，以便用于机器学习算法。以下三个关键观察导致了我们对这个问题的解决方法。</p>
+<p><strong>源码是log的‘schema’。</strong> 尽管log可以以任意的文本格式出现，但实际上他们相当结构化，因为他们被系统中相对较小的log打印陈述规则集合所生成。</p>
+<p>考虑图1中所展示的简单的log摘录和产生他们的源码。直觉上，使用源码信息去发现log的隐藏‘schema’是容易的。我们利用源码分析去发现log的固有结构。<br>我们方法的最显著优点是能够精确解析所有可能的log信息，即使是很少出现的log信息。另外，我们可以利用存在的方法去删除大部分启发式和猜测式的log解析。</p>
+<p><img src="http://i1.piimg.com/567571/e2199d624f5440ef.png" alt></p>
+<p><strong>通用的log结构导致有用的特征。</strong> 在这篇论文中，我们将log的常量部分称作<em>信息类型（message types）</em>，变量部分称作<em>信息变量（meassge variables）</em>。</p>
+<p>我们仅仅将常量字符串标记为信息类型，完全忽视它们的语义。</p>
+<p>信息变量也包含了至关重要的信息。我们识别了两个重要的信息变量：时间戳和各种各样的计数。</p>
+<p><em>识别器（identifiers）</em>是用于识别客体的变量。而<em>状态变量（state vars）</em>是用于列举客体有的一系列可能状态的标签。我们可以基于频率判别一个给定的变量是识别器还是状态变量。表1给出了例子。直觉上，状态变量会有相对小的不同值，而识别器会有相对大的不同值（细节在第四部分）。</p>
+<p><img src="http://i4.buimg.com/567571/3bca69ffecc22d0c.png" alt></p>
+<p>信息类型和变量包含了重要的信息。但是，缺少工具去抽取这些结构。操作者要么忽视他们，要么手工花时间梳理他们。</p>
+<p>我们的log解析方法允许我们使用结构化信息，例如信息类型和变量，去自动创造特征捕获log信息。据我们所知，这是工作是首次从log中抽取信息到这个粒度水平。</p>
+<p><strong>信息强相关。</strong> 当log被合适的分组，组内信息具有强和稳定的相关性。例如，包含了特定文件名称的信息是高度相关的，因为它们很可能来自于系统中逻辑相关的操作步骤。</p>
+<p>一组相关信息往往比起个体信息对问题具有更好的指示作用。 许多异常仅仅被不完全的信息片段所指出。例如，一个文件写入操作悄然失败（或许是因为开发者没有正确的处理报错机制），并没有一个单个的错误信息可以指出故障。但是，通过相同文件的相关信息，我们可以通过观察到相应的关闭文件信息缺失来侦测写入故障。先前的研究仅仅利用时间窗口进行log分组，并且侦测精度会遭受噪音影响。我们基于更为精确的信息去进行log分组，例如使用上面提到的信息变量。在这种情况下，相关性更加强大更具可读性，因此异常相关更容易被侦测。</p>
+<h2 id="我们方法的工作流程"><a href="#我们方法的工作流程" class="headerlink" title="我们方法的工作流程"></a>我们方法的工作流程</h2><p><img src="http://i1.piimg.com/567571/696a19a03ea6c0f4.png" alt></p>
+<p>图2展示了我们挖掘工作通用框架的四个步骤。</p>
+<ol>
+<li><p>log解析。<br>我们首先将log从非结构化文本转化为（信息类别，一系列信息变量）的数据结构。我们从源码中得到了所有可能的log信息模板字符串，并将之与log匹配，从而发现log的结构。我们的实验表明我们可以在真实系统中获得高精度的解析。<br>有系统使用了结构化追踪，例如BerkelyDB。既然这样，由于log已经被结构化了，我们可以跳过这个步骤，直接使用我们的特征创造和异常检测方法。注意这些结构化log仍然包含了识别器和状态变量。</p>
+</li>
+<li><p>特征创造。<br>下一步，我们通过对相关信息分组，并选择合适的变量，来构造特征向量。在这篇论文中，我们集中于构造状态比率向量和信息计数向量特征，这些在先前的研究中没有被探索。在我们对两个大规模真实统的实验中，这些特征都带来了很好的侦测结果。</p>
+</li>
+<li><p>异常检测。<br>然后，我们使用异常检测方法去挖掘特征向量，给每个特征向量打上正常或不正常的标签。我们发现基于主成分分析的异常侦测方法在这些特征上已经可以做的非常好。这是一个非监督学习算法，可以排除来自运维人员的先验需求，直接让所有的参数被自动选择或者轻松的进行调整。尽管我们使用了这一特殊的机器学习算法，它并不是我们方法的本质所在，利用不同抽取特征的不同算法可以轻易对我们的框架进行拓展。</p>
+</li>
+<li><p>可视化。<br>最后，为了让运维人员更好的理解侦测结果，我们利用决策树对结果做了可视化。相较于PCA侦测器，决策树以类似于活动处理规则的形式，提供了问题是如何被侦测到的更为细节的解释。</p>
+</li>
+</ol>
+<h2 id="2-3-案例研究与数据收集"><a href="#2-3-案例研究与数据收集" class="headerlink" title="2.3 案例研究与数据收集"></a>2.3 案例研究与数据收集</h2><p>我们研究了22个被广泛部署的开源系统的源码和log。表2总结了成果。尽管这些系统本质上不同，它们在不同的时间被不同的开发者用不同的语言开发，其中20个系统还使用任意的log文本格式，我们基于源码的log解析应用到了全部20个系统上。有趣的是，</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/23/development/datacenter/Detecting Large-Scale System Problems by Mining Console Logs/" data-id="cjsldc19701mde4v5rl13syeg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/datacenter/">datacenter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/detect/">detect</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/log/">log</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/machine learning/回归树" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/23/machine learning/machine learning/回归树/" class="article-date">
+  <time datetime="2017-03-23T06:41:15.000Z" itemprop="datePublished">2017-03-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/machine-learning/">machine learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/23/machine learning/machine learning/回归树/">回归树</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="CART"><a href="#CART" class="headerlink" title="CART"></a>CART</h1><p>ID3,C4.5都只能做分类，不能做回归。CART则采用了二叉树的形式，使用Gini系数构建分类树，使用均方误差构建回归树。</p>
+<p>在构建回归树时，根据分裂后各子节点均方误差之和与父节点均方误差的差值来选择分裂条件进行分裂。</p>
+<p>构建好后，新的测试样本的预测值是其所在叶节点中训练样本label的均值。<br>如果真是这样，那么回归树是没有办法进行拓展的，换言之对于不在训练集范围的y值它无法预测到。例如，他做不到线性回归的拓展性。</p>
+<p>生成回归树之后，在各叶节点上建立线性回归模型，产生最终预测结果。换言之，可以理解为先通过分类选择临近样本点，利用临近样本点去进行回归学习。<br>也就是先分类缩小范围再回归。<strong>局部加权回归思想的一种变体</strong>。</p>
+<p>[TBC]<br><a href="http://www.stat.wisc.edu/~loh/treeprogs/guide/wires11.pdf" target="_blank" rel="noopener">回归树</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/23/machine learning/machine learning/回归树/" data-id="cjsldc0uh00cue4v5oqwwseem" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/decision-tree/">decision tree</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/regression-tree/">regression tree</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/Information theory/熵相关" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/23/machine learning/Information theory/熵相关/" class="article-date">
+  <time datetime="2017-03-23T05:43:11.000Z" itemprop="datePublished">2017-03-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Information-theory/">Information theory</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/23/machine learning/Information theory/熵相关/">熵相关</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="信息熵（entropy）"><a href="#信息熵（entropy）" class="headerlink" title="信息熵（entropy）"></a>信息熵（entropy）</h1><ul>
+<li><p>自信息量<br>概率越大，不确定越小：<br>$$I(X=k) = \log \frac{1}{p(X=k)}$$</p>
+</li>
+<li><p>信息熵<br>描述变量的不确定性,是符号自信息量的数学期望：<br>$$H(X) = \sum_{k=1}^K p(X=k) \log \frac{1}{p(X=k)}$$<br>信息量的单位：bit（以2为底），Nat（以e为底），Det（以10为底）</p>
+</li>
+</ul>
+<h1 id="条件熵"><a href="#条件熵" class="headerlink" title="条件熵"></a>条件熵</h1><p>条件自信息量的数学期望：<br>$$I(x_i | y_i) = \log \frac{1}{p(x_i | y_i)}$$<br>$$H(X|Y) = \sum_{x,y} p(xy) \log \frac{1}{p(x|y)}$$<br><strong><em>条件熵是用联合概率加权。</em></strong></p>
+<h1 id="联合熵"><a href="#联合熵" class="headerlink" title="联合熵"></a>联合熵</h1><p>联合自信息量的数学期望：<br>$$I(x_i y_i) = \log \frac{1}{p(x_i y_i)}$$<br>$$H(XY) = \sum_{x,y} p (xy) \log \frac{1}{p(xy)}$$</p>
+<h1 id="相互关系"><a href="#相互关系" class="headerlink" title="相互关系"></a>相互关系</h1><p>\begin{split} H(XY) &amp; = \sum_{x,y} p (xy) \log \frac{1}{p(xy)} \newline<br>&amp; = - \sum_{x,y} p(xy) (\log p(x) + \log p(y|x)) \newline<br>&amp; = - \sum_x p(x) \log p(x) \sum_y p(y|x) \quad - \sum_{x,y} p(xy) \log p(y|x) \newline<br>&amp; = H(X) + H(Y|X) \newline<br>&amp;s.t. \quad \sum_y p(y|x) = 1 \end{split}</p>
+<h1 id="互信息"><a href="#互信息" class="headerlink" title="互信息"></a>互信息</h1><p><strong><em>事件互信息</em></strong> 是衡量两个事件集合之间的相关性,$Y=y_i$对$X=x_i$的互信息量定义为：<br>$$I(X=x_i;Y=y_i) = \log \frac{p(X=x_i|Y=y_i)}{p(X=x_i)}$$<br>$Y=y_i$对$X=x_i$的互信息量就是X的后验概率与先验概率比值的对数。显然有对称性：<br>$$I(X=x_i;Y=y_i) = I(Y=y_i;X=x_i) = \log \frac{p(X=x_i,Y=y_i)}{p(X=x_i)p(Y=y_i)}$$</p>
+<p><strong><em>变量互信息</em></strong> 是衡量两个变量之间的相关性，定义为：<br>$$I(X;Y) = \sum_{x,y} p(x,y) \log \frac{p(x,y)}{p(x)p(y)}$$</p>
+<h1 id="交叉熵"><a href="#交叉熵" class="headerlink" title="交叉熵"></a>交叉熵</h1><p>定义为：<br>$$H(P,Q) = \sum_x P(x) \log Q(x)$$</p>
+<h1 id="相对熵（KL散度）"><a href="#相对熵（KL散度）" class="headerlink" title="相对熵（KL散度）"></a>相对熵（KL散度）</h1><p>用于度量两个概率分布之间的差别，非对称，即：<br>$$D(P||Q) \neq D(Q||P)$$<br>对于不等式左边，P是真实分布，Q是P的拟合分布</p>
+<p>定义：<br>\begin{split} D_{KL} (P||Q) &amp; = \sum_x P(x) \log \frac{P(x)}{Q(x)} \newline<br>&amp; = \sum_x P(x) \log P(x) - \sum_x P(x) \log Q(x) \newline<br>&amp; = -H(P) + H(P,Q) \end{split}</p>
+<p>由于对数函数是上凸函数，且 $\sum_x P(x) =1,P(x) \geq 0$ 为凸组合,用Jensen不等式可知：<br>\begin{split} D_{KL} (P||Q) &amp; = \sum_x P(x) \log \frac{P(x)}{Q(x)} \newline<br>&amp; = - \sum_x P(x) \log \frac{Q(x)}{P(x)} \newline<br>&amp; \geq - \log \sum_x P(x) \frac{Q(x)}{P(x)} \newline<br>&amp; \geq 0 \end{split}<br>KL散度大于等于0,当且仅当两分布相同时，等于0。  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/23/machine learning/Information theory/熵相关/" data-id="cjsldc0sk007fe4v5aqcv9sqh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Information-theory/">Information theory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/entropy/">entropy</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/machine learning/cost function" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/22/machine learning/machine learning/cost function/" class="article-date">
+  <time datetime="2017-03-22T06:14:48.000Z" itemprop="datePublished">2017-03-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/machine-learning/">machine learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/22/machine learning/machine learning/cost function/">cost function</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="hinge-loss"><a href="#hinge-loss" class="headerlink" title="hinge loss"></a>hinge loss</h1><p>对于非连续可微损失函数，如何优化？以hinge loss为例</p>
+<p><a href>Pegasos: primal estimated sub-gradient solver for SVM</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/22/machine learning/machine learning/cost function/" data-id="cjsldc0u800c4e4v5huqbv6rl" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GLM/">GLM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cost-function/">cost function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/13/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/15/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Information-theory/">Information theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NN/">NN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/book-review/">book review</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cluster/">cluster</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/competition/">competition</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/">computer science</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/coss-function/">coss function</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cv/">cv</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/data-compute/">data_compute</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">database</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/datacenter/">datacenter</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/develepment/">develepment</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/dimensionality-reduction/">dimensionality reduction</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/documentation/">documentation</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ensemble/">ensemble</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/environment/">environment</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/error-process/">error-process</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/essay/">essay</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/feature-engineering/">feature engineering</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/film-review/">film review</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/imbalance-data/">imbalance data</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/">machine learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/optimization/">optimization</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/preprocessing/">preprocessing</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python-sklearn/">python-sklearn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/recommendation-system/">recommendation system</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/series-analysis/">series analysis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/sklearn/">sklearn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/spark/">spark</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/statistics/">statistics</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/vision/">vision</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/visualize/">visualize</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bayes/">Bayes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/EM/">EM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ESL/">ESL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GBDT/">GBDT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GBM/">GBM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GLM/">GLM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-theory/">Information theory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JetBrains/">JetBrains</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/KKT/">KKT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LDA/">LDA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Latex/">Latex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MLE/">MLE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/">NLP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NN/">NN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PCA/">PCA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVD/">SVD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TF-IDF/">TF-IDF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WMD/">WMD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xgboost/">Xgboost</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adaboost/">adaboost</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/book-review/">book review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/category-encoding/">category encoding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cluster/">cluster</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/competition/">competition</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cost-function/">cost function</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cv/">cv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-sevice/">data sevice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/datacenter/">datacenter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/datagrip/">datagrip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debug/">debug</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/decision-tree/">decision tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/">deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/detect/">detect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/development/">development</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dimensionality-reduction/">dimensionality reduction</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elasticsearch/">elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ensemble/">ensemble</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/entropy/">entropy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/environment/">environment</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/error/">error</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/essay/">essay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/feature-engineering/">feature engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ffmpeg/">ffmpeg</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/film-review/">film review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/">flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gcforest/">gcforest</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gpu/">gpu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradient/">gradient</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hive/">hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/infomation-extraction/">infomation extraction</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jdk/">jdk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json-dumps/">json_dumps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/log/">log</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/machine-learning/">machine learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/math/">math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/matplotlib/">matplotlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitor/">monitor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/multiprocess/">multiprocess</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nonparametric-approach/">nonparametric approach</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/optimization/">optimization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pagerank/">pagerank</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pansee/">pansee</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/parameter-estimation/">parameter estimation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pip/">pip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/preprocessing/">preprocessing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/queue/">queue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/recommendation-system/">recommendation system</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/regression-tree/">regression tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/regularization/">regularization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rule-learning/">rule learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scala/">scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scrapy/">scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/screen/">screen</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sentiment-analysis/">sentiment analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/series-analysis/">series analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/setup/">setup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sklearn/">sklearn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/">spark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/statistics/">statistics</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/subprocess/">subprocess</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/t-SNE/">t-SNE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensor/">tensor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/terminal/">terminal</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/text-summarization/">text summarization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/traceback/">traceback</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unittest/">unittest</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vision/">vision</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/visualize/">visualize</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vps/">vps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/w2v/">w2v</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/website/">website</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/window/">window</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Bayes/" style="font-size: 10px;">Bayes</a> <a href="/tags/EM/" style="font-size: 10px;">EM</a> <a href="/tags/ESL/" style="font-size: 10.67px;">ESL</a> <a href="/tags/GBDT/" style="font-size: 10px;">GBDT</a> <a href="/tags/GBM/" style="font-size: 10.67px;">GBM</a> <a href="/tags/GLM/" style="font-size: 14px;">GLM</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Information-theory/" style="font-size: 10px;">Information theory</a> <a href="/tags/JetBrains/" style="font-size: 10.67px;">JetBrains</a> <a href="/tags/KKT/" style="font-size: 10px;">KKT</a> <a href="/tags/LDA/" style="font-size: 10px;">LDA</a> <a href="/tags/Latex/" style="font-size: 10px;">Latex</a> <a href="/tags/MLE/" style="font-size: 10px;">MLE</a> <a href="/tags/NLP/" style="font-size: 16px;">NLP</a> <a href="/tags/NN/" style="font-size: 16.67px;">NN</a> <a href="/tags/PCA/" style="font-size: 10.67px;">PCA</a> <a href="/tags/SVD/" style="font-size: 10px;">SVD</a> <a href="/tags/TF-IDF/" style="font-size: 12px;">TF-IDF</a> <a href="/tags/WMD/" style="font-size: 10px;">WMD</a> <a href="/tags/Xgboost/" style="font-size: 10px;">Xgboost</a> <a href="/tags/adaboost/" style="font-size: 10px;">adaboost</a> <a href="/tags/array/" style="font-size: 10px;">array</a> <a href="/tags/blog/" style="font-size: 10.67px;">blog</a> <a href="/tags/book-review/" style="font-size: 18px;">book review</a> <a href="/tags/category-encoding/" style="font-size: 11.33px;">category encoding</a> <a href="/tags/cluster/" style="font-size: 10px;">cluster</a> <a href="/tags/competition/" style="font-size: 10.67px;">competition</a> <a href="/tags/cost-function/" style="font-size: 11.33px;">cost function</a> <a href="/tags/cv/" style="font-size: 11.33px;">cv</a> <a href="/tags/data-sevice/" style="font-size: 10.67px;">data sevice</a> <a href="/tags/database/" style="font-size: 10.67px;">database</a> <a href="/tags/datacenter/" style="font-size: 10px;">datacenter</a> <a href="/tags/datagrip/" style="font-size: 10px;">datagrip</a> <a href="/tags/debug/" style="font-size: 10px;">debug</a> <a href="/tags/decision-tree/" style="font-size: 11.33px;">decision tree</a> <a href="/tags/deep-learning/" style="font-size: 10px;">deep learning</a> <a href="/tags/detect/" style="font-size: 10px;">detect</a> <a href="/tags/development/" style="font-size: 15.33px;">development</a> <a href="/tags/dimensionality-reduction/" style="font-size: 12.67px;">dimensionality reduction</a> <a href="/tags/docker/" style="font-size: 12px;">docker</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/ensemble/" style="font-size: 13.33px;">ensemble</a> <a href="/tags/entropy/" style="font-size: 10px;">entropy</a> <a href="/tags/environment/" style="font-size: 10.67px;">environment</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/essay/" style="font-size: 16.67px;">essay</a> <a href="/tags/feature-engineering/" style="font-size: 11.33px;">feature engineering</a> <a href="/tags/ffmpeg/" style="font-size: 10.67px;">ffmpeg</a> <a href="/tags/film-review/" style="font-size: 19.33px;">film review</a> <a href="/tags/flask/" style="font-size: 11.33px;">flask</a> <a href="/tags/gcforest/" style="font-size: 10px;">gcforest</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/gpu/" style="font-size: 10.67px;">gpu</a> <a href="/tags/gradient/" style="font-size: 10px;">gradient</a> <a href="/tags/hexo/" style="font-size: 10.67px;">hexo</a> <a href="/tags/hive/" style="font-size: 10px;">hive</a> <a href="/tags/infomation-extraction/" style="font-size: 10px;">infomation extraction</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/json-dumps/" style="font-size: 10px;">json_dumps</a> <a href="/tags/linux/" style="font-size: 16.67px;">linux</a> <a href="/tags/log/" style="font-size: 10.67px;">log</a> <a href="/tags/machine-learning/" style="font-size: 18.67px;">machine learning</a> <a href="/tags/markdown/" style="font-size: 11.33px;">markdown</a> <a href="/tags/math/" style="font-size: 10px;">math</a> <a href="/tags/matplotlib/" style="font-size: 12.67px;">matplotlib</a> <a href="/tags/monitor/" style="font-size: 10.67px;">monitor</a> <a href="/tags/multiprocess/" style="font-size: 10.67px;">multiprocess</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 10.67px;">nginx</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/nonparametric-approach/" style="font-size: 10px;">nonparametric approach</a> <a href="/tags/optimization/" style="font-size: 13.33px;">optimization</a> <a href="/tags/pagerank/" style="font-size: 10px;">pagerank</a> <a href="/tags/pandas/" style="font-size: 10px;">pandas</a> <a href="/tags/pansee/" style="font-size: 20px;">pansee</a> <a href="/tags/parameter-estimation/" style="font-size: 11.33px;">parameter estimation</a> <a href="/tags/pip/" style="font-size: 10px;">pip</a> <a href="/tags/preprocessing/" style="font-size: 10.67px;">preprocessing</a> <a href="/tags/python/" style="font-size: 17.33px;">python</a> <a href="/tags/queue/" style="font-size: 10px;">queue</a> <a href="/tags/recommendation-system/" style="font-size: 12px;">recommendation system</a> <a href="/tags/regression-tree/" style="font-size: 11.33px;">regression tree</a> <a href="/tags/regularization/" style="font-size: 10.67px;">regularization</a> <a href="/tags/rule-learning/" style="font-size: 10.67px;">rule learning</a> <a href="/tags/scala/" style="font-size: 10px;">scala</a> <a href="/tags/scrapy/" style="font-size: 10px;">scrapy</a> <a href="/tags/screen/" style="font-size: 10.67px;">screen</a> <a href="/tags/sentiment-analysis/" style="font-size: 10px;">sentiment analysis</a> <a href="/tags/series-analysis/" style="font-size: 10px;">series analysis</a> <a href="/tags/setup/" style="font-size: 10px;">setup</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/sklearn/" style="font-size: 11.33px;">sklearn</a> <a href="/tags/spark/" style="font-size: 10.67px;">spark</a> <a href="/tags/statistics/" style="font-size: 10.67px;">statistics</a> <a href="/tags/subprocess/" style="font-size: 10.67px;">subprocess</a> <a href="/tags/t-SNE/" style="font-size: 10px;">t-SNE</a> <a href="/tags/tensor/" style="font-size: 10px;">tensor</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/terminal/" style="font-size: 10.67px;">terminal</a> <a href="/tags/text-summarization/" style="font-size: 10px;">text summarization</a> <a href="/tags/traceback/" style="font-size: 10px;">traceback</a> <a href="/tags/ubuntu/" style="font-size: 10.67px;">ubuntu</a> <a href="/tags/unittest/" style="font-size: 10.67px;">unittest</a> <a href="/tags/vision/" style="font-size: 12.67px;">vision</a> <a href="/tags/visualize/" style="font-size: 10px;">visualize</a> <a href="/tags/vps/" style="font-size: 10px;">vps</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/w2v/" style="font-size: 10.67px;">w2v</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/website/" style="font-size: 10.67px;">website</a> <a href="/tags/window/" style="font-size: 10px;">window</a> <a href="/tags/数据结构/" style="font-size: 14.67px;">数据结构</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">July 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/02/26/pansee/film review/无问西东——李芳芳/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/26/pansee/film review/密室逃生2019——亚当·罗伯特/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/25/machine learning/NN/deepleanrningai深度学习笔记/">deepleanrningai深度学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/24/development/environment/ubuntu install scala and spark/">ubuntu install scala and spark</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/24/development/environment/ubuntu install nodejs/">ubuntu install nodejs</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 muzhen<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

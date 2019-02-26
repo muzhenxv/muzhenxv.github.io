@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>host-blog-with-hexo-nginx-github | the Home of MuZhen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="install dependent environmentinstall NodeJS 123456yum -y install gcc make gcc-c++ openssl-devel wgetwget http://nodejs.org/dist/v0.10.26/node-v0.10.26.tar.gztar -zvxf node-v0.10.26.tar.gzcd node-v0.10">
+<meta name="keywords" content="linux,website,blog,hexo,nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="host-blog-with-hexo-nginx-github">
+<meta property="og:url" content="http://www.muzhen.tk/2018/12/02/development/environment/host-blog-with-hexo-nginx-github/index.html">
+<meta property="og:site_name" content="the Home of MuZhen">
+<meta property="og:description" content="install dependent environmentinstall NodeJS 123456yum -y install gcc make gcc-c++ openssl-devel wgetwget http://nodejs.org/dist/v0.10.26/node-v0.10.26.tar.gztar -zvxf node-v0.10.26.tar.gzcd node-v0.10">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-02-26T06:05:54.133Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="host-blog-with-hexo-nginx-github">
+<meta name="twitter:description" content="install dependent environmentinstall NodeJS 123456yum -y install gcc make gcc-c++ openssl-devel wgetwget http://nodejs.org/dist/v0.10.26/node-v0.10.26.tar.gztar -zvxf node-v0.10.26.tar.gzcd node-v0.10">
+  
+    <link rel="alternate" href="/atom.xml" title="the Home of MuZhen" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">the Home of MuZhen</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.muzhen.tk"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-development/environment/host-blog-with-hexo-nginx-github" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/02/development/environment/host-blog-with-hexo-nginx-github/" class="article-date">
+  <time datetime="2018-12-02T09:17:04.000Z" itemprop="datePublished">2018-12-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/environment/">environment</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      host-blog-with-hexo-nginx-github
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="install-dependent-environment"><a href="#install-dependent-environment" class="headerlink" title="install dependent environment"></a>install dependent environment</h1><p>install NodeJS</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc make gcc-c++ openssl-devel wget</span><br><span class="line">wget http://nodejs.org/dist/v0.<span class="number">10.26</span>/<span class="keyword">node</span><span class="title">-v0</span>.<span class="number">10.26</span>.tar.gz</span><br><span class="line">tar -zvxf <span class="keyword">node</span><span class="title">-v0</span>.<span class="number">10.26</span>.tar.gz</span><br><span class="line">cd <span class="keyword">node</span><span class="title">-v0</span>.<span class="number">10.26</span></span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"><span class="keyword">node</span> <span class="title">-v</span></span><br></pre></td></tr></table></figure>
+<h1 id="install-hexo"><a href="#install-hexo" class="headerlink" title="install hexo"></a>install hexo</h1><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br><span class="line"><span class="built_in">mkdir</span> /<span class="built_in">home</span>/www</span><br><span class="line"><span class="built_in">mkdir</span> /<span class="built_in">home</span>/www/hexo</span><br><span class="line">cd /<span class="built_in">home</span>/www/hexo</span><br><span class="line">hexo init</span><br><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+<p>config hexo<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">vi</span> _<span class="selector-tag">config</span><span class="selector-class">.yml</span></span><br></pre></td></tr></table></figure></p>
+<p>change as(<em>must have a space after the “:”</em>):</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Hexo Configuration  </span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/configuration.html</span></span><br><span class="line"><span class="comment">## Source: https://github.com/hexojs/hexo/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Site 站点信息设置</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">the</span> <span class="string">Home</span> <span class="string">of</span> <span class="string">MuZhen</span> <span class="comment">#站名</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="comment">#副标题</span></span><br><span class="line"><span class="attr">description:</span> <span class="comment">#站描述</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">muzhen</span> <span class="comment">#作者</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">en</span></span><br><span class="line"><span class="attr">timezone:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># URL 链接设置</span></span><br><span class="line"><span class="comment">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span></span><br><span class="line"><span class="attr">url:</span> <span class="attr">http://www.muzhen.tk</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Directory 文件目录</span></span><br><span class="line"><span class="attr">source_dir:</span> <span class="string">source</span></span><br><span class="line"><span class="attr">public_dir:</span> <span class="string">public</span></span><br><span class="line"><span class="attr">tag_dir:</span> <span class="string">tags</span></span><br><span class="line"><span class="attr">archive_dir:</span> <span class="string">archives</span></span><br><span class="line"><span class="attr">category_dir:</span> <span class="string">categories</span></span><br><span class="line"><span class="attr">code_dir:</span> <span class="string">downloads/code</span></span><br><span class="line"><span class="attr">i18n_dir:</span> <span class="string">:lang</span></span><br><span class="line"><span class="attr">skip_render:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Writing 文章</span></span><br><span class="line"><span class="attr">new_post_name:</span> <span class="string">:title.md</span> <span class="comment"># File name of new posts</span></span><br><span class="line"><span class="attr">default_layout:</span> <span class="string">post</span></span><br><span class="line"><span class="attr">titlecase:</span> <span class="literal">false</span> <span class="comment"># Transform title into titlecase</span></span><br><span class="line"><span class="attr">external_link:</span> <span class="literal">true</span> <span class="comment"># Open external links in new tab</span></span><br><span class="line"><span class="attr">filename_case:</span> <span class="number">0</span></span><br><span class="line"><span class="attr">render_drafts:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">relative_link:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">future:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">highlight:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  line_number:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  auto_detect:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  tab_replace:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Category &amp; Tag</span></span><br><span class="line"><span class="attr">default_category:</span> <span class="string">uncategorized</span></span><br><span class="line"><span class="attr">category_map:</span></span><br><span class="line"><span class="attr">tag_map:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Date / Time format 日期</span></span><br><span class="line"><span class="comment">## Hexo uses Moment.js to parse and display date</span></span><br><span class="line"><span class="comment">## You can customize the date format as defined in</span></span><br><span class="line"><span class="comment">## http://momentjs.com/docs/#/displaying/format/</span></span><br><span class="line"><span class="attr">date_format:</span> <span class="string">YYYY-MM-DD</span></span><br><span class="line"><span class="attr">time_format:</span> <span class="attr">HH:mm:ss</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Pagination 分页</span></span><br><span class="line"><span class="comment">## Set per_page to 0 to disable pagination</span></span><br><span class="line"><span class="attr">per_page:</span> <span class="number">20</span></span><br><span class="line"><span class="attr">pagination_dir:</span> <span class="string">page</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Extensions 扩展</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">landscape</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Deployment 这里设置了Git获</span></span><br><span class="line"><span class="comment">#这里一定要注意不要写错了，否则部署到Github上会出问题</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repo:</span> <span class="string">git@github.com:mocorochio/micorochio.github.io.git</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br><span class="line"><span class="attr">  message:</span></span><br></pre></td></tr></table></figure>
+<h1 id="install-nginx"><a href="#install-nginx" class="headerlink" title="install nginx"></a>install nginx</h1><ol>
+<li><p>install nginx</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> nginx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>configure nginx</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi <span class="regexp">/etc/</span>nginx<span class="regexp">/conf.d/</span><span class="keyword">default</span>.conf</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>change like below:</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span>  www.muzhen.tk muzhen.tk;</span><br><span class="line">    <span class="attribute">root</span>   /home/www/hexo/public;</span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="attribute">index</span>  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line">     <span class="attribute">include</span> /etc/nginx/default.d/<span class="regexp">*.conf</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>use your domain replace <em><a href="http://www.muzhen.tk">www.muzhen.tk</a> muzhen.tk</em></p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service nginx <span class="built_in">start</span></span><br><span class="line">chkconfig nginx <span class="keyword">on</span></span><br></pre></td></tr></table></figure>
+<h1 id="deploy-git"><a href="#deploy-git" class="headerlink" title="deploy git"></a>deploy git</h1><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">yum install git </span><br><span class="line">git<span class="built_in"> config </span>--global user.name <span class="string">"your_name"</span></span><br><span class="line">git<span class="built_in"> config </span>--global user.email <span class="string">"your_email"</span></span><br><span class="line">git<span class="built_in"> config </span>--list</span><br><span class="line"></span><br><span class="line"><span class="comment"># checking for existing SSH keys</span></span><br><span class="line">ls -al ~/.ssh</span><br><span class="line"><span class="comment"># if not,generate a new SSH key</span></span><br><span class="line">ssh-keygen -t rsa -b 4096 -C <span class="string">"your_email"</span></span><br><span class="line"><span class="comment"># type Enter for following options</span></span><br></pre></td></tr></table></figure>
+<p>create a new repository.It’s name must be your_name.github.io.Then add vps SSH key to <a href="https://github.com/settings/keys" target="_blank" rel="noopener">github SSH keys</a>.<br>vps SSH key can find use code below:<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">less ~<span class="regexp">/.ssh/i</span>d_rsa.pub</span><br></pre></td></tr></table></figure></p>
+<p>Then type<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ssh</span> <span class="selector-tag">-T</span> <span class="selector-tag">git</span>@<span class="keyword">github</span>.<span class="keyword">com</span></span><br></pre></td></tr></table></figure></p>
+<p>If show content below,you are successful.</p>
+<blockquote>
+<p>Hi username! You’ve successfully authenticated, but GitHub does notprovide shell access.</p>
+</blockquote>
+<p>Then use codes<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo g</span></span><br><span class="line"><span class="attribute">hexo d</span></span><br></pre></td></tr></table></figure></p>
+<p>if has error like this</p>
+<blockquote>
+<p>Error deployer not found: git</p>
+</blockquote>
+<p>please run<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="modify-theme"><a href="#modify-theme" class="headerlink" title="modify theme"></a>modify theme</h1><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> /home/www/hexo</span><br><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/iissnan/hexo-theme-<span class="keyword">next</span> themes/<span class="keyword">next</span></span><br><span class="line"><span class="keyword">vi</span> _config.yml</span><br><span class="line"># <span class="keyword">change</span> theme: landscape <span class="keyword">to</span> theme: <span class="keyword">next</span></span><br></pre></td></tr></table></figure>
+<h1 id="configure-markdown"><a href="#configure-markdown" class="headerlink" title="configure markdown"></a>configure markdown</h1><p>configure markdown to address the conflict between markdown and latex.</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~<span class="regexp">/hexo_blog/node</span>_modules/marked/<span class="class"><span class="keyword">lib</span></span></span><br><span class="line">sudo vim marked.js</span><br></pre></td></tr></table></figure>
+<p>replace </p>
+<blockquote>
+<p>escape: /^\(<a href>\`*{}[\</a># +-.!_&gt;])/,</p>
+</blockquote>
+<p>to </p>
+<blockquote>
+<p>escape: /^\(<a href>`*[\</a># +-.!_&gt;])/,</p>
+</blockquote>
+<p>replace </p>
+<blockquote>
+<p>em: /^\b_((?:[^_]|__)+?)_\b|^*((?:**|[\s\S])+?)*(?!*)/,</p>
+</blockquote>
+<p>to</p>
+<blockquote>
+<p>em:/^*((?:**|[\s\S])+?)*(?!*)/,</p>
+</blockquote>
+<p>finally </p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo g</span></span><br></pre></td></tr></table></figure>
+<h1 id="optimization"><a href="#optimization" class="headerlink" title="optimization"></a>optimization</h1><p>You can find related ways from <strong>references</strong></p>
+<p>#install dropbox </p>
+<ol>
+<li><p>create a new user account</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">adduser </span>dbox</span><br><span class="line">passwd dbox</span><br><span class="line"><span class="comment"># print passwd</span></span><br><span class="line">su -l dbox</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>install dropbox</p>
+</li>
+</ol>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># download dropbox</span></span><br><span class="line"><span class="comment">## 32bit</span></span><br><span class="line"><span class="keyword">cd</span> ~ &amp;&amp; wget -O - <span class="string">"https://www.dropbox.com/download?plat=lnx.x86"</span> | tar xzf -</span><br><span class="line"><span class="comment">## 64bit</span></span><br><span class="line"><span class="keyword">cd</span> ~ &amp;&amp; wget -O - <span class="string">"https://www.dropbox.com/download?plat=lnx.x86_64"</span> | tar xzf -</span><br><span class="line">~<span class="string">/.dropbox-dist/dropboxd</span></span><br><span class="line"><span class="comment"># copy link to chrome and valid</span></span><br><span class="line">wget https:<span class="string">//www.dropbox.com/download</span>?dl=packages/dropbox.py</span><br><span class="line"><span class="comment"># maybe the name of py is not dropbox.py,you only need operate the .py file regardless of its name.</span></span><br><span class="line">chmod +x <span class="string">./dropbox.py</span></span><br><span class="line">~<span class="string">/dropbox.py</span> <span class="keyword">help</span></span><br><span class="line"><span class="comment"># view state</span></span><br><span class="line">~<span class="string">/dropbox.py</span> status</span><br><span class="line"><span class="comment"># start sync</span></span><br><span class="line">~<span class="string">/dropbox.py</span> start</span><br><span class="line"><span class="keyword">cd</span> Dropbox</span><br><span class="line"><span class="comment"># exclude dir which don't need to sync</span></span><br><span class="line">~<span class="string">/dropboxy.py</span> exclude add dirname1 dirname2</span><br><span class="line"><span class="comment"># link the outside folder to the Dropbox folder for syncing</span></span><br><span class="line">ln -s <span class="string">/path/to/desired-folder</span> ~<span class="string">/Dropbox/desired-folder</span></span><br></pre></td></tr></table></figure>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://renfuheng.com/2016/08/28/%E5%BF%AB%E9%80%9F%E5%9C%A8vps-centOs-6-%E4%B8%8A%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2%E5%B9%B6push%E4%B8%80%E4%BB%BD%E5%88%B0github/" target="_blank" rel="noopener">install hexo</a></p>
+<p><a href="http://www.jianshu.com/p/0823e387c019" target="_blank" rel="noopener">install git</a></p>
+<p><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">theme next</a></p>
+<p><a href="http://www.jianshu.com/p/393d067dba8d" target="_blank" rel="noopener">next theme set preview</a></p>
+<p><a href="http://www.wuxubj.cn/2016/08/Hexo-nexT-build-personal-blog/" target="_blank" rel="noopener">add search engine</a></p>
+<p><a href="http://www.jianshu.com/p/5d5931289c09" target="_blank" rel="noopener">optimization</a></p>
+<p><a href="https://blog.imfer.me/#!/post/2014-04-25-centos-install-dropbox" target="_blank" rel="noopener">install dropbox</a></p>
+<p><a href="http://blog.csdn.net/emptyset110/article/details/50123231" target="_blank" rel="noopener">搭建一个支持LaTEX的hexo博客</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2018/12/02/development/environment/host-blog-with-hexo-nginx-github/" data-id="cjsldc0ri0050e4v5ad6unii3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/website/">website</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/12/02/development/develepment/error&solution/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          error&amp;solution
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/12/02/computer science/数据结构第一讲：基本概念/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">数据结构第一讲：基本概念</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Information-theory/">Information theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NN/">NN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/book-review/">book review</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cluster/">cluster</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/competition/">competition</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/">computer science</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/coss-function/">coss function</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cv/">cv</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/data-compute/">data_compute</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">database</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/datacenter/">datacenter</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/develepment/">develepment</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/dimensionality-reduction/">dimensionality reduction</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/documentation/">documentation</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ensemble/">ensemble</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/environment/">environment</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/error-process/">error-process</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/essay/">essay</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/feature-engineering/">feature engineering</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/film-review/">film review</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/imbalance-data/">imbalance data</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/">machine learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/optimization/">optimization</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/preprocessing/">preprocessing</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python-sklearn/">python-sklearn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/recommendation-system/">recommendation system</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/series-analysis/">series analysis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/sklearn/">sklearn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/spark/">spark</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/statistics/">statistics</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/vision/">vision</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/visualize/">visualize</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bayes/">Bayes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/EM/">EM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ESL/">ESL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GBDT/">GBDT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GBM/">GBM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GLM/">GLM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-theory/">Information theory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JetBrains/">JetBrains</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/KKT/">KKT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LDA/">LDA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Latex/">Latex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MLE/">MLE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/">NLP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NN/">NN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PCA/">PCA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVD/">SVD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TF-IDF/">TF-IDF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WMD/">WMD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xgboost/">Xgboost</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adaboost/">adaboost</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/book-review/">book review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/category-encoding/">category encoding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cluster/">cluster</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/competition/">competition</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cost-function/">cost function</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cv/">cv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-sevice/">data sevice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/datacenter/">datacenter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/datagrip/">datagrip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debug/">debug</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/decision-tree/">decision tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/">deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/detect/">detect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/development/">development</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dimensionality-reduction/">dimensionality reduction</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elasticsearch/">elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ensemble/">ensemble</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/entropy/">entropy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/environment/">environment</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/error/">error</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/essay/">essay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/feature-engineering/">feature engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ffmpeg/">ffmpeg</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/film-review/">film review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/">flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gcforest/">gcforest</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gpu/">gpu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradient/">gradient</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hive/">hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/infomation-extraction/">infomation extraction</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jdk/">jdk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json-dumps/">json_dumps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/log/">log</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/machine-learning/">machine learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/math/">math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/matplotlib/">matplotlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitor/">monitor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/multiprocess/">multiprocess</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nonparametric-approach/">nonparametric approach</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/optimization/">optimization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pagerank/">pagerank</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pansee/">pansee</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/parameter-estimation/">parameter estimation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pip/">pip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/preprocessing/">preprocessing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/queue/">queue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/recommendation-system/">recommendation system</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/regression-tree/">regression tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/regularization/">regularization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rule-learning/">rule learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scala/">scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scrapy/">scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/screen/">screen</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sentiment-analysis/">sentiment analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/series-analysis/">series analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/setup/">setup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sklearn/">sklearn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/">spark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/statistics/">statistics</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/subprocess/">subprocess</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/t-SNE/">t-SNE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensor/">tensor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/terminal/">terminal</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/text-summarization/">text summarization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/traceback/">traceback</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unittest/">unittest</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vision/">vision</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/visualize/">visualize</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vps/">vps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/w2v/">w2v</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/website/">website</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/window/">window</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Bayes/" style="font-size: 10px;">Bayes</a> <a href="/tags/EM/" style="font-size: 10px;">EM</a> <a href="/tags/ESL/" style="font-size: 10.67px;">ESL</a> <a href="/tags/GBDT/" style="font-size: 10px;">GBDT</a> <a href="/tags/GBM/" style="font-size: 10.67px;">GBM</a> <a href="/tags/GLM/" style="font-size: 14px;">GLM</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Information-theory/" style="font-size: 10px;">Information theory</a> <a href="/tags/JetBrains/" style="font-size: 10.67px;">JetBrains</a> <a href="/tags/KKT/" style="font-size: 10px;">KKT</a> <a href="/tags/LDA/" style="font-size: 10px;">LDA</a> <a href="/tags/Latex/" style="font-size: 10px;">Latex</a> <a href="/tags/MLE/" style="font-size: 10px;">MLE</a> <a href="/tags/NLP/" style="font-size: 16px;">NLP</a> <a href="/tags/NN/" style="font-size: 16.67px;">NN</a> <a href="/tags/PCA/" style="font-size: 10.67px;">PCA</a> <a href="/tags/SVD/" style="font-size: 10px;">SVD</a> <a href="/tags/TF-IDF/" style="font-size: 12px;">TF-IDF</a> <a href="/tags/WMD/" style="font-size: 10px;">WMD</a> <a href="/tags/Xgboost/" style="font-size: 10px;">Xgboost</a> <a href="/tags/adaboost/" style="font-size: 10px;">adaboost</a> <a href="/tags/array/" style="font-size: 10px;">array</a> <a href="/tags/blog/" style="font-size: 10.67px;">blog</a> <a href="/tags/book-review/" style="font-size: 18px;">book review</a> <a href="/tags/category-encoding/" style="font-size: 11.33px;">category encoding</a> <a href="/tags/cluster/" style="font-size: 10px;">cluster</a> <a href="/tags/competition/" style="font-size: 10.67px;">competition</a> <a href="/tags/cost-function/" style="font-size: 11.33px;">cost function</a> <a href="/tags/cv/" style="font-size: 11.33px;">cv</a> <a href="/tags/data-sevice/" style="font-size: 10.67px;">data sevice</a> <a href="/tags/database/" style="font-size: 10.67px;">database</a> <a href="/tags/datacenter/" style="font-size: 10px;">datacenter</a> <a href="/tags/datagrip/" style="font-size: 10px;">datagrip</a> <a href="/tags/debug/" style="font-size: 10px;">debug</a> <a href="/tags/decision-tree/" style="font-size: 11.33px;">decision tree</a> <a href="/tags/deep-learning/" style="font-size: 10px;">deep learning</a> <a href="/tags/detect/" style="font-size: 10px;">detect</a> <a href="/tags/development/" style="font-size: 15.33px;">development</a> <a href="/tags/dimensionality-reduction/" style="font-size: 12.67px;">dimensionality reduction</a> <a href="/tags/docker/" style="font-size: 12px;">docker</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/ensemble/" style="font-size: 13.33px;">ensemble</a> <a href="/tags/entropy/" style="font-size: 10px;">entropy</a> <a href="/tags/environment/" style="font-size: 10.67px;">environment</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/essay/" style="font-size: 16.67px;">essay</a> <a href="/tags/feature-engineering/" style="font-size: 11.33px;">feature engineering</a> <a href="/tags/ffmpeg/" style="font-size: 10.67px;">ffmpeg</a> <a href="/tags/film-review/" style="font-size: 19.33px;">film review</a> <a href="/tags/flask/" style="font-size: 11.33px;">flask</a> <a href="/tags/gcforest/" style="font-size: 10px;">gcforest</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/gpu/" style="font-size: 10.67px;">gpu</a> <a href="/tags/gradient/" style="font-size: 10px;">gradient</a> <a href="/tags/hexo/" style="font-size: 10.67px;">hexo</a> <a href="/tags/hive/" style="font-size: 10px;">hive</a> <a href="/tags/infomation-extraction/" style="font-size: 10px;">infomation extraction</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/json-dumps/" style="font-size: 10px;">json_dumps</a> <a href="/tags/linux/" style="font-size: 16.67px;">linux</a> <a href="/tags/log/" style="font-size: 10.67px;">log</a> <a href="/tags/machine-learning/" style="font-size: 18.67px;">machine learning</a> <a href="/tags/markdown/" style="font-size: 11.33px;">markdown</a> <a href="/tags/math/" style="font-size: 10px;">math</a> <a href="/tags/matplotlib/" style="font-size: 12.67px;">matplotlib</a> <a href="/tags/monitor/" style="font-size: 10.67px;">monitor</a> <a href="/tags/multiprocess/" style="font-size: 10.67px;">multiprocess</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 10.67px;">nginx</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/nonparametric-approach/" style="font-size: 10px;">nonparametric approach</a> <a href="/tags/optimization/" style="font-size: 13.33px;">optimization</a> <a href="/tags/pagerank/" style="font-size: 10px;">pagerank</a> <a href="/tags/pandas/" style="font-size: 10px;">pandas</a> <a href="/tags/pansee/" style="font-size: 20px;">pansee</a> <a href="/tags/parameter-estimation/" style="font-size: 11.33px;">parameter estimation</a> <a href="/tags/pip/" style="font-size: 10px;">pip</a> <a href="/tags/preprocessing/" style="font-size: 10.67px;">preprocessing</a> <a href="/tags/python/" style="font-size: 17.33px;">python</a> <a href="/tags/queue/" style="font-size: 10px;">queue</a> <a href="/tags/recommendation-system/" style="font-size: 12px;">recommendation system</a> <a href="/tags/regression-tree/" style="font-size: 11.33px;">regression tree</a> <a href="/tags/regularization/" style="font-size: 10.67px;">regularization</a> <a href="/tags/rule-learning/" style="font-size: 10.67px;">rule learning</a> <a href="/tags/scala/" style="font-size: 10px;">scala</a> <a href="/tags/scrapy/" style="font-size: 10px;">scrapy</a> <a href="/tags/screen/" style="font-size: 10.67px;">screen</a> <a href="/tags/sentiment-analysis/" style="font-size: 10px;">sentiment analysis</a> <a href="/tags/series-analysis/" style="font-size: 10px;">series analysis</a> <a href="/tags/setup/" style="font-size: 10px;">setup</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/sklearn/" style="font-size: 11.33px;">sklearn</a> <a href="/tags/spark/" style="font-size: 10.67px;">spark</a> <a href="/tags/statistics/" style="font-size: 10.67px;">statistics</a> <a href="/tags/subprocess/" style="font-size: 10.67px;">subprocess</a> <a href="/tags/t-SNE/" style="font-size: 10px;">t-SNE</a> <a href="/tags/tensor/" style="font-size: 10px;">tensor</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/terminal/" style="font-size: 10.67px;">terminal</a> <a href="/tags/text-summarization/" style="font-size: 10px;">text summarization</a> <a href="/tags/traceback/" style="font-size: 10px;">traceback</a> <a href="/tags/ubuntu/" style="font-size: 10.67px;">ubuntu</a> <a href="/tags/unittest/" style="font-size: 10.67px;">unittest</a> <a href="/tags/vision/" style="font-size: 12.67px;">vision</a> <a href="/tags/visualize/" style="font-size: 10px;">visualize</a> <a href="/tags/vps/" style="font-size: 10px;">vps</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/w2v/" style="font-size: 10.67px;">w2v</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/website/" style="font-size: 10.67px;">website</a> <a href="/tags/window/" style="font-size: 10px;">window</a> <a href="/tags/数据结构/" style="font-size: 14.67px;">数据结构</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">July 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/02/26/pansee/film review/无问西东——李芳芳/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/26/pansee/film review/密室逃生2019——亚当·罗伯特/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/25/machine learning/NN/deepleanrningai深度学习笔记/">deepleanrningai深度学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/24/development/environment/ubuntu install scala and spark/">ubuntu install scala and spark</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/24/development/environment/ubuntu install nodejs/">ubuntu install nodejs</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 muzhen<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

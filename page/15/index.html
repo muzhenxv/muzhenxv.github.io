@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>the Home of MuZhen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="the Home of MuZhen">
+<meta property="og:url" content="http://www.muzhen.tk/page/15/index.html">
+<meta property="og:site_name" content="the Home of MuZhen">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="the Home of MuZhen">
+  
+    <link rel="alternate" href="/atom.xml" title="the Home of MuZhen" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">the Home of MuZhen</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.muzhen.tk"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-machine learning/machine learning/生成模型与判别模型" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/21/machine learning/machine learning/生成模型与判别模型/" class="article-date">
+  <time datetime="2017-03-21T02:21:52.000Z" itemprop="datePublished">2017-03-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/machine-learning/">machine learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/21/machine learning/machine learning/生成模型与判别模型/">生成模型与判别模型</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/21/machine learning/machine learning/生成模型与判别模型/" data-id="cjsldc0ul00d5e4v53bvygrgq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-python/修改文件内容和修改时间" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/21/python/修改文件内容和修改时间/" class="article-date">
+  <time datetime="2017-03-21T01:52:38.000Z" itemprop="datePublished">2017-03-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/21/python/修改文件内容和修改时间/">修改文件内容和修改时间</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h1><ul>
+<li>查找路径下全部文件全路径</li>
+<li>修改文件内容</li>
+<li>修改文件创建时间和修改时间</li>
+</ul>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">import <span class="built_in">time</span></span><br><span class="line">import <span class="built_in">os</span></span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line">root_path = <span class="string">'/home/linker-will/Dropbox/_posts'</span></span><br><span class="line">time_list = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> root,dirs,files <span class="keyword">in</span> <span class="built_in">os</span>.walk(root_path):        </span><br><span class="line">    <span class="keyword">for</span> filespath <span class="keyword">in</span> files:</span><br><span class="line">        f_path = <span class="built_in">os</span>.<span class="built_in">path</span>.join(root,filespath)</span><br><span class="line">        categories = <span class="built_in">os</span>.<span class="built_in">path</span>.basename(<span class="built_in">os</span>.<span class="built_in">path</span>.dirname(f_path))</span><br><span class="line">        f_name = <span class="built_in">os</span>.<span class="built_in">path</span>.basename(f_path)[:<span class="number">-3</span>]</span><br><span class="line">        mtime = <span class="built_in">os</span>.<span class="built_in">path</span>.getmtime(f_path)</span><br><span class="line">        ctime = <span class="built_in">os</span>.<span class="built_in">path</span>.getctime(f_path)</span><br><span class="line">        local_time = <span class="built_in">time</span>.localtime(<span class="built_in">os</span>.<span class="built_in">path</span>.getmtime(f_path))</span><br><span class="line">        f_mtime = <span class="built_in">time</span>.strftime(<span class="string">'%Y-%m-%d %H:%M:%S'</span>,local_time)</span><br><span class="line">        </span><br><span class="line">        f = <span class="built_in">open</span>(f_path,<span class="string">'r'</span>)</span><br><span class="line">        old = f.<span class="built_in">read</span>()</span><br><span class="line">        <span class="keyword">if</span> categories == <span class="string">'_posts'</span>:</span><br><span class="line">            <span class="built_in">print</span>(filespath,<span class="string">"don't have dirname"</span>)</span><br><span class="line">            pass</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(re.findall(<span class="string">'title:.*\ndate:.*\ncategories:.*'</span>,old)) == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(filespath,<span class="string">"don't have title format"</span>)</span><br><span class="line">            pass</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(re.findall(<span class="string">'\[TBC\]'</span>,old)) != <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(filespath,<span class="string">"[TBC]"</span>)</span><br><span class="line">        </span><br><span class="line">        data = re.<span class="built_in">sub</span>(<span class="string">'title:.*\ndate:.*\ncategories:.*'</span>,\</span><br><span class="line">               <span class="string">'title: %s\ndate: %s\ncategories: %s'</span>%(f_name,f_mtime,categories),old)</span><br><span class="line">        f.<span class="built_in">close</span>()</span><br><span class="line">        f = <span class="built_in">open</span>(f_path,<span class="string">'w'</span>)</span><br><span class="line">        f.<span class="built_in">write</span>(data)</span><br><span class="line">        f.<span class="built_in">close</span>()</span><br><span class="line">        <span class="built_in">os</span>.utime(f_path,times=(ctime,mtime))</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/21/python/修改文件内容和修改时间/" data-id="cjsldc0p9001ve4v5rvejqgb8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/statistics/参数估计方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/20/machine learning/statistics/参数估计方法/" class="article-date">
+  <time datetime="2017-03-20T11:55:32.000Z" itemprop="datePublished">2017-03-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/statistics/">statistics</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/20/machine learning/statistics/参数估计方法/">参数估计方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="极大似然估计（MLE，Maximum-Likelihood）"><a href="#极大似然估计（MLE，Maximum-Likelihood）" class="headerlink" title="极大似然估计（MLE，Maximum Likelihood）"></a>极大似然估计（MLE，Maximum Likelihood）</h1><ol>
+<li><p>模型确定，参数未知（参数是固定的未知值，而非随机数）</p>
+</li>
+<li><p>$x_i$ 为iid样本(独立同分布)</p>
+</li>
+<li><p>使得样本出现概率（即似然函数）最大的参数最有可能是真实参数</p>
+</li>
+</ol>
+<p>即是求<br>$$\arg\max_\mu p(\mathbf{X};\mu)$$<br>其中：<br>$$p(\mathbf{x};\mu) = \prod_{i} p(x_i;\mu)$$<br>实际计算中，常常等价地处理对数似然函数。</p>
+<h1 id="最大后验估计（MAP-maximum-a-posteriori）"><a href="#最大后验估计（MAP-maximum-a-posteriori）" class="headerlink" title="最大后验估计（MAP,maximum a posteriori）"></a>最大后验估计（MAP,maximum a posteriori）</h1><ul>
+<li>参数具有先验概率$p(\mu)$</li>
+</ul>
+<p>因此，问题转化为求给定观测值情况下使后验概率最大的$\mu$：<br>\begin{split} \hat{\mu_{MAP}} &amp;= \arg\max_{\mu} p(\mu|\mathbf{X}) \newline<br>&amp;= \arg\max_{\mu} \frac{p(\mathbf{X}|\mu)p(\mu)}{p(\mathbf{X})} \newline<br>&amp;=\arg\max_{\mu} p(\mathbf{X}|\mu)p(\mu) \end{split}</p>
+<h1 id="MAP与Bayes估计-联系与区别"><a href="#MAP与Bayes估计-联系与区别" class="headerlink" title="MAP与Bayes估计 联系与区别"></a>MAP与Bayes估计 联系与区别</h1><p>[TBC]</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/20/machine learning/statistics/参数估计方法/" data-id="cjsldc0va00ffe4v5jzy36ccr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bayes/">Bayes</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MLE/">MLE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/parameter-estimation/">parameter estimation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/statistics/">statistics</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/math/Jensen不等式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/20/machine learning/math/Jensen不等式/" class="article-date">
+  <time datetime="2017-03-20T11:55:29.000Z" itemprop="datePublished">2017-03-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/math/">math</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/20/machine learning/math/Jensen不等式/">Jensen不等式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<p>#凸函数定义与性质</p>
+<p>#Jensen不等式证明</p>
+<p>[TBC]</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/20/machine learning/math/Jensen不等式/" data-id="cjsldc0u300bue4v5huqkir48" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/math/">math</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/machine learning/广义线性模型" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/20/machine learning/machine learning/广义线性模型/" class="article-date">
+  <time datetime="2017-03-20T11:55:21.000Z" itemprop="datePublished">2017-03-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/machine-learning/">machine learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/20/machine learning/machine learning/广义线性模型/">广义线性模型</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TBC]</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/20/machine learning/machine learning/广义线性模型/" data-id="cjsldc0uk00d1e4v5sr9cz084" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GLM/">GLM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/machine learning/局部加权回归" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/20/machine learning/machine learning/局部加权回归/" class="article-date">
+  <time datetime="2017-03-20T08:47:58.000Z" itemprop="datePublished">2017-03-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/machine-learning/">machine learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/20/machine learning/machine learning/局部加权回归/">局部加权回归</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="非参数学习方法"><a href="#非参数学习方法" class="headerlink" title="非参数学习方法"></a>非参数学习方法</h1><p><strong>参数学习方法</strong>：在训练完成所有数据后得到一系列训练参数，然后根据训练参数来预测新样本的值，不再依赖之前的训练数据，参数值是确定的。</p>
+<p><strong>非参数学习方法</strong>：在预测新样本值时候每次都会重新训练数据得到新的参数值，也就是说每次预测新样本都会依赖训练数据集合，所以每次得到的参数值是不确定的。</p>
+<h1 id="局部加权回归"><a href="#局部加权回归" class="headerlink" title="局部加权回归"></a>局部加权回归</h1><p>在普通的回归问题中，均方误差损失：<br>$$J(\theta) = \frac{1}{n} \sum_i (h_\theta(x_i) - y_i)^2$$</p>
+<p>局部加权回归中，均方误差损失：<br>$$J(\theta) = \frac{1}{n} \sum_i \omega_i (h_\theta(x_i) - y_i)^2$$<br>$$\omega_i = \exp(- \frac{(x_i - x)^2}{2 \tau^2})$$<br>其中，$x$是待预测的样本点，按待预测点与样本点距离分配权重。<br>显然，对于每一个需要预测的样本点，都需要重新建立模型去预测，计算量会更大，但欠拟合问题会被削弱。</p>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://blog.csdn.net/acdreamers/article/details/44662753" target="_blank" rel="noopener">局部加权回归</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/20/machine learning/machine learning/局部加权回归/" data-id="cjsldc0uj00cye4v59i7lqjyc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GLM/">GLM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/preprocessing/连续性变量转化为离散型" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/20/machine learning/preprocessing/连续性变量转化为离散型/" class="article-date">
+  <time datetime="2017-03-20T05:59:26.000Z" itemprop="datePublished">2017-03-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/preprocessing/">preprocessing</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/20/machine learning/preprocessing/连续性变量转化为离散型/">连续性变量转化为离散型</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/20/machine learning/preprocessing/连续性变量转化为离散型/" data-id="cjsldc0ut00dve4v5s3aqtidn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/preprocessing/">preprocessing</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/preprocessing/归一化的意义与方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/19/machine learning/preprocessing/归一化的意义与方法/" class="article-date">
+  <time datetime="2017-03-19T03:36:50.000Z" itemprop="datePublished">2017-03-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/preprocessing/">preprocessing</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/19/machine learning/preprocessing/归一化的意义与方法/">归一化的意义与方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="标准化定义"><a href="#标准化定义" class="headerlink" title="标准化定义"></a>标准化定义</h1><p>标准化就是要把你需要处理的数据经过处理后（通过某种算法）限制在你需要的一定范围内.</p>
+<h1 id="标准化原因"><a href="#标准化原因" class="headerlink" title="标准化原因"></a>标准化原因</h1><ol>
+<li><p>为了后面数据处理的方便，把不同量纲的东西放在同一量纲下比较，即把不同来源的数据统一到一个参考系下，这样比较起来才有意义。</p>
+</li>
+<li><p>保正程序运行时收敛加快，大部分模型标准化后收敛速度会加快。例如，下面的例子，房间数和面积数不在一个量纲上，面积数值太小，房间数太大，成椭圆状，按照梯度收敛速度会慢，理想的是数据类似圆圈的形状，经过有限几个步骤则收敛了。</p>
+</li>
+<li><p>要注意的是，有的模型在标准化之后会影响效果，有的模型则不会。对于标准化是否影响模型效果，主要看模型是否具有伸缩不变性。<br>有些模型在各个维度进行不均匀伸缩后，最优解与原来不等价，例如SVM。对于这样的模型，除非本来各维数据的分布范围就比较接近，否则必须进行标准化，以免模型参数被分布范围较大或较小的数据dominate。<br>有些模型在各个维度进行不均匀伸缩后，最优解与原来等价，例如标准的logistic regression 和linear regression（加正则项后，正则项可能不具备伸缩不变性），简单的树模型（各个节点各算个的切分点）。对于这样的模型，是否标准化理论上不会改变最优解。但是，由于实际求解往往使用迭代算法，如果目标函数的形状太“扁”，迭代算法可能收敛得很慢甚至不收敛。所以对于具有伸缩不变性的模型，最好也进行数据标准化。但SVM则必须进行标准化。同的模型对特征的分布假设是不一样的。比如SVM 用高斯核的时候，所有维度共用一个方差，这不就假设特征分布是圆的么，输入椭圆的就坑了人家。<br>首先，对于gradient descent算法来说，learning rate的大小对其收敛速度至关重要。如果feature的scale不同，理论上不同的feature就需要设置不同的learning rate，但是gradient descent只有一个learning rate，这就导致不同feature的收敛效果不同，从而影响总体的收敛效果。所以在求解模型之前标准化不同feature的scale，可以有效提高gradient descent的收敛速度。<br>除此之外，如果feature的scale相差很大，则会出现scale越大的feature，对模型的影响越大。比如对于multivariate regression, 极端情况下, 有一个特征的值特别特别大，其他特征的值都特别特别小，那么cost function就被这个特别大的特征主导，甚至退化为univariate。即feature scale相差很大，线性回归模型得优化结果也会受到影响。</p>
+</li>
+</ol>
+<p>也需要注意的是，各维分别做标准化会丢失各维方差这一信息，但各维之间的相关系数可以保留</p>
+<h1 id="标准化方法"><a href="#标准化方法" class="headerlink" title="标准化方法"></a>标准化方法</h1><p>具体问题具体分析，可以先通过抽样实验的方式，去选择最好效果的标准化方法。</p>
+<p>常用的方法有：</p>
+<ul>
+<li><p>0-1标准化：<br>$$y_i = \frac{x_i-\min x}{\max x - \min x}$$</p>
+</li>
+<li><p>对数标准化,可以对x做处理使之大于等于1（大于0必须，大于1个人认为不必须）,也可以取对数之后再除以最大对数值进行进一步缩放：<br>$$y = \log x$$</p>
+</li>
+<li><p>反正切标准化：<br>$$y = \frac{2}{\pi} \arctan x$$</p>
+</li>
+<li><p>z-score标准化：<br>$$y = \frac{x_i - \overline{x}}{s};\overline{x} = \frac{\sum\limits_i^n x}{n};s = \sqrt{\frac{\sum (x-\overline{x})^2}{n-1}}$$</p>
+</li>
+<li><p>归一化：<br>$$y = \frac{x_i}{\sum x}$$</p>
+</li>
+</ul>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://blog.csdn.net/resourse_sharing/article/details/51979494" target="_blank" rel="noopener">为什么要特征标准化及特征标准化方法</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/19/machine learning/preprocessing/归一化的意义与方法/" data-id="cjsldc0us00dse4v5s9q7qp39" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/preprocessing/">preprocessing</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/python-sklearn/the abstract of sklearn.ensemble" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/19/machine learning/python-sklearn/the abstract of sklearn.ensemble/" class="article-date">
+  <time datetime="2017-03-19T02:10:07.000Z" itemprop="datePublished">2017-03-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python-sklearn/">python-sklearn</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/19/machine learning/python-sklearn/the abstract of sklearn.ensemble/">the abstract of sklearn.ensemble</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="sklearn-ensemble-AdaBoostClassifier-sklearn-ensemble-AdaBoostRegressor"><a href="#sklearn-ensemble-AdaBoostClassifier-sklearn-ensemble-AdaBoostRegressor" class="headerlink" title="sklearn.ensemble.AdaBoostClassifier/sklearn.ensemble.AdaBoostRegressor"></a>sklearn.ensemble.AdaBoostClassifier/sklearn.ensemble.AdaBoostRegressor</h1><p>Adaboost分类器是一个超估计。它通过在原始数据集上拟合一个分类器开始，然后在相同的数据集上调整误分类样本的权重，并用其再次拟合相同分类器，因此接下来的分类器会更关注于难以正确分类的样本。</p>
+<h1 id="sklearn-ensemble-BaggingClassifier-sklearn-ensemble-BaggingRegressor"><a href="#sklearn-ensemble-BaggingClassifier-sklearn-ensemble-BaggingRegressor" class="headerlink" title="sklearn.ensemble.BaggingClassifier/sklearn.ensemble.BaggingRegressor"></a>sklearn.ensemble.BaggingClassifier/sklearn.ensemble.BaggingRegressor</h1><p>一个bagging分类器。</p>
+<p>bagging分类器是一种集成meta-估计器。<br>它用原始数据集的随机子集去拟合基分类器，并聚合各自的预测结果（投票或者平均）去形成一个最终结果。<br>这样一个meta-估计器典型的被用于<strong>降低</strong>黑箱估计器（例如决策树）的<strong>方差</strong>，它通过在结构化过程中引入随机性并对结果进行集成来实现。</p>
+<p>这个算法包括了过往的一些研究。当数据集中的随机子集被抽取出来作为样本的随机子集，这个算法就是Pasting。<br>如果样本的抽取是有放回的，这个方法就是Bagging。当特征被随机抽取，这个方法就是Random Subspaces。<br>最后，如果基分类器是建立在随机的样本和特征之上，这个方法被叫做Random Patches。</p>
+<h1 id="sklearn-ensemble-ExtraTreesClassifier-sklearn-ensemble-ExtraTreesRegressor"><a href="#sklearn-ensemble-ExtraTreesClassifier-sklearn-ensemble-ExtraTreesRegressor" class="headerlink" title="sklearn.ensemble.ExtraTreesClassifier/sklearn.ensemble.ExtraTreesRegressor"></a>sklearn.ensemble.ExtraTreesClassifier/sklearn.ensemble.ExtraTreesRegressor</h1><p>这个算法通过拟合许多基于各种各样数据集子样本的随机决策树并平均结果来改善预测精度和控制过拟合。</p>
+<p>该方法只对样本而不对特征进行抽样。但是，它通过max_features这样一个参数去控制每次分裂。<br>每次分类，只随机选择max_features个特征，从中选出最优分裂。但如果随机出的特征都不支持有效分裂，<br>算法会从剩下的特征中继续搜索出一个合宜的分裂。分裂的终止有其他相关树特征决定。<br>在sklearn中，<strong>ExtraTreesClassifier可以设置class_weight参数</strong>，这非常好！</p>
+<p>我查阅资料并结合参数，猜测sklearn中ET树原理：<br>对于样本并不进行随机抽样（并没有max_samples参数），或者说用的是全样本。<br>每次分类时，随机选择max_features特征。对于这些特征，随机选择分割点。（正常二叉树情况下，需要计算特征各种可能分裂方式并寻找出最优。但这里仅仅是随机选择出特征分裂方式）<br>然后比较各特征分裂的信息增益，选择最优者进行树的生长。因此在这种情况下所有样本也都是oob（out-of-bag）样本。<br>bootstrap参数只能理解为是针对特征了。</p>
+<h1 id="sklearn-ensemble-GradientBoostingClassifier-sklearn-ensemble-GradientBoostingRegressor"><a href="#sklearn-ensemble-GradientBoostingClassifier-sklearn-ensemble-GradientBoostingRegressor" class="headerlink" title="sklearn.ensemble.GradientBoostingClassifier/sklearn.ensemble.GradientBoostingRegressor"></a>sklearn.ensemble.GradientBoostingClassifier/sklearn.ensemble.GradientBoostingRegressor</h1><p>GB建立了一个前向加法模型，它允许优化任意不同的损失函数。<br>对于分类情况，在每一步，n_classes_（类数）个回归树被建立去拟合logloss。二分类是一个特殊情况，只使用一颗回归树。<br>对于回归情况，使用一棵回归树去拟合任意损失函数。</p>
+<h1 id="sklearn-ensemble-IsolationForest"><a href="#sklearn-ensemble-IsolationForest" class="headerlink" title="sklearn.ensemble.IsolationForest"></a>sklearn.ensemble.IsolationForest</h1><p>使用IsolationForest算法对每个样本回归一个异常得分。</p>
+<p>IsolationForest通过随机选择一个特征并在该特征最大最小值之间随机选择一个分裂值去孤立观察值。</p>
+<p>由于树结构可以表示递归分裂，因此孤立一个样本所需要的分裂次数等价于从根节点到终端节点的路径长度。</p>
+<p>路径长度，通过对森林中随机树长度进行平均得到，作为一种正常性度量。</p>
+<p>随机分裂过程对于异常值有显著更短的路径。因此，当随机树组成的森林对于特殊样本产生了更短路径，它们更可能是异常。</p>
+<h1 id="sklearn-ensemble-RandomForestClassifier-sklearn-ensemble-RandomForestRegressor"><a href="#sklearn-ensemble-RandomForestClassifier-sklearn-ensemble-RandomForestRegressor" class="headerlink" title="sklearn.ensemble.RandomForestClassifier/sklearn.ensemble.RandomForestRegressor"></a>sklearn.ensemble.RandomForestClassifier/sklearn.ensemble.RandomForestRegressor</h1><p>这个算法通过拟合许多基于各种各样数据集子样本的随机决策树并平均结果来改善预测精度和控制过拟合。<br>子样本大小总是和原始输入样本尺寸相同，但是当bootstrap=True时样本有放回抽取。</p>
+<h1 id="sklearn-ensemble-RandomForestEmbedding"><a href="#sklearn-ensemble-RandomForestEmbedding" class="headerlink" title="sklearn.ensemble.RandomForestEmbedding"></a>sklearn.ensemble.RandomForestEmbedding</h1><p>一种无监督变换，将数据集变换到高维稀疏空间。数据点根据每颗树叶子进行编码。使用one-hot编码方式，这将导致二元编码。</p>
+<h1 id="sklearn-ensemble-VotingClassifier"><a href="#sklearn-ensemble-VotingClassifier" class="headerlink" title="sklearn.ensemble.VotingClassifier"></a>sklearn.ensemble.VotingClassifier</h1><p>用于对未集成的估计器列表进行投票集成。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/19/machine learning/python-sklearn/the abstract of sklearn.ensemble/" data-id="cjsldc0v300eoe4v5zyznom2k" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ensemble/">ensemble</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sklearn/">sklearn</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/NN/《神经网络和深度学习》第四章——神经网络可以计算任何函数的可视化证明" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/17/machine learning/NN/《神经网络和深度学习》第四章——神经网络可以计算任何函数的可视化证明/" class="article-date">
+  <time datetime="2017-03-17T09:14:51.000Z" itemprop="datePublished">2017-03-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/NN/">NN</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/17/machine learning/NN/《神经网络和深度学习》第四章——神经网络可以计算任何函数的可视化证明/">《神经网络和深度学习》第四章——神经网络可以计算任何函数的可视化证明</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script><br>神经网络一个最显著的事实就是它可以计算任何的函数。它具有一种<em>普遍性</em>！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/17/machine learning/NN/《神经网络和深度学习》第四章——神经网络可以计算任何函数的可视化证明/" data-id="cjsldc0tf00a3e4v5o4z6qc8e" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NN/">NN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/NN/《神经网络和深度学习》第三章——改进神经网络的学习方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/17/machine learning/NN/《神经网络和深度学习》第三章——改进神经网络的学习方法/" class="article-date">
+  <time datetime="2017-03-17T08:12:16.000Z" itemprop="datePublished">2017-03-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/NN/">NN</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/17/machine learning/NN/《神经网络和深度学习》第三章——改进神经网络的学习方法/">《神经网络和深度学习》第三章——改进神经网络的学习方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="损失函数选择"><a href="#损失函数选择" class="headerlink" title="损失函数选择"></a>损失函数选择</h1><p>当均方误差作为损失函数，S型曲线作为激活函数时，梯度和激活函数导数相关。<br>因此当严重误判时（i.e.真值为0预测输出接近1），由于此时S型激活函数在两侧导数都非常小，会出现犯了明显错误但学习却非常缓慢的情况。<br>而交叉熵和S型输出层组合并不会出现这个问题，因为经过计算可知梯度和预测错误相关（预测错误 = 预测值-真值），但仅仅限于输出神经元上。但遗憾的是，<br>交叉熵情况下，对权重梯度跟输入\(a_j^l\)相关，因此当\(a_j^l\)趋向于0时，权重梯度会很小，学习缓慢。  </p>
+<p>回顾logistic回归，交叉熵可以由极大似然估计推出。</p>
+<p>softmax输出层和对数似然代价组合是另一种可能。</p>
+<p><em>交叉熵代价在变大，而分类准确率在上升，这是可能的。合理的选用代价函数（便于优化），以及合理的调参（提高分类准确率）。</em></p>
+<h1 id="防止过拟合"><a href="#防止过拟合" class="headerlink" title="防止过拟合"></a>防止过拟合</h1><ol>
+<li><p>增加样本</p>
+</li>
+<li><p>L2规范化/权重衰减<br>规范化项里面不包含偏置。因此，对于偏置梯度不变。对于权重梯度：<br>$$\frac{\partial C}{\partial \omega} = \frac{\partial C_0}{\partial \omega} + \frac{\lambda}{n}\omega$$<br>$$\frac{\partial C}{\partial b} = \frac{\partial C_0}{\partial b}$$<br>其中\(C_0\)是原始代价函数：<br>$$C = C_0 + \frac{\lambda}{2n}\sum_\omega\omega^2$$<br>因此，权重学习规则就变成：<br>\begin{split}\omega \rightarrow \omega - \eta\frac{\partial C_0}{\partial \omega} - \frac{\eta\lambda}{n}\omega\newline<br>= (1 - \frac{\eta\lambda}{n})\omega - \eta\frac{\partial C_0}{\partial \omega}\end{split}<br>故而它又被称作权重衰减。<br><em>L2规范化还可以帮助逃离局部最优值。</em><br>规范化更倾向于小权重，对于输入噪音不会过度敏感。<br>不对偏置进行规范化，是因为：</p>
+<ul>
+<li>实践看来改善不明显</li>
+<li>大的偏置并不会对噪音敏感</li>
+<li>大的偏置让网络更加灵活，让神经元更加容易饱和  </li>
+</ul>
+</li>
+</ol>
+<p>为什么L2规范化往往比不做规范化有更好的结果？<br>仅是实践经验，并不是因为“奥卡姆剃刀”。因为简单更好本身就无法证明，何况也无法严格判定在他同等效果下哪个模型更简单（对效果除权很难）。<br>对模型真正的测试不是简单性，而是在新场景中新活动的预测能力。</p>
+<ol start="3">
+<li><p>L1规范化<br>代价函数变为：<br>$$C = C_0 + \frac{\lambda}{2n}\sum_\omega|\omega|$$<br>求导得：<br>$$\frac{\partial C}{\partial \omega} = \frac{\partial C_0}{\partial \omega} + \frac{\lambda}{n}sgn(\omega)$$<br>因此更新规则为：<br>$$\omega \rightarrow \omega - \frac{\lambda}{n}sgn(\omega) - \frac{\partial C_0}{\partial \omega}$$<br>在L2规范化中，权重通过一个和$\omega$成比例的量进行缩小。在L1中，权重通过一个常量向0缩小。<br>所以，当权重绝对值很大时，L1规范化的权重缩小原比L2规范化要小的多。相反，当一个特定的权重绝对值很小时，L1规范化的权重缩小要比L2规范化大的多。<br>最终结果就是，L1规范化倾向于聚集网络权重在相对少量的高重要度连接上，而其他权重就会被驱使向0接近。</p>
+</li>
+<li><p>弃权（dropout）<br>在训练过程中通过概率使得部分隐藏神经元不参与计算和更新，不断重复这个过程使得权重选择性更新。最终得到的结果就可以视为bagging。<br>这样理解好象是错的？</p>
+</li>
+<li><p>人为扩展训练数据<br>就MNIST而言，可以通过对图像进行小幅旋转来认为产生新数据。<br>在语音识别中，还可以通过增加背景噪声来扩展训练数据，从而更加关注普适特征，训练出更具范化能力的模型。</p>
+</li>
+</ol>
+<h1 id="权重初始化"><a href="#权重初始化" class="headerlink" title="权重初始化"></a>权重初始化</h1><p>一般采用标准正态分布来进行权重和偏置初始化。<br>考虑一个极端情况，一共n个输入神经元，输入值都为1。那么加权和就会服从均值0,方差n+1的正态分布，形如：<br><img src="http://p1.bpimg.com/567571/d42d2eff91ab2285.png" alt><br>就会造成带权和很大，从而相对应的隐藏神经元饱和，激活值接近0或1。从而梯度下降学习将会非常缓慢。<br>因此，我们可以选择均值0,方差1/n的正态分布来进行权重初始化，对于偏置习惯上依旧使用标准正态分布。</p>
+<h1 id="其他参数"><a href="#其他参数" class="headerlink" title="其他参数"></a>其他参数</h1><ul>
+<li>学习率</li>
+<li>正则项系数</li>
+<li>minibatch数量</li>
+<li>迭代次数</li>
+<li>隐藏神经元数量</li>
+<li>层数</li>
+<li>输出编码方式</li>
+</ul>
+<h1 id="其他技术"><a href="#其他技术" class="headerlink" title="其他技术"></a>其他技术</h1><ol>
+<li><p>Hessian优化（泰勒展开与二阶近似）</p>
+</li>
+<li><p>基于momentum的梯度下降</p>
+</li>
+</ol>
+<h1 id="其他激活函数"><a href="#其他激活函数" class="headerlink" title="其他激活函数"></a>其他激活函数</h1><ul>
+<li><p>tanh<br><img src="http://i1.piimg.com/567571/32cda276ddd538ca.png" alt>  </p>
+</li>
+<li><p>relu<br><img src="http://i1.piimg.com/567571/c10b3dae75ed663c.png" alt></p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/17/machine learning/NN/《神经网络和深度学习》第三章——改进神经网络的学习方法/" data-id="cjsldc0t9009pe4v5oppsbxyv" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NN/">NN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/NN/《神经网络和深度学习》第二章——反向传播算法如何工作" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/17/machine learning/NN/《神经网络和深度学习》第二章——反向传播算法如何工作/" class="article-date">
+  <time datetime="2017-03-17T07:31:14.000Z" itemprop="datePublished">2017-03-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/NN/">NN</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/17/machine learning/NN/《神经网络和深度学习》第二章——反向传播算法如何工作/">《神经网络和深度学习》第二章——反向传播算法如何工作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="反向传播算法"><a href="#反向传播算法" class="headerlink" title="反向传播算法"></a>反向传播算法</h1><p>反向传播算法通过<em>链式法则</em>来简化计算<em>损失函数对各权重和偏置的梯度</em>。</p>
+<h2 id="符号说明、一个定义、四个关键方程："><a href="#符号说明、一个定义、四个关键方程：" class="headerlink" title="符号说明、一个定义、四个关键方程："></a>符号说明、一个定义、四个关键方程：</h2><ol>
+<li><p>符号说明：<br>\(l-1\)层\(k\)神经元与\(l\)层\(j\)神经元连接权重： \(\omega_{jk}^l\)<br>带权和： \(z_j^{l} = \sum\limits_{k}{\omega_{jk}^{l}a_k^{l-1}} + b_j^l\)<br>激活值： \(a_j^l = \sigma(z_j^l)\)</p>
+</li>
+<li><p>定义\(l\)层\(j\)神经元误差：<br>$$\delta_j^l = \frac{\partial C}{\partial z_j^l}$$<br>最优化时，梯度应当为0,因此可以理解为梯度绝对值越大，离最优化状态越远，误差越大。之所以对z而不是a求梯度，则是计算方便的考虑。</p>
+</li>
+<li><p>输出层误差方程：<br>$$\delta_j^L = \frac{\partial C}{\partial a_j^L}\sigma^{‘}(z_j^L)$$<br>矩阵形式：<br>$$\delta^L = \nabla_aC \odot \sigma^{‘}(z^L)$$</p>
+</li>
+<li><p>使用下一层的误差\(\delta^{l+1}\)来表示当前层的误差\(\delta^l\)：<br>$$\delta_j^l = \sum_k{\omega_{kj}^{l+1}\delta_k^{l+1}\sigma^{‘}(z_j^l)}$$<br>矩阵形式：<br>$$\delta^l = ((\omega^{l+1})^T\delta^{l+1}) \odot \sigma^{‘}(z^l)$$</p>
+</li>
+<li><p>损失函数对偏置的导数：<br>$$\frac{\partial C}{\partial b_j^l} = \delta_j^l$$</p>
+</li>
+<li><p>损失函数对权重的导数：<br>$$\frac{\partial C}{\partial \omega_{jk}^l} = a_k^{l-1}\sigma_j^l$$</p>
+</li>
+</ol>
+<h2 id="伪代码如下："><a href="#伪代码如下：" class="headerlink" title="伪代码如下："></a>伪代码如下：</h2><ol>
+<li><p>计算并记录前向传播过程中<em>带权和</em>和<em>激活值</em>;</p>
+</li>
+<li><p>利用公式计算代价函数对参数梯度</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/17/machine learning/NN/《神经网络和深度学习》第二章——反向传播算法如何工作/" data-id="cjsldc0ta009ue4v55ymixkek" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NN/">NN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine learning/NN/Neural Networks for Applied Sciences and Engineering--Chapter 8" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/10/machine learning/NN/Neural Networks for Applied Sciences and Engineering--Chapter 8/" class="article-date">
+  <time datetime="2017-03-10T10:00:24.000Z" itemprop="datePublished">2017-03-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/NN/">NN</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/10/machine learning/NN/Neural Networks for Applied Sciences and Engineering--Chapter 8/">Neural Networks for Applied Sciences and Engineering--Chapter 8</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Chapter-8-Discovering-Unknown-Clusters-in-Data-with-Self-Organizing-Maps"><a href="#Chapter-8-Discovering-Unknown-Clusters-in-Data-with-Self-Organizing-Maps" class="headerlink" title="Chapter 8 Discovering Unknown Clusters in Data with Self-Organizing Maps"></a>Chapter 8 Discovering Unknown Clusters in Data with Self-Organizing Maps</h1><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+<h2 id="8-1-Introduction-and-Overview"><a href="#8-1-Introduction-and-Overview" class="headerlink" title="8.1 Introduction and Overview"></a>8.1 Introduction and Overview</h2><h2 id="8-2-Structure-of-Unsupervised-Networks"><a href="#8-2-Structure-of-Unsupervised-Networks" class="headerlink" title="8.2 Structure of Unsupervised Networks"></a>8.2 Structure of Unsupervised Networks</h2><h2 id="8-3-Learning-in-Unsupervised-Networks"><a href="#8-3-Learning-in-Unsupervised-Networks" class="headerlink" title="8.3 Learning in Unsupervised Networks"></a>8.3 Learning in Unsupervised Networks</h2><blockquote>
+<p>Rosenblatt proposed a model of competitive learning between neurons.In his model that<br> attempts to mimic this brain function,neurons inhibit each other<br> by sending their activation as inhibitory signals,the goal being to<br> win a competition for the maximum activation corresponding to an input pattern.<br> <strong>The neuron with the maximum activation then represents the input pattern</strong> that<br> led to its activation. This neuron alone becomes the winner and is allowed to<br> <strong>adjust its weight vector by moving it closer to that input vector</strong>;however,the neurons that<br> lose the competition by succumbing to the inhibition are not allowed to change their weights.</p>
+</blockquote>
+<h2 id="8-4-Implementation-of-Competitive-Learning"><a href="#8-4-Implementation-of-Competitive-Learning" class="headerlink" title="8.4 Implementation of Competitive Learning"></a>8.4 Implementation of Competitive Learning</h2><blockquote>
+<p>In many cases,the number of data clusters is unknown.When there is uncertainty,<br> it is better to <strong>have a larger number</strong> of output neurons than the possible number of clusters<br> <strong>because redundant neurons can be eliminated</strong>.<br> After the number of input variables and output neurons has been set,the next step is to<br> <strong>initialize the weights</strong>.These may be set to <strong>small random values</strong>,as was done in the MLP networks.<br> Another possibility is to <strong>randomly choose some input vectors and use their values for the weights</strong>.<br> This has the potential to speed up learning.</p>
+</blockquote>
+<h3 id="8-4-1-Winner-Selection-Based-on-Neuron-activation"><a href="#8-4-1-Winner-Selection-Based-on-Neuron-activation" class="headerlink" title="8.4.1 Winner Selection Based on Neuron activation"></a>8.4.1 Winner Selection Based on Neuron activation</h3><blockquote>
+<p>Once each output neuron has computed its activation,competition can begin.There are several ways<br> this can happen;a simple way is for each neuron to <strong>send its signal</strong> in an inhibitory manner,<br> with <strong>an opposite sign to other neurons</strong>.Once each neuron has received signals from the others,<br> each neuron can compute its <strong>net activation</strong> by simply summing the incoming inhibitory signals and<br> its own activation.If the activation drops below a threshold(or zero),that neuron drops out of the competition.<br> As long as more than one neuron remians,the cycle of inhibition continues until one winner emerges;<br> its output is set to one.This neuron is declared the winner because it has the highest activation<br> and it alone represents the input vector.</p>
+</blockquote>
+<p><span style="color:blue"><em>Is the opposite sign only the sign,not the opposite activation?</em></span></p>
+<h3 id="8-4-2-Winner-Selection-Based-on-Distance-to-Input-vector"><a href="#8-4-2-Winner-Selection-Based-on-Distance-to-Input-vector" class="headerlink" title="8.4.2 Winner Selection Based on Distance to Input vector"></a>8.4.2 Winner Selection Based on Distance to Input vector</h3><blockquote>
+<p>Once the distance between an input vector and all the weights has been found,<br> the neuron with <strong>the smallest distance</strong> to the input vector is chosen as the winner,<br> and its weights are updated so that it <strong>moves closer to the input vector</strong>,as<br> \(\Delta\omega_j = \beta(x - \omega_j) = \beta{}d_j\).<br><img src="http://omdhuynsr.bkt.clouddn.com/17-3-6/13980399-file_1488786922883_a440.png" alt title="weight update"></p>
+</blockquote>
+<h4 id="8-4-2-1-Other-Distance-Measures"><a href="#8-4-2-1-Other-Distance-Measures" class="headerlink" title="8.4.2.1 Other Distance Measures"></a>8.4.2.1 Other Distance Measures</h4><h3 id="8-4-3-Competitive-Learning-Example"><a href="#8-4-3-Competitive-Learning-Example" class="headerlink" title="8.4.3 Competitive Learning Example"></a>8.4.3 Competitive Learning Example</h3><h4 id="8-4-3-1-Recursive-Versus-Batch-Learning"><a href="#8-4-3-1-Recursive-Versus-Batch-Learning" class="headerlink" title="8.4.3.1 Recursive Versus Batch Learning"></a>8.4.3.1 Recursive Versus Batch Learning</h4><blockquote>
+<p>In the batch learning,the weight update for each input vector is noted,<br> but the weights are not changed until all the input patterns have been presented.<br> Training terminates when the mean distance between the winning neurons and<br> the inputs they repersent is at a minimum across the entire set of clusters,<br> or when this distance stops changing.</p>
+</blockquote>
+<h4 id="8-4-3-2-Illustration-of-the-Calculations-Involved-in-Winner-Selection"><a href="#8-4-3-2-Illustration-of-the-Calculations-Involved-in-Winner-Selection" class="headerlink" title="8.4.3.2 Illustration of the Calculations Involved in Winner Selection"></a>8.4.3.2 Illustration of the Calculations Involved in Winner Selection</h4><blockquote>
+<p>The training criterion is the mean distance(the sum of the squared distance)<br> between all the inputs and their respective winning neuron weights which<br> represent the cluster centers.<br> The objective of training is to <strong>minimize the mean distance</strong> over iterations.<br> The mean distance \(D\) can be expressed as<br> $$D = \sum_{i=0}^k \sum_{n\in C_i}(x^n - \omega_i)^2$$</p>
+</blockquote>
+<h4 id="8-4-3-3-Network-Training"><a href="#8-4-3-3-Network-Training" class="headerlink" title="8.4.3.3 Network Training"></a>8.4.3.3 Network Training</h4><h2 id="8-5-Self-Organizing-Feature-Maps"><a href="#8-5-Self-Organizing-Feature-Maps" class="headerlink" title="8.5 Self-Organizing Feature Maps"></a>8.5 Self-Organizing Feature Maps</h2><blockquote>
+<p>In SOMs,not only the winner neuron but also neurons in <strong>the neighborhood</strong> of the winner<br> <strong>adjust</strong> their weights together so that a neighborhood of neurons becomes sensitive to a specific input.<br> This neighborhood feature helps to preserve <strong>topological characteristics of inputs</strong>.<br> Therefore,inputs that are spatially closer together must be represented in close proximity<br> in the output layer or map of a network.</p>
+</blockquote>
+<h3 id="8-5-1-Learning-in-Self-Organizing-Map-Networks"><a href="#8-5-1-Learning-in-Self-Organizing-Map-Networks" class="headerlink" title="8.5.1 Learning in Self-Organizing Map Networks"></a>8.5.1 Learning in Self-Organizing Map Networks</h3><h4 id="8-5-1-1-Selection-of-Neighborhood-Geometry"><a href="#8-5-1-1-Selection-of-Neighborhood-Geometry" class="headerlink" title="8.5.1.1 Selection of Neighborhood Geometry"></a>8.5.1.1 Selection of Neighborhood Geometry</h4><blockquote>
+<p>There are several ways to define a neighborhood.<br> <img src="http://omdhuynsr.bkt.clouddn.com/17-3-6/15425123-file_1488797380352_ba79.png" alt><br> If only the most immediate neighbors of the winer are considered,the distance,<br> also called <strong>radius r</strong>,is 1.If two levels of adjacent neighbors are considered,then the radius is 2.</p>
+</blockquote>
+<h4 id="8-5-1-2-Training-of-Self-Organizing-Maps"><a href="#8-5-1-2-Training-of-Self-Organizing-Maps" class="headerlink" title="8.5.1.2 Training of Self-Organizing Maps"></a>8.5.1.2 Training of Self-Organizing Maps</h4><blockquote>
+<p>$$\omega_j^{‘} = \omega_j + \beta NS<em>[x - \omega_j]$$<br> where \(NS\) is the <em>*neighbor strength</em></em> that varies with the distance to a neighbor neuron from the winner.<br> Neighbor strengh defines the strength of weight adjustment of the neighbors with respect to that of the winner.</p>
+</blockquote>
+<h4 id="8-5-1-3-Neighbor-Strength"><a href="#8-5-1-3-Neighbor-Strength" class="headerlink" title="8.5.1.3 Neighbor Strength"></a>8.5.1.3 Neighbor Strength</h4><blockquote>
+<p>The winning neuron update is the most pronounced and the farther away a neighbor neuron is,<br> the less its weight update.The \(NS\) function determines how the weight adjustment<br> <strong>decays</strong> with distance from the winner.There are several possibilities for this function and<br> some commonly usedd functions are <strong>linear,Gaussian,and exponential</strong>.<br> The Gaussian form of the \(NS\) function makes the weight adjustments decay smoothly with distance,<br> and is given by \(NS = Exp[\frac{-d_{i,j}^2}{2\delta^2}]\)<br> The exponential decay \(NS\) function is given by \(NS = Exp[-kd_{i,j}]\)</p>
+</blockquote>
+<h4 id="8-5-1-4-Example-Training-Self-Organizing-Networks-with-a-Neighbor-Feature"><a href="#8-5-1-4-Example-Training-Self-Organizing-Networks-with-a-Neighbor-Feature" class="headerlink" title="8.5.1.4 Example:Training Self-Organizing Networks with a Neighbor Feature"></a>8.5.1.4 Example:Training Self-Organizing Networks with a Neighbor Feature</h4><h4 id="8-5-1-5-Neighbor-Matrix-and-Distance-to-Neighbors-from-the-Winner"><a href="#8-5-1-5-Neighbor-Matrix-and-Distance-to-Neighbors-from-the-Winner" class="headerlink" title="8.5.1.5 Neighbor Matrix and Distance to Neighbors from the Winner"></a>8.5.1.5 Neighbor Matrix and Distance to Neighbors from the Winner</h4><blockquote>
+<p>When the map is large,an efficient method is required to determine the distance of a neighbor<br> from the winner to compute neighor strength.<br> Use a neighbor matrix(\(NM\),also called distance matrix) for a two-dimensional map as a example.<br> For a map of 12 neurons arranged in three rows and four columns,the neighbor matrix for a<br> rectangular neighborhood is<br> $$NM = \begin{bmatrix}<br> 3 &amp; 2 &amp; 2 &amp; 2 &amp; 2 &amp; 2 &amp; 3 \\\\<br> 3 &amp; 2 &amp; 1 &amp; 1 &amp; 1 &amp; 2 &amp; 3 \\\\<br> 3 &amp; 2 &amp; 1 &amp; 0 &amp; 1 &amp; 2 &amp; 3 \\\\<br> 3 &amp; 2 &amp; 1 &amp; 1 &amp; 1 &amp; 2 &amp; 3 \\\\<br> 3 &amp; 2 &amp; 2 &amp; 2 &amp; 2 &amp; 2 &amp; 3<br> \end{bmatrix}_{5\times7}$$<br> Suppose that the horizontal and vertical coordinates of the winner neuron on the two-dimensional map<br> are indicated by (\(i_{win},j_{win})\).Then the distance between the winner and<br> any neighbor neuron at position \((i,j)\) is<br> $$d = NM[\begin{bmatrix} c_1-i_{win}+i,c_2-j_{win}+j \end{bmatrix}]$$<br> where \({c_1,c_2}\) is the position of the winner in the neighbor matrix \(NM\).For this case,<br> \(c_1 = 3\) and \(c_2 = 4\)</p>
+</blockquote>
+<h4 id="8-5-1-6-Shrinking-Neighborhood-Size-with-iterations"><a href="#8-5-1-6-Shrinking-Neighborhood-Size-with-iterations" class="headerlink" title="8.5.1.6 Shrinking Neighborhood Size with iterations"></a>8.5.1.6 Shrinking Neighborhood Size with iterations</h4><blockquote>
+<p><strong>A larger initial neighborhood is necessay because smaller initial neighborhoods can lead to<br> metastable states corresponding to local minima</strong>.However,subsequent <strong>shrinking</strong> of neighborhood<br> is required to further <strong>refine</strong> the representation of the input probability distribution by the map.<br> The equation below shows a linear function commnonly used for this purpose:$$\delta_t = \delta_0(1-t/T)$$<br> Exponential decay is another form used for adjusting neighborhood size with iterations,as given by<br> $$\delta_t = \delta_0Exp[-t/T]$$<br> And the decay in neighborhood size is integrated into the NS function as<br> $$NS(d,t) = Exp[-d_{i,j}^2/2\delta_t^2] = Exp[-d_{i,j}^2/2\\{\delta_0Exp(-t/T)\\}^2]$$<br> where \(T\) is a constant that allows the decay function to decay to zero with iterations.<br> A recommendation is  that the neighborhood size should initially cover almost all neurons in the network<br> when centered on a winning neuron and then shrink slowly with iterations.</p>
+</blockquote>
+<h4 id="8-5-1-7-Learning-Rate-Decay"><a href="#8-5-1-7-Learning-Rate-Decay" class="headerlink" title="8.5.1.7 Learning Rate Decay"></a>8.5.1.7 Learning Rate Decay</h4><blockquote>
+<p>The step length,or the learning rate \(\beta\),is also reduced with iterations in<br> self-organizing learning and a common form of this function is the linear decay,given by<br> $$\beta_t = \beta_0(1-t/T)$$<br> Another form is the exponential decay of the learning rate given by<br> $$\beta_t = \beta_0Exp[-t/T]$$<br> where \(T\) is a time constant that brings the learning rate to a very small value with iterations.<br> A general guide is to start with a relatively high learning rate and let it decrease gradually but<br> remain above 0.01.</p>
+</blockquote>
+<h4 id="8-5-1-8-Weight-Update-Incorporating-Learning-Rate-and-Neighborhood-Decay"><a href="#8-5-1-8-Weight-Update-Incorporating-Learning-Rate-and-Neighborhood-Decay" class="headerlink" title="8.5.1.8 Weight Update Incorporating Learning Rate and Neighborhood Decay"></a>8.5.1.8 Weight Update Incorporating Learning Rate and Neighborhood Decay</h4><blockquote>
+<p>Thus,the weight update after presenting an input vector \(\mathbf{x}\) to a SOM incorporating both<br> neighborhood size and learning rate that decrease with the number of iterations can be expressed as<br> $$\omega_j(t) = \omega_j(t-1) + \beta(t)NS(d,t)[\mathbf{x}(t)-\omega_j(t-1)]$$</p>
+</blockquote>
+<h4 id="8-5-1-9-Recursive-and-Batch-Training-and-Relation-to-K-Means-Clustering"><a href="#8-5-1-9-Recursive-and-Batch-Training-and-Relation-to-K-Means-Clustering" class="headerlink" title="8.5.1.9 Recursive and Batch Training and Relation to K-Means Clustering"></a>8.5.1.9 Recursive and Batch Training and Relation to K-Means Clustering</h4><blockquote>
+<p>In batch mode,the unsupervised algorithm without neighbor feature becomes <strong>equivalent to</strong> K-means clustering.<br> When the neighbor feature is incorporated,it allows <strong>nonlinear projection</strong> of the data as well as<br> the very attractive feature of <strong>topology preservation</strong>,by which regions closer in input space are<br> represented by neurons that are closer in the map.<strong>For this reason it is called a feature map.</strong></p>
+</blockquote>
+<h4 id="8-5-1-10-Two-Phases-of-Self-Organizing-Map-Training"><a href="#8-5-1-10-Two-Phases-of-Self-Organizing-Map-Training" class="headerlink" title="8.5.1.10 Two Phases of Self-Organizing Map Training"></a>8.5.1.10 Two Phases of Self-Organizing Map Training</h4><blockquote>
+<p>Training is usually performed in two phases:ordering and convergence.<br> In the ordering phase,learning rate and neighborhood size are reduces with iterations until<br> the winner or a few neighbors around the winner remain.<br> In the convergence phase,the feature map is fine tuned with the shrunk neighborhood so that<br> it produces an accurate representation of the input space.<br> In this phase,<strong>learning rate is maintained at a small value</strong>,on the order of 0.01,<br> to achieve convergence with good statistical accuracy.Haykin states that the learning rate<br> must not become zero because the network can get stuck in a metastable state that<br> corresponds to a feature map configuration with a topological defect.The \(NS\) function should<br> <strong>contain only the nearest neighbors</strong> of the winning neuron and may <strong>slowly reduce to one or zero neighbors</strong>(i.e.,only the winner remains).</p>
+</blockquote>
+<h4 id="8-5-1-11-Example-Illustrating-Self-Organizing-Map-Learning-with-a-Hand-Calculations"><a href="#8-5-1-11-Example-Illustrating-Self-Organizing-Map-Learning-with-a-Hand-Calculations" class="headerlink" title="8.5.1.11 Example:Illustrating Self-Organizing Map Learning with a Hand Calculations"></a>8.5.1.11 Example:Illustrating Self-Organizing Map Learning with a Hand Calculations</h4><h4 id="8-5-1-12-SOM-Case-Study-Determination-of-Mastitis-Health-Status-of-Dairy-Herd-from-Combined-Milk-Traits"><a href="#8-5-1-12-SOM-Case-Study-Determination-of-Mastitis-Health-Status-of-Dairy-Herd-from-Combined-Milk-Traits" class="headerlink" title="8.5.1.12 SOM Case Study:Determination of Mastitis Health Status of Dairy Herd from Combined Milk Traits"></a>8.5.1.12 SOM Case Study:Determination of Mastitis Health Status of Dairy Herd from Combined Milk Traits</h4><h3 id="8-5-2-Example-of-Two-Dimensional-Self-Organizing-Maps-Clustering-Canadian-and-Alaskan-Salmon-Based-on-the-Diameter-of-Growth-Rings-of-the-Scales"><a href="#8-5-2-Example-of-Two-Dimensional-Self-Organizing-Maps-Clustering-Canadian-and-Alaskan-Salmon-Based-on-the-Diameter-of-Growth-Rings-of-the-Scales" class="headerlink" title="8.5.2 Example of Two-Dimensional Self-Organizing Maps:Clustering Canadian and Alaskan Salmon Based on the Diameter of Growth Rings of the Scales"></a>8.5.2 Example of Two-Dimensional Self-Organizing Maps:Clustering Canadian and Alaskan Salmon Based on the Diameter of Growth Rings of the Scales</h3><h4 id="8-5-2-1-Map-Structure-and-Initialization"><a href="#8-5-2-1-Map-Structure-and-Initialization" class="headerlink" title="8.5.2.1 Map Structure and Initialization"></a>8.5.2.1 Map Structure and Initialization</h4><h4 id="8-5-2-2-Map-Training"><a href="#8-5-2-2-Map-Training" class="headerlink" title="8.5.2.2 Map Training"></a>8.5.2.2 Map Training</h4><blockquote>
+<p>For example,the map was trained using a square neighborhood with learning rate \(\beta\) expressed as<br> $$\beta = \left\\{\begin{array}{ll}<br>    0.01&amp;{t &lt; 5} \\\\<br>    \frac{2}{3+t}&amp;{t &gt; 5}\end{array}\right.$$<br> Learning rate is a <strong>samll constant value</strong> in the first four iterations so that the codebook vectors<br> <strong>find a good orientation</strong>(this is not always done).<br> The neighbor strength function used was<br> $$NS = \left\\{\begin{array}{ll}<br>        Exp[-0.1d]&amp;if \quad t &lt; 5 \\\\<br>        Exp[-\frac{(t-4)}{10}d]&amp;otherwise\end{array}\right.$$<br> During the first four iterations,<strong>all neurons on the map are neighbors</strong> of a winning neuron and<br> <strong>all neighbors are <em>strongly</em> influenced</strong>.The stronger influence on the neighbors in the initial iterations<br> makes the network conform to a nice structure and avoids knots.<br> <strong><em>Ordering phase</em></strong>.The map was trained using <strong>recursive update</strong>.<br> <strong><em>Convergence phase</em></strong>.To finetune and make sure that the map has converged,the trained map was trained further in <strong>batch mode</strong>.<br> Because the network in this case appears to have approached <strong>convergence</strong>,the learning rate<br> has been <strong>set to 1.0</strong> because there will be only small or straightforward adjustments to<br> the position of the codebook vectors with further training.The neighbor strength is <strong>limited to<br> the winning neuron</strong>.If,however,the network has <strong>not approached convergence</strong> in the ordering phase,<br> further training with a smaller constant learning rate on <strong>the order of 0.01</strong> may be appropriate.<br> The neighbor strength then may be <strong>limited to a few neighbors</strong> and decrease to the winner<br> or the nearest neighbors towards the end of training.<br> The final map has reached more data in the outlying regions compared to the map formed<br> at the end of the ordering phase,is expressed as below figure:<br> <img src="http://omdhuynsr.bkt.clouddn.com/17-3-7/10981036-file_1488895472789_17ff2.png" alt><br> <strong>We can set larger number of codebook vectors than the number of classes.</strong><br> So,a cluster of codebook vectors,not a single vector,defines each class.<strong>This gives the map its<br> ability to form nonlinear cluster boundaries.</strong>This cluster structure can be used to<br> discover unknown clusters in data.The map can also be used for subsequent supervised classification.<br> For example,when class labels are known,the codebook vectors that represent corresponding<br> input vectors can <strong>be used as input</strong> to train a feedforward classification network to obtain<br> the calss to which a particular unknown input vector belongs.This is called <strong>learning vector quantization</strong>.<br> Each codebook vector represents the center of gravity of a cluster of inputs that it represents and<br> therefore approximates <strong>the average or point density</strong> of the original distribution in a small cluster region.<br> <strong>Therefore,the magnitude(length) of the codebook vectors should reflect this.</strong> A properly ordered map<br> should show evenly varying length of the codebook vectors on the map.</p>
+</blockquote>
+<p><span style="color:red">It is a good example of model designment and parameters adjustment.</span><br><span style="color:blue">why the magnitude could relect the point density of the original distribution?</span></p>
+<h4 id="8-5-2-3-U-Matrix"><a href="#8-5-2-3-U-Matrix" class="headerlink" title="8.5.2.3 U-Matrix"></a>8.5.2.3 U-Matrix</h4><blockquote>
+<p>The distance between the neighboring codebook vectors can highligh different cluster regions<br> in the map and can be a useful visualization tool.The average of the distance to the nearest neighbors<br> is called unified distance,and the matrix of these values for all neurons is called the U-matrix.<br> Thus the map has not only orientated itself in the principal directions of the data,but has also<br> learned to represent the density distribution of the input data,like the figure below:<br> <img src="http://omdhuynsr.bkt.clouddn.com/17-3-8/37014593-file_1488941605615_b781.png" alt></p>
+</blockquote>
+<p><span style="color:blue">I can understand the figure,but I can’t understand why the distance is average<br>and how to plot the figure.Does the average of the distance mean the average of all input in related cluster regions?</span></p>
+<h3 id="8-5-3-Map-Initialization"><a href="#8-5-3-Map-Initialization" class="headerlink" title="8.5.3 Map Initialization"></a>8.5.3 Map Initialization</h3><blockquote>
+<p><strong>Random initialization</strong> clusters the initial vectors near the center of gravity of inputs and assigns<br> random values in this cener region.<br> <strong>Deterministic initialization</strong> is another approach,where some input vectors from the dataset<br> are used as initial vectors.This can accelerate map training.<br> Yet another approach is to train a map with random initialization for a few iterations and<br> use the resulting vectors as initial vectors(<strong>random-derministic</strong>).<br> Another possible approach to initialization is to find the first two<br> <strong>principal directions</strong> of data using principal component analysis and<br> use these two directions for map directions.</p>
+</blockquote>
+<h3 id="8-5-4-Example-Training-Two-Demensional-Maps-on-Multidimensional-Data"><a href="#8-5-4-Example-Training-Two-Demensional-Maps-on-Multidimensional-Data" class="headerlink" title="8.5.4 Example:Training Two-Demensional Maps on Multidimensional Data"></a>8.5.4 Example:Training Two-Demensional Maps on Multidimensional Data</h3><blockquote>
+<p>The SOMs can be used not only to cluster input data,but also to <strong>explore the relationship<br> between different attributes of input data.</strong></p>
+</blockquote>
+<h4 id="8-5-4-1-Data-Visualization"><a href="#8-5-4-1-Data-Visualization" class="headerlink" title="8.5.4.1 Data Visualization"></a>8.5.4.1 Data Visualization</h4><blockquote>
+<p>It is a good example for EDA with iris datasets:<br> <img src="http://omdhuynsr.bkt.clouddn.com/17-3-8/91990443-file_1488956403117_5fd3.png" alt><br> Where use color distinct different clusters.</p>
+</blockquote>
+<p><span style="color:red">It is a good example for EDA.</span></p>
+<h4 id="8-5-4-2-Map-Structure-and-Training"><a href="#8-5-4-2-Map-Structure-and-Training" class="headerlink" title="8.5.4.2 Map Structure and Training"></a>8.5.4.2 Map Structure and Training</h4><blockquote>
+<p><img src="http://omdhuynsr.bkt.clouddn.com/17-3-8/3745649-file_1488961989125_16d9f.png" alt><br> <img src="http://omdhuynsr.bkt.clouddn.com/17-3-8/88751501-file_1488962053638_139d5.png" alt><br> <img src="http://omdhuynsr.bkt.clouddn.com/17-3-8/50439332-file_1488962099950_d395.png" alt></p>
+</blockquote>
+<h4 id="8-5-4-3-U-matrix"><a href="#8-5-4-3-U-matrix" class="headerlink" title="8.5.4.3 U-matrix"></a>8.5.4.3 U-matrix</h4><p><span style="color:blue">8.5.4 should be inspection again.It provides many tricks of EDA.</span></p>
+<h4 id="8-5-4-4-Point-Estimates-of-Probability-Density-of-Inputs-Caotured-by-the-Map"><a href="#8-5-4-4-Point-Estimates-of-Probability-Density-of-Inputs-Caotured-by-the-Map" class="headerlink" title="8.5.4.4 Point Estimates of Probability Density of Inputs Caotured by the Map"></a>8.5.4.4 Point Estimates of Probability Density of Inputs Caotured by the Map</h4><blockquote>
+<p>From the trained map,we can also determine the number of input vectors represented by each neuron.<br> Each neuron represents the local probability density of inputs.In the below figure,the lighter the color,<br> the larger the number of inputs falling onto thar neuron.<br> <img src="http://omdhuynsr.bkt.clouddn.com/17-3-8/29639643-file_1488963168903_8ffa.png" alt></p>
+</blockquote>
+<h4 id="8-5-4-5-Quantization-Error"><a href="#8-5-4-5-Quantization-Error" class="headerlink" title="8.5.4.5 Quantization Error"></a>8.5.4.5 Quantization Error</h4><blockquote>
+<p>Quantization error is a measure of the distance between codebook vectors and inputs.<br> If for an input vector \(\mathbf{x}\),the winner’s weights vector is \(\pmb{\omega}_c\),<br> then the quantization error can be described as a distortion error,\(e\),expressed as<br> $$e = d(\mathbf{x},\pmb{\omega}_c)$$</p>
+</blockquote>
+<blockquote>
+<p>which is the distance from the input to the closet codebook vector.<br> It may be more appropriate to define the distortion error in terms of neighborhood function<br> because the neighbor featuer is central to SOM.With the neighbor feature,<br> the distortion error of the map for an input vector \(\mathbf{x}\) becomes<br> $$e = \sum_{i}NS_{ci}d(\mathbf{x},\pmb{\omega_i})$$<br> where \(NS_{ci}\) is the neighbor strength,\(c\) is the index of the winning neuron closest to input vector \(\mathbf{x}\),<br> and \(i\) is any neuron in the neighborhood of the winner,including the winner.<br> Computing the distortion measure for all input vectors in the input space,the average distortion error \(E\)<br> for the map can be calculated from<br> $$E = \frac{1}{N}\sum_n\sum_iNS_{ci}d(\mathbf{x}^n,\pmb{\omega}_i)$$<br> When the neighbor feature is not used,equation above simplifies to<br> $$E = \frac{1}{N}\sum_nd(\mathbf{x}^n,\pmb{\omega}_i)$$<br> Thus the goal of SOM can alternatively be expressed as finding the set of codebook vectors \(\pmb{\omega}_i\)<br> that <strong>globally minimizes the average map distortion error \(E\)</strong>.<br> The information from figure below can be used to refine the map to obtain a more uniform distortion error measure<br> if a more faithful reproduction of the input distribution from the map is desired.<br> <img src="http://omdhuynsr.bkt.clouddn.com/17-3-8/32153453-file_1488971907071_18164.png" alt></p>
+</blockquote>
+<p><span style="color:blue">The format of Latex here has some problems,so I split the words to two parts.How could fix it?</span></p>
+<h4 id="8-5-4-6-Accuracy-of-Retrieval-of-Input-Data-from-the-Map"><a href="#8-5-4-6-Accuracy-of-Retrieval-of-Input-Data-from-the-Map" class="headerlink" title="8.5.4.6 Accuracy of Retrieval of Input Data from the Map"></a>8.5.4.6 Accuracy of Retrieval of Input Data from the Map</h4><blockquote>
+<p>If the dataset is sent through the map,it identifies the best matching codebook vector.The resulting codebook vector<br> can be thought of as the retrieved input because it is the closest to that input.<br> If a neighborhood of neurons is used in the retrieval,more than one codebook vector can be activated and<br> these codebook vectors can be interpolated to obtain a recalled match of the input to the map.Then the retrieved inputs<br> are not the codebook vectors,but <strong>fall between them due to <em>interpolation</em></strong>.<br> The retrieval error is the average distance between the actual data vectors and their corresponding interpolated<br> codebook vectors defining the best position for those input vectors in the trained map.Thus,a neighborhood provides<br> a <strong>better approximation</strong> to this input distribution than a single codebook vector.</p>
+</blockquote>
+<h3 id="8-5-5-Forming-Clusters-on-the-Map"><a href="#8-5-5-Forming-Clusters-on-the-Map" class="headerlink" title="8.5.5 Forming Clusters on the Map"></a>8.5.5 Forming Clusters on the Map</h3><h4 id="8-5-5-1-Approaches-to-Clustering"><a href="#8-5-5-1-Approaches-to-Clustering" class="headerlink" title="8.5.5.1 Approaches to Clustering"></a>8.5.5.1 Approaches to Clustering</h4><h4 id="8-5-5-2-Example-Illustrating-Clustering-on-a-Trained-Map"><a href="#8-5-5-2-Example-Illustrating-Clustering-on-a-Trained-Map" class="headerlink" title="8.5.5.2 Example Illustrating Clustering on a Trained Map"></a>8.5.5.2 Example Illustrating Clustering on a Trained Map</h4><h3 id="8-5-6-Validation-of-a-Trained-Map"><a href="#8-5-6-Validation-of-a-Trained-Map" class="headerlink" title="8.5.6 Validation of a Trained Map"></a>8.5.6 Validation of a Trained Map</h3><h4 id="8-5-6-1-n-Fold-Cross-Validation"><a href="#8-5-6-1-n-Fold-Cross-Validation" class="headerlink" title="8.5.6.1 n-Fold Cross Validation"></a>8.5.6.1 n-Fold Cross Validation</h4><h2 id="8-6-Evolving-Self-Organizing-Maps"><a href="#8-6-Evolving-Self-Organizing-Maps" class="headerlink" title="8.6 Evolving Self-Organizing Maps"></a>8.6 Evolving Self-Organizing Maps</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2017/03/10/machine learning/NN/Neural Networks for Applied Sciences and Engineering--Chapter 8/" data-id="cjsldc19w01o4e4v5ij4cepw9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NN/">NN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-pansee/essay/我当做选择" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/11/12/pansee/essay/我当做选择/" class="article-date">
+  <time datetime="2014-11-12T02:48:23.000Z" itemprop="datePublished">2014-11-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/essay/">essay</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/12/pansee/essay/我当做选择/">我当做选择</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我当做选择</p>
+<p>哪怕不选择也是一种选择，选择的是相信自我。故而，现阶段我所认可的选择乃是基督教</p>
+<p>我当奉行这一信仰所当行之事</p>
+<p>选择并不是口头空话，应当奉行所当行之事。至于这样奉行是否会导致如吸毒一样而影响清醒的判断这一疑虑不过是“相信自我”这一被弃选择的余孽作祟</p>
+<p>我不能承诺一辈子的信仰</p>
+<p>未来并不由我掌控（这实际上是相信人心的可变与有限）。故而我并无必要根本上是没有能力做出这样的承诺</p>
+<p>不管真理如何，不管谬误是否终将显明，我并不知我能否掌控。唯一能做的便是选择最合宜的选择。</p>
+<p>是否可以承负迅速的信仰变换所带来的非议？理性上讲这一问题无需考虑，但实际生活上却有考虑之必要。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2014/11/12/pansee/essay/我当做选择/" data-id="cjsldc0wm00iye4v5xt3i75vn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/essay/">essay</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pansee/">pansee</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-pansee/essay/南园定位" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/10/30/pansee/essay/南园定位/" class="article-date">
+  <time datetime="2014-10-30T00:17:08.000Z" itemprop="datePublished">2014-10-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/essay/">essay</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/10/30/pansee/essay/南园定位/">南园定位</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1、分享的是经历经验，探讨的是观点，怎么会一样？</p>
+<p>2、主版分成三个栏目，是为了更有针对性。专题针对的是深度，杂谈针对的是广度，分享针对的是经验和幸福感。看看现在的南园，要深度无深度，要广度吧主持人还要限制你。本来只是分享一下经历吧，主持人还非要把很生活的问题刻意集中到一个主题，拔高到一个思想高度上去。换言之，现下的南园纯粹是四不像，什么都想要的结果是什么都没有！明确分栏的目的也是为了更好的让参加者自我定位。有的参加者本就是过来聊聊经历的而已，现在一看这是一个深度专题，自然就不会来了，同样的，有的参加者就是希望通过读书会获得深入交流，一看这是一个漫无边际的杂谈，也不会浪费时间过来了。明确分栏，既是对参加者负责，也可以更好地让参加者符合期望。</p>
+<p>3、所谓的主题读书会，不客气的说，纯属自欺欺人！随便拿几本书凑在一起找个相似点就叫有主题了，那我就不知道什么叫做无主题了？哪怕上期的杂谈我还能给出一个主题呢：从信息和情感两方面切入看人类社会的未来发展。更不要说经由几个分享人分享，本来尚有联系的书目也被切割的支离破碎了。</p>
+<p>4、我反复强调定位，南园到底是怎样的定位，南园到底是干什么的？南园存在的目的是为了交友，还是为了信息共享，还是为了增长智识（不是知识！）？请把这个问题弄清楚我们再来讨论读书会应该做怎样的主题，怎样的分享，ok？？？？？？？？？？？？</p>
+<p>5、关于深度、水平。我不知道诸位是将这两个词看的太重了还是看的太轻了。在我看来，遇到问题张口就问那是小学生水平。归纳总结知识点那是初中生水平。独立查考资料（工具书，百度等）实现对书目的精确理解这是高中生水平。理解书目的思想根基、联系实际、举一反三那是大学生水平。对理论的批判那是研究生水平。理论创新那是博士生水平。现在南园的分享和交流还停留在什么水平？真的有高中生水平？要求一下大学生水平不高吧？</p>
+<p>6、分享和交流仅仅停留在归纳知识点的层面上正常么？如果一本书读下来没有心得体会，要么是这本书有问题，要么是这个人有问题。书有问题是因为毫无营养可言。人有问题是因为没有心得体会就压根不存在所谓理解。不管是书有问题还是人有问题都意味着没有资格将此书分享。</p>
+<p>7、南园的成员最起码都是本科学历吧，我相信每个南园的参加者都有能力。但是我觉得南园的参加者很不自觉！难道连最起码的信息还需要分享人浪费时间喂到你嘴里？我甚至怀疑参加读书会的人到底是抱着什么目的来的！为了勾搭妹子，为了吐糟，闲话家常，为了附庸风雅，还是真的为了做思想之交流？这又回到最基本的问题，南园的定位到底是什么？</p>
+<p>8、副版的出现是为了补充主版，以备不时之需和突发状况，又怎能和主版统一编排？</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2014/10/30/pansee/essay/南园定位/" data-id="cjsldc0wj00ipe4v5gn82fjok" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/essay/">essay</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pansee/">pansee</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-pansee/essay/旅行何为？" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/10/27/pansee/essay/旅行何为？/" class="article-date">
+  <time datetime="2014-10-27T02:39:07.000Z" itemprop="datePublished">2014-10-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/essay/">essay</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/10/27/pansee/essay/旅行何为？/">旅行何为？</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>旅行何为？</p>
+<p>我所关心的乃是旅行的动因。逃避可以作为一种被接受的动因么？无动因可以作为一种被接受的动因么？如果可以，也就无异于承认人可以无目的与意义而活，也就意味着人可以接受荒诞，担当荒诞。荒诞真的可以担当么？关于此部分讨论详见47期。</p>
+<p>接下来，不妨将旅行与工作、日常进行比较，由此来发现旅行所可能存在的独特动因。或许我们可以列出这样几点 ：好奇、怀古、学习、视角更新、放松等。如果在这一问题上做细分与深究，便可以发现至少在某一类人的动因之下潜藏的乃是深层的精神危机，这一精神危机并不仅仅是个人的，乃是完全笼罩了现代人世界的。关于这一点，仅从一些荒谬却被高举的标语就可以看出一二：“趁着青春去旅行”，诸如此类。但我无意在这一问题上做深究，事实上，我所关心的是更为本源的生存价值问题。</p>
+<p>旅行也好，工作也罢，它们不过是一种生存方式，其行为本身无法承负价值！能够承负价值的乃是生存本身，而不是哪一种特定的生存方式！问题到此已经很明了，只有搞清楚生存应当承负怎样的价值，旅行或是居家这样的生存方式才能有其意义，而不成为黑夜中的徘徊彳亍。</p>
+<p>但黑夜中的徘徊彳亍却是必须的，因为不管这价值是否自在我心，总需要我们去借由这样的徘徊彳亍去回忆，或者去探寻发现。但在此却需要防备另外一个问题，那就是在黑夜中的徘徊彳亍最终达乎深渊！</p>
+<p>对于世界的未知，对于自我的未知，以及应对未知的求知实践，以旅行、学习为代表，是否可以让人更加接近真理与意义？人会否在这样的应对中不仅不走向光明，反而达乎深渊？</p>
+<p>Sunday, October 26, 2014</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2014/10/27/pansee/essay/旅行何为？/" data-id="cjsldc0wn00j1e4v5jw7hu8th" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/essay/">essay</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pansee/">pansee</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-pansee/essay/从心空到意淫" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/10/16/pansee/essay/从心空到意淫/" class="article-date">
+  <time datetime="2014-10-16T00:07:30.000Z" itemprop="datePublished">2014-10-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/essay/">essay</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/10/16/pansee/essay/从心空到意淫/">从心空到意淫</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>从心空到意淫</p>
+<p>彭的从意淫到心空以及我随后讲的从意淫到心空，并不是一个环的关系，也不是什么螺旋式上升（如果愿意，你可以把任何进步都看成螺旋式上升，我无话可说。至少我如此理解螺旋式上升：新的突破根源于旧的秩序。），而是一个线性前进的过程。</p>
+<p>从精神史的发展角度，从“意淫”到心空（事实上，我这里所指的已不再是彭所说的，这个表述也并不准确），是历史王道的崩溃，恶的彰显，人的灵魂为了求得安宁而选择空寂，是一种存在方式和价值观念的转变。从心空到意淫，则是人在心空之中无法求得安宁，灵魂依旧阵痛，在此之时寻求一个新的突破与栖居地，也就是意淫，一种全新的存在方式和价值观念。尽管在曹雪芹这里这一突破以失败告终。</p>
+<p>以上观念来自于刘小枫《拯救与逍遥》。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2014/10/16/pansee/essay/从心空到意淫/" data-id="cjsldc0wf00iee4v5ae1du700" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/essay/">essay</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pansee/">pansee</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-pansee/essay/关于爱情问题的几点散述" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/28/pansee/essay/关于爱情问题的几点散述/" class="article-date">
+  <time datetime="2014-09-28T03:10:18.000Z" itemprop="datePublished">2014-09-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/essay/">essay</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/28/pansee/essay/关于爱情问题的几点散述/">关于爱情问题的几点散述</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>关于爱情问题的几点散述</p>
+<p>世俗爱情虽有其对象的特殊性，但却远远没有达到唯一的标准。既然有众多的可爱之人存在，现有的爱情也就不过是建立于偶然性之上。一旦在现有的爱情生活中闯入一个新的可爱之人，又当如何抉择？</p>
+<p>偶然是不坚定的地基，发因于偶然的选择问题将使既有的大厦轰然倒塌。</p>
+<p>故而我们看到，解决人终极问题的各个宗教总是排他性的，因为一旦上帝的唯一性遭到损毁，整个宗教的根基不复存在。</p>
+<p>凡做出海枯石烂的爱的承诺之人，要么是意志与力量超绝的“超人”，要么是满口谎言的骗子，要么是对于天地与本心缺乏认识的雏儿呓语。</p>
+<p>这个世上有两样东西人无力掌控，一者是时间的流逝，一者是本心的变异。当然，本心的变异得以成立的基础是人的精神自足（47期详论），这一假设仅仅适用于局部（这一局部的界定47期详论）。</p>
+<p>人的荒诞恰恰在于热恋之中求取对于未来的承诺，甚至于因得不到这样的承诺而摧毁现存的爱情。</p>
+<p>“爱情是一种责任”，对于不经思考发出此等言辞者，一般情况下大都对自身和他人极为不负责任。这个论述正确的前提基于一个假设——人是与世界隔离的具有自由意志的能动个体。在此前提下，亦有古代哲人如是说——没有经过哲学思考的人生是不值得过的人生。我甚至可以用更为激进的话语——没有经过哲学思考的根本谈不上人生和人。这样的人一生之中只做两件事：遵循自然规则，诸如衣食住行类，遵循历史理性与道德常习（关于历史理性的审思47期详述）。故而，“爱情是一种责任”以及诸如此类的万能用语，实在缺乏价值，责任源于何处，这才是需要去思考和论述的地方。亦奉劝那些大谈传统大谈道德伦理之辈先问问自己为什么再去宏论！</p>
+<p>关于性关系是否构成爱情的要件，我不想多谈，仅仅假设此一论述成立来做几个推论，看看其荒谬或者合理之处：</p>
+<p>1、没有发生性关系的情侣没有爱情可言。同理，婚姻之前也就必须进行性关系。</p>
+<p>2、既有的被接受的恋爱模式是认识，了解，共同兴趣，性关系。既然这些缺一不可，那么也就可以更换顺序：认识，性关系，了解，共同兴趣。当然，此一顺序更换需要一个前提，即不考虑或者足以让先发生性关系的成本降低到一定程度，譬如意外怀孕的成本，道德指斥的成本，可能的下一任意中情人对处女膜（范指性关系开放程度的容忍度）的看重等。事实上，性关系之所以如此重要，有相当原因是因为赤身裸体相互进入乃是意味着全然的放弃防御，自身安全与隐秘全然交于他人之手。故而，只有信任到一定程度，才能进行这一步骤。但事实上，这样的顾虑在准备得当的情况下可以排除。</p>
+<p>3、事实上，现代人对于性关系的强调实在不是多么高明的思想进步，而恰恰是向动物性和纯粹感官享乐的退化。同样的事物，不同个体却有不同的精神愉悦与满足程度。欠缺与满足的根由才是需要进一步审思的问题（47期详论）。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2014/09/28/pansee/essay/关于爱情问题的几点散述/" data-id="cjsldc0wh00ike4v5ddzrqhsj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/essay/">essay</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pansee/">pansee</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-pansee/essay/自我找寻与自我超越" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/02/pansee/essay/自我找寻与自我超越/" class="article-date">
+  <time datetime="2014-09-02T10:38:17.000Z" itemprop="datePublished">2014-09-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/essay/">essay</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/02/pansee/essay/自我找寻与自我超越/">自我找寻与自我超越</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>自我找寻与自我超越</p>
+<p>本篇谈的是爱情，但所触及的内容远远不是爱情所能辖制的。</p>
+<p>本篇所谈的是纯粹的爱情，故而应当剔除道德、生存等诸因素。</p>
+<p>本篇不愿意去谈论爱情的源起和性质。虽然没有进行概念厘清，但并不会太过妨碍后续讨论。</p>
+<p>本篇主要借由爱情的独一性来展开论述。爱情的独一性问题亦即人是否可以同时爱上多个人或者说忠贞是否是爱情的必要性质。</p>
+<p>爱情中的忠贞属性来源于两个方面：外界和自身。也就刚好对应我所将论述的自我找寻与自我超越。</p>
+<p>自我找寻</p>
+<p>外界主要包括两个方面：爱人和其他（简化为社会，另外一些亦很重要的因素诸如宗教等不纳入讨论）。</p>
+<p>1、社会。社会出于生存和道德所施加的忠贞要求必然与社会本身的发展程度相挂钩，那么也就必然是变动性的。这里不讨论随着社会的发展，忠贞属性所可能的发展变化。但有一点是必然的，无论过去还是现在，人总会在不自觉或者无能为力中被社会所束缚，从而产生畸形的爱情和婚姻。畸形的婚姻不难理解。畸形的爱情则是者为社会的审美态势等误导，导致自己所爱的未必是自己所爱，而不过是大众情人，亦即符合社会审美和爱情观的也将符合自己的审美和爱情观。从而个人在爱情中的主导和选择权丢失，爱情不再是个人的爱情而沦为社会的爱情。</p>
+<p>2、爱人。由爱人所施加的忠贞要求。为了实现对于爱人的迎合，接受更多来源于爱人独占心理的忠贞要求。最为严重的情况，便是弗洛姆在《爱的艺术》中所言及的受虐淫者状态。</p>
+<p>故而，自我找寻亦即打破如上所论及的种种束缚，真正的使得自己成为爱情的主导者。主要是拥有个人的独立判断和选择权，以及至少和爱人同等的权利考量。</p>
+<p>自我超越</p>
+<p>自我超越，也就意味着自我身上存在着一些应当被超越的地方。</p>
+<p>独占欲。</p>
+<p>执念。</p>
+<p>3、自我观念。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2014/09/02/pansee/essay/自我找寻与自我超越/" data-id="cjsldc0wp00jae4v5sicku6i9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/essay/">essay</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pansee/">pansee</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-pansee/film review/明日边缘" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/08/17/pansee/film review/明日边缘/" class="article-date">
+  <time datetime="2014-08-17T13:33:24.000Z" itemprop="datePublished">2014-08-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/film-review/">film review</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/08/17/pansee/film review/明日边缘/">明日边缘</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>明日边缘</p>
+<p>导演：道格·里曼  评分：10</p>
+<p>此种电影动人心弦之处在于一天之内做成不可能之事。而使一天之内做成不可能之事成为可能的方法就是让这一天不断重复。并且经由这不断重复的一天让观者看到各种可能性，确切的说是各种转变，从而产生一种戏剧性。</p>
+<p>冲着这一种狡黠的逻辑给10分。</p>
+<p>《源代码》也有这样的逻辑，但看的无甚感觉。还是此部电影在人物、剧情、动作方面更为精彩。还有一个关键性的差异或者说是优势就在于《明日边缘》后期转变为单一线性时间的英雄爱情模式。最后又利用时间重置来形成完美结局，而无损英雄故事的牺牲与悲剧性。《源代码》却始终在重复，无论剧情推进还是情感上都不够深入，虽说结尾留了个小惊喜。</p>
+<p>2014年8月17日星期日</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.muzhen.tk/2014/08/17/pansee/film review/明日边缘/" data-id="cjsldc0yg00nte4v5s3jv76to" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/film-review/">film review</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pansee/">pansee</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/14/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/16/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Information-theory/">Information theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NN/">NN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/book-review/">book review</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cluster/">cluster</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/competition/">competition</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computer-science/">computer science</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/coss-function/">coss function</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cv/">cv</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/data-compute/">data_compute</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">database</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/datacenter/">datacenter</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/develepment/">develepment</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/dimensionality-reduction/">dimensionality reduction</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/documentation/">documentation</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ensemble/">ensemble</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/environment/">environment</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/error-process/">error-process</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/essay/">essay</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/feature-engineering/">feature engineering</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/film-review/">film review</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/imbalance-data/">imbalance data</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/">machine learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/optimization/">optimization</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/preprocessing/">preprocessing</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python-sklearn/">python-sklearn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/recommendation-system/">recommendation system</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/series-analysis/">series analysis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/sklearn/">sklearn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/spark/">spark</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/statistics/">statistics</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/vision/">vision</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/visualize/">visualize</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bayes/">Bayes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/EM/">EM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ESL/">ESL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GBDT/">GBDT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GBM/">GBM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GLM/">GLM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-theory/">Information theory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JetBrains/">JetBrains</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/KKT/">KKT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LDA/">LDA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Latex/">Latex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MLE/">MLE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/">NLP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NN/">NN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PCA/">PCA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVD/">SVD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TF-IDF/">TF-IDF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WMD/">WMD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xgboost/">Xgboost</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adaboost/">adaboost</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/book-review/">book review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/category-encoding/">category encoding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cluster/">cluster</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/competition/">competition</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cost-function/">cost function</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cv/">cv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-sevice/">data sevice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/datacenter/">datacenter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/datagrip/">datagrip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debug/">debug</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/decision-tree/">decision tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/">deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/detect/">detect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/development/">development</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dimensionality-reduction/">dimensionality reduction</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elasticsearch/">elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ensemble/">ensemble</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/entropy/">entropy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/environment/">environment</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/error/">error</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/essay/">essay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/feature-engineering/">feature engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ffmpeg/">ffmpeg</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/film-review/">film review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/">flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gcforest/">gcforest</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gpu/">gpu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradient/">gradient</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hive/">hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/infomation-extraction/">infomation extraction</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jdk/">jdk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json-dumps/">json_dumps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/log/">log</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/machine-learning/">machine learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/math/">math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/matplotlib/">matplotlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitor/">monitor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/multiprocess/">multiprocess</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nonparametric-approach/">nonparametric approach</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/optimization/">optimization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pagerank/">pagerank</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pansee/">pansee</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/parameter-estimation/">parameter estimation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pip/">pip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/preprocessing/">preprocessing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/queue/">queue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/recommendation-system/">recommendation system</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/regression-tree/">regression tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/regularization/">regularization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rule-learning/">rule learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scala/">scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scrapy/">scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/screen/">screen</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sentiment-analysis/">sentiment analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/series-analysis/">series analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/setup/">setup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sklearn/">sklearn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/">spark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/statistics/">statistics</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/subprocess/">subprocess</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/t-SNE/">t-SNE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensor/">tensor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/terminal/">terminal</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/text-summarization/">text summarization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/traceback/">traceback</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unittest/">unittest</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vision/">vision</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/visualize/">visualize</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vps/">vps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/w2v/">w2v</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/website/">website</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/window/">window</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Bayes/" style="font-size: 10px;">Bayes</a> <a href="/tags/EM/" style="font-size: 10px;">EM</a> <a href="/tags/ESL/" style="font-size: 10.67px;">ESL</a> <a href="/tags/GBDT/" style="font-size: 10px;">GBDT</a> <a href="/tags/GBM/" style="font-size: 10.67px;">GBM</a> <a href="/tags/GLM/" style="font-size: 14px;">GLM</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Information-theory/" style="font-size: 10px;">Information theory</a> <a href="/tags/JetBrains/" style="font-size: 10.67px;">JetBrains</a> <a href="/tags/KKT/" style="font-size: 10px;">KKT</a> <a href="/tags/LDA/" style="font-size: 10px;">LDA</a> <a href="/tags/Latex/" style="font-size: 10px;">Latex</a> <a href="/tags/MLE/" style="font-size: 10px;">MLE</a> <a href="/tags/NLP/" style="font-size: 16px;">NLP</a> <a href="/tags/NN/" style="font-size: 16.67px;">NN</a> <a href="/tags/PCA/" style="font-size: 10.67px;">PCA</a> <a href="/tags/SVD/" style="font-size: 10px;">SVD</a> <a href="/tags/TF-IDF/" style="font-size: 12px;">TF-IDF</a> <a href="/tags/WMD/" style="font-size: 10px;">WMD</a> <a href="/tags/Xgboost/" style="font-size: 10px;">Xgboost</a> <a href="/tags/adaboost/" style="font-size: 10px;">adaboost</a> <a href="/tags/array/" style="font-size: 10px;">array</a> <a href="/tags/blog/" style="font-size: 10.67px;">blog</a> <a href="/tags/book-review/" style="font-size: 18px;">book review</a> <a href="/tags/category-encoding/" style="font-size: 11.33px;">category encoding</a> <a href="/tags/cluster/" style="font-size: 10px;">cluster</a> <a href="/tags/competition/" style="font-size: 10.67px;">competition</a> <a href="/tags/cost-function/" style="font-size: 11.33px;">cost function</a> <a href="/tags/cv/" style="font-size: 11.33px;">cv</a> <a href="/tags/data-sevice/" style="font-size: 10.67px;">data sevice</a> <a href="/tags/database/" style="font-size: 10.67px;">database</a> <a href="/tags/datacenter/" style="font-size: 10px;">datacenter</a> <a href="/tags/datagrip/" style="font-size: 10px;">datagrip</a> <a href="/tags/debug/" style="font-size: 10px;">debug</a> <a href="/tags/decision-tree/" style="font-size: 11.33px;">decision tree</a> <a href="/tags/deep-learning/" style="font-size: 10px;">deep learning</a> <a href="/tags/detect/" style="font-size: 10px;">detect</a> <a href="/tags/development/" style="font-size: 15.33px;">development</a> <a href="/tags/dimensionality-reduction/" style="font-size: 12.67px;">dimensionality reduction</a> <a href="/tags/docker/" style="font-size: 12px;">docker</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/ensemble/" style="font-size: 13.33px;">ensemble</a> <a href="/tags/entropy/" style="font-size: 10px;">entropy</a> <a href="/tags/environment/" style="font-size: 10.67px;">environment</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/essay/" style="font-size: 16.67px;">essay</a> <a href="/tags/feature-engineering/" style="font-size: 11.33px;">feature engineering</a> <a href="/tags/ffmpeg/" style="font-size: 10.67px;">ffmpeg</a> <a href="/tags/film-review/" style="font-size: 19.33px;">film review</a> <a href="/tags/flask/" style="font-size: 11.33px;">flask</a> <a href="/tags/gcforest/" style="font-size: 10px;">gcforest</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/gpu/" style="font-size: 10.67px;">gpu</a> <a href="/tags/gradient/" style="font-size: 10px;">gradient</a> <a href="/tags/hexo/" style="font-size: 10.67px;">hexo</a> <a href="/tags/hive/" style="font-size: 10px;">hive</a> <a href="/tags/infomation-extraction/" style="font-size: 10px;">infomation extraction</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/json-dumps/" style="font-size: 10px;">json_dumps</a> <a href="/tags/linux/" style="font-size: 16.67px;">linux</a> <a href="/tags/log/" style="font-size: 10.67px;">log</a> <a href="/tags/machine-learning/" style="font-size: 18.67px;">machine learning</a> <a href="/tags/markdown/" style="font-size: 11.33px;">markdown</a> <a href="/tags/math/" style="font-size: 10px;">math</a> <a href="/tags/matplotlib/" style="font-size: 12.67px;">matplotlib</a> <a href="/tags/monitor/" style="font-size: 10.67px;">monitor</a> <a href="/tags/multiprocess/" style="font-size: 10.67px;">multiprocess</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 10.67px;">nginx</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/nonparametric-approach/" style="font-size: 10px;">nonparametric approach</a> <a href="/tags/optimization/" style="font-size: 13.33px;">optimization</a> <a href="/tags/pagerank/" style="font-size: 10px;">pagerank</a> <a href="/tags/pandas/" style="font-size: 10px;">pandas</a> <a href="/tags/pansee/" style="font-size: 20px;">pansee</a> <a href="/tags/parameter-estimation/" style="font-size: 11.33px;">parameter estimation</a> <a href="/tags/pip/" style="font-size: 10px;">pip</a> <a href="/tags/preprocessing/" style="font-size: 10.67px;">preprocessing</a> <a href="/tags/python/" style="font-size: 17.33px;">python</a> <a href="/tags/queue/" style="font-size: 10px;">queue</a> <a href="/tags/recommendation-system/" style="font-size: 12px;">recommendation system</a> <a href="/tags/regression-tree/" style="font-size: 11.33px;">regression tree</a> <a href="/tags/regularization/" style="font-size: 10.67px;">regularization</a> <a href="/tags/rule-learning/" style="font-size: 10.67px;">rule learning</a> <a href="/tags/scala/" style="font-size: 10px;">scala</a> <a href="/tags/scrapy/" style="font-size: 10px;">scrapy</a> <a href="/tags/screen/" style="font-size: 10.67px;">screen</a> <a href="/tags/sentiment-analysis/" style="font-size: 10px;">sentiment analysis</a> <a href="/tags/series-analysis/" style="font-size: 10px;">series analysis</a> <a href="/tags/setup/" style="font-size: 10px;">setup</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/sklearn/" style="font-size: 11.33px;">sklearn</a> <a href="/tags/spark/" style="font-size: 10.67px;">spark</a> <a href="/tags/statistics/" style="font-size: 10.67px;">statistics</a> <a href="/tags/subprocess/" style="font-size: 10.67px;">subprocess</a> <a href="/tags/t-SNE/" style="font-size: 10px;">t-SNE</a> <a href="/tags/tensor/" style="font-size: 10px;">tensor</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/terminal/" style="font-size: 10.67px;">terminal</a> <a href="/tags/text-summarization/" style="font-size: 10px;">text summarization</a> <a href="/tags/traceback/" style="font-size: 10px;">traceback</a> <a href="/tags/ubuntu/" style="font-size: 10.67px;">ubuntu</a> <a href="/tags/unittest/" style="font-size: 10.67px;">unittest</a> <a href="/tags/vision/" style="font-size: 12.67px;">vision</a> <a href="/tags/visualize/" style="font-size: 10px;">visualize</a> <a href="/tags/vps/" style="font-size: 10px;">vps</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/w2v/" style="font-size: 10.67px;">w2v</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/website/" style="font-size: 10.67px;">website</a> <a href="/tags/window/" style="font-size: 10px;">window</a> <a href="/tags/数据结构/" style="font-size: 14.67px;">数据结构</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">July 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/02/26/pansee/film review/无问西东——李芳芳/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/26/pansee/film review/密室逃生2019——亚当·罗伯特/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/25/machine learning/NN/deepleanrningai深度学习笔记/">deepleanrningai深度学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/24/development/environment/ubuntu install scala and spark/">ubuntu install scala and spark</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/24/development/environment/ubuntu install nodejs/">ubuntu install nodejs</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 muzhen<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
