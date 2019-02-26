@@ -171,7 +171,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/06/23/pansee/book review/《规训与惩罚》/" data-id="cjsldc0vw00h9e4v5h5unmqye" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/06/23/pansee/book review/《规训与惩罚》/" data-id="cjsls34ih00g0htv5aztidcn9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/book-review/">book review</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pansee/">pansee</a></li></ul>
@@ -225,7 +225,7 @@
 <p>具体使用参见 <a href="http://orange3-associate.readthedocs.io/en/latest/scripting.html" target="_blank" rel="noopener">Orange-Associate scripting documentation</a></p>
 <p>主要流程为：<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 生成频繁项集，需要指定最小支持度</span></span><br><span class="line">frequent_itemsets(dataset,min_support)</span><br><span class="line"><span class="meta"># 生成规则，需要指定最小置信度</span></span><br><span class="line">association_rules(itemsets,min_confidence)</span><br></pre></td></tr></table></figure></p>
 <p>这里需要关注频繁项集和规则的区别。频繁项集是相关项的集合，而规则更进一步的明确相关关系的方向性。也就是说，进一步将一个频繁项集分解为前件（Antecedent）——后件规则（Consequent）：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; <span class="type">list</span>(association_rules(itemsets, <span class="number">.3</span>, frozenset(&#123;<span class="number">75</span>, <span class="number">98</span>&#125;)))</span><br><span class="line">[(frozenset(&#123;<span class="number">75</span>&#125;), frozenset(&#123;<span class="number">98</span>&#125;), <span class="number">5</span>, <span class="number">0.5</span>),</span><br><span class="line"> (frozenset(&#123;<span class="number">98</span>&#125;), frozenset(&#123;<span class="number">75</span>&#125;), <span class="number">5</span>, <span class="number">0.45</span>...)]</span><br></pre></td></tr></table></figure></p>
-<h2 id="Collaborative-Filtering-BTB-LB-0-01691"><a href="#Collaborative-Filtering-BTB-LB-0-01691" class="headerlink" title="Collaborative Filtering BTB (LB 0.01691)"></a><a href="https://www.kaggle.com/anokas/collaborative-filtering-btb-lb-0-01691/comments" target="_blank" rel="noopener">Collaborative Filtering BTB (LB 0.01691)</a></h2><p>一个小技巧<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line">id_dict = defaultdict(list)</span><br></pre></td></tr></table></figure></p>
+<h2 id="Collaborative-Filtering-BTB-LB-0-01691"><a href="#Collaborative-Filtering-BTB-LB-0-01691" class="headerlink" title="Collaborative Filtering BTB (LB 0.01691)"></a><a href="https://www.kaggle.com/anokas/collaborative-filtering-btb-lb-0-01691/comments" target="_blank" rel="noopener">Collaborative Filtering BTB (LB 0.01691)</a></h2><p>一个小技巧<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections import defaultdict</span><br><span class="line">id_dict = defaultdict(<span class="built_in">list</span>)</span><br></pre></td></tr></table></figure></p>
 <p>使用<code>defaultdict</code>方法创建出的字典默认value为list格式。因此，可以直接对value进行列表相关操作。</p>
 <p>该链接的主要想法是：利用其他特征对各个产品的购买情况进行了logistic回归（简单的只取最后一个月数据，没有考虑时序问题），并将所得概率作为用户在下个月购买该产品的概率。</p>
 <h2 id="Mod-Collaborative-Filtering-by-anokas-0-0236446"><a href="#Mod-Collaborative-Filtering-by-anokas-0-0236446" class="headerlink" title="(Mod) Collaborative Filtering by anokas-0.0236446"></a><a href="https://www.kaggle.com/sircausticmail/mod-collaborative-filtering-by-anokas-0-0236446/comments" target="_blank" rel="noopener">(Mod) Collaborative Filtering by anokas-0.0236446</a></h2><p>这是对上一个方法的改进。用4月份特征和5月份购买与否进行训练，用得到的模型拿5月份数据去预测6月份购买产品概率。依旧是对各产品分别建模。</p>
@@ -238,7 +238,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/06/20/machine learning/recommendation system/推荐系统一周入门计划/" data-id="cjsldc0v600eze4v59kvp6gsh" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/06/20/machine learning/recommendation system/推荐系统一周入门计划/" data-id="cjsls34hu00dyhtv5cd864c6m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/recommendation-system/">recommendation system</a></li></ul>
@@ -282,7 +282,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/06/17/machine learning/dimensionality reduction/SVD/" data-id="cjsldc0tp00aze4v5x55mo2fw" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/06/17/machine learning/dimensionality reduction/SVD/" data-id="cjsls34gr00a0htv5pcvc2vdp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SVD/">SVD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dimensionality-reduction/">dimensionality reduction</a></li></ul>
@@ -355,7 +355,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/06/09/python/unittest/" data-id="cjsldc0pg0022e4v5vyql1lv2" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/06/09/python/unittest/" data-id="cjsls34990015htv573tpzdzw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unittest/">unittest</a></li></ul>
@@ -558,7 +558,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/05/29/pansee/book review/《娱乐至死》/" data-id="cjsldc19y01o6e4v5ypptlmgz" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/05/29/pansee/book review/《娱乐至死》/" data-id="cjsls34zn01hehtv59vnozgu7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/book-review/">book review</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pansee/">pansee</a></li></ul>
@@ -624,7 +624,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/05/14/machine learning/NN/convalutional networks/" data-id="cjsldc0t2008ye4v50wpbrday" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/05/14/machine learning/NN/convalutional networks/" data-id="cjsls34g00085htv5nf3grfke" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NN/">NN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
@@ -673,7 +673,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/05/14/machine learning/NN/convolutional neural networks/" data-id="cjsldc0t30093e4v5rvvjdqsg" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/05/14/machine learning/NN/convolutional neural networks/" data-id="cjsls34g10088htv5rcn0kztw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NN/">NN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
@@ -717,7 +717,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/05/14/machine learning/NN/activation function/" data-id="cjsldc0t2008ve4v5v2zqdq61" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/05/14/machine learning/NN/activation function/" data-id="cjsls34fz0082htv59g38lx3b" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NN/">NN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
@@ -769,7 +769,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/05/14/python/classmethod&staticmethod/" data-id="cjsldc0oq000ke4v59oa2i1bj" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/05/14/python/classmethod&staticmethod/" data-id="cjsls348t0001htv561bl7sbe" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
@@ -822,7 +822,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/05/14/python/class & instance/" data-id="cjsldc0op000he4v5ps1ac9q3" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/05/14/python/class & instance/" data-id="cjsls348w0003htv5uwt2xicy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
@@ -933,7 +933,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/05/14/machine learning/optimization/优化方法/" data-id="cjsldc19e01moe4v5ar9jyy7r" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/05/14/machine learning/optimization/优化方法/" data-id="cjsls34x601fxhtv5xjh8w40d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gradient/">gradient</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/optimization/">optimization</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/parameter-estimation/">parameter estimation</a></li></ul>
@@ -992,7 +992,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/05/10/development/environment/markdown下latex用法/" data-id="cjsldc0rw005re4v5evzo7ho7" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/05/10/development/environment/markdown下latex用法/" data-id="cjsls34ew005chtv56rdlfq5z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Latex/">Latex</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/">markdown</a></li></ul>
@@ -1098,7 +1098,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/05/06/pansee/book review/《地下室手记》/" data-id="cjsldc0vn00gle4v5brdpxw5o" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/05/06/pansee/book review/《地下室手记》/" data-id="cjsls34ls00qghtv5yxc8r1tt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/book-review/">book review</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pansee/">pansee</a></li></ul>
@@ -1142,7 +1142,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/05/05/machine learning/machine learning/《ESL第3章 回归的线性方法》/" data-id="cjsldc0uc00che4v5ekzql6r9" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/05/05/machine learning/machine learning/《ESL第3章 回归的线性方法》/" data-id="cjsls34h700bghtv5uabnqv2m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ESL/">ESL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GLM/">GLM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
@@ -1202,7 +1202,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/05/04/machine learning/machine learning/《ESL第2章 有指导学习概述》/" data-id="cjsldc0ub00cfe4v5clrs2vpt" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/05/04/machine learning/machine learning/《ESL第2章 有指导学习概述》/" data-id="cjsls34h600behtv5uq9nivc0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ESL/">ESL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GLM/">GLM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
@@ -1252,7 +1252,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/05/04/machine learning/dimensionality reduction/reduction/" data-id="cjsldc0tq00b2e4v5kzistkxq" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/05/04/machine learning/dimensionality reduction/reduction/" data-id="cjsls34gs00a3htv5vrbkn6wx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dimensionality-reduction/">dimensionality reduction</a></li></ul>
@@ -1299,7 +1299,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/05/04/machine learning/ensemble/gcforest/" data-id="cjsldc0tw00bee4v5vj0gdc39" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/05/04/machine learning/ensemble/gcforest/" data-id="cjsls34gw00afhtv5skx3kdfp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ensemble/">ensemble</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gcforest/">gcforest</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
@@ -1357,7 +1357,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/05/03/machine learning/statistics/方差、偏差、噪声/" data-id="cjsldc0vb00fke4v521nmjaq1" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/05/03/machine learning/statistics/方差、偏差、噪声/" data-id="cjsls34hz00eghtv5yst1khex" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/statistics/">statistics</a></li></ul>
@@ -1431,7 +1431,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/04/19/machine learning/optimization/拉格朗日乘子法和KKT条件/" data-id="cjsldc0uq00dme4v5k95zro45" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/04/19/machine learning/optimization/拉格朗日乘子法和KKT条件/" data-id="cjsls34hj00cphtv5h9icinl7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/KKT/">KKT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/optimization/">optimization</a></li></ul>
@@ -1475,7 +1475,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/04/16/machine learning/imbalance data/learning from imbalance data/" data-id="cjsldc0u100bqe4v53ap6zo7g" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/04/16/machine learning/imbalance data/learning from imbalance data/" data-id="cjsls34h000arhtv5czu271av" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PCA/">PCA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dimensionality-reduction/">dimensionality reduction</a></li></ul>
@@ -1542,11 +1542,11 @@
       <ul>
         
           <li>
-            <a href="/2019/02/26/pansee/film review/无问西东——李芳芳/">(no title)</a>
+            <a href="/2019/02/26/pansee/film review/密室逃生2019——亚当·罗伯特/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2019/02/26/pansee/film review/密室逃生2019——亚当·罗伯特/">(no title)</a>
+            <a href="/2019/02/26/pansee/film review/无问西东——李芳芳/">(no title)</a>
           </li>
         
           <li>

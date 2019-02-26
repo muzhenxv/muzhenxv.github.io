@@ -13,12 +13,12 @@
 <meta property="og:site_name" content="the Home of MuZhen">
 <meta property="og:description" content="在线课程 MOOC浙江大学数据结构课程 1.1 什么是数据结构书架放书需要解决  新书插入 查找某本书的问题  方法：  随机按顺序放 插入很简单，直接放最后 查找很困难，一本一本找   按书名拼音顺序放 插入困难，需要把所有拼音顺序在之后的书都后移 二分查找   先分类，在按拼音顺序放 小范围的插入和查找同上 需要选择合适的类别数，太大则归类困难    打印数列给定一个数N，一次打印从1到N">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://www.muzhen.tk/2018/12/02/computer%20science/images/WeChatWorkScreenshot_0e19ba0e-33b5-4c9b-acd2-34c90d48318f.png">
-<meta property="og:updated_time" content="2019-02-26T06:05:54.133Z">
+<meta property="og:image" content="http://www.muzhen.tk/2018/12/02/computer%20science/数据结构第一讲：基本概念/WeChatWorkScreenshot_0e19ba0e-33b5-4c9b-acd2-34c90d48318f.png">
+<meta property="og:updated_time" content="2019-02-26T12:59:33.480Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构第一讲：基本概念">
 <meta name="twitter:description" content="在线课程 MOOC浙江大学数据结构课程 1.1 什么是数据结构书架放书需要解决  新书插入 查找某本书的问题  方法：  随机按顺序放 插入很简单，直接放最后 查找很困难，一本一本找   按书名拼音顺序放 插入困难，需要把所有拼音顺序在之后的书都后移 二分查找   先分类，在按拼音顺序放 小范围的插入和查找同上 需要选择合适的类别数，太大则归类困难    打印数列给定一个数N，一次打印从1到N">
-<meta name="twitter:image" content="http://www.muzhen.tk/2018/12/02/computer%20science/images/WeChatWorkScreenshot_0e19ba0e-33b5-4c9b-acd2-34c90d48318f.png">
+<meta name="twitter:image" content="http://www.muzhen.tk/2018/12/02/computer%20science/数据结构第一讲：基本概念/WeChatWorkScreenshot_0e19ba0e-33b5-4c9b-acd2-34c90d48318f.png">
   
     <link rel="alternate" href="/atom.xml" title="the Home of MuZhen" type="application/atom+xml">
   
@@ -174,7 +174,7 @@
 </ol>
 <ol start="3">
 <li><p>分而治之</p>
-<p><img src="../images/WeChatWorkScreenshot_0e19ba0e-33b5-4c9b-acd2-34c90d48318f.png" alt></p>
+<p><img src="/2018/12/02/computer science/数据结构第一讲：基本概念/WeChatWorkScreenshot_0e19ba0e-33b5-4c9b-acd2-34c90d48318f.png" alt></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f3_0</span><span class="params">(a, l, u)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> l &gt; u:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> l == u:</span><br><span class="line">        <span class="keyword">return</span> max(a[l], <span class="number">0</span>)</span><br><span class="line">    mid = (l + u) // <span class="number">2</span></span><br><span class="line">    lmax = s = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(mid, l<span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">        s += a[i]</span><br><span class="line">        lmax = max(lmax, s)</span><br><span class="line">    rmax = s = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(mid+<span class="number">1</span>, u+<span class="number">1</span>):</span><br><span class="line">        s += a[i]</span><br><span class="line">        rmax = max(rmax, s)</span><br><span class="line">    <span class="keyword">return</span> max(lmax+rmax, f3_0(a, l, mid), f3_0(a, mid+<span class="number">1</span>, u))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f3</span><span class="params">(a)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> f3_0(a, <span class="number">0</span>, len(a)<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 求三个数最大值方法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getmax</span><span class="params">(x, y, z)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> (x &gt;= y) &amp; (x &gt;= z):</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line">    <span class="keyword">return</span> getmax(y, z, x)</span><br><span class="line"></span><br><span class="line">f3([<span class="number">1</span>,<span class="number">5</span>,<span class="number">-6</span>,<span class="number">7</span>,<span class="number">2</span>,<span class="number">-3</span>,<span class="number">-4</span>,<span class="number">8</span>,<span class="number">-9</span>,<span class="number">2</span>])</span><br></pre></td></tr></table></figure>
 <p>​</p>
 </li>
@@ -192,7 +192,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2018/12/02/computer science/数据结构第一讲：基本概念/" data-id="cjsldc0og0004e4v5rq7rvoji" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2018/12/02/computer science/数据结构第一讲：基本概念/" data-id="cjsls349a0018htv510bpz50d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
@@ -273,11 +273,11 @@
       <ul>
         
           <li>
-            <a href="/2019/02/26/pansee/film review/无问西东——李芳芳/">(no title)</a>
+            <a href="/2019/02/26/pansee/film review/密室逃生2019——亚当·罗伯特/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2019/02/26/pansee/film review/密室逃生2019——亚当·罗伯特/">(no title)</a>
+            <a href="/2019/02/26/pansee/film review/无问西东——李芳芳/">(no title)</a>
           </li>
         
           <li>

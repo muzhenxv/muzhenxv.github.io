@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="the Home of MuZhen">
 <meta property="og:description" content="说明计划从2017/06/17-2017/06/23利用一周时间实现推荐系统入门。 2017/06/17看了项亮《推荐系统实战》前三章。 学习了SVD算法原理和相关python代码。主要是numpy.linalg.svd。参考[机器学习笔记]奇异值分解SVD简介及其在推荐系统中的简单应用。 寻找了Santander Product Recommendation作为实验数据。 学习了FP-grow">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-02-26T06:05:54.145Z">
+<meta property="og:updated_time" content="2019-02-26T12:59:33.528Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统一周入门计划">
 <meta name="twitter:description" content="说明计划从2017/06/17-2017/06/23利用一周时间实现推荐系统入门。 2017/06/17看了项亮《推荐系统实战》前三章。 学习了SVD算法原理和相关python代码。主要是numpy.linalg.svd。参考[机器学习笔记]奇异值分解SVD简介及其在推荐系统中的简单应用。 寻找了Santander Product Recommendation作为实验数据。 学习了FP-grow">
@@ -107,7 +107,7 @@
 <p>具体使用参见 <a href="http://orange3-associate.readthedocs.io/en/latest/scripting.html" target="_blank" rel="noopener">Orange-Associate scripting documentation</a></p>
 <p>主要流程为：<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 生成频繁项集，需要指定最小支持度</span></span><br><span class="line">frequent_itemsets(dataset,min_support)</span><br><span class="line"><span class="meta"># 生成规则，需要指定最小置信度</span></span><br><span class="line">association_rules(itemsets,min_confidence)</span><br></pre></td></tr></table></figure></p>
 <p>这里需要关注频繁项集和规则的区别。频繁项集是相关项的集合，而规则更进一步的明确相关关系的方向性。也就是说，进一步将一个频繁项集分解为前件（Antecedent）——后件规则（Consequent）：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; <span class="type">list</span>(association_rules(itemsets, <span class="number">.3</span>, frozenset(&#123;<span class="number">75</span>, <span class="number">98</span>&#125;)))</span><br><span class="line">[(frozenset(&#123;<span class="number">75</span>&#125;), frozenset(&#123;<span class="number">98</span>&#125;), <span class="number">5</span>, <span class="number">0.5</span>),</span><br><span class="line"> (frozenset(&#123;<span class="number">98</span>&#125;), frozenset(&#123;<span class="number">75</span>&#125;), <span class="number">5</span>, <span class="number">0.45</span>...)]</span><br></pre></td></tr></table></figure></p>
-<h2 id="Collaborative-Filtering-BTB-LB-0-01691"><a href="#Collaborative-Filtering-BTB-LB-0-01691" class="headerlink" title="Collaborative Filtering BTB (LB 0.01691)"></a><a href="https://www.kaggle.com/anokas/collaborative-filtering-btb-lb-0-01691/comments" target="_blank" rel="noopener">Collaborative Filtering BTB (LB 0.01691)</a></h2><p>一个小技巧<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line">id_dict = defaultdict(list)</span><br></pre></td></tr></table></figure></p>
+<h2 id="Collaborative-Filtering-BTB-LB-0-01691"><a href="#Collaborative-Filtering-BTB-LB-0-01691" class="headerlink" title="Collaborative Filtering BTB (LB 0.01691)"></a><a href="https://www.kaggle.com/anokas/collaborative-filtering-btb-lb-0-01691/comments" target="_blank" rel="noopener">Collaborative Filtering BTB (LB 0.01691)</a></h2><p>一个小技巧<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections import defaultdict</span><br><span class="line">id_dict = defaultdict(<span class="built_in">list</span>)</span><br></pre></td></tr></table></figure></p>
 <p>使用<code>defaultdict</code>方法创建出的字典默认value为list格式。因此，可以直接对value进行列表相关操作。</p>
 <p>该链接的主要想法是：利用其他特征对各个产品的购买情况进行了logistic回归（简单的只取最后一个月数据，没有考虑时序问题），并将所得概率作为用户在下个月购买该产品的概率。</p>
 <h2 id="Mod-Collaborative-Filtering-by-anokas-0-0236446"><a href="#Mod-Collaborative-Filtering-by-anokas-0-0236446" class="headerlink" title="(Mod) Collaborative Filtering by anokas-0.0236446"></a><a href="https://www.kaggle.com/sircausticmail/mod-collaborative-filtering-by-anokas-0-0236446/comments" target="_blank" rel="noopener">(Mod) Collaborative Filtering by anokas-0.0236446</a></h2><p>这是对上一个方法的改进。用4月份特征和5月份购买与否进行训练，用得到的模型拿5月份数据去预测6月份购买产品概率。依旧是对各产品分别建模。</p>
@@ -120,7 +120,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/06/20/machine learning/recommendation system/推荐系统一周入门计划/" data-id="cjsldc0v600eze4v59kvp6gsh" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/06/20/machine learning/recommendation system/推荐系统一周入门计划/" data-id="cjsls34hu00dyhtv5cd864c6m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/recommendation-system/">recommendation system</a></li></ul>
@@ -201,11 +201,11 @@
       <ul>
         
           <li>
-            <a href="/2019/02/26/pansee/film review/无问西东——李芳芳/">(no title)</a>
+            <a href="/2019/02/26/pansee/film review/密室逃生2019——亚当·罗伯特/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2019/02/26/pansee/film review/密室逃生2019——亚当·罗伯特/">(no title)</a>
+            <a href="/2019/02/26/pansee/film review/无问西东——李芳芳/">(no title)</a>
           </li>
         
           <li>

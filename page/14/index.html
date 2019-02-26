@@ -107,7 +107,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/04/13/machine learning/dimensionality reduction/PCA/" data-id="cjsldc0to00are4v541wbg5zs" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/04/13/machine learning/dimensionality reduction/PCA/" data-id="cjsls34go009thtv5j0bqpi6g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PCA/">PCA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dimensionality-reduction/">dimensionality reduction</a></li></ul>
@@ -152,7 +152,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/04/12/python/discuss/" data-id="cjsldc0os000pe4v55cntq2de" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/04/12/python/discuss/" data-id="cjsls348x0004htv538x1nuyg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
@@ -197,7 +197,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/04/12/machine learning/python/discuss/" data-id="cjsldc0ut00dxe4v59jil44x7" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/04/12/machine learning/python/discuss/" data-id="cjsls34hm00d0htv5aydbkpzp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
@@ -248,7 +248,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/04/11/machine learning/NN/rnn/" data-id="cjsldc0t6009ee4v5i8prbmar" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/04/11/machine learning/NN/rnn/" data-id="cjsls34g4008jhtv5gfc93k3b" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NN/">NN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
@@ -304,7 +304,7 @@
 <p>让我们拿一些句子来计算它们之间的相似度。</p>
 <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">from</span> <span class="built_in">time</span> import <span class="built_in">time</span></span><br><span class="line">start_nb = <span class="built_in">time</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialize logging.</span></span><br><span class="line">import logging</span><br><span class="line">logging.basicConfig(<span class="built_in">format</span>=<span class="string">'%(asctime)s : %(levelname)s : %(message)s'</span>)</span><br><span class="line"></span><br><span class="line">sentence_obama = <span class="string">'Obama speaks to the media in Illinois'</span></span><br><span class="line">sentence_president = <span class="string">'The president greets the press in Chicago'</span></span><br><span class="line">sentence_obama = sentence_obama.<span class="built_in">lower</span>().<span class="built_in">split</span>()</span><br><span class="line">sentence_president = sentence_president.<span class="built_in">lower</span>().<span class="built_in">split</span>()</span><br></pre></td></tr></table></figure>
 <p>这些句子有很相似的内容，因此wmd应该低。在我们计算wmd之前，我们想要移除停用词（”the”, “to”, etc.），因为它们对句子信息并没有很多贡献。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import and download stopwords from NLTK.</span></span><br><span class="line"><span class="keyword">from</span> nltk.corpus <span class="keyword">import</span> stopwords</span><br><span class="line"><span class="keyword">from</span> nltk <span class="keyword">import</span> download</span><br><span class="line">download(<span class="string">'stopwords'</span>)  <span class="comment"># Download stopwords list.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Remove stopwords.</span></span><br><span class="line">stop_words = stopwords.words(<span class="string">'english'</span>)</span><br><span class="line">sentence_obama = [w <span class="keyword">for</span> w <span class="keyword">in</span> sentence_obama <span class="keyword">if</span> w <span class="keyword">not</span> <span class="keyword">in</span> stop_words]</span><br><span class="line">sentence_president = [w <span class="keyword">for</span> w <span class="keyword">in</span> sentence_president <span class="keyword">if</span> w <span class="keyword">not</span> <span class="keyword">in</span> stop_words]</span><br></pre></td></tr></table></figure>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import and download stopwords from NLTK.</span></span><br><span class="line"><span class="keyword">from</span> nltk.corpus <span class="keyword">import</span> stopwords</span><br><span class="line"><span class="keyword">from</span> nltk <span class="keyword">import</span> download</span><br><span class="line">download(<span class="string">'stopwords'</span>)  <span class="comment"># Download stopwords list.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Remove stopwords.</span></span><br><span class="line">stop_words = stopwords.words(<span class="string">'english'</span>)</span><br><span class="line">sentence_obama = [w <span class="keyword">for</span> w <span class="keyword">in</span> sentence_obama <span class="keyword">if</span> w <span class="keyword">not</span> <span class="keyword">in</span> stop_words]</span><br><span class="line">sentence_president = [w <span class="keyword">for</span> w <span class="keyword">in</span> sentence_president <span class="keyword">if</span> w <span class="keyword">not</span> <span class="keyword">in</span> stop_words]</span><br></pre></td></tr></table></figure>
 <p>现在，正如先前提到的，我们将使用一些下载的预训练嵌入。我们加载这些进入gensim的w2v模型类中。注意我们这里选择的嵌入需要很多内存。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">start</span> = <span class="built_in">time</span>()</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> gensim.models <span class="keyword">import</span> KeyedVectors</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">'/data/w2v_googlenews/GoogleNews-vectors-negative300.bin.gz'</span>):</span><br><span class="line">    <span class="keyword">raise</span> ValueError(<span class="string">"SKIP: You need to download the google news model"</span>)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">model</span> = KeyedVectors.load_word2vec_format(<span class="string">'/data/w2v_googlenews/GoogleNews-vectors-negative300.bin.gz'</span>, <span class="built_in">binary</span>=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">'Cell took %.2f seconds to run.'</span> % (<span class="built_in">time</span>() - <span class="keyword">start</span>))</span><br></pre></td></tr></table></figure>
 <p>因此让我们使用wmdistance方法计算wmd。</p>
@@ -343,7 +343,7 @@
 <p>下面的查询直接取自corpus中的一条评论。让我们看看是否有其他的评论相似于这一条。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">start</span> = <span class="built_in">time</span>()</span><br><span class="line"></span><br><span class="line">sent = <span class="string">'Very good, you should seat outdoor.'</span></span><br><span class="line"><span class="keyword">query</span> = preprocess(sent)</span><br><span class="line"></span><br><span class="line">sims = <span class="keyword">instance</span>[<span class="keyword">query</span>]  <span class="comment"># A query is simply a "look-up" in the similarity class.</span></span><br><span class="line"></span><br><span class="line">print <span class="string">'Cell took %.2f seconds to run.'</span> %(<span class="built_in">time</span>() - <span class="keyword">start</span>)</span><br></pre></td></tr></table></figure>
 <p>查询和最相似的文档，以及它们的相似度，在下面被打印出来。我们看到被检索到的文档讨论着和查询一样的事情，尽管使用了不同的单词。查询谈论的是得到一个户外的座位，而结果谈论的是坐在外面，结果中的一个说的是餐馆有一个好的景观。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># Print the query and the retrieved documents, together with their similarities.</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">'Query:'</span></span><br><span class="line"><span class="keyword">print</span> sent</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(num_best):</span><br><span class="line">    <span class="keyword">print</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'sim = %.4f'</span> % sims[i][<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">print</span> documents[sims[i][<span class="number">0</span>]]</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># Print the query and the retrieved documents, together with their similarities.</span></span><br><span class="line"><span class="built_in">print</span> <span class="string">'Query:'</span></span><br><span class="line"><span class="built_in">print</span> sent</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(num_best):</span><br><span class="line">    <span class="built_in">print</span></span><br><span class="line">    <span class="built_in">print</span> <span class="string">'sim = %.4f'</span> % sims[i][1]</span><br><span class="line">    <span class="built_in">print</span> documents[sims[i][0]]</span><br></pre></td></tr></table></figure>
 <p>让我们尝试一个不同的查询，同样直接取自corpus评论中的一个。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">start</span> = <span class="built_in">time</span>()</span><br><span class="line"></span><br><span class="line">sent = <span class="string">'I felt that the prices were extremely reasonable for the Strip'</span></span><br><span class="line"><span class="keyword">query</span> = preprocess(sent)</span><br><span class="line"></span><br><span class="line">sims = <span class="keyword">instance</span>[<span class="keyword">query</span>]  <span class="comment"># A query is simply a "look-up" in the similarity class.</span></span><br><span class="line"></span><br><span class="line">print <span class="string">'Query:'</span></span><br><span class="line">print sent</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="keyword">range</span>(num_best):</span><br><span class="line">    print</span><br><span class="line">    print <span class="string">'sim = %.4f'</span> % sims[i][<span class="number">1</span>]</span><br><span class="line">    print documents[sims[i][<span class="number">0</span>]]</span><br><span class="line"></span><br><span class="line">print <span class="string">'\nCell took %.2f seconds to run.'</span> %(<span class="built_in">time</span>() - <span class="keyword">start</span>)</span><br></pre></td></tr></table></figure>
 <p>这次，结果更加直接。检索到的文档基本包含了与查询相同的词。</p>
@@ -359,7 +359,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/04/02/machine learning/NLP/WMD/" data-id="cjsldc19901mhe4v5f9lkp1n4" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/04/02/machine learning/NLP/WMD/" data-id="cjsls34x001fphtv525cdsmf1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WMD/">WMD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
@@ -408,7 +408,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/03/30/machine learning/NLP/idf/" data-id="cjsldc0sr007se4v5a5rqkemf" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/03/30/machine learning/NLP/idf/" data-id="cjsls34fk0078htv5nkavoq7v" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TF-IDF/">TF-IDF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
@@ -457,7 +457,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/03/27/machine learning/competition/trick/" data-id="cjsldc0th00a8e4v5q0ckkf81" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/03/27/machine learning/competition/trick/" data-id="cjsls34gi009dhtv5y8w0ys3f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/competition/">competition</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
@@ -504,7 +504,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/03/27/machine learning/optimization/非参方法/" data-id="cjsldc0ur00dqe4v5se3bbahf" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/03/27/machine learning/optimization/非参方法/" data-id="cjsls34hj00cshtv51mvv06cm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nonparametric-approach/">nonparametric approach</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/optimization/">optimization</a></li></ul>
@@ -560,7 +560,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/03/26/machine learning/ensemble/GBM and Xgboost/" data-id="cjsldc0tt00b8e4v52k8sam8t" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/03/26/machine learning/ensemble/GBM and Xgboost/" data-id="cjsls34gu00a9htv5yng2s3pd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GBM/">GBM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Xgboost/">Xgboost</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ensemble/">ensemble</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
@@ -603,7 +603,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/03/26/machine learning/machine learning/高维稀疏特征建模/" data-id="cjsldc0un00dbe4v57e3vdutq" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/03/26/machine learning/machine learning/高维稀疏特征建模/" data-id="cjsls34he00c9htv551sir9o0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GBM/">GBM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ensemble/">ensemble</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
@@ -680,7 +680,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/03/25/machine learning/ensemble/adaboost/" data-id="cjsldc19c01mke4v5lpi6qhj4" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/03/25/machine learning/ensemble/adaboost/" data-id="cjsls34x301fthtv5tdp8bzzo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/adaboost/">adaboost</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ensemble/">ensemble</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
@@ -725,7 +725,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/03/24/machine learning/machine learning/线性判别分析/" data-id="cjsldc0um00d6e4v51zo6kfxa" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/03/24/machine learning/machine learning/线性判别分析/" data-id="cjsls34hd00c6htv5k283v9pu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LDA/">LDA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
@@ -777,7 +777,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/03/24/machine learning/NN/《神经网络和深度学习》第五章——深度神经网络为何很难训练/" data-id="cjsldc0tc009xe4v5nmq99vny" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/03/24/machine learning/NN/《神经网络和深度学习》第五章——深度神经网络为何很难训练/" data-id="cjsls34gc0090htv50o951uwm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NN/">NN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
@@ -870,7 +870,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/03/24/machine learning/NN/《神经网络和深度学习》第六章——深度学习/" data-id="cjsldc0te00a1e4v54n4kld8i" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/03/24/machine learning/NN/《神经网络和深度学习》第六章——深度学习/" data-id="cjsls34gd0093htv5j1clmvcs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NN/">NN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deep-learning/">deep learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
@@ -927,7 +927,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/03/23/machine learning/machine learning/分类和回归/" data-id="cjsldc0ug00cse4v5jopkk1sp" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/03/23/machine learning/machine learning/分类和回归/" data-id="cjsls34h900bqhtv5ezi01b6y" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
@@ -1015,7 +1015,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/03/23/machine learning/optimization/EM算法/" data-id="cjsldc0un00dce4v5g8df3xws" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/03/23/machine learning/optimization/EM算法/" data-id="cjsls34hg00cehtv5pxo4mb2b" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/EM/">EM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/optimization/">optimization</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/parameter-estimation/">parameter estimation</a></li></ul>
@@ -1101,7 +1101,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/03/23/development/datacenter/Detecting Large-Scale System Problems by Mining Console Logs/" data-id="cjsldc19701mde4v5rl13syeg" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/03/23/development/datacenter/Detecting Large-Scale System Problems by Mining Console Logs/" data-id="cjsls34th01fmhtv5nqnbpbf7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/datacenter/">datacenter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/detect/">detect</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/log/">log</a></li></ul>
@@ -1149,7 +1149,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/03/23/machine learning/machine learning/回归树/" data-id="cjsldc0uh00cue4v5oqwwseem" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/03/23/machine learning/machine learning/回归树/" data-id="cjsls34ha00bthtv52nin6e7n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/decision-tree/">decision tree</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/regression-tree/">regression tree</a></li></ul>
@@ -1207,7 +1207,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/03/23/machine learning/Information theory/熵相关/" data-id="cjsldc0sk007fe4v5aqcv9sqh" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/03/23/machine learning/Information theory/熵相关/" data-id="cjsls34ff006xhtv55vk39j4k" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Information-theory/">Information theory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/entropy/">entropy</a></li></ul>
@@ -1252,7 +1252,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2017/03/22/machine learning/machine learning/cost function/" data-id="cjsldc0u800c4e4v5huqbv6rl" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2017/03/22/machine learning/machine learning/cost function/" data-id="cjsls34h300b2htv5frggykyb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GLM/">GLM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cost-function/">cost function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li></ul>
@@ -1319,11 +1319,11 @@
       <ul>
         
           <li>
-            <a href="/2019/02/26/pansee/film review/无问西东——李芳芳/">(no title)</a>
+            <a href="/2019/02/26/pansee/film review/密室逃生2019——亚当·罗伯特/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2019/02/26/pansee/film review/密室逃生2019——亚当·罗伯特/">(no title)</a>
+            <a href="/2019/02/26/pansee/film review/无问西东——李芳芳/">(no title)</a>
           </li>
         
           <li>

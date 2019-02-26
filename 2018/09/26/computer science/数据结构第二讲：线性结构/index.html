@@ -13,21 +13,21 @@
 <meta property="og:site_name" content="the Home of MuZhen">
 <meta property="og:description" content="在线课程 MOOC浙江大学数据结构课程 2.1 线性表及其实现多项式表示问题： 如何表示一个多项式？ 方法：  顺序存储结构直接表示   顺序存储结构表示非零项   链表结构存储非零项    两个多项式相加过程：  对于顺序存储直接表示，对应位相加即可 对于只存储非零项的情况，需要依次比较大小，寻找同指数项系数相加  链式存储和顺序存储的区别顺序存储要求物理相邻  求表长，$O(1)$ 查找值">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://www.muzhen.tk/2018/09/26/computer%20science/images/snapshot1.png">
-<meta property="og:image" content="http://www.muzhen.tk/2018/09/26/computer%20science/images/snapshot2.png">
-<meta property="og:image" content="http://www.muzhen.tk/2018/09/26/computer%20science/images/snapshot3.png">
-<meta property="og:image" content="http://www.muzhen.tk/2018/09/26/computer%20science/images/snapshot4.png">
-<meta property="og:image" content="http://www.muzhen.tk/2018/09/26/computer%20science/images/snapshot5.png">
-<meta property="og:image" content="http://www.muzhen.tk/2018/09/26/computer%20science/images/snapshot9.png">
-<meta property="og:image" content="http://www.muzhen.tk/2018/09/26/computer%20science/images/snapshot6.png">
-<meta property="og:image" content="http://www.muzhen.tk/2018/09/26/computer%20science/images/snapshot10.png">
-<meta property="og:image" content="http://www.muzhen.tk/2018/09/26/computer%20science/images/snapshot7.png">
-<meta property="og:image" content="http://www.muzhen.tk/2018/09/26/computer%20science/images/snapshot8.png">
-<meta property="og:updated_time" content="2019-02-26T06:05:54.133Z">
+<meta property="og:image" content="http://www.muzhen.tk/2018/09/26/computer%20science/数据结构第二讲：线性结构/snapshot1.png">
+<meta property="og:image" content="http://www.muzhen.tk/2018/09/26/computer%20science/数据结构第二讲：线性结构/snapshot2.png">
+<meta property="og:image" content="http://www.muzhen.tk/2018/09/26/computer%20science/数据结构第二讲：线性结构/snapshot3.png">
+<meta property="og:image" content="http://www.muzhen.tk/2018/09/26/computer%20science/数据结构第二讲：线性结构/snapshot4.png">
+<meta property="og:image" content="http://www.muzhen.tk/2018/09/26/computer%20science/数据结构第二讲：线性结构/snapshot5.png">
+<meta property="og:image" content="http://www.muzhen.tk/2018/09/26/computer%20science/数据结构第二讲：线性结构/snapshot9.png">
+<meta property="og:image" content="http://www.muzhen.tk/2018/09/26/computer%20science/数据结构第二讲：线性结构/snapshot6.png">
+<meta property="og:image" content="http://www.muzhen.tk/2018/09/26/computer%20science/数据结构第二讲：线性结构/snapshot10.png">
+<meta property="og:image" content="http://www.muzhen.tk/2018/09/26/computer%20science/数据结构第二讲：线性结构/snapshot7.png">
+<meta property="og:image" content="http://www.muzhen.tk/2018/09/26/computer%20science/数据结构第二讲：线性结构/snapshot8.png">
+<meta property="og:updated_time" content="2019-02-26T12:59:33.476Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构第二讲：线性结构">
 <meta name="twitter:description" content="在线课程 MOOC浙江大学数据结构课程 2.1 线性表及其实现多项式表示问题： 如何表示一个多项式？ 方法：  顺序存储结构直接表示   顺序存储结构表示非零项   链表结构存储非零项    两个多项式相加过程：  对于顺序存储直接表示，对应位相加即可 对于只存储非零项的情况，需要依次比较大小，寻找同指数项系数相加  链式存储和顺序存储的区别顺序存储要求物理相邻  求表长，$O(1)$ 查找值">
-<meta name="twitter:image" content="http://www.muzhen.tk/2018/09/26/computer%20science/images/snapshot1.png">
+<meta name="twitter:image" content="http://www.muzhen.tk/2018/09/26/computer%20science/数据结构第二讲：线性结构/snapshot1.png">
   
     <link rel="alternate" href="/atom.xml" title="the Home of MuZhen" type="application/atom+xml">
   
@@ -109,13 +109,13 @@
 <p>方法：</p>
 <ul>
 <li><p>顺序存储结构直接表示</p>
-<p><img src="../images/snapshot1.png" alt></p>
+<p><img src="/2018/09/26/computer science/数据结构第二讲：线性结构/snapshot1.png" alt></p>
 </li>
 <li><p>顺序存储结构表示非零项</p>
-<p><img src="../images/snapshot2.png" alt></p>
+<p><img src="/2018/09/26/computer science/数据结构第二讲：线性结构/snapshot2.png" alt></p>
 </li>
 <li><p>链表结构存储非零项</p>
-<p><img src="../images/snapshot3.png" alt></p>
+<p><img src="/2018/09/26/computer science/数据结构第二讲：线性结构/snapshot3.png" alt></p>
 </li>
 </ul>
 <p>两个多项式相加过程：</p>
@@ -138,20 +138,20 @@
 <li>删除，先找到位置再删除，$O(n)$</li>
 </ul>
 <h2 id="广义表"><a href="#广义表" class="headerlink" title="广义表"></a>广义表</h2><p>对于线性表而言，每个元素都是基本的单元素。在广义表中，这些元素不仅可以是单元素还可以是另一个广义表。</p>
-<h1 id="2-2-堆栈"><a href="#2-2-堆栈" class="headerlink" title="2.2 堆栈"></a>2.2 堆栈</h1><p><img src="../images/snapshot4.png" alt></p>
-<p><img src="../images/snapshot5.png" alt></p>
-<h2 id="顺序存储实现堆栈"><a href="#顺序存储实现堆栈" class="headerlink" title="顺序存储实现堆栈"></a>顺序存储实现堆栈</h2><p><img src="../images/snapshot9.png" alt></p>
-<p><img src="../images/snapshot6.png" alt></p>
+<h1 id="2-2-堆栈"><a href="#2-2-堆栈" class="headerlink" title="2.2 堆栈"></a>2.2 堆栈</h1><p><img src="/2018/09/26/computer science/数据结构第二讲：线性结构/snapshot4.png" alt></p>
+<p><img src="/2018/09/26/computer science/数据结构第二讲：线性结构/snapshot5.png" alt></p>
+<h2 id="顺序存储实现堆栈"><a href="#顺序存储实现堆栈" class="headerlink" title="顺序存储实现堆栈"></a>顺序存储实现堆栈</h2><p><img src="/2018/09/26/computer science/数据结构第二讲：线性结构/snapshot9.png" alt></p>
+<p><img src="/2018/09/26/computer science/数据结构第二讲：线性结构/snapshot6.png" alt></p>
 <p>头部和尾部只是个概念，数组的两端完全可以做栈底。</p>
 <h2 id="单向链表实现堆栈"><a href="#单向链表实现堆栈" class="headerlink" title="单向链表实现堆栈"></a>单向链表实现堆栈</h2><p>栈顶指针Top只能在链表头。因为如果在链表尾，一旦执行删除操作，单向链表没有办法找到该结点前一个位置。</p>
-<h2 id="中缀表达式转成后缀表达式"><a href="#中缀表达式转成后缀表达式" class="headerlink" title="中缀表达式转成后缀表达式"></a>中缀表达式转成后缀表达式</h2><p><img src="../images/snapshot10.png" alt></p>
-<h1 id="2-3-队列的实现"><a href="#2-3-队列的实现" class="headerlink" title="2.3 队列的实现"></a>2.3 队列的实现</h1><h2 id="什么是队列"><a href="#什么是队列" class="headerlink" title="什么是队列"></a>什么是队列</h2><p><img src="../images/snapshot7.png" alt></p>
-<p><img src="../images/snapshot8.png" alt></p>
+<h2 id="中缀表达式转成后缀表达式"><a href="#中缀表达式转成后缀表达式" class="headerlink" title="中缀表达式转成后缀表达式"></a>中缀表达式转成后缀表达式</h2><p><img src="/2018/09/26/computer science/数据结构第二讲：线性结构/snapshot10.png" alt></p>
+<h1 id="2-3-队列的实现"><a href="#2-3-队列的实现" class="headerlink" title="2.3 队列的实现"></a>2.3 队列的实现</h1><h2 id="什么是队列"><a href="#什么是队列" class="headerlink" title="什么是队列"></a>什么是队列</h2><p><img src="/2018/09/26/computer science/数据结构第二讲：线性结构/snapshot7.png" alt></p>
+<p><img src="/2018/09/26/computer science/数据结构第二讲：线性结构/snapshot8.png" alt></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.muzhen.tk/2018/09/26/computer science/数据结构第二讲：线性结构/" data-id="cjsldc0oh0005e4v5d309uhsr" class="article-share-link">Share</a>
+      <a data-url="http://www.muzhen.tk/2018/09/26/computer science/数据结构第二讲：线性结构/" data-id="cjsls349c001fhtv54ymzj7z6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
@@ -232,11 +232,11 @@
       <ul>
         
           <li>
-            <a href="/2019/02/26/pansee/film review/无问西东——李芳芳/">(no title)</a>
+            <a href="/2019/02/26/pansee/film review/密室逃生2019——亚当·罗伯特/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2019/02/26/pansee/film review/密室逃生2019——亚当·罗伯特/">(no title)</a>
+            <a href="/2019/02/26/pansee/film review/无问西东——李芳芳/">(no title)</a>
           </li>
         
           <li>
