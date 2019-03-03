@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="本文为《a brief overview of rule learning》的阅读笔记。 1 Introduction规则学习分为两类：  descriptive rule discovery 描述性规则发现 predictive rule learning 预测性规则学习  2 descriptive rule discovery the focus lies on finding indivi">
+<meta name="keywords" content="rule learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="a brief overview of rule learning">
+<meta property="og:url" content="http://www.muzhen.tk/2018/02/01/machine learning/machine learning/a brief overview of rule learning/index.html">
+<meta property="og:site_name" content="the Home of MuZhen">
+<meta property="og:description" content="本文为《a brief overview of rule learning》的阅读笔记。 1 Introduction规则学习分为两类：  descriptive rule discovery 描述性规则发现 predictive rule learning 预测性规则学习  2 descriptive rule discovery the focus lies on finding indivi">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-02-28T12:45:06.541Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="a brief overview of rule learning">
+<meta name="twitter:description" content="本文为《a brief overview of rule learning》的阅读笔记。 1 Introduction规则学习分为两类：  descriptive rule discovery 描述性规则发现 predictive rule learning 预测性规则学习  2 descriptive rule discovery the focus lies on finding indivi">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.muzhen.tk/2018/02/01/machine learning/machine learning/a brief overview of rule learning/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>a brief overview of rule learning | the Home of MuZhen</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">the Home of MuZhen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2018/02/01/machine learning/machine learning/a brief overview of rule learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">a brief overview of rule learning
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-02-01 11:38:01" itemprop="dateCreated datePublished" datetime="2018-02-01T11:38:01+08:00">2018-02-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/machine-learning/" itemprop="url" rel="index"><span itemprop="name">machine learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script><br>本文为《a brief overview of rule learning》的阅读笔记。</p>
+<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h1><p>规则学习分为两类：</p>
+<ul>
+<li>descriptive rule discovery 描述性规则发现</li>
+<li>predictive rule learning 预测性规则学习</li>
+</ul>
+<h1 id="2-descriptive-rule-discovery"><a href="#2-descriptive-rule-discovery" class="headerlink" title="2 descriptive rule discovery"></a>2 descriptive rule discovery</h1><blockquote>
+<p>the focus lies on finding individual rules.</p>
+</blockquote>
+<p>有两个主要任务：subgroup discovery &amp; association rule discovery</p>
+<h2 id="2-1-Subgroup-discovery"><a href="#2-1-Subgroup-discovery" class="headerlink" title="2.1 Subgroup discovery"></a>2.1 Subgroup discovery</h2><p>寻找IF-THEN规则，指向一个类别。</p>
+<p>top-down，自顶向下不断缩小规则范围。有一般到特殊。top可以理解为上层比较范的情况，也可以理解为图搜索中的顶点；down可以理解为比较底层比较约束的情况，也可以理解为图搜索中的终点。</p>
+<p>下面是一个贪婪搜索的Hill-Climbing算法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function FindPredictiveRule (Examples)</span><br><span class="line">Input: Examples, a <span class="keyword">set</span> <span class="keyword">of</span> positive <span class="keyword">and</span> negative examples <span class="keyword">for</span> a <span class="keyword">class</span> c.</span><br><span class="line">//initialize the rule <span class="keyword">body</span></span><br><span class="line">rb ← ∅</span><br><span class="line">// repeatedly find the best refinement <span class="keyword">repeat</span></span><br><span class="line"><span class="keyword">build</span> refinements R ← &#123;rb′ | rb′ = rb ∧ f, <span class="keyword">for</span> <span class="keyword">some</span> feature f&#125; <span class="keyword">evaluate</span> <span class="keyword">all</span> rb′ ∈ R according <span class="keyword">to</span> <span class="keyword">some</span> quality criterion</span><br><span class="line">rb = the best refinement <span class="keyword">in</span> R</span><br><span class="line"><span class="keyword">until</span> rb satisfies a stopping criterion <span class="keyword">or</span> covers <span class="keyword">no</span> examples</span><br><span class="line"><span class="keyword">Output</span>: rule (c ← R)</span><br></pre></td></tr></table></figure>
+<p>假设P和N分别为正负样例数，p和n是规则覆盖到的正负样例数。常用的是评价指标有：</p>
+<ol>
+<li><p>Laplace estimate：<br>$$<br>Lap = \frac{p+1}{p+n+2}<br>$$</p>
+</li>
+<li><p>m-estimate<br>$$<br>m-estimate = \frac{p+m\cdot P/(P+N)}{p+n+m}<br>$$<br>​</p>
+<p>​</p>
+</li>
+<li><p>information gain<br>$$<br>ig = p\cdot(log_2\frac{p}{p+n}-log_2\frac{p’}{p’+n’})<br>$$</p>
+</li>
+<li><p>Correlation and $\chi^2$<br>$$<br>corr = \frac{p(N-n)-(P-p)n}{\sqrt{PN(p+n)(P-p+N-n)}}\\<br>\chi^2 = (P+N)corr^2<br>$$<br>​</p>
+</li>
+</ol>
+<h2 id="2-2-Association-Rule-Discovery"><a href="#2-2-Association-Rule-Discovery" class="headerlink" title="2.2 Association Rule Discovery"></a>2.2 Association Rule Discovery</h2><p>Support： 项集覆盖的样本所占比例，也就是频繁程度<br>$$<br>s(X \rightarrow Y) = \frac{\sigma (X \cup Y)}{N}<br>$$<br>Confidence：  Y在包含X的交易中出现的频繁程度<br>$$<br>c(X \rightarrow Y) = \frac{\sigma (X \cup Y)}{\sigma (X)}<br>$$<br>反单调性： 如果一个项集是频繁的，则它的所有子集一定也是频繁的。</p>
+<h1 id="3-Predictive-Rule-Learning"><a href="#3-Predictive-Rule-Learning" class="headerlink" title="3 Predictive Rule Learning"></a>3 Predictive Rule Learning</h1><blockquote>
+<p>As individual rules will typically only cover part of the training data, we wil need to enforce completeness by learning an unordered rule set or a decision list.</p>
+</blockquote>
+<p>规则集是无序的，而决策列表有顺序。规则集中每个规则独立的拟合某个类别，而决策列表因为有序，加入了全局性考量。</p>
+<p>规则集会带来两个问题：</p>
+<ul>
+<li>multiple rules fire： 多个规则覆盖相同的样本，并且规则指向的类别不同。可以通过Lap类似指标进行规则重要性排序，这样也相当于将规则集转变为有序的决策列表。还有朴素贝叶斯等解决方案。</li>
+<li>no rules fire： 有样本没有被任何规则覆盖到，可以通过default rule，也就是划归多数类来解决。</li>
+</ul>
+<h2 id="3-1-Classification-by-Association"><a href="#3-1-Classification-by-Association" class="headerlink" title="3.1 Classification by Association"></a>3.1 Classification by Association</h2><p>利用关联规则挖掘去寻找分类规则。</p>
+<h2 id="3-2-Covering-Algorithm"><a href="#3-2-Covering-Algorithm" class="headerlink" title="3.2 Covering Algorithm"></a>3.2 Covering Algorithm</h2><blockquote>
+<p>the so-called covering or separate-and-conquer algorithm. After a new rule has been learned, all examples that are covered by this rule are removed.</p>
+</blockquote>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">Covering</span> <span class="params">(Examples,Classifier)</span></span></span><br><span class="line"><span class="function"><span class="title">Input</span>:</span> Examples, a <span class="keyword">set</span> <span class="keyword">of</span> positive <span class="keyword">and</span> negative examples <span class="keyword">for</span> a <span class="keyword">class</span> c.</span><br><span class="line"><span class="comment">// initialize the rule set R=;</span></span><br><span class="line"><span class="comment">//loop until no more positive examples are covered while not all positive examples are covered do</span></span><br><span class="line"><span class="comment">// find the best rule for the current examples r = FindPredictiveRule (Examples)</span></span><br><span class="line"><span class="comment">// check if we need more rules if R [ r is good enough</span></span><br><span class="line"><span class="keyword">then</span> <span class="keyword">break</span> <span class="keyword">while</span></span><br><span class="line"><span class="comment">// remove covered examples and add rule to rule set Examples = Examples \ &#123; examples covered by r&#125;</span></span><br><span class="line">R=R[r endwhile</span><br><span class="line">Output: the learned rule <span class="keyword">set</span> R</span><br></pre></td></tr></table></figure>
+<h1 id="4-Well-known-Rule-Learning-Algorithms"><a href="#4-Well-known-Rule-Learning-Algorithms" class="headerlink" title="4 Well-known Rule Learning Algorithms"></a>4 Well-known Rule Learning Algorithms</h1><p>AQ2</p>
+<p>CN2</p>
+<p>FOIL</p>
+<p>RIPPER</p>
+<p>OPUS</p>
+<h1 id="5-Applications-in-Linked-Data-and-Semantic-Web"><a href="#5-Applications-in-Linked-Data-and-Semantic-Web" class="headerlink" title="5 Applications in Linked Data and Semantic Web"></a>5 Applications in Linked Data and Semantic Web</h1><h1 id="6-Conclusion"><a href="#6-Conclusion" class="headerlink" title="6 Conclusion"></a>6 Conclusion</h1><blockquote>
+<p>However, whereas a decision tree split is chosen to optimize all successor branches simultaneously, a rule learning heuristic only focuses on a single rule. As a result, rule sets are often more compact than decision trees.</p>
+</blockquote>
+<p><strong><em>和决策树的区别，规则学习只考虑单分支，或者说满足规则后指向特定分类的有效性，而决策树要整合考虑每个分支的情况。从评价指标就可以看出来，规则学习只考虑规则覆盖样本和总体样本的区分度，而决策树则是综合考虑各个分支，gini求期望。</em></strong></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/rule-learning/" rel="tag"># rule learning</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/30/machine learning/python-sklearn/label_encode&onehot_encoder/" rel="next" title="label_encode&onehot_encoder">
+                <i class="fa fa-chevron-left"></i> label_encode&onehot_encoder
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/03/machine learning/visualize/决策树可视化/" rel="prev" title="决策树可视化">
+                决策树可视化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">muzhen</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">346</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">112</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Introduction"><span class="nav-number">1.</span> <span class="nav-text">1 Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-descriptive-rule-discovery"><span class="nav-number">2.</span> <span class="nav-text">2 descriptive rule discovery</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Subgroup-discovery"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Subgroup discovery</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Association-Rule-Discovery"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 Association Rule Discovery</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Predictive-Rule-Learning"><span class="nav-number">3.</span> <span class="nav-text">3 Predictive Rule Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-Classification-by-Association"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 Classification by Association</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-Covering-Algorithm"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 Covering Algorithm</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Well-known-Rule-Learning-Algorithms"><span class="nav-number">4.</span> <span class="nav-text">4 Well-known Rule Learning Algorithms</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-Applications-in-Linked-Data-and-Semantic-Web"><span class="nav-number">5.</span> <span class="nav-text">5 Applications in Linked Data and Semantic Web</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-Conclusion"><span class="nav-number">6.</span> <span class="nav-text">6 Conclusion</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">muzhen</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

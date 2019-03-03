@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="说明计划从2017/06/17-2017/06/23利用一周时间实现推荐系统入门。 2017/06/17看了项亮《推荐系统实战》前三章。 学习了SVD算法原理和相关python代码。主要是numpy.linalg.svd。参考[机器学习笔记]奇异值分解SVD简介及其在推荐系统中的简单应用。 寻找了Santander Product Recommendation作为实验数据。 学习了FP-grow">
+<meta name="keywords" content="recommendation system">
+<meta property="og:type" content="article">
+<meta property="og:title" content="推荐系统一周入门计划">
+<meta property="og:url" content="http://www.muzhen.tk/2017/06/20/machine learning/recommendation system/推荐系统一周入门计划/index.html">
+<meta property="og:site_name" content="the Home of MuZhen">
+<meta property="og:description" content="说明计划从2017/06/17-2017/06/23利用一周时间实现推荐系统入门。 2017/06/17看了项亮《推荐系统实战》前三章。 学习了SVD算法原理和相关python代码。主要是numpy.linalg.svd。参考[机器学习笔记]奇异值分解SVD简介及其在推荐系统中的简单应用。 寻找了Santander Product Recommendation作为实验数据。 学习了FP-grow">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-02-28T12:45:06.541Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="推荐系统一周入门计划">
+<meta name="twitter:description" content="说明计划从2017/06/17-2017/06/23利用一周时间实现推荐系统入门。 2017/06/17看了项亮《推荐系统实战》前三章。 学习了SVD算法原理和相关python代码。主要是numpy.linalg.svd。参考[机器学习笔记]奇异值分解SVD简介及其在推荐系统中的简单应用。 寻找了Santander Product Recommendation作为实验数据。 学习了FP-grow">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.muzhen.tk/2017/06/20/machine learning/recommendation system/推荐系统一周入门计划/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>推荐系统一周入门计划 | the Home of MuZhen</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">the Home of MuZhen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/06/20/machine learning/recommendation system/推荐系统一周入门计划/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">推荐系统一周入门计划
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-06-20 11:28:04" itemprop="dateCreated datePublished" datetime="2017-06-20T11:28:04+08:00">2017-06-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/recommendation-system/" itemprop="url" rel="index"><span itemprop="name">recommendation system</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>计划从2017/06/17-2017/06/23利用一周时间实现推荐系统入门。</p>
+<h1 id="2017-06-17"><a href="#2017-06-17" class="headerlink" title="2017/06/17"></a>2017/06/17</h1><p>看了项亮《推荐系统实战》前三章。</p>
+<p>学习了SVD算法原理和相关python代码。主要是numpy.linalg.svd。参考<a href="http://www.cnblogs.com/lzllovesyl/p/5243370.html" target="_blank" rel="noopener">[机器学习笔记]奇异值分解SVD简介及其在推荐系统中的简单应用</a>。</p>
+<p>寻找了<a href="https://www.kaggle.com/c/santander-product-recommendation/discussion?sortBy=top&amp;group=all&amp;page=1&amp;category=all&amp;kind=all" target="_blank" rel="noopener">Santander Product Recommendation</a>作为实验数据。</p>
+<p>学习了FP-growth算法寻找频繁项集。<a href="http://blog.csdn.net/huagong_adu/article/details/17739247" target="_blank" rel="noopener">频繁项集挖掘算法之FPGrowth</a>。</p>
+<p>回顾了apriori算法。<a href="http://blog.csdn.net/lizhengnanhua/article/details/9061755" target="_blank" rel="noopener">Apriori算法详解之【一、相关概念和核心步骤】</a>。主要是支持度和置信度的概念需要掌握。</p>
+<h1 id="2017-06-18"><a href="#2017-06-18" class="headerlink" title="2017/06/18"></a>2017/06/18</h1><h2 id="Santander-Product-Recommendation"><a href="#Santander-Product-Recommendation" class="headerlink" title="Santander Product Recommendation"></a><a href="https://www.kaggle.com/c/santander-product-recommendation/discussion?sortBy=top&amp;group=all&amp;page=1&amp;category=all&amp;kind=all" target="_blank" rel="noopener">Santander Product Recommendation</a></h2><p>该比赛提供了一定月份的人口统计特征（按月），和金融产品购买情况特征（按月）。目标是预测用户下个月会购买的新产品。</p>
+<h2 id="Simple-Association-Rules-LB-0-02146"><a href="#Simple-Association-Rules-LB-0-02146" class="headerlink" title="Simple Association Rules (LB 0.02146)"></a><a href="https://www.kaggle.com/toster/simple-association-rules-lb-0-02146/comments" target="_blank" rel="noopener">Simple Association Rules (LB 0.02146)</a></h2><p>pd.DataFrame也有append方法，相同于pd.concat。</p>
+<p>array才可以按bool索引，list不行。<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">b = np.<span class="keyword">array</span>([<span class="literal">True</span>,<span class="literal">False</span>,<span class="literal">False</span>])</span><br><span class="line"><span class="keyword">Out</span>[<span class="number">17</span>]: <span class="keyword">array</span>([ <span class="literal">True</span>, <span class="literal">False</span>, <span class="literal">False</span>], dtype=bool)</span><br><span class="line"></span><br><span class="line">a = np.<span class="keyword">array</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line"><span class="keyword">Out</span>[<span class="number">27</span>]: <span class="keyword">array</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"></span><br><span class="line">a[b]</span><br><span class="line"><span class="keyword">Out</span>[<span class="number">30</span>]: <span class="keyword">array</span>([<span class="number">1</span>])</span><br></pre></td></tr></table></figure></p>
+<p>链接中生成itemsets的codes无法跑通。需要改为：<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">itemsets = dict(<span class="name">frequent_itemsets</span>((<span class="name">train_lastmonth</span>.iloc[:,<span class="number">24</span>:]==1).values, .<span class="number">005</span>))</span><br></pre></td></tr></table></figure></p>
+<p><code>frequent_itemsets</code>函数接受列表或者稀疏bool矩阵。但是在传列表时，列表中元素必须是int，不能是categories。原code就是因为这个原因报了typeError错误。</p>
+<p>orange库的安装：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> orange-<span class="keyword">associate</span></span><br></pre></td></tr></table></figure></p>
+<p>具体使用参见 <a href="http://orange3-associate.readthedocs.io/en/latest/scripting.html" target="_blank" rel="noopener">Orange-Associate scripting documentation</a></p>
+<p>主要流程为：<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 生成频繁项集，需要指定最小支持度</span></span><br><span class="line">frequent_itemsets(dataset,min_support)</span><br><span class="line"><span class="meta"># 生成规则，需要指定最小置信度</span></span><br><span class="line">association_rules(itemsets,min_confidence)</span><br></pre></td></tr></table></figure></p>
+<p>这里需要关注频繁项集和规则的区别。频繁项集是相关项的集合，而规则更进一步的明确相关关系的方向性。也就是说，进一步将一个频繁项集分解为前件（Antecedent）——后件规则（Consequent）：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; <span class="type">list</span>(association_rules(itemsets, <span class="number">.3</span>, frozenset(&#123;<span class="number">75</span>, <span class="number">98</span>&#125;)))</span><br><span class="line">[(frozenset(&#123;<span class="number">75</span>&#125;), frozenset(&#123;<span class="number">98</span>&#125;), <span class="number">5</span>, <span class="number">0.5</span>),</span><br><span class="line"> (frozenset(&#123;<span class="number">98</span>&#125;), frozenset(&#123;<span class="number">75</span>&#125;), <span class="number">5</span>, <span class="number">0.45</span>...)]</span><br></pre></td></tr></table></figure></p>
+<h2 id="Collaborative-Filtering-BTB-LB-0-01691"><a href="#Collaborative-Filtering-BTB-LB-0-01691" class="headerlink" title="Collaborative Filtering BTB (LB 0.01691)"></a><a href="https://www.kaggle.com/anokas/collaborative-filtering-btb-lb-0-01691/comments" target="_blank" rel="noopener">Collaborative Filtering BTB (LB 0.01691)</a></h2><p>一个小技巧<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line">id_dict = defaultdict(list)</span><br></pre></td></tr></table></figure></p>
+<p>使用<code>defaultdict</code>方法创建出的字典默认value为list格式。因此，可以直接对value进行列表相关操作。</p>
+<p>该链接的主要想法是：利用其他特征对各个产品的购买情况进行了logistic回归（简单的只取最后一个月数据，没有考虑时序问题），并将所得概率作为用户在下个月购买该产品的概率。</p>
+<h2 id="Mod-Collaborative-Filtering-by-anokas-0-0236446"><a href="#Mod-Collaborative-Filtering-by-anokas-0-0236446" class="headerlink" title="(Mod) Collaborative Filtering by anokas-0.0236446"></a><a href="https://www.kaggle.com/sircausticmail/mod-collaborative-filtering-by-anokas-0-0236446/comments" target="_blank" rel="noopener">(Mod) Collaborative Filtering by anokas-0.0236446</a></h2><p>这是对上一个方法的改进。用4月份特征和5月份购买与否进行训练，用得到的模型拿5月份数据去预测6月份购买产品概率。依旧是对各产品分别建模。</p>
+<h2 id="Santander-Product-Recommendation-1"><a href="#Santander-Product-Recommendation-1" class="headerlink" title="Santander Product Recommendation"></a><a href="https://www.kaggle.com/c/santander-product-recommendation/discussion/26283" target="_blank" rel="noopener">Santander Product Recommendation</a></h2><p>该方法提供了一个非常好的特征思路。下个月买什么不仅跟历史偏好有关。也跟宏观的产品变化有关。计算出每个月各产品的总销售情况，并从中探索销售趋势，乃至于宏观角度的关联规则都是很有意义的。</p>
+<h2 id="Santander-Product-Recommendation-2"><a href="#Santander-Product-Recommendation-2" class="headerlink" title="Santander Product Recommendation"></a><a href="https://www.kaggle.com/c/santander-product-recommendation/discussion/26817" target="_blank" rel="noopener">Santander Product Recommendation</a></h2><p>给出了一些标准化思路。比如年龄以100为最大值进行标准化。利用年龄信息来构造婚姻信息，根据西班牙的平均结婚年龄（分男女）来制造婚姻特征。</p>
+<p>对产品进行了分析，直接剔除了不活跃的产品的候选可能。不活跃有两种可能：没人买，或者大家都稳定买以至于并不存在是新增产品的可能。同时探索了季节性产品的存在。季节性产品是非常重要的特征！</p>
+<h1 id="2017-06-20"><a href="#2017-06-20" class="headerlink" title="2017/06/20"></a>2017/06/20</h1><p>粗略浏览了剩下的高投票discussion。除了有一个使用了svd。其他基本都是特征工程加上模型。并没有发现使用协同过滤算相似度的方法进行推荐的。</p>
+<p>推荐系统暂时告一段落。能够理解并运用SVD，协同过滤，apriori和fp-growth我觉得暂时已经足够。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/recommendation-system/" rel="tag"># recommendation system</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/17/machine learning/dimensionality reduction/SVD/" rel="next" title="SVD">
+                <i class="fa fa-chevron-left"></i> SVD
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/23/pansee/book review/《规训与惩罚》/" rel="prev" title="《规训与惩罚》">
+                《规训与惩罚》 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">muzhen</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">346</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">112</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2017-06-17"><span class="nav-number">2.</span> <span class="nav-text">2017/06/17</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2017-06-18"><span class="nav-number">3.</span> <span class="nav-text">2017/06/18</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Santander-Product-Recommendation"><span class="nav-number">3.1.</span> <span class="nav-text">Santander Product Recommendation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Simple-Association-Rules-LB-0-02146"><span class="nav-number">3.2.</span> <span class="nav-text">Simple Association Rules (LB 0.02146)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Collaborative-Filtering-BTB-LB-0-01691"><span class="nav-number">3.3.</span> <span class="nav-text">Collaborative Filtering BTB (LB 0.01691)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mod-Collaborative-Filtering-by-anokas-0-0236446"><span class="nav-number">3.4.</span> <span class="nav-text">(Mod) Collaborative Filtering by anokas-0.0236446</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Santander-Product-Recommendation-1"><span class="nav-number">3.5.</span> <span class="nav-text">Santander Product Recommendation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Santander-Product-Recommendation-2"><span class="nav-number">3.6.</span> <span class="nav-text">Santander Product Recommendation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2017-06-20"><span class="nav-number">4.</span> <span class="nav-text">2017/06/20</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">muzhen</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

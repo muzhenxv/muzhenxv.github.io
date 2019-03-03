@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="在线课程 MOOC浙江大学数据结构课程 1.1 什么是数据结构书架放书需要解决  新书插入 查找某本书的问题  方法：  随机按顺序放 插入很简单，直接放最后 查找很困难，一本一本找   按书名拼音顺序放 插入困难，需要把所有拼音顺序在之后的书都后移 二分查找   先分类，在按拼音顺序放 小范围的插入和查找同上 需要选择合适的类别数，太大则归类困难    打印数列给定一个数N，一次打印从1到N">
+<meta name="keywords" content="数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构第一讲：基本概念">
+<meta property="og:url" content="http://www.muzhen.tk/2018/12/02/computer science/数据结构第一讲：基本概念/index.html">
+<meta property="og:site_name" content="the Home of MuZhen">
+<meta property="og:description" content="在线课程 MOOC浙江大学数据结构课程 1.1 什么是数据结构书架放书需要解决  新书插入 查找某本书的问题  方法：  随机按顺序放 插入很简单，直接放最后 查找很困难，一本一本找   按书名拼音顺序放 插入困难，需要把所有拼音顺序在之后的书都后移 二分查找   先分类，在按拼音顺序放 小范围的插入和查找同上 需要选择合适的类别数，太大则归类困难    打印数列给定一个数N，一次打印从1到N">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://www.muzhen.tk/2018/12/02/computer%20science/数据结构第一讲：基本概念/WeChatWorkScreenshot_0e19ba0e-33b5-4c9b-acd2-34c90d48318f.png">
+<meta property="og:updated_time" content="2019-02-28T12:45:06.537Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构第一讲：基本概念">
+<meta name="twitter:description" content="在线课程 MOOC浙江大学数据结构课程 1.1 什么是数据结构书架放书需要解决  新书插入 查找某本书的问题  方法：  随机按顺序放 插入很简单，直接放最后 查找很困难，一本一本找   按书名拼音顺序放 插入困难，需要把所有拼音顺序在之后的书都后移 二分查找   先分类，在按拼音顺序放 小范围的插入和查找同上 需要选择合适的类别数，太大则归类困难    打印数列给定一个数N，一次打印从1到N">
+<meta name="twitter:image" content="http://www.muzhen.tk/2018/12/02/computer%20science/数据结构第一讲：基本概念/WeChatWorkScreenshot_0e19ba0e-33b5-4c9b-acd2-34c90d48318f.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.muzhen.tk/2018/12/02/computer science/数据结构第一讲：基本概念/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>数据结构第一讲：基本概念 | the Home of MuZhen</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">the Home of MuZhen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2018/12/02/computer science/数据结构第一讲：基本概念/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据结构第一讲：基本概念
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-12-02 17:09:40" itemprop="dateCreated datePublished" datetime="2018-12-02T17:09:40+08:00">2018-12-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/computer-science/" itemprop="url" rel="index"><span itemprop="name">computer science</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script type"text javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+<p>在线课程 <a href="http://www.icourse163.org/course/ZJU-93001" target="_blank" rel="noopener">MOOC浙江大学数据结构课程</a></p>
+<h1 id="1-1-什么是数据结构"><a href="#1-1-什么是数据结构" class="headerlink" title="1.1 什么是数据结构"></a>1.1 什么是数据结构</h1><h2 id="书架放书"><a href="#书架放书" class="headerlink" title="书架放书"></a>书架放书</h2><p>需要解决</p>
+<ol>
+<li>新书插入</li>
+<li>查找某本书的问题</li>
+</ol>
+<p>方法：</p>
+<ol>
+<li>随机按顺序放<ul>
+<li>插入很简单，直接放最后</li>
+<li>查找很困难，一本一本找</li>
+</ul>
+</li>
+<li>按书名拼音顺序放<ul>
+<li>插入困难，需要把所有拼音顺序在之后的书都后移</li>
+<li>二分查找</li>
+</ul>
+</li>
+<li>先分类，在按拼音顺序放<ul>
+<li>小范围的插入和查找同上</li>
+<li>需要选择合适的类别数，太大则归类困难</li>
+</ul>
+</li>
+</ol>
+<h2 id="打印数列"><a href="#打印数列" class="headerlink" title="打印数列"></a>打印数列</h2><p>给定一个数N，一次打印从1到N.</p>
+<p>方法：</p>
+<ol>
+<li><p>遍历打印</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f1</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n+<span class="number">1</span>):</span><br><span class="line">        print(i)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">'f1-------'</span>)</span><br><span class="line">f1(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>递归打印</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f2</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> n &gt; <span class="number">1</span>:</span><br><span class="line">        f2(n<span class="number">-1</span>)</span><br><span class="line">    print(n)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">'f2-------'</span>)</span><br><span class="line">f2(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>看起来递归更加简洁，但是当n过大时，会挤爆空间！</p>
+<h2 id="多项式计算"><a href="#多项式计算" class="headerlink" title="多项式计算"></a>多项式计算</h2><p>程序实现<br>$$<br>f(x) = a_0 + a_1x + a_2x^2 + … + a_nx^n<br>$$<br>方法：</p>
+<ol>
+<li><p>简单实现</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f1</span><span class="params">(x, n, a=None)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> a <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    y = a[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">        y += a[i+<span class="number">1</span>] * x**(i+<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> y</span><br><span class="line"></span><br><span class="line">f1(<span class="number">2</span>, <span class="number">3</span>,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>递归<br>$$<br>f(x) = a_0 + x(a_1 + x(…(a_{n-1} + x(a_n))…))<br>$$</p>
+</li>
+</ol>
+   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f2</span><span class="params">(x, n, a=None)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> a <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    y = a[<span class="number">-1</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n, <span class="number">0</span>, <span class="number">-1</span>):</span><br><span class="line">        y = y * x + a[i<span class="number">-1</span>]</span><br><span class="line">    <span class="keyword">return</span> y</span><br><span class="line"></span><br><span class="line">f2(<span class="number">2</span>, <span class="number">3</span>,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br></pre></td></tr></table></figure>
+<p>加减法不耗资源，主要考虑乘除法的元素次数。</p>
+<p>方法1做了$n + (1+2+…+(n-1)) = (n^2 + n)/2$次乘法运算</p>
+<p>方法2做了n次乘法运算</p>
+<p>优劣立现！</p>
+<h2 id="什么是数据结构"><a href="#什么是数据结构" class="headerlink" title="什么是数据结构"></a>什么是数据结构</h2><p><strong>数据对象</strong>在计算机中的组织方式</p>
+<ul>
+<li>逻辑结构</li>
+<li>物理存储结构</li>
+</ul>
+<p><strong>抽象数据类型</strong></p>
+<ul>
+<li>数据对象集</li>
+<li>操作集</li>
+</ul>
+<h1 id="1-2-什么是算法"><a href="#1-2-什么是算法" class="headerlink" title="1.2 什么是算法"></a>1.2 什么是算法</h1><ul>
+<li>空间复杂度S(n)</li>
+<li>时间复杂度T(n)</li>
+</ul>
+<h1 id="1-3-最大子列和问题"><a href="#1-3-最大子列和问题" class="headerlink" title="1.3 最大子列和问题"></a>1.3 最大子列和问题</h1><p>问题：<br>$$<br>给定N个整数的序列{A_1, A_2, …, A_N},求函数f(i, j) = \max{\{0,\sum_{k=i}^j A_k\}}的最大值<br>$$</p>
+<p>方法：</p>
+<ol>
+<li><p>暴力破解</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f1</span><span class="params">(a)</span>:</span></span><br><span class="line">    s = <span class="number">0</span></span><br><span class="line">    inds1 = <span class="number">-1</span></span><br><span class="line">    inds2 = <span class="number">-1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(a)):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i, len(a)):</span><br><span class="line">            t = <span class="number">0</span></span><br><span class="line">            <span class="comment"># t = sum(a[i:j+1])</span></span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> range(i, j+<span class="number">1</span>):</span><br><span class="line">                t += a[k]</span><br><span class="line">            <span class="keyword">if</span> t &gt;= s:</span><br><span class="line">                s = t</span><br><span class="line">                inds1 = i</span><br><span class="line">                inds2 = j</span><br><span class="line">    <span class="keyword">return</span> s, inds1, inds2</span><br><span class="line"></span><br><span class="line">f1([<span class="number">1</span>,<span class="number">5</span>,<span class="number">-6</span>,<span class="number">7</span>,<span class="number">2</span>,<span class="number">-3</span>,<span class="number">-4</span>,<span class="number">8</span>,<span class="number">-9</span>,<span class="number">2</span>])</span><br></pre></td></tr></table></figure>
+<p>一开始使用sum函数，误以为时间复杂度是$O(n^2)$，其实sum本身也有复杂度，真实复杂度是$O(n^3)$。不要过度依赖函数，要看计算本质！</p>
+<p>​</p>
+</li>
+</ol>
+<ol start="2">
+<li><p>暴力破解优化</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f2</span><span class="params">(a)</span>:</span></span><br><span class="line">    s = <span class="number">0</span></span><br><span class="line">    inds1 = <span class="number">-1</span></span><br><span class="line">    inds2 = <span class="number">-1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(a)):</span><br><span class="line">        t = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i, len(a)):</span><br><span class="line">            t += a[j]</span><br><span class="line">            <span class="keyword">if</span> t &gt;= s:</span><br><span class="line">                s = t</span><br><span class="line">                inds1 = i</span><br><span class="line">                inds2 = j</span><br><span class="line">    <span class="keyword">return</span> s, inds1, inds2</span><br><span class="line"></span><br><span class="line">f2([<span class="number">1</span>,<span class="number">5</span>,<span class="number">-6</span>,<span class="number">7</span>,<span class="number">2</span>,<span class="number">-3</span>,<span class="number">-4</span>,<span class="number">8</span>,<span class="number">-9</span>,<span class="number">2</span>])</span><br></pre></td></tr></table></figure>
+<p>时间复杂度$O(n^2)$</p>
+</li>
+</ol>
+<ol start="3">
+<li><p>分而治之</p>
+<p><img src="/2018/12/02/computer science/数据结构第一讲：基本概念/WeChatWorkScreenshot_0e19ba0e-33b5-4c9b-acd2-34c90d48318f.png" alt></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f3_0</span><span class="params">(a, l, u)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> l &gt; u:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> l == u:</span><br><span class="line">        <span class="keyword">return</span> max(a[l], <span class="number">0</span>)</span><br><span class="line">    mid = (l + u) // <span class="number">2</span></span><br><span class="line">    lmax = s = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(mid, l<span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">        s += a[i]</span><br><span class="line">        lmax = max(lmax, s)</span><br><span class="line">    rmax = s = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(mid+<span class="number">1</span>, u+<span class="number">1</span>):</span><br><span class="line">        s += a[i]</span><br><span class="line">        rmax = max(rmax, s)</span><br><span class="line">    <span class="keyword">return</span> max(lmax+rmax, f3_0(a, l, mid), f3_0(a, mid+<span class="number">1</span>, u))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f3</span><span class="params">(a)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> f3_0(a, <span class="number">0</span>, len(a)<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 求三个数最大值方法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getmax</span><span class="params">(x, y, z)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> (x &gt;= y) &amp; (x &gt;= z):</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line">    <span class="keyword">return</span> getmax(y, z, x)</span><br><span class="line"></span><br><span class="line">f3([<span class="number">1</span>,<span class="number">5</span>,<span class="number">-6</span>,<span class="number">7</span>,<span class="number">2</span>,<span class="number">-3</span>,<span class="number">-4</span>,<span class="number">8</span>,<span class="number">-9</span>,<span class="number">2</span>])</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ol>
+<ol start="4">
+<li><p>在线处理</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f4</span><span class="params">(a)</span>:</span></span><br><span class="line">    s = <span class="number">0</span></span><br><span class="line">    t = <span class="number">0</span></span><br><span class="line">    inds1 = <span class="number">-1</span></span><br><span class="line">    inds2 = <span class="number">-1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(a)):</span><br><span class="line">        t = t + a[i]</span><br><span class="line">        <span class="keyword">if</span> t &gt;= s:</span><br><span class="line">            s = t</span><br><span class="line">            <span class="keyword">if</span> inds1 == <span class="number">-1</span>:</span><br><span class="line">                inds1 = i</span><br><span class="line">            inds2 = i</span><br><span class="line">        <span class="keyword">elif</span> t &gt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            t = <span class="number">0</span></span><br><span class="line">            inds1 = <span class="number">-1</span></span><br><span class="line">    <span class="keyword">return</span> s, inds1, inds2</span><br><span class="line"></span><br><span class="line">f4([<span class="number">1</span>,<span class="number">5</span>,<span class="number">-6</span>,<span class="number">7</span>,<span class="number">2</span>,<span class="number">-3</span>,<span class="number">-4</span>,<span class="number">8</span>,<span class="number">-9</span>,<span class="number">2</span>])</span><br></pre></td></tr></table></figure>
+<p>在线处理的逻辑核心其实是一种链式增强的传播效应。</p>
+<p>用索引指代对应的数，符号指代其正负（e.g. (0)+表示第一位为正数）。当（0）+，（0+1）+，那么必然有（0+1+2）&gt;=（1+2）。</p>
+</li>
+</ol>
+<p>注意循环的边界，什么时候j+1,什么时候不要。从i开始还是i+1开始。</p>
+<p>需要注意细节处理，条件是否取等号影响到是否取到的是最短子列，以上实现取到的都是最后出现的最短子列。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/02/development/environment/install vps/" rel="next" title="install vps">
+                <i class="fa fa-chevron-left"></i> install vps
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/02/development/environment/host-blog-with-hexo-nginx-github/" rel="prev" title="host-blog-with-hexo-nginx-github">
+                host-blog-with-hexo-nginx-github <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">muzhen</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">346</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">112</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-1-什么是数据结构"><span class="nav-number">1.</span> <span class="nav-text">1.1 什么是数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#书架放书"><span class="nav-number">1.1.</span> <span class="nav-text">书架放书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打印数列"><span class="nav-number">1.2.</span> <span class="nav-text">打印数列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多项式计算"><span class="nav-number">1.3.</span> <span class="nav-text">多项式计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是数据结构"><span class="nav-number">1.4.</span> <span class="nav-text">什么是数据结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-2-什么是算法"><span class="nav-number">2.</span> <span class="nav-text">1.2 什么是算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-3-最大子列和问题"><span class="nav-number">3.</span> <span class="nav-text">1.3 最大子列和问题</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">muzhen</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

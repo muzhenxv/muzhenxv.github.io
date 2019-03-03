@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="environment本机环境： E5 2670V2 GTX1080TI install drivers安装一张亮机卡，然后安装ubuntu16.04。我有尝试过直接装好gtx1080ti安装系统。装好后无法进入桌面，也无法进入命令行。按左shift也无法进入grub。如果使用i7这样带集显的cpu情况未知，e5不带集显。但是如果采用i7，可能需要有禁用ubuntu集成显卡驱动nouveau的操作">
+<meta name="keywords" content="ubuntu,gpu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu16.04 install gtx1080ti+cuda+tensorflow">
+<meta property="og:url" content="http://www.muzhen.tk/2017/08/10/development/environment/ubuntu16.04 install gtx1080ti+cuda+tensorflow/index.html">
+<meta property="og:site_name" content="the Home of MuZhen">
+<meta property="og:description" content="environment本机环境： E5 2670V2 GTX1080TI install drivers安装一张亮机卡，然后安装ubuntu16.04。我有尝试过直接装好gtx1080ti安装系统。装好后无法进入桌面，也无法进入命令行。按左shift也无法进入grub。如果使用i7这样带集显的cpu情况未知，e5不带集显。但是如果采用i7，可能需要有禁用ubuntu集成显卡驱动nouveau的操作">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-02-28T12:45:06.521Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ubuntu16.04 install gtx1080ti+cuda+tensorflow">
+<meta name="twitter:description" content="environment本机环境： E5 2670V2 GTX1080TI install drivers安装一张亮机卡，然后安装ubuntu16.04。我有尝试过直接装好gtx1080ti安装系统。装好后无法进入桌面，也无法进入命令行。按左shift也无法进入grub。如果使用i7这样带集显的cpu情况未知，e5不带集显。但是如果采用i7，可能需要有禁用ubuntu集成显卡驱动nouveau的操作">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.muzhen.tk/2017/08/10/development/environment/ubuntu16.04 install gtx1080ti+cuda+tensorflow/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>ubuntu16.04 install gtx1080ti+cuda+tensorflow | the Home of MuZhen</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">the Home of MuZhen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/08/10/development/environment/ubuntu16.04 install gtx1080ti+cuda+tensorflow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ubuntu16.04 install gtx1080ti+cuda+tensorflow
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-08-10 21:36:18" itemprop="dateCreated datePublished" datetime="2017-08-10T21:36:18+08:00">2017-08-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="environment"><a href="#environment" class="headerlink" title="environment"></a>environment</h1><p>本机环境： E5 2670V2 GTX1080TI</p>
+<h1 id="install-drivers"><a href="#install-drivers" class="headerlink" title="install drivers"></a>install drivers</h1><p>安装一张亮机卡，然后安装ubuntu16.04。我有尝试过直接装好gtx1080ti安装系统。装好后无法进入桌面，也无法进入命令行。按左shift也无法进入grub。如果使用i7这样带集显的cpu情况未知，e5不带集显。但是如果采用i7，可能需要有禁用ubuntu集成显卡驱动nouveau的操作，e5不需要。</p>
+<p>装好后进入系统通过下方ppa方式安装驱动。如果是在nvidia官网下载deb包则无法安装，因为会要求有nvidia显卡在机器上。</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo<span class="built_in"> add-apt-repository </span>ppa:graphics-drivers/ppa</span><br><span class="line">sudo apt-get update </span><br><span class="line">sudo apt-get install nvidia-384</span><br><span class="line">sudo apt-get install mesa-common-dev </span><br><span class="line">sudo apt-get install freeglut3-dev</span><br><span class="line"><span class="comment"># then restart system</span></span><br></pre></td></tr></table></figure>
+<p>装上驱动后关闭电脑换上gtx1080ti然后启动电脑进入下一步。</p>
+<h1 id="install-cuda"><a href="#install-cuda" class="headerlink" title="install cuda"></a>install cuda</h1><p>官网下载cuda8.0,选择.run文件下载。deb没有尝试过。在安装时会提示是否安装驱动nvidia-375或其他版本号，选择n，因为我们在上一步已经安装好驱动。我选择安装的是最新的384驱动。对于安装开始时显示的一大串文字，可以按ctrl+c直接到100%。</p>
+<p><a href="https://developer.nvidia.com/cuda-downloads" target="_blank" rel="noopener">download cuda</a></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">sudo</span> <span class="selector-tag">sh</span> <span class="selector-tag">cuda_8</span><span class="selector-class">.0</span><span class="selector-class">.27_linux</span><span class="selector-class">.run</span></span><br></pre></td></tr></table></figure>
+<p>when install cuda,it will let you choose whether install nvidia-375 or not. Choose n(no),because you have installed nvidia-driver.</p>
+<p>安装好后配置环境变量，将以下内容写入 /etc/profile。网上有写入～/.bashrc的教程（写入内容也有所区别），我试过不行。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=/usr/local/cuda-8.0/bin:$PATH</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">LD_LIBRARY_PATH</span>=/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH</span><br></pre></td></tr></table></figure>
+<p>写入后通过 <code>source /etc/profile</code> 使设置生效。</p>
+<p>关闭shell在重开后用 <code>nvcc -V</code> 验证是否安装成功。最好能运行安装的samples来进行严格验证。方法见references给出的链接。</p>
+<h1 id="install-cudnn"><a href="#install-cudnn" class="headerlink" title="install cudnn"></a>install cudnn</h1><p>去官网下载cudnn，选择5.1版本。最好不要选择高版本。那样会报错虽然可以找到解决方案，见<a href="https://stackoverflow.com/questions/42013316/after-building-tensorflow-from-source-seeing-libcudart-so-and-libcudnn-errors" target="_blank" rel="noopener">After building TensorFlow from source, seeing libcudart.so and libcudnn errors</a>。</p>
+<p>进入下载的文件所在文件夹，执行以下命令</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar -xzf cudnn-<span class="number">8.0</span>-linux-x64-v5.<span class="number">1</span>.tgz</span><br><span class="line">cd cuda</span><br><span class="line">sudo cp lib64<span class="regexp">/* /u</span>sr<span class="regexp">/local/</span>cuda<span class="regexp">/lib64/</span></span><br><span class="line">sudo cp include<span class="regexp">/* /u</span>sr<span class="regexp">/local/</span>cuda<span class="regexp">/include/</span></span><br></pre></td></tr></table></figure>
+<h1 id="install-anaconda"><a href="#install-anaconda" class="headerlink" title="install anaconda"></a>install anaconda</h1><p><strong><em>选择Anaconda3-4.2.0-Linux-x86_64.sh，在本文写成（2017年7月7日）之时，tensorflow最高只支持python3.5和python2.7，因此选择此版本</em></strong>。国内可以通过清华源下载。</p>
+<h1 id="install-tensorflow-amp-keras"><a href="#install-tensorflow-amp-keras" class="headerlink" title="install tensorflow&amp;keras"></a>install tensorflow&amp;keras</h1><p>通过pip3方式安装。</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 <span class="keyword">install</span> tensorflow-gpu</span><br><span class="line">pip3 <span class="keyword">install</span> keras</span><br></pre></td></tr></table></figure>
+<p>收工。</p>
+<h1 id="uninstall-nvidia"><a href="#uninstall-nvidia" class="headerlink" title="uninstall nvidia"></a>uninstall nvidia</h1><p>如果想要卸载nvidia相关，可见Removing nvidia cuda toolkit and installing new one](<a href="https://askubuntu.com/questions/530043/removing-nvidia-cuda-toolkit-and-installing-new-one" target="_blank" rel="noopener">https://askubuntu.com/questions/530043/removing-nvidia-cuda-toolkit-and-installing-new-one</a>)</p>
+<p>查看安装的nvidia包</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -l <span class="string">| grep -i nvidia</span></span><br></pre></td></tr></table></figure>
+<p>This method will give a complete removal of Cuda:</p>
+<p>Simple</p>
+<p>remove the CUDA files in /usr/local/cuda-5.0</p>
+<p>Advanced</p>
+<p>Uninstall just nvidia-cuda-toolkit</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> <span class="builtin-name">remove</span> nvidia-cuda-toolkit</span><br></pre></td></tr></table></figure>
+<p>Uninstall nvidia-cuda-toolkit and it’s dependencies</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> <span class="builtin-name">remove</span> --auto-<span class="builtin-name">remove</span> nvidia-cuda-toolkit</span><br></pre></td></tr></table></figure>
+<p>Purging config/data</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> purge nvidia-cuda-toolkit <span class="keyword">or</span> sudo apt-<span class="builtin-name">get</span> purge --auto-<span class="builtin-name">remove</span> nvidia-cuda-toolkit</span><br></pre></td></tr></table></figure>
+<p>Additionally, delete the /opt/cuda and ~/NVIDIA_GPU_Computing_SDK folders if they are present. and remove the export PATH=$PATH:/opt/cuda/bin and export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/cuda/lib:/opt/cuda/lib64 lines of the ~/.bash_profile file</p>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://www.jianshu.com/p/5b708817f5d8?from=groupmessage" target="_blank" rel="noopener">Ubuntu16.04 + 1080Ti深度学习环境配置教程</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
+          
+            <a href="/tags/gpu/" rel="tag"># gpu</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/08/development/develepment/debug/" rel="next" title="debug">
+                <i class="fa fa-chevron-left"></i> debug
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/25/python/traceback/" rel="prev" title="traceback">
+                traceback <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">muzhen</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">346</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">112</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#environment"><span class="nav-number">1.</span> <span class="nav-text">environment</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-drivers"><span class="nav-number">2.</span> <span class="nav-text">install drivers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-cuda"><span class="nav-number">3.</span> <span class="nav-text">install cuda</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-cudnn"><span class="nav-number">4.</span> <span class="nav-text">install cudnn</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-anaconda"><span class="nav-number">5.</span> <span class="nav-text">install anaconda</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-tensorflow-amp-keras"><span class="nav-number">6.</span> <span class="nav-text">install tensorflow&amp;keras</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#uninstall-nvidia"><span class="nav-number">7.</span> <span class="nav-text">uninstall nvidia</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#references"><span class="nav-number">8.</span> <span class="nav-text">references</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">muzhen</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

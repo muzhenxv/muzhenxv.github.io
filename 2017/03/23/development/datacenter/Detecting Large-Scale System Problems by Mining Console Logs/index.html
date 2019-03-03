@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="原文链接Detecting Large-Scale System Problems by Mining Console Logs 摘要console log是被独立开发者所写的许多软件反馈信息的混合。惊奇的是，log很少能够帮助操作者侦测大规模数据中心服务器的问题。我们提出了一个一般方法论去通过这里丰富的信息源去自动侦测系统运行问题。首先，我们结合源码分析和信息检索去解析log，以此来创造合成特">
+<meta name="keywords" content="log,datacenter,detect">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Detecting Large-Scale System Problems by Mining Console Logs">
+<meta property="og:url" content="http://www.muzhen.tk/2017/03/23/development/datacenter/Detecting Large-Scale System Problems by Mining Console Logs/index.html">
+<meta property="og:site_name" content="the Home of MuZhen">
+<meta property="og:description" content="原文链接Detecting Large-Scale System Problems by Mining Console Logs 摘要console log是被独立开发者所写的许多软件反馈信息的混合。惊奇的是，log很少能够帮助操作者侦测大规模数据中心服务器的问题。我们提出了一个一般方法论去通过这里丰富的信息源去自动侦测系统运行问题。首先，我们结合源码分析和信息检索去解析log，以此来创造合成特">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://i1.piimg.com/567571/e2199d624f5440ef.png">
+<meta property="og:image" content="http://i4.buimg.com/567571/3bca69ffecc22d0c.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/696a19a03ea6c0f4.png">
+<meta property="og:updated_time" content="2019-02-28T12:45:06.517Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Detecting Large-Scale System Problems by Mining Console Logs">
+<meta name="twitter:description" content="原文链接Detecting Large-Scale System Problems by Mining Console Logs 摘要console log是被独立开发者所写的许多软件反馈信息的混合。惊奇的是，log很少能够帮助操作者侦测大规模数据中心服务器的问题。我们提出了一个一般方法论去通过这里丰富的信息源去自动侦测系统运行问题。首先，我们结合源码分析和信息检索去解析log，以此来创造合成特">
+<meta name="twitter:image" content="http://i1.piimg.com/567571/e2199d624f5440ef.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.muzhen.tk/2017/03/23/development/datacenter/Detecting Large-Scale System Problems by Mining Console Logs/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Detecting Large-Scale System Problems by Mining Console Logs | the Home of MuZhen</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">the Home of MuZhen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/03/23/development/datacenter/Detecting Large-Scale System Problems by Mining Console Logs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Detecting Large-Scale System Problems by Mining Console Logs
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-03-23 14:49:20" itemprop="dateCreated datePublished" datetime="2017-03-23T14:49:20+08:00">2017-03-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/datacenter/" itemprop="url" rel="index"><span itemprop="name">datacenter</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="原文链接"><a href="#原文链接" class="headerlink" title="原文链接"></a>原文链接</h1><p><a href="http://iiis.tsinghua.edu.cn/~weixu/files/sosp09.pdf" target="_blank" rel="noopener">Detecting Large-Scale System Problems by Mining Console Logs</a></p>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>console log是被独立开发者所写的许多软件反馈信息的混合。惊奇的是，log很少能够帮助操作者侦测大规模数据中心服务器的问题。我们提出了一个一般方法论去通过这里丰富的信息源去自动侦测系统运行问题。<br>首先，我们结合源码分析和信息检索去解析log，以此来创造合成特征。然后，我们使用机器学习去分析这些特征来侦测系统问题。由于我们的方法具有较高的创造合成特征的能力，因此它可以分析出那些先前方法分析不出的问题。<br>我们同样展示了怎样提炼我们的分析结果到一个操作友好的单页决策树去列出一些对于所侦测问题至关重要的信息。我们使用Darkstar在线游戏服务和Hadoop文件系统数据集验证了我们的方法，它们以高精度和低假阳性率侦测出了许多真实问题。<br>在Hadoop案例中，我们能够在3min中内分析24百万条log。我们的方法可以工作于任意大小的log源数据上，不需要对服务软件进行修改，不需要人为输入，也不需要关于软件核心的知识。</p>
+<h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h1><p>当一个由成百上千个运行着成百上千软件的电脑组成的大规模数据中心出现问题时，运维人员需要使用各种工具去侦测系统问题。<br>讽刺的是，有一个信息源，它囊括了几乎每种软件的细节信息，但却被经常忽略，它就是精简的console log。那些细节信息反映了软件原始开发者对于显著和不寻常活动的想法。</p>
+<p>由于不同软件log形式不一致，而且由于软件的频繁修订和更新，导致log很混乱。我们的目标就是提供更好的工具去从log中提取价值。</p>
+<p>由于log数据太庞大以至于不能人工检查，同时太不结构化以至于无法自动分析，因此运维人员往往通过搜索‘eroor’，’critical’之类关键词的方式来提取信息，但这已被表明对于侦测问题而言是不充分的。<br>而基于规则的处理过程是一个改进，但由于缺乏关于特殊软件成分的细节性知识，以及被各成分的交互所影响，依旧难以写出规则，去检出最相关的log。<br>代替要求用户去检测这一方式，我们提供了工具去自动发现有效的log信息。</p>
+<p>由于不寻常的log信息通常表明了问题的根源，将之格式化机器学习中的异常检测问题是合理的。但是，用现有的方法并不能很好的解决这个问题，他是一个在不同种类log信息及其关系中进行异常检测的问题。<br>因此，相较于分析log中的字词，我们创造特征去精确捕获log之间各种各样的相关关系，然后通过这些特征去进行异常检测。创造这些特征需要利用源码信息去扩充log解析过程，这正是我们方法贡献的一部分。</p>
+<p>我们研究很多应用于网络服务上的流行软件系统的log和源码，观察到console log比他看起来的更有结构性：‘schema’的定义隐含在log中，并可以从程序源码中发现。这个发现是我们log解析方法的关键，将可以导出细节和精确的特征。<br>我们相信开源软件开源代码的获取并不是我们方法的实践缺点。</p>
+<p>我们的贡献是一个一般的四步法，它允许机器学习和信息检索技术被用于大海捞针，发现系统问题，而不需要人工输入。特别的，我们的方法包含了以下四个贡献：</p>
+<ol>
+<li>通过分析源码来发现log中隐含结构的技术;</li>
+<li>log中信息的识别和特征的创造生成;</li>
+<li>从大数据集中有效侦测异常的机器学习和信息检索方法论的证明;</li>
+<li>异常侦测结果的一个合适、自动、用户友好的可视化构建方法。</li>
+</ol>
+<p>我们对log的分析可以深入细节层，可以并行化。</p>
+<p>我们使用两个数据集做了验证。在Darkstar中，我们可以即时检测行为异常并提供异常原因的线索。在Hadoop中，我们可以探测运行时间异常这一经常被忽视的问题，并将结果可视化。</p>
+<p>第二部分提供了我们方法的概要，第三部分从细节层面描述了我们的log解析技术，第四和第五部分阐明了特征创造和异常检测的结果，<br>第六部分评估了我们的方法并讨论了可视化技术，第七部分讨论了一些扩展和提出了改进log质量的建议，第八部分总结了相关工作，第九部分描述了一些结论。</p>
+<h1 id="2-方法概览"><a href="#2-方法概览" class="headerlink" title="2. 方法概览"></a>2. 方法概览</h1><h2 id="2-1-信息被埋藏在log之中"><a href="#2-1-信息被埋藏在log之中" class="headerlink" title="2.1 信息被埋藏在log之中"></a>2.1 信息被埋藏在log之中</h2><p>重要信息被埋藏在大量log之中。为了自动分析log，我们需要创造高质量特征，实现log信息的数值表示，以便用于机器学习算法。以下三个关键观察导致了我们对这个问题的解决方法。</p>
+<p><strong>源码是log的‘schema’。</strong> 尽管log可以以任意的文本格式出现，但实际上他们相当结构化，因为他们被系统中相对较小的log打印陈述规则集合所生成。</p>
+<p>考虑图1中所展示的简单的log摘录和产生他们的源码。直觉上，使用源码信息去发现log的隐藏‘schema’是容易的。我们利用源码分析去发现log的固有结构。<br>我们方法的最显著优点是能够精确解析所有可能的log信息，即使是很少出现的log信息。另外，我们可以利用存在的方法去删除大部分启发式和猜测式的log解析。</p>
+<p><img src="http://i1.piimg.com/567571/e2199d624f5440ef.png" alt></p>
+<p><strong>通用的log结构导致有用的特征。</strong> 在这篇论文中，我们将log的常量部分称作<em>信息类型（message types）</em>，变量部分称作<em>信息变量（meassge variables）</em>。</p>
+<p>我们仅仅将常量字符串标记为信息类型，完全忽视它们的语义。</p>
+<p>信息变量也包含了至关重要的信息。我们识别了两个重要的信息变量：时间戳和各种各样的计数。</p>
+<p><em>识别器（identifiers）</em>是用于识别客体的变量。而<em>状态变量（state vars）</em>是用于列举客体有的一系列可能状态的标签。我们可以基于频率判别一个给定的变量是识别器还是状态变量。表1给出了例子。直觉上，状态变量会有相对小的不同值，而识别器会有相对大的不同值（细节在第四部分）。</p>
+<p><img src="http://i4.buimg.com/567571/3bca69ffecc22d0c.png" alt></p>
+<p>信息类型和变量包含了重要的信息。但是，缺少工具去抽取这些结构。操作者要么忽视他们，要么手工花时间梳理他们。</p>
+<p>我们的log解析方法允许我们使用结构化信息，例如信息类型和变量，去自动创造特征捕获log信息。据我们所知，这是工作是首次从log中抽取信息到这个粒度水平。</p>
+<p><strong>信息强相关。</strong> 当log被合适的分组，组内信息具有强和稳定的相关性。例如，包含了特定文件名称的信息是高度相关的，因为它们很可能来自于系统中逻辑相关的操作步骤。</p>
+<p>一组相关信息往往比起个体信息对问题具有更好的指示作用。 许多异常仅仅被不完全的信息片段所指出。例如，一个文件写入操作悄然失败（或许是因为开发者没有正确的处理报错机制），并没有一个单个的错误信息可以指出故障。但是，通过相同文件的相关信息，我们可以通过观察到相应的关闭文件信息缺失来侦测写入故障。先前的研究仅仅利用时间窗口进行log分组，并且侦测精度会遭受噪音影响。我们基于更为精确的信息去进行log分组，例如使用上面提到的信息变量。在这种情况下，相关性更加强大更具可读性，因此异常相关更容易被侦测。</p>
+<h2 id="我们方法的工作流程"><a href="#我们方法的工作流程" class="headerlink" title="我们方法的工作流程"></a>我们方法的工作流程</h2><p><img src="http://i1.piimg.com/567571/696a19a03ea6c0f4.png" alt></p>
+<p>图2展示了我们挖掘工作通用框架的四个步骤。</p>
+<ol>
+<li><p>log解析。<br>我们首先将log从非结构化文本转化为（信息类别，一系列信息变量）的数据结构。我们从源码中得到了所有可能的log信息模板字符串，并将之与log匹配，从而发现log的结构。我们的实验表明我们可以在真实系统中获得高精度的解析。<br>有系统使用了结构化追踪，例如BerkelyDB。既然这样，由于log已经被结构化了，我们可以跳过这个步骤，直接使用我们的特征创造和异常检测方法。注意这些结构化log仍然包含了识别器和状态变量。</p>
+</li>
+<li><p>特征创造。<br>下一步，我们通过对相关信息分组，并选择合适的变量，来构造特征向量。在这篇论文中，我们集中于构造状态比率向量和信息计数向量特征，这些在先前的研究中没有被探索。在我们对两个大规模真实统的实验中，这些特征都带来了很好的侦测结果。</p>
+</li>
+<li><p>异常检测。<br>然后，我们使用异常检测方法去挖掘特征向量，给每个特征向量打上正常或不正常的标签。我们发现基于主成分分析的异常侦测方法在这些特征上已经可以做的非常好。这是一个非监督学习算法，可以排除来自运维人员的先验需求，直接让所有的参数被自动选择或者轻松的进行调整。尽管我们使用了这一特殊的机器学习算法，它并不是我们方法的本质所在，利用不同抽取特征的不同算法可以轻易对我们的框架进行拓展。</p>
+</li>
+<li><p>可视化。<br>最后，为了让运维人员更好的理解侦测结果，我们利用决策树对结果做了可视化。相较于PCA侦测器，决策树以类似于活动处理规则的形式，提供了问题是如何被侦测到的更为细节的解释。</p>
+</li>
+</ol>
+<h2 id="2-3-案例研究与数据收集"><a href="#2-3-案例研究与数据收集" class="headerlink" title="2.3 案例研究与数据收集"></a>2.3 案例研究与数据收集</h2><p>我们研究了22个被广泛部署的开源系统的源码和log。表2总结了成果。尽管这些系统本质上不同，它们在不同的时间被不同的开发者用不同的语言开发，其中20个系统还使用任意的log文本格式，我们基于源码的log解析应用到了全部20个系统上。有趣的是，</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/log/" rel="tag"># log</a>
+          
+            <a href="/tags/datacenter/" rel="tag"># datacenter</a>
+          
+            <a href="/tags/detect/" rel="tag"># detect</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/23/machine learning/machine learning/回归树/" rel="next" title="回归树">
+                <i class="fa fa-chevron-left"></i> 回归树
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/23/machine learning/optimization/EM算法/" rel="prev" title="EM算法">
+                EM算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">muzhen</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">346</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">112</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原文链接"><span class="nav-number">1.</span> <span class="nav-text">原文链接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#摘要"><span class="nav-number">2.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-介绍"><span class="nav-number">3.</span> <span class="nav-text">1. 介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-方法概览"><span class="nav-number">4.</span> <span class="nav-text">2. 方法概览</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-信息被埋藏在log之中"><span class="nav-number">4.1.</span> <span class="nav-text">2.1 信息被埋藏在log之中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我们方法的工作流程"><span class="nav-number">4.2.</span> <span class="nav-text">我们方法的工作流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-案例研究与数据收集"><span class="nav-number">4.3.</span> <span class="nav-text">2.3 案例研究与数据收集</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">muzhen</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

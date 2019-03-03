@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="xgboost feature_names mismatch在使用xgboost的时候出现这个问题，就是字面意思，列不匹配。而我出现的这个问题的原因则是因为，我使用了一个稀疏矩阵train_test_split分割后进行训练和预测。但是，分割之后的矩阵很可能出现某列都是0的情况，一旦这样，则进行xgb.DMatrix变换时，会缺失这一列信息（丢弃这一列，），也就出现了列名和实际列数对不上的情况。">
+<meta name="keywords" content="error">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Q&amp;A">
+<meta property="og:url" content="http://www.muzhen.tk/2018/01/18/machine learning/error-process/Q&A/index.html">
+<meta property="og:site_name" content="the Home of MuZhen">
+<meta property="og:description" content="xgboost feature_names mismatch在使用xgboost的时候出现这个问题，就是字面意思，列不匹配。而我出现的这个问题的原因则是因为，我使用了一个稀疏矩阵train_test_split分割后进行训练和预测。但是，分割之后的矩阵很可能出现某列都是0的情况，一旦这样，则进行xgb.DMatrix变换时，会缺失这一列信息（丢弃这一列，），也就出现了列名和实际列数对不上的情况。">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-02-28T12:45:06.541Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Q&amp;A">
+<meta name="twitter:description" content="xgboost feature_names mismatch在使用xgboost的时候出现这个问题，就是字面意思，列不匹配。而我出现的这个问题的原因则是因为，我使用了一个稀疏矩阵train_test_split分割后进行训练和预测。但是，分割之后的矩阵很可能出现某列都是0的情况，一旦这样，则进行xgb.DMatrix变换时，会缺失这一列信息（丢弃这一列，），也就出现了列名和实际列数对不上的情况。">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.muzhen.tk/2018/01/18/machine learning/error-process/Q&A/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Q&A | the Home of MuZhen</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">the Home of MuZhen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2018/01/18/machine learning/error-process/Q&A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Q&A
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-01-18 10:47:56" itemprop="dateCreated datePublished" datetime="2018-01-18T10:47:56+08:00">2018-01-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/error-process/" itemprop="url" rel="index"><span itemprop="name">error-process</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="xgboost-feature-names-mismatch"><a href="#xgboost-feature-names-mismatch" class="headerlink" title="xgboost feature_names mismatch"></a>xgboost feature_names mismatch</h1><p>在使用xgboost的时候出现这个问题，就是字面意思，列不匹配。而我出现的这个问题的原因则是因为，我使用了一个稀疏矩阵train_test_split分割后进行训练和预测。但是，分割之后的矩阵很可能出现某列都是0的情况，一旦这样，则进行xgb.DMatrix变换时，会缺失这一列信息（丢弃这一列，），也就出现了列名和实际列数对不上的情况。</p>
+<p>但是这一情况仅仅出现在trian过程，在predict过程进行某列都是0也不影响。</p>
+<h1 id="xgbosot-get-fsocre输出为空字典"><a href="#xgbosot-get-fsocre输出为空字典" class="headerlink" title="xgbosot get_fsocre输出为空字典"></a>xgbosot get_fsocre输出为空字典</h1><p>需要在训练时加上参数 bias_score,奇怪的是这本身就是一个有值的默参，不能理解为什么一定要显式指定。仅为mac测试。</p>
+<h1 id="xgb预测时加上-model-bset-iteration或其他两个参数时，输出概率为负"><a href="#xgb预测时加上-model-bset-iteration或其他两个参数时，输出概率为负" class="headerlink" title="xgb预测时加上 model.bset_iteration或其他两个参数时，输出概率为负"></a>xgb预测时加上 model.bset_iteration或其他两个参数时，输出概率为负</h1><p>因为在传参时没有使用ntree_limit=bst.best_iteration,而是直接传了bst.best_iteration,但是predict方法第二个参数根本不是ntree_limit!所以传参最好正规化，使用参数名=？的方式！</p>
+<h1 id="xgb-的bst-best-iteration和bst-best-ntree-limit有什么区别"><a href="#xgb-的bst-best-iteration和bst-best-ntree-limit有什么区别" class="headerlink" title="xgb 的bst.best_iteration和bst.best_ntree_limit有什么区别"></a>xgb 的bst.best_iteration和bst.best_ntree_limit有什么区别</h1><p>best_iteration是指最佳迭代次数，从0开始计数。best.best_ntree_limit是指最佳树的数量，所以比迭代次数大1，因为树的数量是从1开始数的。</p>
+<p>如果booster=’gbtree’,那么这两个参数都是有的，如果booster=’gblinear’，那么只有best_iteration，因为不存在树的说法。</p>
+<p>在使用bst.predict时，如果想要指定ntree_limit,对于’gbtree’直接使用best_ntree_limit就可以了，对于’gblinear’可以使用best_iteration+1的方式。（是否可以有一样的效果没严格考证）</p>
+<h1 id="sklearn-TfidfVectorizer-变换后出现了没有文本中没有的词，而且词数和文本的词数对不上"><a href="#sklearn-TfidfVectorizer-变换后出现了没有文本中没有的词，而且词数和文本的词数对不上" class="headerlink" title="sklearn TfidfVectorizer 变换后出现了没有文本中没有的词，而且词数和文本的词数对不上"></a>sklearn TfidfVectorizer 变换后出现了没有文本中没有的词，而且词数和文本的词数对不上</h1><p>需要注意TfidfVectorizer有几个参数，lowercase, max_df, min_df，出现没有的词其实是做了小写变换出现的，词数对不上也是这三个参数的原因。</p>
+<h1 id="pandas-groupby组内顺序会按照df本身的内部顺序么？"><a href="#pandas-groupby组内顺序会按照df本身的内部顺序么？" class="headerlink" title="pandas groupby组内顺序会按照df本身的内部顺序么？"></a>pandas groupby组内顺序会按照df本身的内部顺序么？</h1><p>会！</p>
+<p><a href="https://stackoverflow.com/questions/8409498/attributeerror-numpy-ndarray-object-has-no-attribute-append" target="_blank" rel="noopener">[AttributeError: ‘numpy.ndarray’ object has no attribute ‘append’]</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/error/" rel="tag"># error</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/17/machine learning/optimization/search algorithm/" rel="next" title="search algorithm">
+                <i class="fa fa-chevron-left"></i> search algorithm
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/20/development/develepment/elasticsearch/" rel="prev" title="elasticsearch">
+                elasticsearch <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">muzhen</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">346</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">112</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#xgboost-feature-names-mismatch"><span class="nav-number">1.</span> <span class="nav-text">xgboost feature_names mismatch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xgbosot-get-fsocre输出为空字典"><span class="nav-number">2.</span> <span class="nav-text">xgbosot get_fsocre输出为空字典</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xgb预测时加上-model-bset-iteration或其他两个参数时，输出概率为负"><span class="nav-number">3.</span> <span class="nav-text">xgb预测时加上 model.bset_iteration或其他两个参数时，输出概率为负</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xgb-的bst-best-iteration和bst-best-ntree-limit有什么区别"><span class="nav-number">4.</span> <span class="nav-text">xgb 的bst.best_iteration和bst.best_ntree_limit有什么区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sklearn-TfidfVectorizer-变换后出现了没有文本中没有的词，而且词数和文本的词数对不上"><span class="nav-number">5.</span> <span class="nav-text">sklearn TfidfVectorizer 变换后出现了没有文本中没有的词，而且词数和文本的词数对不上</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pandas-groupby组内顺序会按照df本身的内部顺序么？"><span class="nav-number">6.</span> <span class="nav-text">pandas groupby组内顺序会按照df本身的内部顺序么？</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">muzhen</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="单元测试是对程序中最小的可测试模块——函数来进行测试。被测对象一定要有输出结果，哪怕是异常也需要有异常输出，只有这样单元测试才能够捕获返回值，并且与预期值进行比较，从而得出测试通过与否。 但是对于python自带的exception或者error输出，其实不显式指定是捕获不到的，那么应当如何处理这种情况呢？我个人的理解是这并不重要。比如因为传参类型报错，我们不可能对于各种情况都去进行unittes">
+<meta name="keywords" content="python,unittest">
+<meta property="og:type" content="article">
+<meta property="og:title" content="unittest">
+<meta property="og:url" content="http://www.muzhen.tk/2018/12/01/python/unittest/index.html">
+<meta property="og:site_name" content="the Home of MuZhen">
+<meta property="og:description" content="单元测试是对程序中最小的可测试模块——函数来进行测试。被测对象一定要有输出结果，哪怕是异常也需要有异常输出，只有这样单元测试才能够捕获返回值，并且与预期值进行比较，从而得出测试通过与否。 但是对于python自带的exception或者error输出，其实不显式指定是捕获不到的，那么应当如何处理这种情况呢？我个人的理解是这并不重要。比如因为传参类型报错，我们不可能对于各种情况都去进行unittes">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-02-28T12:45:06.545Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="unittest">
+<meta name="twitter:description" content="单元测试是对程序中最小的可测试模块——函数来进行测试。被测对象一定要有输出结果，哪怕是异常也需要有异常输出，只有这样单元测试才能够捕获返回值，并且与预期值进行比较，从而得出测试通过与否。 但是对于python自带的exception或者error输出，其实不显式指定是捕获不到的，那么应当如何处理这种情况呢？我个人的理解是这并不重要。比如因为传参类型报错，我们不可能对于各种情况都去进行unittes">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.muzhen.tk/2018/12/01/python/unittest/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>unittest | the Home of MuZhen</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">the Home of MuZhen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2018/12/01/python/unittest/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">unittest
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-12-01 20:20:39" itemprop="dateCreated datePublished" datetime="2018-12-01T20:20:39+08:00">2018-12-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>单元测试是对程序中最小的可测试模块——函数来进行测试。被测对象一定要有输出结果，哪怕是异常也需要有异常输出，只有这样单元测试才能够捕获返回值，并且与预期值进行比较，从而得出测试通过与否。</p>
+<p>但是对于python自带的exception或者error输出，其实不显式指定是捕获不到的，那么应当如何处理这种情况呢？我个人的理解是这并不重要。比如因为传参类型报错，我们不可能对于各种情况都去进行unittest，并且都去在原函数中写exception，何况python自己就会报错告诉我们错在哪里。我们写unittest应该是我们所希望实现的函数功能是不是得到了正确实现，而不是报错。换言之，函数虽然可以运行但其实和我们预想的不一样这才是我们真正需要担心并unittest的地方！</p>
+<h1 id="unittest-框架"><a href="#unittest-框架" class="headerlink" title="unittest 框架"></a>unittest 框架</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cls</span><br><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">clsTestCase</span><span class="params">(unittest.TestCase)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setUp</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.cls = cls()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">teardown</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.cls = <span class="keyword">None</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_func1</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.assertEqual(self.cls.func1,expect1)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_func2</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.assertRaises(Exception,self.cls.func2,func2_params)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ <span class="string">'__main__'</span>:</span><br><span class="line">    unittest.main()</span><br></pre></td></tr></table></figure>
+<p>unittest代码基本是以上代码格式，需要注意的点：</p>
+<ol>
+<li>cls为需要测试的类。一般把unittest类名起为clsTestCase</li>
+<li>class需要继承unittest.TestCase</li>
+<li>需要测试的函数必须都以test开头命名，不然测试不到。</li>
+<li>如果是测试Exception，func的参数不能直接传进func里面，而应该写成 <code>self.assertRaises(Exception,self.cls.func2,func2_params)</code></li>
+<li>最好有def setUp 和 def teardown 两个函数，用于对class中每个test函数测试前的初始化和测试后的清空。</li>
+</ol>
+<h1 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h1><p>如果希望对输出每个test func的测试情况，可以这样：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    <span class="comment">#unittest.main()</span></span><br><span class="line">    suite = unittest.TestLoader<span class="params">()</span><span class="string">.loadTestsFromTestCase</span><span class="params">(clsTestCase)</span></span><br><span class="line">    unittest.TextTestRunner<span class="params">(<span class="attr">verbosity</span>=2)</span><span class="string">.run</span><span class="params">(suite)</span></span><br></pre></td></tr></table></figure>
+<h1 id="setUp-amp-teardown"><a href="#setUp-amp-teardown" class="headerlink" title="setUp&amp;teardown"></a>setUp&amp;teardown</h1><p>unittest module包含了编写运行unittest的功能，自定义的test class都要继承unitest.TestCase类，<strong>test method要以test开头，运行顺序根据test method的名字排序</strong>，特殊方法:  </p>
+<ol>
+<li>setup():每个测试函数运行前运行  </li>
+<li>teardown():每个测试函数运行完后执行  </li>
+<li>setUpClass():必须使用@classmethod 装饰器,所有test运行前运行一次  </li>
+<li>tearDownClass():必须使用@classmethod装饰器,所有test运行完后运行一次  </li>
+</ol>
+<h1 id="unittest-skip"><a href="#unittest-skip" class="headerlink" title="unittest.skip"></a>unittest.skip</h1><p>可以使用unitest.skip装饰器族跳过test method或者test class,这些装饰器包括:  </p>
+<ol>
+<li>@unittest.skip(reason):无条件跳过测试，reason描述为什么跳过测试   </li>
+<li>@unittest.skipif(conditition,reason):condititon为true时跳过测试  </li>
+<li>@unittest.skipunless(condition,reason):condition不是true时跳过测试  </li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#这是一个自定义的skip decorrator</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">skipUnlessHasattr</span><span class="params">(obj, attr)</span>:</span></span><br><span class="line">  <span class="keyword">if</span> hasattr(obj, attr):</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> func: func</span><br><span class="line">  <span class="keyword">return</span> unittest.skip(<span class="string">"&#123;!r&#125; doesn't have &#123;!r&#125;"</span>.format(obj, attr))</span><br></pre></td></tr></table></figure>
+<h1 id="其他特殊方法"><a href="#其他特殊方法" class="headerlink" title="其他特殊方法"></a>其他特殊方法</h1><p>使用@unittest.expectedFailure装饰器，如果test失败了，这个test不计入失败的case数目</p>
+<h1 id="How-to-unit-test-complex-methods"><a href="#How-to-unit-test-complex-methods" class="headerlink" title="How to unit test complex methods"></a>How to unit test complex methods</h1><p><a href="https://stackoverflow.com/questions/257551/how-to-unit-test-complex-methods" target="_blank" rel="noopener">How to unit test complex methods</a></p>
+<h1 id="测试代码覆盖率"><a href="#测试代码覆盖率" class="headerlink" title="测试代码覆盖率"></a>测试代码覆盖率</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装所需包</span></span><br><span class="line">pip install coverage</span><br><span class="line"><span class="meta">#</span><span class="bash"> terminal运行unittest脚本</span></span><br><span class="line">coverage run test_mymath.py</span><br><span class="line"><span class="meta">#</span><span class="bash"> 在终端打印出信息</span></span><br><span class="line">coverage report -m</span><br><span class="line"><span class="meta">#</span><span class="bash"> 生成html文件夹</span></span><br><span class="line">coverage html</span><br><span class="line"><span class="meta">#</span><span class="bash"> 用浏览器打开其中index.html</span></span><br></pre></td></tr></table></figure>
+<h1 id="unittest报告"><a href="#unittest报告" class="headerlink" title="unittest报告"></a>unittest报告</h1><p><a href="https://github.com/muzhenxu/HTMLTestRunner_PY3" target="_blank" rel="noopener">HTMLTestRunner_PY3</a> repo提供了报告生成脚本和使用范例。范例中也提供了测试用例集合的构造方法。</p>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://www.jb51.net/article/55623.htm" target="_blank" rel="noopener">Python中unittest用法实例</a>  </p>
+<p><a href="http://www.tuicool.com/articles/RbEby2a" target="_blank" rel="noopener">如何测试代码覆盖率：coverage.py 简介</a>  </p>
+<p><a href="https://stackoverflow.com/questions/257551/how-to-unit-test-complex-methods" target="_blank" rel="noopener">How to unit test complex methods</a></p>
+<p><a href="https://www.cnblogs.com/znyyy/p/8086281.html" target="_blank" rel="noopener">Python3 unittest单元测试</a></p>
+<p><a href="https://www.cnblogs.com/feng0815/p/8045850.html" target="_blank" rel="noopener">Python单元测试unittest</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/unittest/" rel="tag"># unittest</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/01/python/获取脚本路径/" rel="next" title="获取脚本路径">
+                <i class="fa fa-chevron-left"></i> 获取脚本路径
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/01/pansee/film review/不二神探——王子鸣/" rel="prev" title="不二神探——王子鸣">
+                不二神探——王子鸣 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">muzhen</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">346</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">112</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#unittest-框架"><span class="nav-number">1.</span> <span class="nav-text">unittest 框架</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输出格式"><span class="nav-number">2.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#setUp-amp-teardown"><span class="nav-number">3.</span> <span class="nav-text">setUp&amp;teardown</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#unittest-skip"><span class="nav-number">4.</span> <span class="nav-text">unittest.skip</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他特殊方法"><span class="nav-number">5.</span> <span class="nav-text">其他特殊方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#How-to-unit-test-complex-methods"><span class="nav-number">6.</span> <span class="nav-text">How to unit test complex methods</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试代码覆盖率"><span class="nav-number">7.</span> <span class="nav-text">测试代码覆盖率</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#unittest报告"><span class="nav-number">8.</span> <span class="nav-text">unittest报告</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#references"><span class="nav-number">9.</span> <span class="nav-text">references</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">muzhen</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
