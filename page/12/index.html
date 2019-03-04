@@ -637,6 +637,210 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/08/05/machine learning/cv/ffmpeg/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/08/05/machine learning/cv/ffmpeg/" class="post-title-link" itemprop="url">ffmpeg</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-08-05 14:00:31" itemprop="dateCreated datePublished" datetime="2017-08-05T14:00:31+08:00">2017-08-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/cv/" itemprop="url" rel="index"><span itemprop="name">cv</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近在做物体识别方面的工作，整体流程是接收直播流，用yolo进行特定物体识别，推送处理后的视频流到指定地址。其中，需要用到ffmpeg进行处理。现将ffmpeg使用过程总结一下。</p>
+<h1 id="install"><a href="#install" class="headerlink" title="install"></a>install</h1><p>ffmpeg有一系列依赖包，可按照官网直接用<code>sudo apt-get</code>依次安装 <a href="https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu" target="_blank" rel="noopener">Compilation &amp; Installation</a></p>
+<p><code>sudo apt-get install ffmpeg</code></p>
+<h1 id="process"><a href="#process" class="headerlink" title="process"></a>process</h1><h2 id="编码格式"><a href="#编码格式" class="headerlink" title="编码格式"></a>编码格式</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffprobe <span class="selector-tag">input</span>.mp4</span><br></pre></td></tr></table></figure>
+<p>可以使用以上命令去查看文件的视频和音频编码格式</p>
+<h2 id="视频切割："><a href="#视频切割：" class="headerlink" title="视频切割："></a>视频切割：</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -<span class="selector-tag">i</span> <span class="selector-tag">input</span><span class="selector-class">.mp4</span> -ss <span class="number">0</span> -c copy -t <span class="number">60</span> -y output.mp4</span><br></pre></td></tr></table></figure>
+<p><code>-i</code> 表示待处理的视频源</p>
+<p><code>-ss</code>，<code>-t</code> 表示切割视频的起始时间点和切割时长。有两种写法：<code>0</code>，<code>00：01：20</code>。前者表示秒，后者是时:分:秒格式。</p>
+<p><code>-to</code> 表示结束时间点。 但如果 <code>-ss</code> 放在 <code>-i</code> 前面，则效果和 <code>-t</code> 一样。有的blog在这个问题上说反了，特此说明。只要 <code>-ss</code> 始终放 <code>-i</code> 后面，就不会出问题了。</p>
+<p><code>-y</code> 表示如果输出文件存在，则覆盖原文件</p>
+<p><code>-c</code> 表示编码器，是<code>-codec</code>的缩写。 <code>-c copy</code>指复制原视频编码流。</p>
+<p><code>-c:v -c:a</code> 表示分别指定视频音频编码流格式。也可以写成 <code>-vcodec -acodec</code>或者 <code>-c:0 -c:1</code>一般0是视频流，1是音频流。如果出现多音频流，可以用<code>-c:a:0</code>形式去选择。</p>
+<p><code>-vn -an</code> 分别表示屏蔽视频流，音频流。 </p>
+<p>在使用命令时好像必须同时指定视频流和音频流的处理，不能只指定某一个。</p>
+<h2 id="视频拼接："><a href="#视频拼接：" class="headerlink" title="视频拼接："></a>视频拼接：</h2><p>需要先将需要拼接的视频文件按以下格式保存在一个列表 list.txt 中：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">file</span> '/path/<span class="keyword">to</span>/file1'</span><br><span class="line"><span class="built_in">file</span> '/path/<span class="keyword">to</span>/file2'</span><br><span class="line"><span class="built_in">file</span> '/path/<span class="keyword">to</span>/file3'</span><br></pre></td></tr></table></figure></p>
+<p>然后使用一下命令拼接<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -f concat -<span class="selector-tag">i</span> list<span class="selector-class">.txt</span> -c copy output.mp4</span><br></pre></td></tr></table></figure></p>
+<h2 id="视频转换为ts格式"><a href="#视频转换为ts格式" class="headerlink" title="视频转换为ts格式"></a>视频转换为ts格式</h2><p>将视频转换为ts</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -<span class="selector-tag">i</span> <span class="selector-tag">input</span><span class="selector-class">.mp4</span> -c copy -bsf h264_mp4toannexb output.ts</span><br></pre></td></tr></table></figure>
+<p><code>-bsf</code> 是比特流过滤器。不知道具体有什么用，但是必须得有。而且参数必须设置成<code>h264_mp4toannexb</code>,其他过滤器可以通过<code>ffmpeg -bsfs</code>查看。如果是转成flv则不需要该参数，其他格式没有尝试。</p>
+<h1 id="视频切片并生成m3u8播放列表"><a href="#视频切片并生成m3u8播放列表" class="headerlink" title="视频切片并生成m3u8播放列表"></a>视频切片并生成m3u8播放列表</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ffmpeg</span> <span class="selector-tag">-i</span> <span class="selector-tag">output</span><span class="selector-class">.mp4</span> <span class="selector-tag">-f</span> <span class="selector-tag">segment</span> <span class="selector-tag">-segment_time</span> 10 <span class="selector-tag">-segment_format</span> <span class="selector-tag">mpegts</span> <span class="selector-tag">-segment_list</span> <span class="selector-tag">list_file</span><span class="selector-class">.m3u8</span> <span class="selector-tag">-c</span> <span class="selector-tag">copy</span> <span class="selector-tag">-bsf</span><span class="selector-pseudo">:v</span> <span class="selector-tag">h264_mp4toannexb</span> <span class="selector-tag">-map</span> 0 <span class="selector-tag">output_file-</span>%<span class="selector-tag">d</span><span class="selector-class">.ts</span></span><br></pre></td></tr></table></figure>
+<p>如果输入是ts文件，不需要加<code>-bsf</code>参数</p>
+<p><code>-map</code> 没有具体搞懂这个参数。只知道<code>-map 0</code>代表复制第一个文件中的所有流到输出文件中。详情参<a href="http://blog.csdn.net/tao_627/article/details/22403615" target="_blank" rel="noopener">FFMPEG转码常用命令研究</a></p>
+<p><code>-segment_format</code> 去掉后不影响命令实现。可能和跟严格的格式要求和应用有关。</p>
+<p>首先，我们需要有一个原生直播流。暂时采用的是将直播流分割成一个一个ts不断传给后端，然后后端进行处理。因此，我们可以使用一个本地视频</p>
+<p>直播：本地运行：<br>ffmpeg -f avfoundation -framerate 30 -i “1:0” -f avfoundation -framerate 30 -video_size 640x480 -i “0” -c:v libx264 -preset ultrafast -filter_complex ‘overlay=main_w-overlay_w-10:main_h-overlay_h-10’ -acodec libmp3lame -ar 44100 -ac 1  -f flv rtmp://10.165.33.20:1935/hls/test</p>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://blog.csdn.net/redstarofsleep/article/details/45092145" target="_blank" rel="noopener">ubuntu14.04安装ffmpeg</a></p>
+<p><a href="https://segmentfault.com/a/1190000000414341" target="_blank" rel="noopener">通过 ffmpeg 无损剪切/拼接视频</a></p>
+<p><a href="http://blog.csdn.net/leixiaohua1020/article/details/15811977/" target="_blank" rel="noopener">[总结]FFMPEG视音频编解码零基础学习方法</a></p>
+<p><strong><em><a href="http://blog.csdn.net/tao_627/article/details/22403615" target="_blank" rel="noopener">FFMPEG转码常用命令研究</a></em></strong></p>
+<p><strong><em><a href="http://www.360doc.com/content/13/0901/17/9305922_311411358.shtml" target="_blank" rel="noopener">FFMPEG详解</a></em></strong></p>
+<p><a href="http://blog.csdn.net/zhichao2001/article/details/12610465" target="_blank" rel="noopener">ffmpeg教程</a></p>
+<p><strong><em><a href="http://www.cnblogs.com/wainiwann/p/4128154.html" target="_blank" rel="noopener">FFmpeg常用基本命令</a></em></strong></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/08/05/pansee/book review/《打开文学的方式》/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1155,210 +1359,6 @@
 <p>电影一旦被搬上了荧幕，就与创作者失去了关系。再好的立意，再好的构思，都不属于观者，也就自然无法打动观者。同样的，一部电影对于导演本人而言再次再没有价值但如果能够凭借它的无厘头它的各种搞怪去吸引观者，并让观者自觉地从中挖出某些深意，那便是一部佳作。譬如《让子弹飞》，姜文的初始立意早已不重要，就算这是一部哗众取宠之作又如何呢？它成功了吸引了观者，并衍生了千百种的解读，追连出许多永恒的话题。借用一句老话，一千个读者便有一千个哈姆雷特。但是想要出现一千个哈姆雷特的前提乃是有一千个人愿意去读它愿意去深究它，否则不过一场空谈，束之高阁的货物罢了！</p>
 <p>故而，文艺创作如果是以公众为对象，就不该有太过强烈的个人观念，此处之意不在于让创作者放弃自身的思想而去迎合大众潮流，而在于创作者需要铭记以公众为对象就必须以吸引公众为第一前提！再次前提下，创作者可以尽情展示其本人的思想，去改变这个世界！</p>
 <p>《紫日》的失败就在于没有做到这第一前提，相对于两个小时的电影片长有太多的絮叨啰嗦，太少的精妙激动，让观者昏昏然欲睡。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/08/05/machine learning/cv/ffmpeg/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/08/05/machine learning/cv/ffmpeg/" class="post-title-link" itemprop="url">ffmpeg</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-08-05 14:00:31" itemprop="dateCreated datePublished" datetime="2017-08-05T14:00:31+08:00">2017-08-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/cv/" itemprop="url" rel="index"><span itemprop="name">cv</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近在做物体识别方面的工作，整体流程是接收直播流，用yolo进行特定物体识别，推送处理后的视频流到指定地址。其中，需要用到ffmpeg进行处理。现将ffmpeg使用过程总结一下。</p>
-<h1 id="install"><a href="#install" class="headerlink" title="install"></a>install</h1><p>ffmpeg有一系列依赖包，可按照官网直接用<code>sudo apt-get</code>依次安装 <a href="https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu" target="_blank" rel="noopener">Compilation &amp; Installation</a></p>
-<p><code>sudo apt-get install ffmpeg</code></p>
-<h1 id="process"><a href="#process" class="headerlink" title="process"></a>process</h1><h2 id="编码格式"><a href="#编码格式" class="headerlink" title="编码格式"></a>编码格式</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffprobe <span class="selector-tag">input</span>.mp4</span><br></pre></td></tr></table></figure>
-<p>可以使用以上命令去查看文件的视频和音频编码格式</p>
-<h2 id="视频切割："><a href="#视频切割：" class="headerlink" title="视频切割："></a>视频切割：</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -<span class="selector-tag">i</span> <span class="selector-tag">input</span><span class="selector-class">.mp4</span> -ss <span class="number">0</span> -c copy -t <span class="number">60</span> -y output.mp4</span><br></pre></td></tr></table></figure>
-<p><code>-i</code> 表示待处理的视频源</p>
-<p><code>-ss</code>，<code>-t</code> 表示切割视频的起始时间点和切割时长。有两种写法：<code>0</code>，<code>00：01：20</code>。前者表示秒，后者是时:分:秒格式。</p>
-<p><code>-to</code> 表示结束时间点。 但如果 <code>-ss</code> 放在 <code>-i</code> 前面，则效果和 <code>-t</code> 一样。有的blog在这个问题上说反了，特此说明。只要 <code>-ss</code> 始终放 <code>-i</code> 后面，就不会出问题了。</p>
-<p><code>-y</code> 表示如果输出文件存在，则覆盖原文件</p>
-<p><code>-c</code> 表示编码器，是<code>-codec</code>的缩写。 <code>-c copy</code>指复制原视频编码流。</p>
-<p><code>-c:v -c:a</code> 表示分别指定视频音频编码流格式。也可以写成 <code>-vcodec -acodec</code>或者 <code>-c:0 -c:1</code>一般0是视频流，1是音频流。如果出现多音频流，可以用<code>-c:a:0</code>形式去选择。</p>
-<p><code>-vn -an</code> 分别表示屏蔽视频流，音频流。 </p>
-<p>在使用命令时好像必须同时指定视频流和音频流的处理，不能只指定某一个。</p>
-<h2 id="视频拼接："><a href="#视频拼接：" class="headerlink" title="视频拼接："></a>视频拼接：</h2><p>需要先将需要拼接的视频文件按以下格式保存在一个列表 list.txt 中：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">file</span> '/path/<span class="keyword">to</span>/file1'</span><br><span class="line"><span class="built_in">file</span> '/path/<span class="keyword">to</span>/file2'</span><br><span class="line"><span class="built_in">file</span> '/path/<span class="keyword">to</span>/file3'</span><br></pre></td></tr></table></figure></p>
-<p>然后使用一下命令拼接<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -f concat -<span class="selector-tag">i</span> list<span class="selector-class">.txt</span> -c copy output.mp4</span><br></pre></td></tr></table></figure></p>
-<h2 id="视频转换为ts格式"><a href="#视频转换为ts格式" class="headerlink" title="视频转换为ts格式"></a>视频转换为ts格式</h2><p>将视频转换为ts</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -<span class="selector-tag">i</span> <span class="selector-tag">input</span><span class="selector-class">.mp4</span> -c copy -bsf h264_mp4toannexb output.ts</span><br></pre></td></tr></table></figure>
-<p><code>-bsf</code> 是比特流过滤器。不知道具体有什么用，但是必须得有。而且参数必须设置成<code>h264_mp4toannexb</code>,其他过滤器可以通过<code>ffmpeg -bsfs</code>查看。如果是转成flv则不需要该参数，其他格式没有尝试。</p>
-<h1 id="视频切片并生成m3u8播放列表"><a href="#视频切片并生成m3u8播放列表" class="headerlink" title="视频切片并生成m3u8播放列表"></a>视频切片并生成m3u8播放列表</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ffmpeg</span> <span class="selector-tag">-i</span> <span class="selector-tag">output</span><span class="selector-class">.mp4</span> <span class="selector-tag">-f</span> <span class="selector-tag">segment</span> <span class="selector-tag">-segment_time</span> 10 <span class="selector-tag">-segment_format</span> <span class="selector-tag">mpegts</span> <span class="selector-tag">-segment_list</span> <span class="selector-tag">list_file</span><span class="selector-class">.m3u8</span> <span class="selector-tag">-c</span> <span class="selector-tag">copy</span> <span class="selector-tag">-bsf</span><span class="selector-pseudo">:v</span> <span class="selector-tag">h264_mp4toannexb</span> <span class="selector-tag">-map</span> 0 <span class="selector-tag">output_file-</span>%<span class="selector-tag">d</span><span class="selector-class">.ts</span></span><br></pre></td></tr></table></figure>
-<p>如果输入是ts文件，不需要加<code>-bsf</code>参数</p>
-<p><code>-map</code> 没有具体搞懂这个参数。只知道<code>-map 0</code>代表复制第一个文件中的所有流到输出文件中。详情参<a href="http://blog.csdn.net/tao_627/article/details/22403615" target="_blank" rel="noopener">FFMPEG转码常用命令研究</a></p>
-<p><code>-segment_format</code> 去掉后不影响命令实现。可能和跟严格的格式要求和应用有关。</p>
-<p>首先，我们需要有一个原生直播流。暂时采用的是将直播流分割成一个一个ts不断传给后端，然后后端进行处理。因此，我们可以使用一个本地视频</p>
-<p>直播：本地运行：<br>ffmpeg -f avfoundation -framerate 30 -i “1:0” -f avfoundation -framerate 30 -video_size 640x480 -i “0” -c:v libx264 -preset ultrafast -filter_complex ‘overlay=main_w-overlay_w-10:main_h-overlay_h-10’ -acodec libmp3lame -ar 44100 -ac 1  -f flv rtmp://10.165.33.20:1935/hls/test</p>
-<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://blog.csdn.net/redstarofsleep/article/details/45092145" target="_blank" rel="noopener">ubuntu14.04安装ffmpeg</a></p>
-<p><a href="https://segmentfault.com/a/1190000000414341" target="_blank" rel="noopener">通过 ffmpeg 无损剪切/拼接视频</a></p>
-<p><a href="http://blog.csdn.net/leixiaohua1020/article/details/15811977/" target="_blank" rel="noopener">[总结]FFMPEG视音频编解码零基础学习方法</a></p>
-<p><strong><em><a href="http://blog.csdn.net/tao_627/article/details/22403615" target="_blank" rel="noopener">FFMPEG转码常用命令研究</a></em></strong></p>
-<p><strong><em><a href="http://www.360doc.com/content/13/0901/17/9305922_311411358.shtml" target="_blank" rel="noopener">FFMPEG详解</a></em></strong></p>
-<p><a href="http://blog.csdn.net/zhichao2001/article/details/12610465" target="_blank" rel="noopener">ffmpeg教程</a></p>
-<p><strong><em><a href="http://www.cnblogs.com/wainiwann/p/4128154.html" target="_blank" rel="noopener">FFmpeg常用基本命令</a></em></strong></p>
 
           
         
