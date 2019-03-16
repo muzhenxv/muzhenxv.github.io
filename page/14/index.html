@@ -285,6 +285,185 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/03/30/machine learning/NLP/idf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/03/30/machine learning/NLP/idf/" class="post-title-link" itemprop="url">idf</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-03-30 14:59:25" itemprop="dateCreated datePublished" datetime="2017-03-30T14:59:25+08:00">2017-03-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><script type"text javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="idf-计算技巧"><a href="#idf-计算技巧" class="headerlink" title="idf 计算技巧"></a>idf 计算技巧</h1><p>假设不同词共有N个，文档共有M个，单文档最大长度是L。</p>
+<p>我们看如下两种计算方式。</p>
+<p>第一种是先作出所有词的词典，然后对每个词进行遍历，看它在多少个文档中出现，复杂度是N×M： </p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">from collections import Counter</span><br><span class="line"><span class="comment">#word frequency by words</span></span><br><span class="line">w_freq = Counter(<span class="string">' '</span>.join(train_que).<span class="keyword">split</span>())</span><br><span class="line"><span class="comment">#word frequency by docs</span></span><br><span class="line">d_freq = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> i in w_freq.keys():</span><br><span class="line">    <span class="keyword">for</span> j in train_que:</span><br><span class="line">        <span class="keyword">if</span> i in j:</span><br><span class="line">            <span class="keyword">if</span> i <span class="keyword">not</span> in d_freq:</span><br><span class="line">                d_fre<span class="string">q[i]</span> = <span class="number">0</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                d_fre<span class="string">q[i]</span> += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>第二种是遍历所有文档，记录每个文档中出现的词，复杂度是M×L：<br><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">from collections import Counter</span><br><span class="line"><span class="comment">#word frequency by words</span></span><br><span class="line">w_freq = Counter(<span class="string">' '</span>.join(train_que).<span class="keyword">split</span>())</span><br><span class="line"><span class="comment">#word frequency by docs</span></span><br><span class="line">d_freq = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> text in train_que:</span><br><span class="line">    <span class="keyword">for</span> i in set(text.<span class="keyword">split</span>()):</span><br><span class="line">        try:</span><br><span class="line">            d_fre<span class="string">q[i]</span> += <span class="number">1</span></span><br><span class="line">        except:</span><br><span class="line">            d_fre<span class="string">q[i]</span> = <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+<p>显然，两者效率相差极大。一般L不过在10左右，而N却可以高达上万。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/03/27/machine learning/competition/trick/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3819,184 +3998,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/03/20/machine learning/machine learning/局部加权回归/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/03/20/machine learning/machine learning/局部加权回归/" class="post-title-link" itemprop="url">局部加权回归</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-03-20 16:47:58" itemprop="dateCreated datePublished" datetime="2017-03-20T16:47:58+08:00">2017-03-20</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/machine-learning/" itemprop="url" rel="index"><span itemprop="name">machine learning</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
-<h1 id="非参数学习方法"><a href="#非参数学习方法" class="headerlink" title="非参数学习方法"></a>非参数学习方法</h1><p><strong>参数学习方法</strong>：在训练完成所有数据后得到一系列训练参数，然后根据训练参数来预测新样本的值，不再依赖之前的训练数据，参数值是确定的。</p>
-<p><strong>非参数学习方法</strong>：在预测新样本值时候每次都会重新训练数据得到新的参数值，也就是说每次预测新样本都会依赖训练数据集合，所以每次得到的参数值是不确定的。</p>
-<h1 id="局部加权回归"><a href="#局部加权回归" class="headerlink" title="局部加权回归"></a>局部加权回归</h1><p>在普通的回归问题中，均方误差损失：<br>$$J(\theta) = \frac{1}{n} \sum_i (h_\theta(x_i) - y_i)^2$$</p>
-<p>局部加权回归中，均方误差损失：<br>$$J(\theta) = \frac{1}{n} \sum_i \omega_i (h_\theta(x_i) - y_i)^2$$<br>$$\omega_i = \exp(- \frac{(x_i - x)^2}{2 \tau^2})$$<br>其中，$x$是待预测的样本点，按待预测点与样本点距离分配权重。<br>显然，对于每一个需要预测的样本点，都需要重新建立模型去预测，计算量会更大，但欠拟合问题会被削弱。</p>
-<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://blog.csdn.net/acdreamers/article/details/44662753" target="_blank" rel="noopener">局部加权回归</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -4043,7 +4044,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">346</span>
+                    <span class="site-state-item-count">347</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -4367,7 +4368,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">112</span>
+                      
+                    
+                    <span class="site-state-item-count">113</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>

@@ -489,7 +489,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-02 14:26:09" itemprop="dateModified" datetime="2019-03-02T14:26:09+08:00">2019-03-02</time>
+                <time title="Modified: 2019-03-14 18:43:16" itemprop="dateModified" datetime="2019-03-14T18:43:16+08:00">2019-03-14</time>
               
             
           </span>
@@ -555,6 +555,47 @@
 <h2 id="dropout"><a href="#dropout" class="headerlink" title="dropout"></a>dropout</h2><p>dropout方法是在训练过程中针对神经元引入了随机失活的处理。从而使得权重不会集中到个别的神经元上（因为随机失活的缘故，不会有机会形成这样的强势神经元）。从而可以起到类似于l2正则化的权重衰减效果。</p>
 <p>[TODO]why?<strong>L2正则化与dropout的区别：L2对不同权重的衰减是不同的，它取决于激活函数倍增的大小。dropout更适用于不同的输入范围。</strong></p>
 <p>正则化方法是为了应对过拟合。因此并不应该一上来进行正则化，对于dropout尤其如此。因为dropout每轮迭代的随机失活会导致代价函数不再被明确定义，从而难以检查梯度下降的性能。</p>
+<h2 id="其他正则化方法"><a href="#其他正则化方法" class="headerlink" title="其他正则化方法"></a>其他正则化方法</h2><ul>
+<li>数据扩增</li>
+<li>early stopping</li>
+<li>归一化<ul>
+<li>可以使得损失函数在各个方向更均匀， 从而更加容易优化，对于初始点和步长都没有严格的要求。</li>
+</ul>
+</li>
+</ul>
+<h2 id="梯度消失和梯度爆炸"><a href="#梯度消失和梯度爆炸" class="headerlink" title="梯度消失和梯度爆炸"></a>梯度消失和梯度爆炸</h2><p>由于网络的层次传导，会使得激活值越来越大或者越来越小。从而对应的梯度也会极大或极小。</p>
+<p>在权重初始化时，针对每层采用修正的初始权重可以削弱这个问题。因为传导进来的激活值和做过修正的权重相乘后可以平衡影响。</p>
+<p>一般的：<br>$$<br>对于relu：\omega^{[l]} = np.random.randn(shape)<em>np.sqrt(\frac{2}{n^{[l-1]}}) \\<br>对于tanh: \omega^{[l]} = np.random.randn(shape)</em>np.sqrt(\frac{1}{n^{[l-1]}})<br>其中:\\<br>\omega^{[l]}是l层权重，n^{[l-1]}是l-1层神经元数量<br>$$</p>
+<h2 id="梯度检验"><a href="#梯度检验" class="headerlink" title="梯度检验"></a>梯度检验</h2><p>很有必要对代码的正确性（主要就是梯度的计算过程）进行核查。</p>
+<p>给定一个小的$\epsilon$，一般是$10^{-7}$，利用双边误差方法（优于单边公差的结果）逼近梯度，然后和算法运算出的梯度值计算距离进行比较，一般小于$10^{-7}$比较好，大于$10^{-3}$很可能存在bug。<br>$$<br>梯度逼近效果对比： \frac{f(\theta + \epsilon) - f(\theta - \epsilon)}{2\epsilon}  &gt; \frac{f(\theta + \epsilon)}{\epsilon}\\<br>距离计算： \frac{||d(\theta)_{approx} - d(\theta)||_2}{||d((\theta)||_2 + ||d(\theta)_{approx}||_2}<br>$$<br>注意，进行梯度检验时不要打开dropout，不然由于dropout随机失活的原因，导致检验比较没有太大意义。</p>
+<h2 id="优化算法"><a href="#优化算法" class="headerlink" title="优化算法"></a>优化算法</h2><ul>
+<li><p>mini-batch</p>
+</li>
+<li><p>指数加权平均:</p>
+</li>
+<li><p>$$<br>v_0 = 0 \\<br>v_t = \beta v_{t-1} + (1-\beta)\theta_t = (1-\beta)\theta_t + \beta(1-\beta)\theta_{t-1} + …+\beta^{t}(1-\beta)\theta_0+\beta v_0<br>$$</p>
+<p>一般$\beta=0.9$，虽然看起来$\theta_t$的权重较小，但其实依旧是单个最大权重，只是充分考虑了过去的影响并平滑而已</p>
+</li>
+<li><p>momentum</p>
+</li>
+<li><p>rmsprop</p>
+</li>
+<li><p>adam</p>
+</li>
+<li><p>学习率衰减</p>
+<ul>
+<li>指数衰减</li>
+<li>离散下降</li>
+<li>手动衰减</li>
+</ul>
+</li>
+<li><p>局部最优问题</p>
+<ul>
+<li>高维空间，更可能遇到梯度为0的鞍点而不是局部最优点</li>
+<li>平稳段是一个问题，它使得学习变得缓慢</li>
+</ul>
+</li>
+</ul>
 
           
         
@@ -3899,7 +3940,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">346</span>
+                    <span class="site-state-item-count">347</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -4223,7 +4264,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">112</span>
+                      
+                    
+                    <span class="site-state-item-count">113</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>

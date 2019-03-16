@@ -285,6 +285,184 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/03/20/machine learning/machine learning/局部加权回归/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/03/20/machine learning/machine learning/局部加权回归/" class="post-title-link" itemprop="url">局部加权回归</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-03-20 16:47:58" itemprop="dateCreated datePublished" datetime="2017-03-20T16:47:58+08:00">2017-03-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/machine-learning/" itemprop="url" rel="index"><span itemprop="name">machine learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="非参数学习方法"><a href="#非参数学习方法" class="headerlink" title="非参数学习方法"></a>非参数学习方法</h1><p><strong>参数学习方法</strong>：在训练完成所有数据后得到一系列训练参数，然后根据训练参数来预测新样本的值，不再依赖之前的训练数据，参数值是确定的。</p>
+<p><strong>非参数学习方法</strong>：在预测新样本值时候每次都会重新训练数据得到新的参数值，也就是说每次预测新样本都会依赖训练数据集合，所以每次得到的参数值是不确定的。</p>
+<h1 id="局部加权回归"><a href="#局部加权回归" class="headerlink" title="局部加权回归"></a>局部加权回归</h1><p>在普通的回归问题中，均方误差损失：<br>$$J(\theta) = \frac{1}{n} \sum_i (h_\theta(x_i) - y_i)^2$$</p>
+<p>局部加权回归中，均方误差损失：<br>$$J(\theta) = \frac{1}{n} \sum_i \omega_i (h_\theta(x_i) - y_i)^2$$<br>$$\omega_i = \exp(- \frac{(x_i - x)^2}{2 \tau^2})$$<br>其中，$x$是待预测的样本点，按待预测点与样本点距离分配权重。<br>显然，对于每一个需要预测的样本点，都需要重新建立模型去预测，计算量会更大，但欠拟合问题会被削弱。</p>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://blog.csdn.net/acdreamers/article/details/44662753" target="_blank" rel="noopener">局部加权回归</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/03/20/machine learning/preprocessing/连续性变量转化为离散型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3833,187 +4011,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2014/06/13/pansee/film review/末代皇帝/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2014/06/13/pansee/film review/末代皇帝/" class="post-title-link" itemprop="url">末代皇帝</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2014-06-13 08:13:57" itemprop="dateCreated datePublished" datetime="2014-06-13T08:13:57+08:00">2014-06-13</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/film-review/" itemprop="url" rel="index"><span itemprop="name">film review</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>末代皇帝</p>
-<p>导演：贝纳尔多·贝托鲁奇</p>
-<p>幼年时代——与亲人的隔离，名副其实的孤家寡人</p>
-<p>青年时代——思家，叛逆，自由的渴望</p>
-<p>复辟时代——以祖陵被掘为进一步的导火索，更多的不是追求权力，而是历史，荣耀，继承，保护，自我掌控命运</p>
-<p>牢狱时代——欺骗，谎言，脱罪，到担负莫须有的罪孽，自暴自弃</p>
-<p>老年时代——以违规游客身份重坐金銮殿</p>
-<p>与真实历史的贴合情况，有差距。作为一部历史背景的故事片，如此做法，是好是坏？对具体历史不了解，不做论述。</p>
-<p>2014年6月13日星期五</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -4060,7 +4057,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">346</span>
+                    <span class="site-state-item-count">347</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -4384,7 +4381,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">112</span>
+                      
+                    
+                    <span class="site-state-item-count">113</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>
