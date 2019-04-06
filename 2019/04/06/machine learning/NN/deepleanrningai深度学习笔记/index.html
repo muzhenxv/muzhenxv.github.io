@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="中文课程教案 第一门课 神经网络和深度学习(Neural Networks and Deep Learning)激活函数如果不使用激活函数或者使用线性激活函数，那么NN的效果只是一个线性模型，可以和LR等价 tanh在各种场景下一般都优于sigmoid，因此除了在而分类问题的输出层上使用sigmoid外，隐藏层基本都应该选择tanh而非sigmoid Relu是最常用的激活函数，在不确定使用何种类">
+<meta name="keywords" content="machine learning,NN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="deepleanrningai深度学习笔记">
+<meta property="og:url" content="http://www.muzhen.tk/2019/04/06/machine learning/NN/deepleanrningai深度学习笔记/index.html">
+<meta property="og:site_name" content="the Home of MuZhen">
+<meta property="og:description" content="中文课程教案 第一门课 神经网络和深度学习(Neural Networks and Deep Learning)激活函数如果不使用激活函数或者使用线性激活函数，那么NN的效果只是一个线性模型，可以和LR等价 tanh在各种场景下一般都优于sigmoid，因此除了在而分类问题的输出层上使用sigmoid外，隐藏层基本都应该选择tanh而非sigmoid Relu是最常用的激活函数，在不确定使用何种类">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-04-06T12:55:13.691Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="deepleanrningai深度学习笔记">
+<meta name="twitter:description" content="中文课程教案 第一门课 神经网络和深度学习(Neural Networks and Deep Learning)激活函数如果不使用激活函数或者使用线性激活函数，那么NN的效果只是一个线性模型，可以和LR等价 tanh在各种场景下一般都优于sigmoid，因此除了在而分类问题的输出层上使用sigmoid外，隐藏层基本都应该选择tanh而非sigmoid Relu是最常用的激活函数，在不确定使用何种类">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.muzhen.tk/2019/04/06/machine learning/NN/deepleanrningai深度学习笔记/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>deepleanrningai深度学习笔记 | the Home of MuZhen</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">the Home of MuZhen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/04/06/machine learning/NN/deepleanrningai深度学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">deepleanrningai深度学习笔记
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-06 20:55:13" itemprop="dateCreated datePublished" datetime="2019-04-06T20:55:13+08:00">2019-04-06</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/NN/" itemprop="url" rel="index"><span itemprop="name">NN</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://www.ai-start.com/dl2017/" target="_blank" rel="noopener">中文课程教案</a></p>
+<h1 id="第一门课-神经网络和深度学习-Neural-Networks-and-Deep-Learning"><a href="#第一门课-神经网络和深度学习-Neural-Networks-and-Deep-Learning" class="headerlink" title="第一门课 神经网络和深度学习(Neural Networks and Deep Learning)"></a>第一门课 神经网络和深度学习(Neural Networks and Deep Learning)</h1><h2 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h2><p>如果不使用激活函数或者使用线性激活函数，那么NN的效果只是一个线性模型，可以和LR等价</p>
+<p>tanh在各种场景下一般都优于sigmoid，因此除了在而分类问题的输出层上使用sigmoid外，隐藏层基本都应该选择tanh而非sigmoid</p>
+<p>Relu是最常用的激活函数，在不确定使用何种类型激活函数的情况下，可以优先选择Relu或者leaky relu(一般效果更好但是很少用，可能的原因或许是<a href="https://www.reddit.com/r/MachineLearning/comments/4znzvo/what_are_the_advantages_of_relu_over_the/" target="_blank" rel="noopener">Apart from efficiency, ReLUs have sparse activations, for whatever that’s worth.</a>)。<br>$$<br>Relu: g(z) = \max(0, z) \\<br>Leaky Relu: g(z) = \max(\alpha z, z)<br>$$</p>
+<p>sigmoid和tanh的导数：<br>$$<br>\frac{\mathrm{d}\sigma(z)}{\mathrm{d}z} = \sigma(z)(1-\sigma(z)) \\<br>\frac{\mathrm{d}\tanh z}{\mathrm{d}z} = 1-(\tanh z)^2<br>$$<br>可以看到，这两个函数的导数都只和函数自身的取值有关，因此非常方便计算！但是需要注意他们存在饱和区。</p>
+<h2 id="参数初始化"><a href="#参数初始化" class="headerlink" title="参数初始化"></a>参数初始化</h2><p>如果将参数全部初始化为0，那么就会存在神经元之间的对称问题（symmetry breaking problem），同层的神经元一致变化，从而优化无效，没层其实只有一个神经元的效果。</p>
+<p>一般采用随机初始化，再乘以一个很小的值。因为如果权重过大，那么一旦使用sigmoid或者tanh激活函数，很可能激活值落在饱和区域，从而使得梯度下降学习缓慢。</p>
+<h2 id="神经网络搭建"><a href="#神经网络搭建" class="headerlink" title="神经网络搭建"></a>神经网络搭建</h2><p><strong><em>多隐藏层，单层少隐藏单元的深层神经网络实现一个复杂函数拟合需要的隐藏单元数量指数级小于少隐藏层，单层多隐藏单元的情况。</em></strong></p>
+<h1 id="第二门课-改善深层神经网络：超参数调试、正则化以及优化-Improving-Deep-Neural-Networks-Hyperparameter-tuning-Regularization-and-Optimization"><a href="#第二门课-改善深层神经网络：超参数调试、正则化以及优化-Improving-Deep-Neural-Networks-Hyperparameter-tuning-Regularization-and-Optimization" class="headerlink" title="第二门课 改善深层神经网络：超参数调试、正则化以及优化(Improving Deep Neural Networks:Hyperparameter tuning, Regularization and Optimization)"></a>第二门课 改善深层神经网络：超参数调试、正则化以及优化(Improving Deep Neural Networks:Hyperparameter tuning, Regularization and Optimization)</h1><h2 id="L2正则化"><a href="#L2正则化" class="headerlink" title="L2正则化"></a>L2正则化</h2><p>L2正则化会导致参数绝对值变小，接近0。从而会导致激活函数的输入也会非常小。考虑一个非常强的正则化要求（正则化系数极大），激活函数的输入值将集中在0的小邻域内，从而激活函数在该邻域内可以视为线性的。故而整个神经网络退化为线性模型，复杂度大大降低，不再有能力拟合非线性函数。</p>
+<h2 id="dropout"><a href="#dropout" class="headerlink" title="dropout"></a>dropout</h2><p>dropout方法是在训练过程中针对神经元引入了随机失活的处理。从而使得权重不会集中到个别的神经元上（因为随机失活的缘故，不会有机会形成这样的强势神经元）。从而可以起到类似于l2正则化的权重衰减效果。</p>
+<p>[TODO]why?<strong>L2正则化与dropout的区别：L2对不同权重的衰减是不同的，它取决于激活函数倍增的大小。dropout更适用于不同的输入范围。</strong></p>
+<p>正则化方法是为了应对过拟合。因此并不应该一上来进行正则化，对于dropout尤其如此。因为dropout每轮迭代的随机失活会导致代价函数不再被明确定义，从而难以检查梯度下降的性能。</p>
+<h2 id="其他正则化方法"><a href="#其他正则化方法" class="headerlink" title="其他正则化方法"></a>其他正则化方法</h2><ul>
+<li>数据扩增</li>
+<li>early stopping</li>
+<li>归一化<ul>
+<li>可以使得损失函数在各个方向更均匀， 从而更加容易优化，对于初始点和步长都没有严格的要求。</li>
+</ul>
+</li>
+</ul>
+<h2 id="梯度消失和梯度爆炸"><a href="#梯度消失和梯度爆炸" class="headerlink" title="梯度消失和梯度爆炸"></a>梯度消失和梯度爆炸</h2><p>由于网络的层次传导，会使得激活值越来越大或者越来越小。从而对应的梯度也会极大或极小。</p>
+<p>在权重初始化时，针对每层采用修正的初始权重可以削弱这个问题。因为传导进来的激活值和做过修正的权重相乘后可以平衡影响。</p>
+<p>一般的：<br>$$<br>对于relu：\omega^{[l]} = np.random.randn(shape)<em>np.sqrt(\frac{2}{n^{[l-1]}}) \\<br>对于tanh: \omega^{[l]} = np.random.randn(shape)</em>np.sqrt(\frac{1}{n^{[l-1]}})<br>其中:\\<br>\omega^{[l]}是l层权重，n^{[l-1]}是l-1层神经元数量<br>$$</p>
+<h2 id="梯度检验"><a href="#梯度检验" class="headerlink" title="梯度检验"></a>梯度检验</h2><p>很有必要对代码的正确性（主要就是梯度的计算过程）进行核查。</p>
+<p>给定一个小的$\epsilon$，一般是$10^{-7}$，利用双边误差方法（优于单边公差的结果）逼近梯度，然后和算法运算出的梯度值计算距离进行比较，一般小于$10^{-7}$比较好，大于$10^{-3}$很可能存在bug。<br>$$<br>梯度逼近效果对比： \frac{f(\theta + \epsilon) - f(\theta - \epsilon)}{2\epsilon}  &gt; \frac{f(\theta + \epsilon)}{\epsilon}\\<br>距离计算： \frac{||d(\theta)_{approx} - d(\theta)||_2}{||d((\theta)||_2 + ||d(\theta)_{approx}||_2}<br>$$<br>注意，进行梯度检验时不要打开dropout，不然由于dropout随机失活的原因，导致检验比较没有太大意义。</p>
+<h2 id="优化算法"><a href="#优化算法" class="headerlink" title="优化算法"></a>优化算法</h2><ul>
+<li><p>mini-batch</p>
+</li>
+<li><p>指数加权平均:</p>
+</li>
+<li><p>$$<br>v_0 = 0 \\<br>v_t = \beta v_{t-1} + (1-\beta)\theta_t = (1-\beta)\theta_t + \beta(1-\beta)\theta_{t-1} + …+\beta^{t}(1-\beta)\theta_0+\beta v_0<br>$$</p>
+<p>一般$\beta=0.9$，虽然看起来$\theta_t$的权重较小，但其实依旧是单个最大权重，只是充分考虑了过去的影响并平滑而已</p>
+</li>
+<li><p>momentum</p>
+</li>
+<li><p>rmsprop</p>
+</li>
+<li><p>adam</p>
+</li>
+<li><p>学习率衰减</p>
+<ul>
+<li>指数衰减</li>
+<li>离散下降</li>
+<li>手动衰减</li>
+</ul>
+</li>
+<li><p>局部最优问题</p>
+<ul>
+<li>高维空间，更可能遇到梯度为0的鞍点而不是局部最优点</li>
+<li>平稳段是一个问题，它使得学习变得缓慢</li>
+</ul>
+</li>
+</ul>
+<h2 id="超参优化"><a href="#超参优化" class="headerlink" title="超参优化"></a>超参优化</h2><h3 id="超参重要性"><a href="#超参重要性" class="headerlink" title="超参重要性"></a>超参重要性</h3><p>吴恩达认为的超参重要性：学习率&gt; 动量系数、隐藏单元数、batch size&gt;层数、学习率衰减&gt;其他</p>
+<h3 id="网格搜索VS随机搜索"><a href="#网格搜索VS随机搜索" class="headerlink" title="网格搜索VS随机搜索"></a>网格搜索VS随机搜索</h3><p>对于传统机器学习算法，由于参数较少，因而网格搜索是可行的。但是在深度学习中，参数很多，而且重要性存在差别，有的参数可能不管取什么值都不会影响结果。在这种情况下，使用网格搜索其实是浪费资源的，比如5×5的网格，假设参数2不论取何值都无显著影响，那么虽然进行了25次尝试，但对于参数1其实只做了5种尝试，剩下的20种尝试都是浪费。因此，在这种情况下，使用随机搜索更加高效。可以排除不重要参数造成的资源浪费。通过分析参数的情况和对应效果，可以更快的定位参数的重要性和合理范围。然后可以在此范围内进行更精细的搜索。</p>
+<h3 id="超参随机取值范围与方法"><a href="#超参随机取值范围与方法" class="headerlink" title="超参随机取值范围与方法"></a>超参随机取值范围与方法</h3><p>在超参的取值范围内进行随机取值时，一般采用对数随机取值而不是线性随机取值。比方说学习率在0.0001到1范围内进行随机取值，如果采用线性随机取值，那么大部分取值都会大于0.1,但其实我们可能希望他能够在0.0001到0.1这个区间段取值更为密集，在0.1到1这个区间段不需要太密集。<strong><em>之所以会有这样的需求，可能是因为模型效果对参数在0.0001到0.1这个区间的变化更加敏感，而对0.1到0.9范围不是特别敏感。换言之0.1到1段相对更加同质一些。以上只是比方，具体那些参数那些范围内敏感是具体情况而定。</em></strong>对数随机取值就可以解决这个问题。以上问题可以转换为在-4到0之间随机均匀取值k，然后转为$10^k$，得到最终参数值。可以看到，这种方法下，取值在0.1到1之间的概率只有1/4。</p>
+<h2 id="BN-batch-norm"><a href="#BN-batch-norm" class="headerlink" title="BN(batch norm)"></a>BN(batch norm)</h2><p>BN是指每层先对激活值进行标准化，在放入激活函数中激活。这里的标准化不是纯粹的z标准化，譬如在sigmoid激活时，可能我们希望激活值在0.5附近而不是0附近，从而可以充分利用sigmoid的非线性激活效果。故而，BN在第i层的方式是：<br>$$<br>z_{norm} ^{(i)}= \frac{z^{(i)} - \mu}{\sqrt{\sigma^2+\epsilon}}\\<br>\widetilde{z}_{norm}^{(i)} = \gamma^{(i)} z_{norm}^{(i)} + \beta^{(i)}<br>$$<br>对于某个mini-batch，直接基于数据进行均值方差标准化，因此在每个mini-batch训练中，$\mu,\sigma$是有差异的，并非整个训练集的均值方差。$\epsilon$是个微小值，用来做数值计算平滑。</p>
+<p>BN的意义：</p>
+<ul>
+<li>通过标准化，可以加速学习，尤其是网络较深的情况下，避免梯度消失或爆炸</li>
+<li>通过标准化，可以使得每层的输入分布相对稳定，不会因为前面网络参数改变导致本层输入严重的波动。换言之，使得前后网络层之间具有一定的独立性和稳定性。这样也可以避免covariate shift现象。</li>
+<li>附带的，可以带来轻微的正则化效果。因为mini-batch训练的时候，均值和方差随mini-batch的具体数据有所差异，引入了噪音，使得模型更稳定。和dropout一样，mini-batch增大，会削弱正则化效果。但需要注意，这只是个附加效果，不要把它作为正则化的手段</li>
+</ul>
+<p>同样类似于dropout，测试阶段和训练阶段逻辑有所不同。对于dropout，在测试阶段需要关闭。对于BN，在测试阶段，需要提前指定均值和方差，因此如果只是测试一条数据，是无法计算均值和方差的。均值和方差的测算方法有：</p>
+<ul>
+<li>在网络建好后，将整个训练集作为一个batch扔进去，可以得到均值和方差，但一般不使用这种方法</li>
+<li>使用指数加权平均来计算。训练过程每个mini-batch均值方差进行指数加权平均，最终可以得到一个测试可用的均值方差</li>
+</ul>
+<h2 id="softmax"><a href="#softmax" class="headerlink" title="softmax"></a>softmax</h2><p>softmax作为一个激活函数比较特殊。其他激活函数但是入常量出常量，而它是入向量出向量。主要的作用就是激活向量转概率向量：<br>$$<br>softmax(t_i) = \frac{e^{t_{i}}}{\sum\limits_i e^{t_i}}<br>$$</p>
+<h1 id="第三门课：结构化机器学习项目"><a href="#第三门课：结构化机器学习项目" class="headerlink" title="第三门课：结构化机器学习项目"></a>第三门课：结构化机器学习项目</h1><h2 id="正交化"><a href="#正交化" class="headerlink" title="正交化"></a>正交化</h2><p>简单地说，就是让每个参数独立的负责一个方面，不同参数之间正交，不发生共同作用，从而可以快速定位问题和调整方向。</p>
+<p>early stopping就是一个不太正交化的参数，它同时影响训练集的拟合效果和开发集的表现。</p>
+<h2 id="单一数字评估指标"><a href="#单一数字评估指标" class="headerlink" title="单一数字评估指标"></a>单一数字评估指标</h2><p>有时，我们对模型的效果需要从多个角度来考察，比如precision和recall，但是对于这种多指标的情况，如果训练了多个模型要进行优劣评估，就会很困难。因为很难出现某个模型在每个指标上都有压倒性优势。这样的比较困难又会进一步的影响到模型迭代优化的方向。故而，我们需要一个单一指标来清晰的进行优劣对比。比如综合precision和recall的F1-score。</p>
+<h2 id="满足和优化指标"><a href="#满足和优化指标" class="headerlink" title="满足和优化指标"></a>满足和优化指标</h2><p>有时，我们除了追求accuracy之外，还要求模型的运行时间、资源利用等要满足一定的条件。前者称为优化指标，后者称为满足指标。优化指标用于控制迭代的方向，如上一部分所示最好是单一数字评估指标，满足指标只需要到达要求下限就可以，并不需要在此基础上追求更好的效果，比如运行时间。</p>
+<h2 id="数据集配置和划分规则"><a href="#数据集配置和划分规则" class="headerlink" title="数据集配置和划分规则"></a>数据集配置和划分规则</h2><ul>
+<li>train/dev/test应该服从同一分布</li>
+<li>切分比例并没有定数，主要是为了让每个数据集都能有足够的样本来产生足够置信度的结果。传统机器学习时代一般是7/3或者6/2/2的切分，深度学习时代，由于数据量巨大，98/1/1的切分就可以让dev/test有充足的数据。</li>
+</ul>
+<h2 id="贝叶斯最优错误率、人类水平、可避免偏差"><a href="#贝叶斯最优错误率、人类水平、可避免偏差" class="headerlink" title="贝叶斯最优错误率、人类水平、可避免偏差"></a>贝叶斯最优错误率、人类水平、可避免偏差</h2><p>贝叶斯错误率：理论上可能达到的最优错误率。出于数据或者任务本身的原因，并不能一定达到无错。</p>
+<p>人类水平：人类在任务上的能力，可以作为一个基准，来估计贝叶斯错误率。</p>
+<p>可避免偏差：模型效果和贝叶斯错误率之间的差距。</p>
+<p>当存在较大的可避免偏差时，模型调优以降低偏差为主。</p>
+<p>如果train和dev错误率存在较大差距，则需要进行降方差调优。</p>
+<p>一般先调偏差、后调方差。</p>
+<p>偏差优化：</p>
+<ul>
+<li>训练更大更深的模型</li>
+<li>尝试其他优化算法（adam、sgd等）</li>
+<li>更换网络架构</li>
+<li>超参调优</li>
+<li>……</li>
+</ul>
+<p>方差优化：</p>
+<ul>
+<li>增加数据</li>
+<li>正则化</li>
+<li>更换网络架构</li>
+<li>超参调优</li>
+<li>……</li>
+</ul>
+<h2 id="错误分析"><a href="#错误分析" class="headerlink" title="错误分析"></a>错误分析</h2><p>对于模型识别错误的样本，将之随机挑出一部分，观察其错误原因，或者是该部分样本的类型。譬如说猫狗识别中，我们去统计错误识别的样本中有多少是狗识别为猫，有多少是照片模糊，有多少是因为照片加了滤镜等等。这样可以得到具体有哪些错误类型以及其在错误样本中的占比。从而可以知道先解决哪个问题可以得到最高的收益。</p>
+<h2 id="标记错误"><a href="#标记错误" class="headerlink" title="标记错误"></a>标记错误</h2><p>有一种特殊的情况是标记本身出错。这个可以分数据集来讨论。对于训练集，深度学习一般对于偶发的随机性的标记错误相当健壮。但是，对于系统性错误就会存在问题，譬如训练集中白色的猫都被标记为狗。显然，模型可能会学到这一错误模式。</p>
+<p>对于开发集或者测试集，首先要做错误分析，通过错误分析也会发现标记错误的一个大概比例。如果比例很小，那么可以考虑不做修正。如果比例较大，影响到了对于模型的评估，那么就需要进行修正了。需要注意的是，这样的修正应当是在开发集和测试集都进行的，并且是针对所有样本的，而不仅仅是模型判错的样本！</p>
+<h2 id="快速搭建第一个系统"><a href="#快速搭建第一个系统" class="headerlink" title="快速搭建第一个系统"></a>快速搭建第一个系统</h2><p>通过快速简单的搭建一个系统，然后进行方差/偏差分析和错误分析，你可以清晰的看到你面临的问题和困难，从而选择正确高效的进攻方向。</p>
+<h2 id="数据不匹配与错误分析"><a href="#数据不匹配与错误分析" class="headerlink" title="数据不匹配与错误分析"></a>数据不匹配与错误分析</h2><p>有的时候，我们的数据量过小，于是我们会想办法从其他渠道获取一些相似数据来进行数据补充。但是这些其他渠道的数据分布往往和我们真实的目标数据分布不一致。</p>
+<p>在这种情况下，我们会面临两个问题：</p>
+<ol>
+<li><p>这些补充的外部数据怎么用？用多少合适？</p>
+<p>我们应当确保我们开发和测试集始终是我们的目标分布，换言之，其中不应当混入补充数据，外部数据应当只加入训练集中进行补充。</p>
+<p>[TODO]使用多少量合适？</p>
+</li>
+<li><p>如何进行偏差方差分析？</p>
+<p>由于训练集和测试集的分布不一致，我们很难知道模型本身是否存在方差问题。因此我们需要从训练集中再随机分割一段数据出来作为训练-开发集。这个时候，我们就有了一下几个错误率或者其他指标：</p>
+<ul>
+<li>训练集错误率</li>
+<li>训练-开发集错误率</li>
+<li>开发集错误率</li>
+<li>测试集错误率</li>
+<li>人类水平错误率</li>
+</ul>
+<p>根据这几个指标，我们可以诊断一些问题：</p>
+<ul>
+<li>方差问题：训练集错误率和训练-开发集错误率有很大差距</li>
+<li>偏差问题：训练集错误率和人类水平有很大差距</li>
+<li>数据不匹配问题：训练集错误率和开发集错误率有很大差距</li>
+<li>开发集过拟合（可以扩大开发集样本量来解决）：开发集错误率和测试集错误率有很大差距</li>
+</ul>
+</li>
+</ol>
+<h2 id="人工合成数据"><a href="#人工合成数据" class="headerlink" title="人工合成数据"></a>人工合成数据</h2><p>通过人工合成的方法，我们或许可以得到和开发测试集分布基本一致的样本。但是需要注意，人工合成时，不要让合成样本陷入某个分布子空间中。譬如说，对人声加噪，但是始终使用个别的几个噪音，就会让模型对这几个噪音过拟合，而对其他噪音类型并没有那么好的识别能力。</p>
+<h2 id="迁移学习"><a href="#迁移学习" class="headerlink" title="迁移学习"></a>迁移学习</h2><p>将使用其他样本训练好的模型拿来做针对新样本的再次训练，这里牵涉到两个概念：</p>
+<ul>
+<li>pre-training： 用其他样本训练模型称为预训练阶段</li>
+<li>fine tuning：在预训练模型的基础上，用目标样本进行再次训练，称为微调</li>
+</ul>
+<p>如果目标样本数据量较小，那么可以只是重新训练模型的最后一层或几层权重。如果样本量很大，那么可以全部的权重都参与重新学习。</p>
+<p>迁移学习在满足以下情况时可用并且有价值：</p>
+<ul>
+<li>新旧任务有相同的输入格式，譬如都是图片，都是音频</li>
+<li>旧任务数据量远远大于新任务数据量</li>
+<li>旧任务的低层次特征对新任务有帮助，譬如图片边缘检测、阳性对象检测、曲线检测等</li>
+</ul>
+<p>迁移学习是串行的多任务学习。</p>
+<h2 id="多任务学习"><a href="#多任务学习" class="headerlink" title="多任务学习"></a>多任务学习</h2><p>多任务学习是指模型同时完成多个任务。计算机视觉中的物体检测是个典型的多任务学习，也是少数几个多任务学习的场景。</p>
+<p>多任务学习在满足以下情况时更有价值：</p>
+<ul>
+<li>需要训练的多个任务可以共用低层次特征</li>
+<li>每个任务对应的数据量最好相似或者对于任意一个单任务的数据量而言，其他任务的总数据量应该远远超之。只是吴恩达的个人见解，并不是非常绝对的要求</li>
+<li>训练一个足够大的神经网络来替代为每个任务单独训练一个神经网络。并且这样的做法并不会降低性能，甚至还会有所提高，因为会产生共用底层特征以及迁移学习的效果。</li>
+</ul>
+<h2 id="端到端学习"><a href="#端到端学习" class="headerlink" title="端到端学习"></a>端到端学习</h2><p>传统的机器学习方法，会将问题的解决分成几个部分来解决，而端到端学习则是在通过模型直接让原始输入输出结果。在大数据量情况下，端到端学习会表现更好。端到端模型要求的是一个高度复杂的模型，从而也会带来难度的上升。</p>
+<p>我们来考察一下人脸识别问题的解决方案。拆分成两个步骤，首先检测人脸位置，然后进行头像配对。这样做的好处是将一个复杂问题拆分成两个简单问题。而且每个问题都可以有大量易得的数据样本支持。从而保证效果。如果直接使用端到端，那么单单是样本量就会是一个很大的问题。</p>
+<p>端到端学习的优点：</p>
+<ul>
+<li>让数据说话</li>
+<li>更少的手工设计和干预</li>
+</ul>
+<p>端到端学习的缺点：</p>
+<ul>
+<li>需要大量的数据</li>
+<li>排除了可能有用的手工设计组件</li>
+</ul>
+<p>手工设计的排除有好也有坏。在数据量较小的时候优势更为明显，在大数据量情况下让数据自己说话而不是认为加入主观影响会更好。</p>
+<p>再以无人驾驶为例。油门、方向等等目前并不是直接使用端到端的深度学习去做的，而是使用运动规划等方法。在现有的数据量以及训练神经网络的能力下，对于一些问题，拆解或许比一味的端到端更有效。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+          
+            <a href="/tags/NN/" rel="tag"># NN</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/06/pansee/film review/无问西东——李芳芳/" rel="next" title="无问西东——李芳芳">
+                <i class="fa fa-chevron-left"></i> 无问西东——李芳芳
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/06/pansee/film review/我不是药神——文牧野/" rel="prev" title="我不是药神——文牧野">
+                我不是药神——文牧野 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">muzhen</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">358</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">113</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一门课-神经网络和深度学习-Neural-Networks-and-Deep-Learning"><span class="nav-number">1.</span> <span class="nav-text">第一门课 神经网络和深度学习(Neural Networks and Deep Learning)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#激活函数"><span class="nav-number">1.1.</span> <span class="nav-text">激活函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数初始化"><span class="nav-number">1.2.</span> <span class="nav-text">参数初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络搭建"><span class="nav-number">1.3.</span> <span class="nav-text">神经网络搭建</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第二门课-改善深层神经网络：超参数调试、正则化以及优化-Improving-Deep-Neural-Networks-Hyperparameter-tuning-Regularization-and-Optimization"><span class="nav-number">2.</span> <span class="nav-text">第二门课 改善深层神经网络：超参数调试、正则化以及优化(Improving Deep Neural Networks:Hyperparameter tuning, Regularization and Optimization)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#L2正则化"><span class="nav-number">2.1.</span> <span class="nav-text">L2正则化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dropout"><span class="nav-number">2.2.</span> <span class="nav-text">dropout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他正则化方法"><span class="nav-number">2.3.</span> <span class="nav-text">其他正则化方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度消失和梯度爆炸"><span class="nav-number">2.4.</span> <span class="nav-text">梯度消失和梯度爆炸</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度检验"><span class="nav-number">2.5.</span> <span class="nav-text">梯度检验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化算法"><span class="nav-number">2.6.</span> <span class="nav-text">优化算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#超参优化"><span class="nav-number">2.7.</span> <span class="nav-text">超参优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#超参重要性"><span class="nav-number">2.7.1.</span> <span class="nav-text">超参重要性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网格搜索VS随机搜索"><span class="nav-number">2.7.2.</span> <span class="nav-text">网格搜索VS随机搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#超参随机取值范围与方法"><span class="nav-number">2.7.3.</span> <span class="nav-text">超参随机取值范围与方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BN-batch-norm"><span class="nav-number">2.8.</span> <span class="nav-text">BN(batch norm)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#softmax"><span class="nav-number">2.9.</span> <span class="nav-text">softmax</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第三门课：结构化机器学习项目"><span class="nav-number">3.</span> <span class="nav-text">第三门课：结构化机器学习项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#正交化"><span class="nav-number">3.1.</span> <span class="nav-text">正交化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单一数字评估指标"><span class="nav-number">3.2.</span> <span class="nav-text">单一数字评估指标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#满足和优化指标"><span class="nav-number">3.3.</span> <span class="nav-text">满足和优化指标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据集配置和划分规则"><span class="nav-number">3.4.</span> <span class="nav-text">数据集配置和划分规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贝叶斯最优错误率、人类水平、可避免偏差"><span class="nav-number">3.5.</span> <span class="nav-text">贝叶斯最优错误率、人类水平、可避免偏差</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#错误分析"><span class="nav-number">3.6.</span> <span class="nav-text">错误分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标记错误"><span class="nav-number">3.7.</span> <span class="nav-text">标记错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速搭建第一个系统"><span class="nav-number">3.8.</span> <span class="nav-text">快速搭建第一个系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据不匹配与错误分析"><span class="nav-number">3.9.</span> <span class="nav-text">数据不匹配与错误分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#人工合成数据"><span class="nav-number">3.10.</span> <span class="nav-text">人工合成数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迁移学习"><span class="nav-number">3.11.</span> <span class="nav-text">迁移学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多任务学习"><span class="nav-number">3.12.</span> <span class="nav-text">多任务学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#端到端学习"><span class="nav-number">3.13.</span> <span class="nav-text">端到端学习</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">muzhen</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

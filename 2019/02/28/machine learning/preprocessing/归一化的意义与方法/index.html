@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="标准化定义标准化就是要把你需要处理的数据经过处理后（通过某种算法）限制在你需要的一定范围内. 标准化原因 为了后面数据处理的方便，把不同量纲的东西放在同一量纲下比较，即把不同来源的数据统一到一个参考系下，这样比较起来才有意义。  保正程序运行时收敛加快，大部分模型标准化后收敛速度会加快。例如，下面的例子，房间数和面积数不在一个量纲上，面积数值太小，房间数太大，成椭圆状，按照梯度收敛速度会慢，理想">
+<meta name="keywords" content="preprocessing">
+<meta property="og:type" content="article">
+<meta property="og:title" content="归一化的意义与方法">
+<meta property="og:url" content="http://www.muzhen.tk/2019/02/28/machine learning/preprocessing/归一化的意义与方法/index.html">
+<meta property="og:site_name" content="the Home of MuZhen">
+<meta property="og:description" content="标准化定义标准化就是要把你需要处理的数据经过处理后（通过某种算法）限制在你需要的一定范围内. 标准化原因 为了后面数据处理的方便，把不同量纲的东西放在同一量纲下比较，即把不同来源的数据统一到一个参考系下，这样比较起来才有意义。  保正程序运行时收敛加快，大部分模型标准化后收敛速度会加快。例如，下面的例子，房间数和面积数不在一个量纲上，面积数值太小，房间数太大，成椭圆状，按照梯度收敛速度会慢，理想">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-02-28T12:45:06.541Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="归一化的意义与方法">
+<meta name="twitter:description" content="标准化定义标准化就是要把你需要处理的数据经过处理后（通过某种算法）限制在你需要的一定范围内. 标准化原因 为了后面数据处理的方便，把不同量纲的东西放在同一量纲下比较，即把不同来源的数据统一到一个参考系下，这样比较起来才有意义。  保正程序运行时收敛加快，大部分模型标准化后收敛速度会加快。例如，下面的例子，房间数和面积数不在一个量纲上，面积数值太小，房间数太大，成椭圆状，按照梯度收敛速度会慢，理想">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.muzhen.tk/2019/02/28/machine learning/preprocessing/归一化的意义与方法/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>归一化的意义与方法 | the Home of MuZhen</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">the Home of MuZhen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/preprocessing/归一化的意义与方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">归一化的意义与方法
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/preprocessing/" itemprop="url" rel="index"><span itemprop="name">preprocessing</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="标准化定义"><a href="#标准化定义" class="headerlink" title="标准化定义"></a>标准化定义</h1><p>标准化就是要把你需要处理的数据经过处理后（通过某种算法）限制在你需要的一定范围内.</p>
+<h1 id="标准化原因"><a href="#标准化原因" class="headerlink" title="标准化原因"></a>标准化原因</h1><ol>
+<li><p>为了后面数据处理的方便，把不同量纲的东西放在同一量纲下比较，即把不同来源的数据统一到一个参考系下，这样比较起来才有意义。</p>
+</li>
+<li><p>保正程序运行时收敛加快，大部分模型标准化后收敛速度会加快。例如，下面的例子，房间数和面积数不在一个量纲上，面积数值太小，房间数太大，成椭圆状，按照梯度收敛速度会慢，理想的是数据类似圆圈的形状，经过有限几个步骤则收敛了。</p>
+</li>
+<li><p>要注意的是，有的模型在标准化之后会影响效果，有的模型则不会。对于标准化是否影响模型效果，主要看模型是否具有伸缩不变性。<br>有些模型在各个维度进行不均匀伸缩后，最优解与原来不等价，例如SVM。对于这样的模型，除非本来各维数据的分布范围就比较接近，否则必须进行标准化，以免模型参数被分布范围较大或较小的数据dominate。<br>有些模型在各个维度进行不均匀伸缩后，最优解与原来等价，例如标准的logistic regression 和linear regression（加正则项后，正则项可能不具备伸缩不变性），简单的树模型（各个节点各算个的切分点）。对于这样的模型，是否标准化理论上不会改变最优解。但是，由于实际求解往往使用迭代算法，如果目标函数的形状太“扁”，迭代算法可能收敛得很慢甚至不收敛。所以对于具有伸缩不变性的模型，最好也进行数据标准化。但SVM则必须进行标准化。同的模型对特征的分布假设是不一样的。比如SVM 用高斯核的时候，所有维度共用一个方差，这不就假设特征分布是圆的么，输入椭圆的就坑了人家。<br>首先，对于gradient descent算法来说，learning rate的大小对其收敛速度至关重要。如果feature的scale不同，理论上不同的feature就需要设置不同的learning rate，但是gradient descent只有一个learning rate，这就导致不同feature的收敛效果不同，从而影响总体的收敛效果。所以在求解模型之前标准化不同feature的scale，可以有效提高gradient descent的收敛速度。<br>除此之外，如果feature的scale相差很大，则会出现scale越大的feature，对模型的影响越大。比如对于multivariate regression, 极端情况下, 有一个特征的值特别特别大，其他特征的值都特别特别小，那么cost function就被这个特别大的特征主导，甚至退化为univariate。即feature scale相差很大，线性回归模型得优化结果也会受到影响。</p>
+</li>
+</ol>
+<p>也需要注意的是，各维分别做标准化会丢失各维方差这一信息，但各维之间的相关系数可以保留</p>
+<h1 id="标准化方法"><a href="#标准化方法" class="headerlink" title="标准化方法"></a>标准化方法</h1><p>具体问题具体分析，可以先通过抽样实验的方式，去选择最好效果的标准化方法。</p>
+<p>常用的方法有：</p>
+<ul>
+<li><p>0-1标准化：<br>$$y_i = \frac{x_i-\min x}{\max x - \min x}$$</p>
+</li>
+<li><p>对数标准化,可以对x做处理使之大于等于1（大于0必须，大于1个人认为不必须）,也可以取对数之后再除以最大对数值进行进一步缩放：<br>$$y = \log x$$</p>
+</li>
+<li><p>反正切标准化：<br>$$y = \frac{2}{\pi} \arctan x$$</p>
+</li>
+<li><p>z-score标准化：<br>$$y = \frac{x_i - \overline{x}}{s};\overline{x} = \frac{\sum\limits_i^n x}{n};s = \sqrt{\frac{\sum (x-\overline{x})^2}{n-1}}$$</p>
+</li>
+<li><p>归一化：<br>$$y = \frac{x_i}{\sum x}$$</p>
+</li>
+</ul>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://blog.csdn.net/resourse_sharing/article/details/51979494" target="_blank" rel="noopener">为什么要特征标准化及特征标准化方法</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/preprocessing/" rel="tag"># preprocessing</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/28/machine learning/preprocessing/连续性变量转化为离散型/" rel="next" title="连续性变量转化为离散型">
+                <i class="fa fa-chevron-left"></i> 连续性变量转化为离散型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/28/machine learning/optimization/非参方法/" rel="prev" title="非参方法">
+                非参方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">muzhen</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">358</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">113</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#标准化定义"><span class="nav-number">1.</span> <span class="nav-text">标准化定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#标准化原因"><span class="nav-number">2.</span> <span class="nav-text">标准化原因</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#标准化方法"><span class="nav-number">3.</span> <span class="nav-text">标准化方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#references"><span class="nav-number">4.</span> <span class="nav-text">references</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">muzhen</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

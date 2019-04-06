@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="实际问题假设我们有一个样本集$\{x_1,x_2,…,x_n\}$，各样本独立。但是，各样本对应的分布$z_i$未知。换言之，该样本集并不是从同一分布中取出，而是从多个分布中的某一个取出。$z$ 是隐含变量，表示服从哪个分布。在此种情况下，使用极大似然法，求使得似然概率最大的参数$\theta$（没有先验，也就谈不上后验概率）。 极大似然法依旧希望似然概率最大，即：$$\arg \max_\th">
+<meta name="keywords" content="optimization,EM,parameter estimation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EM算法">
+<meta property="og:url" content="http://www.muzhen.tk/2019/02/28/machine learning/optimization/EM算法/index.html">
+<meta property="og:site_name" content="the Home of MuZhen">
+<meta property="og:description" content="实际问题假设我们有一个样本集$\{x_1,x_2,…,x_n\}$，各样本独立。但是，各样本对应的分布$z_i$未知。换言之，该样本集并不是从同一分布中取出，而是从多个分布中的某一个取出。$z$ 是隐含变量，表示服从哪个分布。在此种情况下，使用极大似然法，求使得似然概率最大的参数$\theta$（没有先验，也就谈不上后验概率）。 极大似然法依旧希望似然概率最大，即：$$\arg \max_\th">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://p1.bqimg.com/519918/5b876e7671bd61e7.png">
+<meta property="og:updated_time" content="2019-02-28T12:45:06.541Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="EM算法">
+<meta name="twitter:description" content="实际问题假设我们有一个样本集$\{x_1,x_2,…,x_n\}$，各样本独立。但是，各样本对应的分布$z_i$未知。换言之，该样本集并不是从同一分布中取出，而是从多个分布中的某一个取出。$z$ 是隐含变量，表示服从哪个分布。在此种情况下，使用极大似然法，求使得似然概率最大的参数$\theta$（没有先验，也就谈不上后验概率）。 极大似然法依旧希望似然概率最大，即：$$\arg \max_\th">
+<meta name="twitter:image" content="http://p1.bqimg.com/519918/5b876e7671bd61e7.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.muzhen.tk/2019/02/28/machine learning/optimization/EM算法/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>EM算法 | the Home of MuZhen</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">the Home of MuZhen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/optimization/EM算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">EM算法
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/optimization/" itemprop="url" rel="index"><span itemprop="name">optimization</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="实际问题"><a href="#实际问题" class="headerlink" title="实际问题"></a>实际问题</h1><p>假设我们有一个样本集$\{x_1,x_2,…,x_n\}$，各样本独立。但是，各样本对应的分布$z_i$未知。换言之，该样本集并不是从同一分布中取出，而是从多个分布中的某一个取出。$z$ 是隐含变量，表示服从哪个分布。<br>在此种情况下，使用极大似然法，求使得似然概率最大的参数$\theta$（没有先验，也就谈不上后验概率）。</p>
+<h1 id="极大似然法"><a href="#极大似然法" class="headerlink" title="极大似然法"></a>极大似然法</h1><p>依旧希望似然概率最大，即：<br>$$\arg \max_\theta \sum_{x_i} \log p(x_i;\theta)$$</p>
+<blockquote>
+<p><strong>由于无法直接求出似然函数解析解，EM算法通过不断寻找似然函数的紧密下界，然后寻找使下界最优的$\theta$（由于紧密，往往也可以优化似然函数），如此不断迭代至似然函数最优。正是因为这个想法，才会想到使用Jensen不等式去找寻下界。</strong></p>
+</blockquote>
+<p>其中,根据Jensen不等式可推得：<br>\begin{eqnarray} l(\theta) = \sum_{x_i} \log p(x_i;\theta) &amp;&amp; = \sum_{x_i} \log \sum_{z_j} p(x_i,z_j;\theta)  \tag{1} \newline<br>&amp;&amp; = \sum_{x_i} \log \sum_{z_j} p(z_j) \frac{p(x_i,z_j;\theta)}{p(z_j)} \tag{2} \newline<br>&amp;&amp; \geq \sum_{x_i} \sum_{z_j} p(z_j) \log \frac{p(x_i,z_j;\theta)}{p(z_j)} \tag{3}\end{eqnarray}</p>
+<p>因此，可以通过不断优化（3）式来不断提高似然函数下界，最终使之收敛到最优$\theta$。  </p>
+<blockquote>
+<p>这里需要说明，$p(z)$是为了数学优化目的而出现的一个概率分布列，它和隐变量分布的参数并不等同。事实上，它是给定参数(包括隐变量参数和各分布参数)和样本情况下的后验概率。</p>
+</blockquote>
+<h1 id="EM算法"><a href="#EM算法" class="headerlink" title="EM算法"></a>EM算法</h1><p><img src="http://p1.bqimg.com/519918/5b876e7671bd61e7.png" alt><br>(图中Q(z)即指p(z))</p>
+<blockquote>
+<ol>
+<li>首先固定$\theta$，寻找合适的$p(z)$，使（3）成为似然函数的合宜下界。显然，在（1）=（3）时最为合宜。因为合宜，故而在此时，我们可以理解为（3）和（1）有相近的性质;</li>
+<li>然后固定求得的$p(z)$,求使得（3）式达到最大值的$\theta$。因为（3）和（1）有相近的性质，因此使得（3）式达到最大值的$\theta$应该可以让似然函数变大;</li>
+<li>不断迭代最终得到最优解。<br>（严格证明见下一部分）</li>
+</ol>
+</blockquote>
+<p>由于$\log x$严格凹，$\lambda_i &gt; 0$,当且仅当自变量为常数时取等号:<br>\begin{split}&amp;&amp; \sum_i \log \lambda_i x_i \geq \sum_i \lambda_i \log x_i \newline<br>&amp;&amp; \text{equality is true,if and only if } \quad x_i = c,i=1,2,3,…<br>\end{split}</p>
+<p>因此，当（1）=（3）时：<br>\begin{split}\frac{p(x_i,z_j;\theta)}{p(z_j)} = c,i=1,2,3,…\end{split}<br>由于多个等式分子分母相加不变：<br>\begin{split}c = \frac{\sum_j p(x_i,z_j;\theta)}{\sum_j p(z_j)} = \sum_j p(x_i,z_j;\theta) = p(x_i;\theta)\end{split}<br>因此：<br>\begin{eqnarray} p(z_j) &amp;&amp;= \frac{p(x_i,z_j;\theta)}{c} \tag{4} \newline<br>&amp;&amp;= \frac{p(x_i,z_j;\theta)}{\sum_j p(x_i,z_j;\theta)} \tag{5} \newline<br>&amp;&amp;= \frac{p(x_i,z_j;\theta)}{p(x_i;\theta)}  \tag{6} \newline<br>&amp;&amp;= p(z_j|x_i;\theta) \tag{7} \end{eqnarray}</p>
+<p>另一方面：<br>\begin{eqnarray} p(x_i;\theta) = \sum_j p(x_i,z_j;\theta) = \sum_j p(z_j;\theta) p(x_i|z_j;\theta) \tag{8} \end{eqnarray}</p>
+<blockquote>
+<p>这里需要作出一些重要说明，我所看到的部分EM讲解（references中已列出部分）将z的角标也用成i，我在这里区分为j。同时，它们往往给出（7）式就结束，并没有明确说明如何求出p(z)。我在这里说明下我对其求法的理解:</p>
+<ol>
+<li>$p(z)$一般是多项分布的概率分布列，z取值个数已知（[TBC]如果z是连续值呢？）;</li>
+<li>$p(z_j)$应该是通过（6）式即贝叶斯公式求得。其中分母利用（8）式求得;</li>
+<li>显见的，对于每一个$x_i$，都可以求出整体$p(z_j),j=1,2,3,…$,标记为$p_{x_i}(z_j)$。故而，最终应该有:<br>\begin{eqnarray} p(z_j) = \sum_{x_i} p_{x_i}(z_j),j = 1,2,3,… \tag{9}\end{eqnarray}<br>正是因为（9），E步叫做求期望。（我是这样理解的～但貌似不对？） </li>
+</ol>
+</blockquote>
+<p>EM算法整体步骤：  </p>
+<ol>
+<li>给定参数初值(包括隐变量参数和各分布参数)，</li>
+<li>（E步，求期望）根据上一步给定的$\theta$,计算后验概率$p(z)$  </li>
+<li>（M步，最大化）根据计算出的$p(z)$，带回（3）式，求使之最大的$\theta$<br>循环往复，直至收敛。</li>
+</ol>
+<p>期望-最大算法不是指最大化期望！只是两个步骤而已。</p>
+<h1 id="收敛性证明"><a href="#收敛性证明" class="headerlink" title="收敛性证明"></a>收敛性证明</h1><p>首先明确顺序问题：初始状态，给定初始$\theta^{(1)}$和$p^{(0)}(z)$;第一次迭代，E步求出$p^{(1)}(z)$，然后M步求出$\theta^{(2)}$;第t次迭代，给定$\theta^{(t)}$，E步求出$p^{(t)}(z)$，然后M步求出$\theta^{(t+1)}$。</p>
+<p>那么，因为在t时刻是根据（1）=（3）求出$p^{(t)}(z)$，那么有：<br>$$ l(\theta^{(t)}) = \sum_{x_i} \sum_{z_j} p^{(t)}(z_j) \log \frac{p(x_i,z_j;\theta^{(t)})}{p^{(t)}(z_j)}$$<br>而$\theta^{(t+1)}$是对上式右边求最大值得到的，因此显然有：<br>$$\sum_{x_i} \sum_{z_j} p^{(t)}(z_j) \log \frac{p(x_i,z_j;\theta^{(t+1)})}{p^{(t)}(z_j)} \geq \sum_{x_i} \sum_{z_j} p^{(t)}(z_j) \log \frac{p(x_i,z_j;\theta^{(t)})}{p^{(t)}(z_j)} = l(\theta^{(t)})$$<br>另一方面：<br>\begin{eqnarray} l(\theta^{(t+1)}) = \sum_{x_i} \log p(x_i;\theta^{(t+1)}) &amp;&amp; = \sum_{x_i} \log \sum_{z_j} p(x_i,z_j;\theta^{(t+1)}) \newline<br>&amp;&amp; = \sum_{x_i} \log \sum_{z_j} p(z_j) \frac{p(x_i,z_j;\theta^{(t+1)})}{p(z_j)} \newline<br>&amp;&amp; \geq \sum_{x_i} \sum_{z_j} p(z_j) \log \frac{p(x_i,z_j;\theta^{(t+1)})}{p(z_j)} \newline<br>&amp;&amp; \geq \sum_{x_i} \sum_{z_j} p^{(t)}(z_j) \log \frac{p(x_i,z_j;\theta^{(t)})}{p^{(t)}(z_j)} \newline<br>&amp;&amp; = l(\theta^{(t)})\end{eqnarray}<br>如此就可以证明迭代过程中似然函数的单调增性。单调有界故而收敛。<br>似然函数是凸函数才能收敛到全局最优值。</p>
+<h1 id="实例：三硬币模型"><a href="#实例：三硬币模型" class="headerlink" title="实例：三硬币模型"></a>实例：三硬币模型</h1><p>参 李航《统计学习方法——EM算法》</p>
+<h1 id="PRML角度"><a href="#PRML角度" class="headerlink" title="PRML角度"></a>PRML角度</h1><p>[TBC]PRML角度<br><a href="https://mqshen.gitbooks.io/prml/Chapter9/general_em.html?q=" target="_blank" rel="noopener">PRML EM</a></p>
+<h1 id="EM-amp-K-means"><a href="#EM-amp-K-means" class="headerlink" title="EM &amp; K-means"></a>EM &amp; K-means</h1><p>K-means的损失函数可以写成：<br>$$J(C,\mu) = \sum_i || x_i - \mu_C||^2$$<br>其中，C是类分配，$\mu$是类重心。因此可以将K-means视为坐标上升或者EM算法。</p>
+<h1 id="高斯混合模型"><a href="#高斯混合模型" class="headerlink" title="高斯混合模型"></a>高斯混合模型</h1><p>[TBC]</p>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://blog.csdn.net/zouxy09/article/details/8537620" target="_blank" rel="noopener">从最大似然到EM算法浅解</a></p>
+<p><a href="http://www.cnblogs.com/jerrylead/archive/2011/04/06/2006936.html" target="_blank" rel="noopener">The EM Algorithm</a></p>
+<p>李航《统计学习方法》</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/optimization/" rel="tag"># optimization</a>
+          
+            <a href="/tags/EM/" rel="tag"># EM</a>
+          
+            <a href="/tags/parameter-estimation/" rel="tag"># parameter estimation</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/28/machine learning/optimization/L1,L2正则化/" rel="next" title="L1,L2正则化">
+                <i class="fa fa-chevron-left"></i> L1,L2正则化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/28/machine learning/math/Jensen不等式/" rel="prev" title="Jensen不等式">
+                Jensen不等式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">muzhen</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">358</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">113</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实际问题"><span class="nav-number">1.</span> <span class="nav-text">实际问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#极大似然法"><span class="nav-number">2.</span> <span class="nav-text">极大似然法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EM算法"><span class="nav-number">3.</span> <span class="nav-text">EM算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#收敛性证明"><span class="nav-number">4.</span> <span class="nav-text">收敛性证明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实例：三硬币模型"><span class="nav-number">5.</span> <span class="nav-text">实例：三硬币模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PRML角度"><span class="nav-number">6.</span> <span class="nav-text">PRML角度</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EM-amp-K-means"><span class="nav-number">7.</span> <span class="nav-text">EM &amp; K-means</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高斯混合模型"><span class="nav-number">8.</span> <span class="nav-text">高斯混合模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#references"><span class="nav-number">9.</span> <span class="nav-text">references</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">muzhen</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

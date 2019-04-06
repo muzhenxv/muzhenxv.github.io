@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="本文为论文《Fast Effective Rule Induction》的阅读笔记。 REP&amp;amp;IREPREP(reduced error pruning)将数据分成两部分，growing set和pruning set，在growing set上贪婪学习，然后根据pruning set来进行剪枝。REP的时间复杂度较高。 IREP（incremental reduced error p">
+<meta name="keywords" content="rule learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fast Effective Rule Induction">
+<meta property="og:url" content="http://www.muzhen.tk/2019/02/28/machine learning/machine learning/Fast Effective Rule Induction/index.html">
+<meta property="og:site_name" content="the Home of MuZhen">
+<meta property="og:description" content="本文为论文《Fast Effective Rule Induction》的阅读笔记。 REP&amp;amp;IREPREP(reduced error pruning)将数据分成两部分，growing set和pruning set，在growing set上贪婪学习，然后根据pruning set来进行剪枝。REP的时间复杂度较高。 IREP（incremental reduced error p">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-02-28T12:45:06.541Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fast Effective Rule Induction">
+<meta name="twitter:description" content="本文为论文《Fast Effective Rule Induction》的阅读笔记。 REP&amp;amp;IREPREP(reduced error pruning)将数据分成两部分，growing set和pruning set，在growing set上贪婪学习，然后根据pruning set来进行剪枝。REP的时间复杂度较高。 IREP（incremental reduced error p">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.muzhen.tk/2019/02/28/machine learning/machine learning/Fast Effective Rule Induction/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Fast Effective Rule Induction | the Home of MuZhen</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">the Home of MuZhen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/machine learning/Fast Effective Rule Induction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Fast Effective Rule Induction
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/machine-learning/" itemprop="url" rel="index"><span itemprop="name">machine learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+<p>本文为论文《Fast Effective Rule Induction》的阅读笔记。</p>
+<h1 id="REP-amp-IREP"><a href="#REP-amp-IREP" class="headerlink" title="REP&amp;IREP"></a>REP&amp;IREP</h1><p>REP(reduced error pruning)将数据分成两部分，growing set和pruning set，在growing set上贪婪学习，然后根据pruning set来进行剪枝。REP的时间复杂度较高。</p>
+<p>IREP（incremental reduced error pruning）则是在每一个规则的发现过程中都进行数据集分割，并且学习完规则立刻进行剪枝操作。IREP在精度上略差于C4.5，在large noisy dataset的处理能力也还不错。</p>
+<p>下面是一个作者在文中给出的二分类IREP伪代码：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">	produce IREP(Pos,Neg)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">   Ruleest := ∅</span><br><span class="line">   <span class="keyword">while</span> Pos ≠ ∅ <span class="keyword">do</span></span><br><span class="line">      <span class="comment">/* grow and prune a new rule */</span></span><br><span class="line">      <span class="keyword">split</span> (Pos, Neg) <span class="keyword">into</span> (GrowPos, GrowNeg) <span class="keyword">and</span> (PrunePos, PruneNeg)</span><br><span class="line">      Rule := GrowRule(GrowPos, GrowNeg)</span><br><span class="line">      Rule := PruneRule(Rule, PrunePos, PruneNeg)</span><br><span class="line">      <span class="keyword">if</span> the <span class="keyword">error</span> rate <span class="keyword">of</span> Rule <span class="keyword">on</span> (PrunePos, PruneNeg) exceeds <span class="number">50</span>% <span class="keyword">then</span></span><br><span class="line">         <span class="keyword">return</span> Ruleset</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">         <span class="keyword">add</span> Rule <span class="keyword">to</span> Ruleset</span><br><span class="line">         remove examples covered <span class="keyword">by</span> Rule</span><br><span class="line">         <span class="keyword">from</span> (Pos, Neg)</span><br><span class="line">      endif</span><br><span class="line">   endwhile</span><br><span class="line">   <span class="keyword">return</span> Ruleset</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>其中<br>$$<br>v = PruneRule(Rule, PrunePos, PruneNeg) \equiv \frac{p + (N-n)}{P+N}  \tag{1}<br>$$<br>如果是多分类，则按类的占比从低往高排序${C_1, C_2, , …, C_k}$，先针对$C_1$开始进行规则学习，把该类完全排除后，继续学习$C_2$，依此类推。</p>
+<p>如果某特征$A$中存在缺失值，那么$A=v$(离散)或者$A&lt;=\theta$（连续）这个条件会被认为不cover缺失值样本。我的理解是这样做的含义其实是更倾向于让缺失值归于多数类。</p>
+<p>以上IREP(为方便说明，我自行标记为IREPn)和初始IREP有以下区别：</p>
+<ol>
+<li>IREP原作者有提出两套剪枝算法，分为为IREP和IREP2。IREP使用Equation 1作为剪枝准则，使用$p/(p+n) &lt; N/(P+N)$作为停止准则；IREP2使用$\frac{p}{p+n}$作为剪枝准则，使用$p/(p+n) &lt; 1/2$作为停止准则。本论文作者通过实验发现IREP通常好于IREP2，但也发现如果将IREP的剪枝准则和IREP2的停止准则结合可以显著的改进IREP的效果。</li>
+<li>原始IREP在每次剪枝过程中仅允许剪掉一条规则，而IREPn允许在剪枝准则基础上剪掉任意条规则。</li>
+<li>IREPn支持缺失值处理，数值型变量和多类别变量。</li>
+</ol>
+<h1 id="效率对比"><a href="#效率对比" class="headerlink" title="效率对比"></a>效率对比</h1><p>和C4.5rules进行实验比较:</p>
+<ol>
+<li>C4.5rules时间复杂度为样本量的立方，而IREP则是线性对数的复杂度。</li>
+<li>IREP及其所有变种效果均差于C4.5rules，也差于通过无剪枝的学习方法（FOIL）学到的规则效果。</li>
+<li>IREP在一些数据集上无法收敛，它在少量数据上学习到规则的误差率，当数据量增加后依旧没有显著改善。</li>
+</ol>
+<h1 id="IPEP改进"><a href="#IPEP改进" class="headerlink" title="IPEP改进"></a>IPEP改进</h1><ol>
+<li><p>剪枝规则的改进</p>
+<p>Equation 1的剪枝规则本质上就是$p-n$,受到绝对量影响。比如rule1 cover 2000个正例和1000个负例，rule2 cover 1000个正例和1个负例，使用Equation 1进行评价，则rule1好于rule2。论文作者提出一种改进：<br>$$<br>v^* (Rule, PrunePos, PruneNeg)  \equiv \frac{p-n}{p+n}<br>$$</p>
+</li>
+<li><p>停止规则的改进</p>
+<p>对于有偏样本（比如说正样本占比10%），规则子集的错误率很容易超过50%，由此触发停止规则。但如果这个规则子集的正样本占比能够达到40%，显然这是一个好规则。而且严重有偏样本在prunset上也往往有很大的方差，导致更容易错误率超过50%。因此，50%的停止规则容易导致IREP过早停止学习。作者提出使用最小描述长度来设定停止规则。这样改进后的IREP称为IREP*</p>
+</li>
+<li><p>规则优化</p>
+<p>没看懂？</p>
+<p>​</p>
+</li>
+</ol>
+<h1 id="泛化能力"><a href="#泛化能力" class="headerlink" title="泛化能力"></a>泛化能力</h1><p>RIPPER好于IREP*，略逊于C4.5rules，RIPPER2略优于C4.5rules。</p>
+<h1 id="RIPPERk效率"><a href="#RIPPERk效率" class="headerlink" title="RIPPERk效率"></a>RIPPERk效率</h1><p>论述了RIPPERk的在时间和空间上的高效率。RIPPERk和C4.5rules都是先生成一个初始模型，然后在初始模型上迭代。但对于large noisy datasets，C4.5rules生成的初始模型（完全生成的决策树，由于noisy，可能会细分到每个叶子节点只包含一个样本）会过大，而RIPPEk一开始使用IREP*生成的初始模型的规模则会和目标空间较为接近。另外，在大数据集（样本数超过150）上， RIPPERk优于C4.5rules，反之相反。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/rule-learning/" rel="tag"># rule learning</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/28/machine learning/machine learning/a brief overview of rule learning/" rel="next" title="a brief overview of rule learning">
+                <i class="fa fa-chevron-left"></i> a brief overview of rule learning
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/28/machine learning/imbalance data/learning from imbalance data/" rel="prev" title="learning from imbalance data">
+                learning from imbalance data <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">muzhen</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">358</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">113</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#REP-amp-IREP"><span class="nav-number">1.</span> <span class="nav-text">REP&amp;IREP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#效率对比"><span class="nav-number">2.</span> <span class="nav-text">效率对比</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IPEP改进"><span class="nav-number">3.</span> <span class="nav-text">IPEP改进</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#泛化能力"><span class="nav-number">4.</span> <span class="nav-text">泛化能力</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RIPPERk效率"><span class="nav-number">5.</span> <span class="nav-text">RIPPERk效率</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">muzhen</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

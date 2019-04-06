@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="adaboost原理adaboost通过集成弱分类器来最终实现一个强分类器。 以下的讨论局限于二分类问题。并且注意正类标记为1,负类标记为-1。 弱分类器：优于随机水平。事实上，这很容易达到，因为对于低于随机水平的，只需要反转预测的label就可以高于随机水平了。 adaboost是一个加法模型，最终模型形如：$$F(x) = \sum_{t=1}^T \alpha_t h_t(x)$$$$H(">
+<meta name="keywords" content="machine learning,ensemble,adaboost">
+<meta property="og:type" content="article">
+<meta property="og:title" content="adaboost">
+<meta property="og:url" content="http://www.muzhen.tk/2019/02/28/machine learning/ensemble/adaboost/index.html">
+<meta property="og:site_name" content="the Home of MuZhen">
+<meta property="og:description" content="adaboost原理adaboost通过集成弱分类器来最终实现一个强分类器。 以下的讨论局限于二分类问题。并且注意正类标记为1,负类标记为-1。 弱分类器：优于随机水平。事实上，这很容易达到，因为对于低于随机水平的，只需要反转预测的label就可以高于随机水平了。 adaboost是一个加法模型，最终模型形如：$$F(x) = \sum_{t=1}^T \alpha_t h_t(x)$$$$H(">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-02-28T12:45:06.541Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="adaboost">
+<meta name="twitter:description" content="adaboost原理adaboost通过集成弱分类器来最终实现一个强分类器。 以下的讨论局限于二分类问题。并且注意正类标记为1,负类标记为-1。 弱分类器：优于随机水平。事实上，这很容易达到，因为对于低于随机水平的，只需要反转预测的label就可以高于随机水平了。 adaboost是一个加法模型，最终模型形如：$$F(x) = \sum_{t=1}^T \alpha_t h_t(x)$$$$H(">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.muzhen.tk/2019/02/28/machine learning/ensemble/adaboost/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>adaboost | the Home of MuZhen</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">the Home of MuZhen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/ensemble/adaboost/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">adaboost
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ensemble/" itemprop="url" rel="index"><span itemprop="name">ensemble</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><script type"text javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="adaboost原理"><a href="#adaboost原理" class="headerlink" title="adaboost原理"></a>adaboost原理</h1><p>adaboost通过集成弱分类器来最终实现一个强分类器。</p>
+<p>以下的讨论局限于二分类问题。并且注意正类标记为1,负类标记为-1。</p>
+<p>弱分类器：优于随机水平。事实上，这很容易达到，因为对于低于随机水平的，只需要反转预测的label就可以高于随机水平了。</p>
+<p>adaboost是一个加法模型，最终模型形如：<br>$$F(x) = \sum_{t=1}^T \alpha_t h_t(x)$$<br>$$H(x) = sign[F(x)]$$<br>其中，T是总迭代次数。$\alpha$是模型的权重，也就是需要求解的模型参数之一。另一部分参数就是各个基分类器。</p>
+<p>我们的优化目标自然是最小化误差：<br>$$\arg \min Err(H;D) = \arg \min \frac{1}{m} \sum_{i=1}^m I(h(x_i) \neq y_i)$$<br>其中，m是样本数。</p>
+<h1 id="权重调整"><a href="#权重调整" class="headerlink" title="权重调整"></a>权重调整</h1><p>adaboost通过调整误分类样本权重重新建模，来改进模型效果。<br>初始权重为$\frac{1}{m}$。</p>
+<p>通过如下公式进行权重调整：<br>$$D_{t+1}(i) = \frac{1}{Z_t} D_t(i) \exp[-\alpha_t y_i h_t(x_i)]$$<br>其中，$Z_t$是规范化因子，保证权重大于等于0,和为1。$D_t(i)$是t轮迭代的样本权重。显然，当预测正确时，$y_i h_t(x_i) = 1$，新权重会减小;预测错误时，$y_i h_t(x_i) = -1$，新权重会增大。</p>
+<p>因此，可以得到递推公式：<br>\begin{split} D_{t+1}(i) &amp;&amp;= \frac{1}{Z_t} D_t(i) \exp[-\alpha_t y_i h_t(x_i)] \newline<br>&amp;&amp;= \frac{1}{Z_t Z_{t-1}} D_{t-1}(i) \exp[-y_i(\alpha_t h_t(x_i) + \alpha_{t-1} h_{t-1}(x_i))] \newline<br>&amp;&amp;= \frac{1}{Z_t … Z_{1}} D_{1}(i) \exp[-y_i(\alpha_t h_t(x_i) + …+\alpha_{1} h_{1}(x_i))] \newline<br>&amp;&amp;= \frac{1}{Z_t … Z_{1}} D_{1}(i) \exp[-y_i F(x_i)] \end{split}</p>
+<p>左右两边同时求和有：<br>\begin{split} 1 = \sum_{i=1}^m D_{t+1}(i) = \frac{1}{Z_t … Z_{1}} \frac{1}{m} \sum_{i=1}^m \exp[-y_i F(x_i)] \end{split}<br>\begin{split} Z = Z_t … Z_{1} = \frac{1}{m} \sum_{i=1}^m \exp[-y_i F(x_i)] \end{split}</p>
+<h1 id="adaboost误差上界"><a href="#adaboost误差上界" class="headerlink" title="adaboost误差上界"></a>adaboost误差上界</h1><p>adaboost通过优化误差上界来优化模型效果。</p>
+<p>下面证明：<br>$$ Err(H) = \frac{1}{m} \sum_{i=1}^m I(h(x_i) \neq y_i) \leq Z = \frac{1}{m} \sum_{i=1}^m \exp[-y_i F(x_i)]$$</p>
+<p>证明如下：</p>
+<p>对于求和的每一项有：<br>\begin{split} \text{If } H(x_i) \neq y_i \text{ then the LHS } = 1 \leq \text{RHS } = e^{+|F(x_i)|} \newline<br>\text{If } H(x_i) = y_i \text{ then the LHS } = 0 \leq \text{RHS } = e^{-|F(x_i)|} \end{split}<br>显然求和后不等式依旧成立。故而得证。</p>
+<p>因此，我们的问题转化为优化Z。同时，我们采用step-wise的方法去进行优化，也就是逐步优化$Z_1,Z_2,Z_3,…,Z_t$。</p>
+<h1 id="权重系数求解"><a href="#权重系数求解" class="headerlink" title="权重系数求解"></a>权重系数求解</h1><p>对$Z_t$最小化，令导数为0。</p>
+<p>\begin{split} Z_t(\alpha_t,h_t) &amp;&amp;= \sum_{x_i \in A} D_t(x_i) exp[-\alpha_t] + \sum_{x_i \in \bar{A}} D_t(x_i) exp[-\alpha_t] \newline<br>\frac{d Z_t(\alpha_t,h_t)}{d \alpha_t} &amp;&amp;= \sum_{x_i \in A} -D_t(x_i) exp[-\alpha_t] + \sum_{x_i \in \bar{A}} D_t(x_i) exp[-\alpha_t] = 0 \newline<br>\sum_{x_i \in A} D_t(x_i) &amp;&amp;= \sum_{x_i \in \bar{A}} D_t(x_i) exp[2 \alpha_t] \end{split}</p>
+<p>我们定义加权误差：<br>\begin{split} \epsilon_t(h) = \sum_{i=1}^m D_t(x_i)I(h(x_i) \neq y_i) = \sum_{x_i \in \bar{A}} D_t(x_i) \end{split}</p>
+<p>因此有：<br>\begin{split} \alpha_t = \frac{1}{2} \ln \frac{1-\epsilon_t(h_t)}{\epsilon_t(h_t)} \end{split}</p>
+<p><strong>由于每个分类器都要求是弱分类器。也就是要求每个基分类器的 <em>加权误差率</em> 小于0.5。</strong><br>因此，$\alpha_t$显然都大于0。</p>
+<h1 id="误差分析"><a href="#误差分析" class="headerlink" title="误差分析"></a>误差分析</h1><p>将解出的权重系数带回：</p>
+<p>\begin{split} Z_t(\alpha_t,h_t) &amp;&amp;= \sum_{x_i \in A} D_t(x_i) exp[-\alpha_t] + \sum_{x_i \in \bar{A}} D_t(x_i) exp[-\alpha_t] \newline<br>&amp;&amp;= (1-\epsilon_t(h_t))\sqrt{\frac{\epsilon_t(h_t)}{1-\epsilon_t(h_t)}} + \epsilon_t(h_t)\sqrt{\frac{1-\epsilon_t(h_t)}{\epsilon_t(h_t)}} \newline<br>&amp;&amp;= 2\sqrt{\epsilon_t(h_t) (1-\epsilon_t(h_t))}\end{split}</p>
+<p>令:<br>\begin{split} \gamma_t = \frac{1}{2} - \epsilon_t(h_t) , \gamma_t \in (0,\frac{1}{2}]\end{split}</p>
+<p>则有：</p>
+<p>\begin{split} Z_t(\alpha_t,h_t) &amp;&amp;= 2\sqrt{\epsilon_t(h_t) (1-\epsilon_t(h_t))} \newline<br>&amp;&amp;= \sqrt{1-4\gamma_t^2} \newline<br>&amp;&amp; \leq \exp[-2 \gamma_t^2]\end{split}</p>
+<p>因此：</p>
+<p>\begin{split} Err(H) \leq Z \leq \exp[-2\sum_{t=1}^T \gamma_t^2] \end{split}</p>
+<p>随着迭代次数增加，误差上界以指数级减小。</p>
+<h1 id="过拟合问题"><a href="#过拟合问题" class="headerlink" title="过拟合问题"></a>过拟合问题</h1><p>adaboost在使用中常常不容易过拟合。也就是说验证集可以随着训练集精度提升而提升，并不存在一个下降的拐点。</p>
+<p>一些相关的理论解释：</p>
+<blockquote>
+<p>作者：知乎用户<br>链接：<a href="https://www.zhihu.com/question/41047671/answer/127832345" target="_blank" rel="noopener">https://www.zhihu.com/question/41047671/answer/127832345</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。<br>AdaBoost提出的论文对AdaBoost的泛化界进行了分析，使用了通常的学习器泛化界：<br>泛化错误（泛化错误可理解为测试错误） &lt; 训练错误 + 学习算法容量相关项     (1)<br>由(1)式可见，当训练错误不变时，应当选择简单的学习模型，从而减少学习算法容量。然而在实验中已经观察到，在一些情况，训练错误已经是0了，继续训练还能进一步减小泛化错误，这里的继续训练意味着增加学习算法容量，理应导致泛化错误上升才对。因此(1)直接套上AdaBoost是解释不通的。更有JMLR 2008的论文发现，更多的实验观察与Boosting的理论及其统计解释都不符合，例如使用多层的决策树竟然比使用一层的简单决策树更好。理论不能解释实验肯定是理论的问题，于是人们觉得，(1)式不够好，可能把更加细微的因素忽略了。<br>于是AdaBoost的作者针对这一情况，提出了新的学习器泛化界：<br>泛化错误 &lt; 训练Margin项 + 学习算法容量相关项     (2)<br>(1)中的训练错误是指一个数据样本分类对了就是0，错了就是1，而(2)里的“训练Margin”不仅看分类对错，还要看对的信心有多少，例如对于一个正类+1，分类器A输出+0.1，B输出+2，虽然都分类正确了，但B的信心更多。这样(2)就比(1)更加细致的刻画了学习器的表现。实验一看，果然AdaBoost在训练错误为0后，继续训练不能再减少训练错误了，确能够进一步减少训练Margin，也就是信心更足了。<br>看似解决了AdaBoost不容易过拟合的问题，然而好景不长，统计大牛Leo Breiman（bagging，random forest出自他手）来了个比 (2) 更紧的界（更紧就是更接近真实）：<br>泛化错误 &lt; 训练Margin的最小值 + 学习算法容量相关项     (3)<br>（3）的容量相关项目更小，但这不是关键，关键是根据这一理论，就应该去看训练Margin的最小值，也就是分类器在所有样本上信心最不足的那个。然而根据这一理论，Breiman设计了另一种Boosting算法arc-gv，最小训练Margin更小了，但实验效果比AdaBoost差了很多。于是乎Breiman的结论是，这个用训练Margin来刻画泛化错误整个就是不对的。大家都傻眼了，AdaBoost不容易过拟合的问题无解了。<br>7年之后。。。AdaBoost作者之一的工作发现，Breiman的实验竟然有问题：没有很好的控制决策树的复杂性，也就是说，AdaBoost和arc-gv关于“学习算法容量相关项”的值并不一样，虽然arc-gv的最小训练Margin更小，但后面一项更大啊，因此泛化错误就更大了。于是重做实验，都用一层决策树，这样后面一项都一样了，一看AdaBoost更好了，也就是说原来的Margin理论并没有错误，松了口气。该论文获ICML’06最佳论文奖。<br>但是这篇最佳论文奖并没有终结问题，当都用一层决策树时，AdaBoost的最小训练Margin比arc-gv还要小，也就是说，并没有否定(3)式。然而在实验中，最小化这个最小Margin的效果并不好。这篇论文也指出，可能要看Margin的分布，也就是算法在所有样本上的信心，而不是最差的那个样本上的信心。但这只是“可能”，理论研究者最求的是更紧的界。接下来都是我国研究者的贡献了，北京大学王立威等人的到了比(3)更紧的界，其中“训练Margin的最小值” 被替代为 “训练Margin的某一个值”，这某一个要解一个均衡式，但不管怎么说，最小Margin被替代掉了。南京大学的高尉和周志华教授推导出了“第k Margin界”，（3）和 “训练Margin的某一个值” 都是其k赋特定值的特例，并由此得到了基于“算法在所有样本上的信心”的界，比（3）式更好。<br>以上内容可见：<a href="https://wenku.baidu.com/view/8efc9b880975f46527d3e1cb.html" target="_blank" rel="noopener">CCL2014_keynote-周志华</a><br>Margin理论讨论的主要是学习算法在训练样本上的信心，学习算法的容量是不是随着训练轮数的增加而增加呢，其实并不一定，近来有工作表明，有差异的学习器的组合，能够起到正则化的作用，也就是减少学习算法容量（<a href="http://lamda.nju.edu.cn/yuy/GetFile.aspx?File=papers/ecml12-divprune.pdf" target="_blank" rel="noopener">Diversity regularized ensemble pruning. ECML’12</a>; <a href="https://arxiv.org/abs/1511.07110" target="_blank" rel="noopener">On the Generalization Error Bounds of Neural Networks under Diversity-Inducing Mutual Angular Regularization</a>）。在许多variance-bias 分解实验中也观察到，AdaBoost不仅是减少了bias，同时也减少了variance，variance的减少往往与算法容量减少有关。<br>总之这一方面还值得进一步探索，新原理的发型，有可能导致新型高效学习算法的发明，意义重大。</p>
+</blockquote>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="https://www.cse.buffalo.edu/~jcorso/t/CSE555/files/lecture_boosting.pdf" target="_blank" rel="noopener">boosting and adaboost</a></p>
+<p><a href="https://www.zhihu.com/question/41047671" target="_blank" rel="noopener">adaboost为什么不容易过拟合呢？</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+          
+            <a href="/tags/ensemble/" rel="tag"># ensemble</a>
+          
+            <a href="/tags/adaboost/" rel="tag"># adaboost</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/28/machine learning/optimization/优化方法/" rel="next" title="优化方法">
+                <i class="fa fa-chevron-left"></i> 优化方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/28/machine learning/NLP/materials/" rel="prev" title="materials">
+                materials <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">muzhen</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">358</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">113</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#adaboost原理"><span class="nav-number">1.</span> <span class="nav-text">adaboost原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#权重调整"><span class="nav-number">2.</span> <span class="nav-text">权重调整</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#adaboost误差上界"><span class="nav-number">3.</span> <span class="nav-text">adaboost误差上界</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#权重系数求解"><span class="nav-number">4.</span> <span class="nav-text">权重系数求解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#误差分析"><span class="nav-number">5.</span> <span class="nav-text">误差分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#过拟合问题"><span class="nav-number">6.</span> <span class="nav-text">过拟合问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#references"><span class="nav-number">7.</span> <span class="nav-text">references</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">muzhen</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

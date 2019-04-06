@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Chapter 8 Discovering Unknown Clusters in Data with Self-Organizing Maps  8.1 Introduction and Overview8.2 Structure of Unsupervised Networks8.3 Learning in Unsupervised Networks Rosenblatt proposed a">
+<meta name="keywords" content="machine learning,NN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Neural Networks for Applied Sciences and Engineering--Chapter 8">
+<meta property="og:url" content="http://www.muzhen.tk/2019/02/28/machine learning/NN/Neural Networks for Applied Sciences and Engineering--Chapter 8/index.html">
+<meta property="og:site_name" content="the Home of MuZhen">
+<meta property="og:description" content="Chapter 8 Discovering Unknown Clusters in Data with Self-Organizing Maps  8.1 Introduction and Overview8.2 Structure of Unsupervised Networks8.3 Learning in Unsupervised Networks Rosenblatt proposed a">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://omdhuynsr.bkt.clouddn.com/17-3-6/13980399-file_1488786922883_a440.png">
+<meta property="og:image" content="http://omdhuynsr.bkt.clouddn.com/17-3-6/15425123-file_1488797380352_ba79.png">
+<meta property="og:image" content="http://omdhuynsr.bkt.clouddn.com/17-3-7/10981036-file_1488895472789_17ff2.png">
+<meta property="og:image" content="http://omdhuynsr.bkt.clouddn.com/17-3-8/37014593-file_1488941605615_b781.png">
+<meta property="og:image" content="http://omdhuynsr.bkt.clouddn.com/17-3-8/91990443-file_1488956403117_5fd3.png">
+<meta property="og:image" content="http://omdhuynsr.bkt.clouddn.com/17-3-8/3745649-file_1488961989125_16d9f.png">
+<meta property="og:image" content="http://omdhuynsr.bkt.clouddn.com/17-3-8/88751501-file_1488962053638_139d5.png">
+<meta property="og:image" content="http://omdhuynsr.bkt.clouddn.com/17-3-8/50439332-file_1488962099950_d395.png">
+<meta property="og:image" content="http://omdhuynsr.bkt.clouddn.com/17-3-8/29639643-file_1488963168903_8ffa.png">
+<meta property="og:image" content="http://omdhuynsr.bkt.clouddn.com/17-3-8/32153453-file_1488971907071_18164.png">
+<meta property="og:updated_time" content="2019-02-28T12:45:06.537Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Neural Networks for Applied Sciences and Engineering--Chapter 8">
+<meta name="twitter:description" content="Chapter 8 Discovering Unknown Clusters in Data with Self-Organizing Maps  8.1 Introduction and Overview8.2 Structure of Unsupervised Networks8.3 Learning in Unsupervised Networks Rosenblatt proposed a">
+<meta name="twitter:image" content="http://omdhuynsr.bkt.clouddn.com/17-3-6/13980399-file_1488786922883_a440.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.muzhen.tk/2019/02/28/machine learning/NN/Neural Networks for Applied Sciences and Engineering--Chapter 8/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Neural Networks for Applied Sciences and Engineering--Chapter 8 | the Home of MuZhen</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">the Home of MuZhen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/NN/Neural Networks for Applied Sciences and Engineering--Chapter 8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Neural Networks for Applied Sciences and Engineering--Chapter 8
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/NN/" itemprop="url" rel="index"><span itemprop="name">NN</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Chapter-8-Discovering-Unknown-Clusters-in-Data-with-Self-Organizing-Maps"><a href="#Chapter-8-Discovering-Unknown-Clusters-in-Data-with-Self-Organizing-Maps" class="headerlink" title="Chapter 8 Discovering Unknown Clusters in Data with Self-Organizing Maps"></a>Chapter 8 Discovering Unknown Clusters in Data with Self-Organizing Maps</h1><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+<h2 id="8-1-Introduction-and-Overview"><a href="#8-1-Introduction-and-Overview" class="headerlink" title="8.1 Introduction and Overview"></a>8.1 Introduction and Overview</h2><h2 id="8-2-Structure-of-Unsupervised-Networks"><a href="#8-2-Structure-of-Unsupervised-Networks" class="headerlink" title="8.2 Structure of Unsupervised Networks"></a>8.2 Structure of Unsupervised Networks</h2><h2 id="8-3-Learning-in-Unsupervised-Networks"><a href="#8-3-Learning-in-Unsupervised-Networks" class="headerlink" title="8.3 Learning in Unsupervised Networks"></a>8.3 Learning in Unsupervised Networks</h2><blockquote>
+<p>Rosenblatt proposed a model of competitive learning between neurons.In his model that<br> attempts to mimic this brain function,neurons inhibit each other<br> by sending their activation as inhibitory signals,the goal being to<br> win a competition for the maximum activation corresponding to an input pattern.<br> <strong>The neuron with the maximum activation then represents the input pattern</strong> that<br> led to its activation. This neuron alone becomes the winner and is allowed to<br> <strong>adjust its weight vector by moving it closer to that input vector</strong>;however,the neurons that<br> lose the competition by succumbing to the inhibition are not allowed to change their weights.</p>
+</blockquote>
+<h2 id="8-4-Implementation-of-Competitive-Learning"><a href="#8-4-Implementation-of-Competitive-Learning" class="headerlink" title="8.4 Implementation of Competitive Learning"></a>8.4 Implementation of Competitive Learning</h2><blockquote>
+<p>In many cases,the number of data clusters is unknown.When there is uncertainty,<br> it is better to <strong>have a larger number</strong> of output neurons than the possible number of clusters<br> <strong>because redundant neurons can be eliminated</strong>.<br> After the number of input variables and output neurons has been set,the next step is to<br> <strong>initialize the weights</strong>.These may be set to <strong>small random values</strong>,as was done in the MLP networks.<br> Another possibility is to <strong>randomly choose some input vectors and use their values for the weights</strong>.<br> This has the potential to speed up learning.</p>
+</blockquote>
+<h3 id="8-4-1-Winner-Selection-Based-on-Neuron-activation"><a href="#8-4-1-Winner-Selection-Based-on-Neuron-activation" class="headerlink" title="8.4.1 Winner Selection Based on Neuron activation"></a>8.4.1 Winner Selection Based on Neuron activation</h3><blockquote>
+<p>Once each output neuron has computed its activation,competition can begin.There are several ways<br> this can happen;a simple way is for each neuron to <strong>send its signal</strong> in an inhibitory manner,<br> with <strong>an opposite sign to other neurons</strong>.Once each neuron has received signals from the others,<br> each neuron can compute its <strong>net activation</strong> by simply summing the incoming inhibitory signals and<br> its own activation.If the activation drops below a threshold(or zero),that neuron drops out of the competition.<br> As long as more than one neuron remians,the cycle of inhibition continues until one winner emerges;<br> its output is set to one.This neuron is declared the winner because it has the highest activation<br> and it alone represents the input vector.</p>
+</blockquote>
+<p><span style="color:blue"><em>Is the opposite sign only the sign,not the opposite activation?</em></span></p>
+<h3 id="8-4-2-Winner-Selection-Based-on-Distance-to-Input-vector"><a href="#8-4-2-Winner-Selection-Based-on-Distance-to-Input-vector" class="headerlink" title="8.4.2 Winner Selection Based on Distance to Input vector"></a>8.4.2 Winner Selection Based on Distance to Input vector</h3><blockquote>
+<p>Once the distance between an input vector and all the weights has been found,<br> the neuron with <strong>the smallest distance</strong> to the input vector is chosen as the winner,<br> and its weights are updated so that it <strong>moves closer to the input vector</strong>,as<br> \(\Delta\omega_j = \beta(x - \omega_j) = \beta{}d_j\).<br><img src="http://omdhuynsr.bkt.clouddn.com/17-3-6/13980399-file_1488786922883_a440.png" alt title="weight update"></p>
+</blockquote>
+<h4 id="8-4-2-1-Other-Distance-Measures"><a href="#8-4-2-1-Other-Distance-Measures" class="headerlink" title="8.4.2.1 Other Distance Measures"></a>8.4.2.1 Other Distance Measures</h4><h3 id="8-4-3-Competitive-Learning-Example"><a href="#8-4-3-Competitive-Learning-Example" class="headerlink" title="8.4.3 Competitive Learning Example"></a>8.4.3 Competitive Learning Example</h3><h4 id="8-4-3-1-Recursive-Versus-Batch-Learning"><a href="#8-4-3-1-Recursive-Versus-Batch-Learning" class="headerlink" title="8.4.3.1 Recursive Versus Batch Learning"></a>8.4.3.1 Recursive Versus Batch Learning</h4><blockquote>
+<p>In the batch learning,the weight update for each input vector is noted,<br> but the weights are not changed until all the input patterns have been presented.<br> Training terminates when the mean distance between the winning neurons and<br> the inputs they repersent is at a minimum across the entire set of clusters,<br> or when this distance stops changing.</p>
+</blockquote>
+<h4 id="8-4-3-2-Illustration-of-the-Calculations-Involved-in-Winner-Selection"><a href="#8-4-3-2-Illustration-of-the-Calculations-Involved-in-Winner-Selection" class="headerlink" title="8.4.3.2 Illustration of the Calculations Involved in Winner Selection"></a>8.4.3.2 Illustration of the Calculations Involved in Winner Selection</h4><blockquote>
+<p>The training criterion is the mean distance(the sum of the squared distance)<br> between all the inputs and their respective winning neuron weights which<br> represent the cluster centers.<br> The objective of training is to <strong>minimize the mean distance</strong> over iterations.<br> The mean distance \(D\) can be expressed as<br> $$D = \sum_{i=0}^k \sum_{n\in C_i}(x^n - \omega_i)^2$$</p>
+</blockquote>
+<h4 id="8-4-3-3-Network-Training"><a href="#8-4-3-3-Network-Training" class="headerlink" title="8.4.3.3 Network Training"></a>8.4.3.3 Network Training</h4><h2 id="8-5-Self-Organizing-Feature-Maps"><a href="#8-5-Self-Organizing-Feature-Maps" class="headerlink" title="8.5 Self-Organizing Feature Maps"></a>8.5 Self-Organizing Feature Maps</h2><blockquote>
+<p>In SOMs,not only the winner neuron but also neurons in <strong>the neighborhood</strong> of the winner<br> <strong>adjust</strong> their weights together so that a neighborhood of neurons becomes sensitive to a specific input.<br> This neighborhood feature helps to preserve <strong>topological characteristics of inputs</strong>.<br> Therefore,inputs that are spatially closer together must be represented in close proximity<br> in the output layer or map of a network.</p>
+</blockquote>
+<h3 id="8-5-1-Learning-in-Self-Organizing-Map-Networks"><a href="#8-5-1-Learning-in-Self-Organizing-Map-Networks" class="headerlink" title="8.5.1 Learning in Self-Organizing Map Networks"></a>8.5.1 Learning in Self-Organizing Map Networks</h3><h4 id="8-5-1-1-Selection-of-Neighborhood-Geometry"><a href="#8-5-1-1-Selection-of-Neighborhood-Geometry" class="headerlink" title="8.5.1.1 Selection of Neighborhood Geometry"></a>8.5.1.1 Selection of Neighborhood Geometry</h4><blockquote>
+<p>There are several ways to define a neighborhood.<br> <img src="http://omdhuynsr.bkt.clouddn.com/17-3-6/15425123-file_1488797380352_ba79.png" alt><br> If only the most immediate neighbors of the winer are considered,the distance,<br> also called <strong>radius r</strong>,is 1.If two levels of adjacent neighbors are considered,then the radius is 2.</p>
+</blockquote>
+<h4 id="8-5-1-2-Training-of-Self-Organizing-Maps"><a href="#8-5-1-2-Training-of-Self-Organizing-Maps" class="headerlink" title="8.5.1.2 Training of Self-Organizing Maps"></a>8.5.1.2 Training of Self-Organizing Maps</h4><blockquote>
+<p>$$\omega_j^{‘} = \omega_j + \beta NS<em>[x - \omega_j]$$<br> where \(NS\) is the <em>*neighbor strength</em></em> that varies with the distance to a neighbor neuron from the winner.<br> Neighbor strengh defines the strength of weight adjustment of the neighbors with respect to that of the winner.</p>
+</blockquote>
+<h4 id="8-5-1-3-Neighbor-Strength"><a href="#8-5-1-3-Neighbor-Strength" class="headerlink" title="8.5.1.3 Neighbor Strength"></a>8.5.1.3 Neighbor Strength</h4><blockquote>
+<p>The winning neuron update is the most pronounced and the farther away a neighbor neuron is,<br> the less its weight update.The \(NS\) function determines how the weight adjustment<br> <strong>decays</strong> with distance from the winner.There are several possibilities for this function and<br> some commonly usedd functions are <strong>linear,Gaussian,and exponential</strong>.<br> The Gaussian form of the \(NS\) function makes the weight adjustments decay smoothly with distance,<br> and is given by \(NS = Exp[\frac{-d_{i,j}^2}{2\delta^2}]\)<br> The exponential decay \(NS\) function is given by \(NS = Exp[-kd_{i,j}]\)</p>
+</blockquote>
+<h4 id="8-5-1-4-Example-Training-Self-Organizing-Networks-with-a-Neighbor-Feature"><a href="#8-5-1-4-Example-Training-Self-Organizing-Networks-with-a-Neighbor-Feature" class="headerlink" title="8.5.1.4 Example:Training Self-Organizing Networks with a Neighbor Feature"></a>8.5.1.4 Example:Training Self-Organizing Networks with a Neighbor Feature</h4><h4 id="8-5-1-5-Neighbor-Matrix-and-Distance-to-Neighbors-from-the-Winner"><a href="#8-5-1-5-Neighbor-Matrix-and-Distance-to-Neighbors-from-the-Winner" class="headerlink" title="8.5.1.5 Neighbor Matrix and Distance to Neighbors from the Winner"></a>8.5.1.5 Neighbor Matrix and Distance to Neighbors from the Winner</h4><blockquote>
+<p>When the map is large,an efficient method is required to determine the distance of a neighbor<br> from the winner to compute neighor strength.<br> Use a neighbor matrix(\(NM\),also called distance matrix) for a two-dimensional map as a example.<br> For a map of 12 neurons arranged in three rows and four columns,the neighbor matrix for a<br> rectangular neighborhood is<br> $$NM = \begin{bmatrix}<br> 3 &amp; 2 &amp; 2 &amp; 2 &amp; 2 &amp; 2 &amp; 3 \\\\<br> 3 &amp; 2 &amp; 1 &amp; 1 &amp; 1 &amp; 2 &amp; 3 \\\\<br> 3 &amp; 2 &amp; 1 &amp; 0 &amp; 1 &amp; 2 &amp; 3 \\\\<br> 3 &amp; 2 &amp; 1 &amp; 1 &amp; 1 &amp; 2 &amp; 3 \\\\<br> 3 &amp; 2 &amp; 2 &amp; 2 &amp; 2 &amp; 2 &amp; 3<br> \end{bmatrix}_{5\times7}$$<br> Suppose that the horizontal and vertical coordinates of the winner neuron on the two-dimensional map<br> are indicated by (\(i_{win},j_{win})\).Then the distance between the winner and<br> any neighbor neuron at position \((i,j)\) is<br> $$d = NM[\begin{bmatrix} c_1-i_{win}+i,c_2-j_{win}+j \end{bmatrix}]$$<br> where \({c_1,c_2}\) is the position of the winner in the neighbor matrix \(NM\).For this case,<br> \(c_1 = 3\) and \(c_2 = 4\)</p>
+</blockquote>
+<h4 id="8-5-1-6-Shrinking-Neighborhood-Size-with-iterations"><a href="#8-5-1-6-Shrinking-Neighborhood-Size-with-iterations" class="headerlink" title="8.5.1.6 Shrinking Neighborhood Size with iterations"></a>8.5.1.6 Shrinking Neighborhood Size with iterations</h4><blockquote>
+<p><strong>A larger initial neighborhood is necessay because smaller initial neighborhoods can lead to<br> metastable states corresponding to local minima</strong>.However,subsequent <strong>shrinking</strong> of neighborhood<br> is required to further <strong>refine</strong> the representation of the input probability distribution by the map.<br> The equation below shows a linear function commnonly used for this purpose:$$\delta_t = \delta_0(1-t/T)$$<br> Exponential decay is another form used for adjusting neighborhood size with iterations,as given by<br> $$\delta_t = \delta_0Exp[-t/T]$$<br> And the decay in neighborhood size is integrated into the NS function as<br> $$NS(d,t) = Exp[-d_{i,j}^2/2\delta_t^2] = Exp[-d_{i,j}^2/2\\{\delta_0Exp(-t/T)\\}^2]$$<br> where \(T\) is a constant that allows the decay function to decay to zero with iterations.<br> A recommendation is  that the neighborhood size should initially cover almost all neurons in the network<br> when centered on a winning neuron and then shrink slowly with iterations.</p>
+</blockquote>
+<h4 id="8-5-1-7-Learning-Rate-Decay"><a href="#8-5-1-7-Learning-Rate-Decay" class="headerlink" title="8.5.1.7 Learning Rate Decay"></a>8.5.1.7 Learning Rate Decay</h4><blockquote>
+<p>The step length,or the learning rate \(\beta\),is also reduced with iterations in<br> self-organizing learning and a common form of this function is the linear decay,given by<br> $$\beta_t = \beta_0(1-t/T)$$<br> Another form is the exponential decay of the learning rate given by<br> $$\beta_t = \beta_0Exp[-t/T]$$<br> where \(T\) is a time constant that brings the learning rate to a very small value with iterations.<br> A general guide is to start with a relatively high learning rate and let it decrease gradually but<br> remain above 0.01.</p>
+</blockquote>
+<h4 id="8-5-1-8-Weight-Update-Incorporating-Learning-Rate-and-Neighborhood-Decay"><a href="#8-5-1-8-Weight-Update-Incorporating-Learning-Rate-and-Neighborhood-Decay" class="headerlink" title="8.5.1.8 Weight Update Incorporating Learning Rate and Neighborhood Decay"></a>8.5.1.8 Weight Update Incorporating Learning Rate and Neighborhood Decay</h4><blockquote>
+<p>Thus,the weight update after presenting an input vector \(\mathbf{x}\) to a SOM incorporating both<br> neighborhood size and learning rate that decrease with the number of iterations can be expressed as<br> $$\omega_j(t) = \omega_j(t-1) + \beta(t)NS(d,t)[\mathbf{x}(t)-\omega_j(t-1)]$$</p>
+</blockquote>
+<h4 id="8-5-1-9-Recursive-and-Batch-Training-and-Relation-to-K-Means-Clustering"><a href="#8-5-1-9-Recursive-and-Batch-Training-and-Relation-to-K-Means-Clustering" class="headerlink" title="8.5.1.9 Recursive and Batch Training and Relation to K-Means Clustering"></a>8.5.1.9 Recursive and Batch Training and Relation to K-Means Clustering</h4><blockquote>
+<p>In batch mode,the unsupervised algorithm without neighbor feature becomes <strong>equivalent to</strong> K-means clustering.<br> When the neighbor feature is incorporated,it allows <strong>nonlinear projection</strong> of the data as well as<br> the very attractive feature of <strong>topology preservation</strong>,by which regions closer in input space are<br> represented by neurons that are closer in the map.<strong>For this reason it is called a feature map.</strong></p>
+</blockquote>
+<h4 id="8-5-1-10-Two-Phases-of-Self-Organizing-Map-Training"><a href="#8-5-1-10-Two-Phases-of-Self-Organizing-Map-Training" class="headerlink" title="8.5.1.10 Two Phases of Self-Organizing Map Training"></a>8.5.1.10 Two Phases of Self-Organizing Map Training</h4><blockquote>
+<p>Training is usually performed in two phases:ordering and convergence.<br> In the ordering phase,learning rate and neighborhood size are reduces with iterations until<br> the winner or a few neighbors around the winner remain.<br> In the convergence phase,the feature map is fine tuned with the shrunk neighborhood so that<br> it produces an accurate representation of the input space.<br> In this phase,<strong>learning rate is maintained at a small value</strong>,on the order of 0.01,<br> to achieve convergence with good statistical accuracy.Haykin states that the learning rate<br> must not become zero because the network can get stuck in a metastable state that<br> corresponds to a feature map configuration with a topological defect.The \(NS\) function should<br> <strong>contain only the nearest neighbors</strong> of the winning neuron and may <strong>slowly reduce to one or zero neighbors</strong>(i.e.,only the winner remains).</p>
+</blockquote>
+<h4 id="8-5-1-11-Example-Illustrating-Self-Organizing-Map-Learning-with-a-Hand-Calculations"><a href="#8-5-1-11-Example-Illustrating-Self-Organizing-Map-Learning-with-a-Hand-Calculations" class="headerlink" title="8.5.1.11 Example:Illustrating Self-Organizing Map Learning with a Hand Calculations"></a>8.5.1.11 Example:Illustrating Self-Organizing Map Learning with a Hand Calculations</h4><h4 id="8-5-1-12-SOM-Case-Study-Determination-of-Mastitis-Health-Status-of-Dairy-Herd-from-Combined-Milk-Traits"><a href="#8-5-1-12-SOM-Case-Study-Determination-of-Mastitis-Health-Status-of-Dairy-Herd-from-Combined-Milk-Traits" class="headerlink" title="8.5.1.12 SOM Case Study:Determination of Mastitis Health Status of Dairy Herd from Combined Milk Traits"></a>8.5.1.12 SOM Case Study:Determination of Mastitis Health Status of Dairy Herd from Combined Milk Traits</h4><h3 id="8-5-2-Example-of-Two-Dimensional-Self-Organizing-Maps-Clustering-Canadian-and-Alaskan-Salmon-Based-on-the-Diameter-of-Growth-Rings-of-the-Scales"><a href="#8-5-2-Example-of-Two-Dimensional-Self-Organizing-Maps-Clustering-Canadian-and-Alaskan-Salmon-Based-on-the-Diameter-of-Growth-Rings-of-the-Scales" class="headerlink" title="8.5.2 Example of Two-Dimensional Self-Organizing Maps:Clustering Canadian and Alaskan Salmon Based on the Diameter of Growth Rings of the Scales"></a>8.5.2 Example of Two-Dimensional Self-Organizing Maps:Clustering Canadian and Alaskan Salmon Based on the Diameter of Growth Rings of the Scales</h3><h4 id="8-5-2-1-Map-Structure-and-Initialization"><a href="#8-5-2-1-Map-Structure-and-Initialization" class="headerlink" title="8.5.2.1 Map Structure and Initialization"></a>8.5.2.1 Map Structure and Initialization</h4><h4 id="8-5-2-2-Map-Training"><a href="#8-5-2-2-Map-Training" class="headerlink" title="8.5.2.2 Map Training"></a>8.5.2.2 Map Training</h4><blockquote>
+<p>For example,the map was trained using a square neighborhood with learning rate \(\beta\) expressed as<br> $$\beta = \left\\{\begin{array}{ll}<br>    0.01&amp;{t &lt; 5} \\\\<br>    \frac{2}{3+t}&amp;{t &gt; 5}\end{array}\right.$$<br> Learning rate is a <strong>samll constant value</strong> in the first four iterations so that the codebook vectors<br> <strong>find a good orientation</strong>(this is not always done).<br> The neighbor strength function used was<br> $$NS = \left\\{\begin{array}{ll}<br>        Exp[-0.1d]&amp;if \quad t &lt; 5 \\\\<br>        Exp[-\frac{(t-4)}{10}d]&amp;otherwise\end{array}\right.$$<br> During the first four iterations,<strong>all neurons on the map are neighbors</strong> of a winning neuron and<br> <strong>all neighbors are <em>strongly</em> influenced</strong>.The stronger influence on the neighbors in the initial iterations<br> makes the network conform to a nice structure and avoids knots.<br> <strong><em>Ordering phase</em></strong>.The map was trained using <strong>recursive update</strong>.<br> <strong><em>Convergence phase</em></strong>.To finetune and make sure that the map has converged,the trained map was trained further in <strong>batch mode</strong>.<br> Because the network in this case appears to have approached <strong>convergence</strong>,the learning rate<br> has been <strong>set to 1.0</strong> because there will be only small or straightforward adjustments to<br> the position of the codebook vectors with further training.The neighbor strength is <strong>limited to<br> the winning neuron</strong>.If,however,the network has <strong>not approached convergence</strong> in the ordering phase,<br> further training with a smaller constant learning rate on <strong>the order of 0.01</strong> may be appropriate.<br> The neighbor strength then may be <strong>limited to a few neighbors</strong> and decrease to the winner<br> or the nearest neighbors towards the end of training.<br> The final map has reached more data in the outlying regions compared to the map formed<br> at the end of the ordering phase,is expressed as below figure:<br> <img src="http://omdhuynsr.bkt.clouddn.com/17-3-7/10981036-file_1488895472789_17ff2.png" alt><br> <strong>We can set larger number of codebook vectors than the number of classes.</strong><br> So,a cluster of codebook vectors,not a single vector,defines each class.<strong>This gives the map its<br> ability to form nonlinear cluster boundaries.</strong>This cluster structure can be used to<br> discover unknown clusters in data.The map can also be used for subsequent supervised classification.<br> For example,when class labels are known,the codebook vectors that represent corresponding<br> input vectors can <strong>be used as input</strong> to train a feedforward classification network to obtain<br> the calss to which a particular unknown input vector belongs.This is called <strong>learning vector quantization</strong>.<br> Each codebook vector represents the center of gravity of a cluster of inputs that it represents and<br> therefore approximates <strong>the average or point density</strong> of the original distribution in a small cluster region.<br> <strong>Therefore,the magnitude(length) of the codebook vectors should reflect this.</strong> A properly ordered map<br> should show evenly varying length of the codebook vectors on the map.</p>
+</blockquote>
+<p><span style="color:red">It is a good example of model designment and parameters adjustment.</span><br><span style="color:blue">why the magnitude could relect the point density of the original distribution?</span></p>
+<h4 id="8-5-2-3-U-Matrix"><a href="#8-5-2-3-U-Matrix" class="headerlink" title="8.5.2.3 U-Matrix"></a>8.5.2.3 U-Matrix</h4><blockquote>
+<p>The distance between the neighboring codebook vectors can highligh different cluster regions<br> in the map and can be a useful visualization tool.The average of the distance to the nearest neighbors<br> is called unified distance,and the matrix of these values for all neurons is called the U-matrix.<br> Thus the map has not only orientated itself in the principal directions of the data,but has also<br> learned to represent the density distribution of the input data,like the figure below:<br> <img src="http://omdhuynsr.bkt.clouddn.com/17-3-8/37014593-file_1488941605615_b781.png" alt></p>
+</blockquote>
+<p><span style="color:blue">I can understand the figure,but I can’t understand why the distance is average<br>and how to plot the figure.Does the average of the distance mean the average of all input in related cluster regions?</span></p>
+<h3 id="8-5-3-Map-Initialization"><a href="#8-5-3-Map-Initialization" class="headerlink" title="8.5.3 Map Initialization"></a>8.5.3 Map Initialization</h3><blockquote>
+<p><strong>Random initialization</strong> clusters the initial vectors near the center of gravity of inputs and assigns<br> random values in this cener region.<br> <strong>Deterministic initialization</strong> is another approach,where some input vectors from the dataset<br> are used as initial vectors.This can accelerate map training.<br> Yet another approach is to train a map with random initialization for a few iterations and<br> use the resulting vectors as initial vectors(<strong>random-derministic</strong>).<br> Another possible approach to initialization is to find the first two<br> <strong>principal directions</strong> of data using principal component analysis and<br> use these two directions for map directions.</p>
+</blockquote>
+<h3 id="8-5-4-Example-Training-Two-Demensional-Maps-on-Multidimensional-Data"><a href="#8-5-4-Example-Training-Two-Demensional-Maps-on-Multidimensional-Data" class="headerlink" title="8.5.4 Example:Training Two-Demensional Maps on Multidimensional Data"></a>8.5.4 Example:Training Two-Demensional Maps on Multidimensional Data</h3><blockquote>
+<p>The SOMs can be used not only to cluster input data,but also to <strong>explore the relationship<br> between different attributes of input data.</strong></p>
+</blockquote>
+<h4 id="8-5-4-1-Data-Visualization"><a href="#8-5-4-1-Data-Visualization" class="headerlink" title="8.5.4.1 Data Visualization"></a>8.5.4.1 Data Visualization</h4><blockquote>
+<p>It is a good example for EDA with iris datasets:<br> <img src="http://omdhuynsr.bkt.clouddn.com/17-3-8/91990443-file_1488956403117_5fd3.png" alt><br> Where use color distinct different clusters.</p>
+</blockquote>
+<p><span style="color:red">It is a good example for EDA.</span></p>
+<h4 id="8-5-4-2-Map-Structure-and-Training"><a href="#8-5-4-2-Map-Structure-and-Training" class="headerlink" title="8.5.4.2 Map Structure and Training"></a>8.5.4.2 Map Structure and Training</h4><blockquote>
+<p><img src="http://omdhuynsr.bkt.clouddn.com/17-3-8/3745649-file_1488961989125_16d9f.png" alt><br> <img src="http://omdhuynsr.bkt.clouddn.com/17-3-8/88751501-file_1488962053638_139d5.png" alt><br> <img src="http://omdhuynsr.bkt.clouddn.com/17-3-8/50439332-file_1488962099950_d395.png" alt></p>
+</blockquote>
+<h4 id="8-5-4-3-U-matrix"><a href="#8-5-4-3-U-matrix" class="headerlink" title="8.5.4.3 U-matrix"></a>8.5.4.3 U-matrix</h4><p><span style="color:blue">8.5.4 should be inspection again.It provides many tricks of EDA.</span></p>
+<h4 id="8-5-4-4-Point-Estimates-of-Probability-Density-of-Inputs-Caotured-by-the-Map"><a href="#8-5-4-4-Point-Estimates-of-Probability-Density-of-Inputs-Caotured-by-the-Map" class="headerlink" title="8.5.4.4 Point Estimates of Probability Density of Inputs Caotured by the Map"></a>8.5.4.4 Point Estimates of Probability Density of Inputs Caotured by the Map</h4><blockquote>
+<p>From the trained map,we can also determine the number of input vectors represented by each neuron.<br> Each neuron represents the local probability density of inputs.In the below figure,the lighter the color,<br> the larger the number of inputs falling onto thar neuron.<br> <img src="http://omdhuynsr.bkt.clouddn.com/17-3-8/29639643-file_1488963168903_8ffa.png" alt></p>
+</blockquote>
+<h4 id="8-5-4-5-Quantization-Error"><a href="#8-5-4-5-Quantization-Error" class="headerlink" title="8.5.4.5 Quantization Error"></a>8.5.4.5 Quantization Error</h4><blockquote>
+<p>Quantization error is a measure of the distance between codebook vectors and inputs.<br> If for an input vector \(\mathbf{x}\),the winner’s weights vector is \(\pmb{\omega}_c\),<br> then the quantization error can be described as a distortion error,\(e\),expressed as<br> $$e = d(\mathbf{x},\pmb{\omega}_c)$$</p>
+</blockquote>
+<blockquote>
+<p>which is the distance from the input to the closet codebook vector.<br> It may be more appropriate to define the distortion error in terms of neighborhood function<br> because the neighbor featuer is central to SOM.With the neighbor feature,<br> the distortion error of the map for an input vector \(\mathbf{x}\) becomes<br> $$e = \sum_{i}NS_{ci}d(\mathbf{x},\pmb{\omega_i})$$<br> where \(NS_{ci}\) is the neighbor strength,\(c\) is the index of the winning neuron closest to input vector \(\mathbf{x}\),<br> and \(i\) is any neuron in the neighborhood of the winner,including the winner.<br> Computing the distortion measure for all input vectors in the input space,the average distortion error \(E\)<br> for the map can be calculated from<br> $$E = \frac{1}{N}\sum_n\sum_iNS_{ci}d(\mathbf{x}^n,\pmb{\omega}_i)$$<br> When the neighbor feature is not used,equation above simplifies to<br> $$E = \frac{1}{N}\sum_nd(\mathbf{x}^n,\pmb{\omega}_i)$$<br> Thus the goal of SOM can alternatively be expressed as finding the set of codebook vectors \(\pmb{\omega}_i\)<br> that <strong>globally minimizes the average map distortion error \(E\)</strong>.<br> The information from figure below can be used to refine the map to obtain a more uniform distortion error measure<br> if a more faithful reproduction of the input distribution from the map is desired.<br> <img src="http://omdhuynsr.bkt.clouddn.com/17-3-8/32153453-file_1488971907071_18164.png" alt></p>
+</blockquote>
+<p><span style="color:blue">The format of Latex here has some problems,so I split the words to two parts.How could fix it?</span></p>
+<h4 id="8-5-4-6-Accuracy-of-Retrieval-of-Input-Data-from-the-Map"><a href="#8-5-4-6-Accuracy-of-Retrieval-of-Input-Data-from-the-Map" class="headerlink" title="8.5.4.6 Accuracy of Retrieval of Input Data from the Map"></a>8.5.4.6 Accuracy of Retrieval of Input Data from the Map</h4><blockquote>
+<p>If the dataset is sent through the map,it identifies the best matching codebook vector.The resulting codebook vector<br> can be thought of as the retrieved input because it is the closest to that input.<br> If a neighborhood of neurons is used in the retrieval,more than one codebook vector can be activated and<br> these codebook vectors can be interpolated to obtain a recalled match of the input to the map.Then the retrieved inputs<br> are not the codebook vectors,but <strong>fall between them due to <em>interpolation</em></strong>.<br> The retrieval error is the average distance between the actual data vectors and their corresponding interpolated<br> codebook vectors defining the best position for those input vectors in the trained map.Thus,a neighborhood provides<br> a <strong>better approximation</strong> to this input distribution than a single codebook vector.</p>
+</blockquote>
+<h3 id="8-5-5-Forming-Clusters-on-the-Map"><a href="#8-5-5-Forming-Clusters-on-the-Map" class="headerlink" title="8.5.5 Forming Clusters on the Map"></a>8.5.5 Forming Clusters on the Map</h3><h4 id="8-5-5-1-Approaches-to-Clustering"><a href="#8-5-5-1-Approaches-to-Clustering" class="headerlink" title="8.5.5.1 Approaches to Clustering"></a>8.5.5.1 Approaches to Clustering</h4><h4 id="8-5-5-2-Example-Illustrating-Clustering-on-a-Trained-Map"><a href="#8-5-5-2-Example-Illustrating-Clustering-on-a-Trained-Map" class="headerlink" title="8.5.5.2 Example Illustrating Clustering on a Trained Map"></a>8.5.5.2 Example Illustrating Clustering on a Trained Map</h4><h3 id="8-5-6-Validation-of-a-Trained-Map"><a href="#8-5-6-Validation-of-a-Trained-Map" class="headerlink" title="8.5.6 Validation of a Trained Map"></a>8.5.6 Validation of a Trained Map</h3><h4 id="8-5-6-1-n-Fold-Cross-Validation"><a href="#8-5-6-1-n-Fold-Cross-Validation" class="headerlink" title="8.5.6.1 n-Fold Cross Validation"></a>8.5.6.1 n-Fold Cross Validation</h4><h2 id="8-6-Evolving-Self-Organizing-Maps"><a href="#8-6-Evolving-Self-Organizing-Maps" class="headerlink" title="8.6 Evolving Self-Organizing Maps"></a>8.6 Evolving Self-Organizing Maps</h2>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+          
+            <a href="/tags/NN/" rel="tag"># NN</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/28/machine learning/NN/Time Series Prediction with LSTM Recurrent Neural Networks in Python with Keras/" rel="next" title="Time Series Prediction with LSTM Recurrent Neural Networks in Python with Keras">
+                <i class="fa fa-chevron-left"></i> Time Series Prediction with LSTM Recurrent Neural Networks in Python with Keras
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/28/pansee/film review/津渡几曾迷/" rel="prev" title="津渡几曾迷">
+                津渡几曾迷 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">muzhen</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">358</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">113</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-8-Discovering-Unknown-Clusters-in-Data-with-Self-Organizing-Maps"><span class="nav-number">1.</span> <span class="nav-text">Chapter 8 Discovering Unknown Clusters in Data with Self-Organizing Maps</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-Introduction-and-Overview"><span class="nav-number">1.1.</span> <span class="nav-text">8.1 Introduction and Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-Structure-of-Unsupervised-Networks"><span class="nav-number">1.2.</span> <span class="nav-text">8.2 Structure of Unsupervised Networks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-Learning-in-Unsupervised-Networks"><span class="nav-number">1.3.</span> <span class="nav-text">8.3 Learning in Unsupervised Networks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-4-Implementation-of-Competitive-Learning"><span class="nav-number">1.4.</span> <span class="nav-text">8.4 Implementation of Competitive Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-1-Winner-Selection-Based-on-Neuron-activation"><span class="nav-number">1.4.1.</span> <span class="nav-text">8.4.1 Winner Selection Based on Neuron activation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-2-Winner-Selection-Based-on-Distance-to-Input-vector"><span class="nav-number">1.4.2.</span> <span class="nav-text">8.4.2 Winner Selection Based on Distance to Input vector</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-4-2-1-Other-Distance-Measures"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">8.4.2.1 Other Distance Measures</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-3-Competitive-Learning-Example"><span class="nav-number">1.4.3.</span> <span class="nav-text">8.4.3 Competitive Learning Example</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-4-3-1-Recursive-Versus-Batch-Learning"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">8.4.3.1 Recursive Versus Batch Learning</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-4-3-2-Illustration-of-the-Calculations-Involved-in-Winner-Selection"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">8.4.3.2 Illustration of the Calculations Involved in Winner Selection</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-4-3-3-Network-Training"><span class="nav-number">1.4.3.3.</span> <span class="nav-text">8.4.3.3 Network Training</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-5-Self-Organizing-Feature-Maps"><span class="nav-number">1.5.</span> <span class="nav-text">8.5 Self-Organizing Feature Maps</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-5-1-Learning-in-Self-Organizing-Map-Networks"><span class="nav-number">1.5.1.</span> <span class="nav-text">8.5.1 Learning in Self-Organizing Map Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-1-1-Selection-of-Neighborhood-Geometry"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">8.5.1.1 Selection of Neighborhood Geometry</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-1-2-Training-of-Self-Organizing-Maps"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">8.5.1.2 Training of Self-Organizing Maps</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-1-3-Neighbor-Strength"><span class="nav-number">1.5.1.3.</span> <span class="nav-text">8.5.1.3 Neighbor Strength</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-1-4-Example-Training-Self-Organizing-Networks-with-a-Neighbor-Feature"><span class="nav-number">1.5.1.4.</span> <span class="nav-text">8.5.1.4 Example:Training Self-Organizing Networks with a Neighbor Feature</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-1-5-Neighbor-Matrix-and-Distance-to-Neighbors-from-the-Winner"><span class="nav-number">1.5.1.5.</span> <span class="nav-text">8.5.1.5 Neighbor Matrix and Distance to Neighbors from the Winner</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-1-6-Shrinking-Neighborhood-Size-with-iterations"><span class="nav-number">1.5.1.6.</span> <span class="nav-text">8.5.1.6 Shrinking Neighborhood Size with iterations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-1-7-Learning-Rate-Decay"><span class="nav-number">1.5.1.7.</span> <span class="nav-text">8.5.1.7 Learning Rate Decay</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-1-8-Weight-Update-Incorporating-Learning-Rate-and-Neighborhood-Decay"><span class="nav-number">1.5.1.8.</span> <span class="nav-text">8.5.1.8 Weight Update Incorporating Learning Rate and Neighborhood Decay</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-1-9-Recursive-and-Batch-Training-and-Relation-to-K-Means-Clustering"><span class="nav-number">1.5.1.9.</span> <span class="nav-text">8.5.1.9 Recursive and Batch Training and Relation to K-Means Clustering</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-1-10-Two-Phases-of-Self-Organizing-Map-Training"><span class="nav-number">1.5.1.10.</span> <span class="nav-text">8.5.1.10 Two Phases of Self-Organizing Map Training</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-1-11-Example-Illustrating-Self-Organizing-Map-Learning-with-a-Hand-Calculations"><span class="nav-number">1.5.1.11.</span> <span class="nav-text">8.5.1.11 Example:Illustrating Self-Organizing Map Learning with a Hand Calculations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-1-12-SOM-Case-Study-Determination-of-Mastitis-Health-Status-of-Dairy-Herd-from-Combined-Milk-Traits"><span class="nav-number">1.5.1.12.</span> <span class="nav-text">8.5.1.12 SOM Case Study:Determination of Mastitis Health Status of Dairy Herd from Combined Milk Traits</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-5-2-Example-of-Two-Dimensional-Self-Organizing-Maps-Clustering-Canadian-and-Alaskan-Salmon-Based-on-the-Diameter-of-Growth-Rings-of-the-Scales"><span class="nav-number">1.5.2.</span> <span class="nav-text">8.5.2 Example of Two-Dimensional Self-Organizing Maps:Clustering Canadian and Alaskan Salmon Based on the Diameter of Growth Rings of the Scales</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-2-1-Map-Structure-and-Initialization"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">8.5.2.1 Map Structure and Initialization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-2-2-Map-Training"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">8.5.2.2 Map Training</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-2-3-U-Matrix"><span class="nav-number">1.5.2.3.</span> <span class="nav-text">8.5.2.3 U-Matrix</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-5-3-Map-Initialization"><span class="nav-number">1.5.3.</span> <span class="nav-text">8.5.3 Map Initialization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-5-4-Example-Training-Two-Demensional-Maps-on-Multidimensional-Data"><span class="nav-number">1.5.4.</span> <span class="nav-text">8.5.4 Example:Training Two-Demensional Maps on Multidimensional Data</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-4-1-Data-Visualization"><span class="nav-number">1.5.4.1.</span> <span class="nav-text">8.5.4.1 Data Visualization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-4-2-Map-Structure-and-Training"><span class="nav-number">1.5.4.2.</span> <span class="nav-text">8.5.4.2 Map Structure and Training</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-4-3-U-matrix"><span class="nav-number">1.5.4.3.</span> <span class="nav-text">8.5.4.3 U-matrix</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-4-4-Point-Estimates-of-Probability-Density-of-Inputs-Caotured-by-the-Map"><span class="nav-number">1.5.4.4.</span> <span class="nav-text">8.5.4.4 Point Estimates of Probability Density of Inputs Caotured by the Map</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-4-5-Quantization-Error"><span class="nav-number">1.5.4.5.</span> <span class="nav-text">8.5.4.5 Quantization Error</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-4-6-Accuracy-of-Retrieval-of-Input-Data-from-the-Map"><span class="nav-number">1.5.4.6.</span> <span class="nav-text">8.5.4.6 Accuracy of Retrieval of Input Data from the Map</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-5-5-Forming-Clusters-on-the-Map"><span class="nav-number">1.5.5.</span> <span class="nav-text">8.5.5 Forming Clusters on the Map</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-5-1-Approaches-to-Clustering"><span class="nav-number">1.5.5.1.</span> <span class="nav-text">8.5.5.1 Approaches to Clustering</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-5-2-Example-Illustrating-Clustering-on-a-Trained-Map"><span class="nav-number">1.5.5.2.</span> <span class="nav-text">8.5.5.2 Example Illustrating Clustering on a Trained Map</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-5-6-Validation-of-a-Trained-Map"><span class="nav-number">1.5.6.</span> <span class="nav-text">8.5.6 Validation of a Trained Map</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-6-1-n-Fold-Cross-Validation"><span class="nav-number">1.5.6.1.</span> <span class="nav-text">8.5.6.1 n-Fold Cross Validation</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-6-Evolving-Self-Organizing-Maps"><span class="nav-number">1.6.</span> <span class="nav-text">8.6 Evolving Self-Organizing Maps</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">muzhen</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

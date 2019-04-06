@@ -285,7 +285,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/09/08/development/environment/install ubuntu16.04 on xiaomi AIr/">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/film review/12 Years a Slave/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="muzhen">
@@ -305,7 +305,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2017/09/08/development/environment/install ubuntu16.04 on xiaomi AIr/" class="post-title-link" itemprop="url">install ubuntu16.04 on xiaomi AIr</a>
+                <a href="/2019/02/28/pansee/film review/12 Years a Slave/" class="post-title-link" itemprop="url">12 Years a Slave</a>
               
             
           </h1>
@@ -330,3436 +330,9 @@
                 
               
 
-              <time title="Created: 2017-09-08 12:47:18" itemprop="dateCreated datePublished" datetime="2017-09-08T12:47:18+08:00">2017-09-08</time>
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
             
 
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="hardware-environment"><a href="#hardware-environment" class="headerlink" title="hardware environment"></a>hardware environment</h1><p>13.3寸小米笔记本，20176月版，i5-7200u，mx150,8g，256g，指纹识别。</p>
-<h1 id="install-ubuntu16-04"><a href="#install-ubuntu16-04" class="headerlink" title="install ubuntu16.04"></a>install ubuntu16.04</h1><p>首先正常安装。有教程提到需要进bios关闭secure boot，我因为是直接装的ubuntu单系统，不存在这个问题。</p>
-<p>安装好后，发现如下问题：</p>
-<ol>
-<li>无线网不能用</li>
-<li>蓝牙不能用</li>
-<li>指纹识别不能用</li>
-<li>双显卡驱动</li>
-<li>电池只能支撑4h左右（看视频，文本编辑）</li>
-<li>触摸板无法快捷键关闭</li>
-</ol>
-<p>解决方案如下：</p>
-<h2 id="无线网"><a href="#无线网" class="headerlink" title="无线网"></a>无线网</h2><p>编辑blacklist.conf文件：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="keyword">vi</span> /etc/modprobe.d/blacklist.<span class="keyword">conf</span></span><br></pre></td></tr></table></figure>
-<p>在文件最后加上<code>blacklist acer-wmi</code>，重启即可。</p>
-<h2 id="蓝牙"><a href="#蓝牙" class="headerlink" title="蓝牙"></a>蓝牙</h2><p>使用如下命令即可：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget http:<span class="regexp">//mi</span>rrors.kernel.org<span class="regexp">/ubuntu/</span>pool<span class="regexp">/main/</span>l<span class="regexp">/linux-firmware/</span>linux-firmware_1.<span class="number">161.1</span>_all.deb</span><br><span class="line">sudo dpkg -i linux-firmware_1.<span class="number">161.1</span>_all.deb</span><br></pre></td></tr></table></figure>
-<p>参考<a href="https://askubuntu.com/questions/881239/bluetooth-not-working-on-xps-13-9360-running-16-04-1" target="_blank" rel="noopener">Bluetooth not working on XPS 13 9360 running 16.04.1</a></p>
-<h2 id="指纹识别"><a href="#指纹识别" class="headerlink" title="指纹识别"></a>指纹识别</h2><p>暂未解决</p>
-<h2 id="双显卡驱动"><a href="#双显卡驱动" class="headerlink" title="双显卡驱动"></a>双显卡驱动</h2><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装nvidia驱动</span></span><br><span class="line">sudo<span class="built_in"> add-apt-repository </span>ppa:graphics-drivers/ppa</span><br><span class="line">sudo apt-get update </span><br><span class="line">sudo apt-get install nvidia-384</span><br><span class="line"><span class="comment"># 安装双显卡驱动工具</span></span><br><span class="line">sudo apt-get install nvidia-prime</span><br></pre></td></tr></table></figure>
-<p>安装好后启动<code>nvidia x-server settings</code> 切换显卡后注销即可。建议使用核显。</p>
-<p>参考<a href="http://www.linuxidc.com/Linux/2016-05/131553.htm" target="_blank" rel="noopener">为Ubuntu 16.04安装Nvidia驱动解决笔记本发热风扇狂转等问题</a></p>
-<p>我没有使用参考教程中的ppa仓库，安装好后，并没有在系统托盘中出现nvidia-logo图标。可以使用教程中仓库尝试。</p>
-<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo<span class="built_in"> add-apt-repository </span>ppa:mamarley/nvidia</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install nvidia-384 nvidia-prime</span><br></pre></td></tr></table></figure>
-<h2 id="电池耗电"><a href="#电池耗电" class="headerlink" title="电池耗电"></a>电池耗电</h2><p>还没有试过只敲代码情况下的电池耐用情况，用过后补充说明。目前来看不够持久，也达不到官方8h标准。</p>
-<h2 id="触摸板无法快捷键关闭"><a href="#触摸板无法快捷键关闭" class="headerlink" title="触摸板无法快捷键关闭"></a>触摸板无法快捷键关闭</h2><p>首先，该版本笔记本好像本身就没有提供触摸板快捷键，并非系统问题。</p>
-<p>解决方法为自设快捷键。参考<a href="http://blog.csdn.net/hchhbbcxl/article/details/77542975" target="_blank" rel="noopener">小米笔记本12.5英寸装ubuntu后设置快捷键开启和关闭触摸板</a></p>
-<ol>
-<li><p>使用xinput命令查看设备，并找到触摸板对应设备名称和ID。一般其中带有touchpad单词。注意即使关掉触摸板后指针也无法隐去（我尝试过关闭pointer设备，无效）。具体可以用<code>xinput set-prop （id号） &quot;Device Enabled&quot; 0</code>命令去一个个试出来触摸板对应的id。</p>
-</li>
-<li><p>编写shell脚本进行操作。</p>
-</li>
-</ol>
-<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="string">t1=</span>$(<span class="string">xinput </span>| <span class="string">grep </span>‘<span class="string">decive_name’</span>)</span><br><span class="line"><span class="string">t2=</span>$(<span class="string">echo </span>$<span class="string">t1 </span>| <span class="string">sed </span><span class="string">'s/ /\n/g'</span> | <span class="string">grep </span><span class="string">"id"</span>)</span><br><span class="line"><span class="string">res=</span>$&#123;<span class="string">t2#</span><span class="string">"id="</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="string">var=</span>$(<span class="string">xinput </span><span class="built_in">list-props</span> $<span class="string">res </span>| <span class="string">grep </span><span class="string">"Device Enabled"</span>)</span><br><span class="line"><span class="string">resultv=</span>$&#123;<span class="string">var:</span>(($&#123;<span class="comment">#var&#125;-1))&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="string">if </span>[ $<span class="string">resultv </span>-<span class="string">eq </span>1 ];<span class="string">then</span></span><br><span class="line"><span class="string">xinput </span><span class="built_in">set-prop</span> $<span class="string">res </span><span class="string">"Device Enabled"</span> 0</span><br><span class="line"><span class="string">else</span></span><br><span class="line"><span class="string">xinput </span><span class="built_in">set-prop</span> $<span class="string">res </span><span class="string">"Device Enabled"</span> 1</span><br><span class="line"><span class="string">fi</span></span><br></pre></td></tr></table></figure>
-<p>其中，device_name使用设备名称去匹配，不能用id匹配。</p>
-<p>将该shell脚本取名为padchange，放到/bin目录下。</p>
-<p>在System Setting-&gt;Keyboard-&gt;Shortcuts中设置该脚本的启动快捷键。该脚本的启动命令为’/bin/padchange’。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/09/08/development/linux/ssh免密登录/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/09/08/development/linux/ssh免密登录/" class="post-title-link" itemprop="url">ssh免密登录</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-09-08 12:31:14" itemprop="dateCreated datePublished" datetime="2017-09-08T12:31:14+08:00">2017-09-08</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="ssh免密码登录"><a href="#ssh免密码登录" class="headerlink" title="ssh免密码登录"></a>ssh免密码登录</h1><p>机器A想要通过ssh登录到机器B。可以用ssh-keygen生成公钥/私钥对来实现。以下操作流程不需要root权限，普通权限即可。</p>
-<ol>
-<li>利用ssh-keygen生成公钥/私钥对，如果本机上已经存在，不需要重复生成。</li>
-</ol>
-<figure class="highlight tp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -r rsa -<span class="keyword">P</span> <span class="string">''</span></span><br></pre></td></tr></table></figure>
-<p>-P表示密码，-P ‘’ 就表示空密码，也可以不用-P参数，这样就要三车回车，用-P就一次回车。<br>它在/home/yonghuming下生成.ssh目录，.ssh下有id_rsa和id_rsa.pub。</p>
-<ol start="2">
-<li>将id_rsa.pub传送到服务器上，并且使用cat命令追加到.ssh/authorzied_keys中,并赋予600权限。</li>
-</ol>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># on local</span></span><br><span class="line">scp -P <span class="number">22</span> /home/muzhen/.ssh/id_rsa.pub muzhen<span class="variable">@ip</span><span class="symbol">:/home/muzhen/</span>.</span><br><span class="line"><span class="comment"># on remote</span></span><br><span class="line">cat /home/muzhen/id_rsa.pub &gt;&gt; <span class="regexp">/home/muzhen</span><span class="regexp">/.ssh/authorzied</span>_keys</span><br><span class="line">chmod <span class="number">600</span> /home/muzhen/.ssh/authorzied_keys</span><br></pre></td></tr></table></figure>
-<p>其中 -P 为端口号，如果是默认的22端口不需要特别指定。-P 必须紧跟在scp后面，不然不会被认为是端口参数。</p>
-<ol start="3">
-<li>ssh登录服务器，不再需要密码。如果是连接root用户，则.ssh在/root下而非/home/yonghuming下。</li>
-</ol>
-<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://chenlb.iteye.com/blog/211809" target="_blank" rel="noopener">ssh 免密码登录</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/09/04/development/linux/开机自启动/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/09/04/development/linux/开机自启动/" class="post-title-link" itemprop="url">开机自启动</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-09-04 22:10:40" itemprop="dateCreated datePublished" datetime="2017-09-04T22:10:40+08:00">2017-09-04</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="开机自启动"><a href="#开机自启动" class="headerlink" title="开机自启动"></a>开机自启动</h1><p>创建自启动脚本，在其中写入需要的命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash<span class="comment">### BEGIN INIT INFO</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Provides:          xxx.sh</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Required-start:    <span class="variable">$local_fs</span> <span class="variable">$remote_fs</span> <span class="variable">$network</span> <span class="variable">$syslog</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Required-Stop:     <span class="variable">$local_fs</span> <span class="variable">$remote_fs</span> <span class="variable">$network</span> <span class="variable">$syslog</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Default-Start:     2 3 4 5</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Default-Stop:      0 1 6</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Short-Description: starts the xxx.sh daemon</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Description:       starts xxx.sh using start-stop-daemon</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">## END INIT INFO</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="built_in">command</span></span></span><br><span class="line">write your command here!</span><br></pre></td></tr></table></figure>
-<p>将脚本放到 <code>/etc/init.d</code>中，赋予777权限(好像755权限就够了）</p>
-<p>然后执行一下命令：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/init.d</span><br><span class="line">sudo update-rc<span class="selector-class">.d</span> xxx<span class="selector-class">.sh</span> defaults <span class="number">95</span></span><br></pre></td></tr></table></figure>
-<p>其中 xxx.sh 为脚本名称， 95为启动顺序，需要网络的可以放到最后启动，也就是99。</p>
-<p>如果有多个开机启动脚本，需要注意把启动顺序错开，如果使用同一个数字，也会造成冲突。有的无法启动成功。</p>
-<h1 id="卸载开机启动项"><a href="#卸载开机启动项" class="headerlink" title="卸载开机启动项"></a>卸载开机启动项</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/init.d</span><br><span class="line">sudo update-rc<span class="selector-class">.d</span> -f svnd<span class="selector-class">.sh</span> remove</span><br></pre></td></tr></table></figure>
-<h1 id="开机使用screen启动脚本"><a href="#开机使用screen启动脚本" class="headerlink" title="开机使用screen启动脚本"></a>开机使用screen启动脚本</h1><p>以启动shadowsocks为例,步骤如上，但是脚本要如此写：</p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#！bin/bash</span></span><br><span class="line"><span class="meta">#!/bin/bash### BEGIN INIT INFO</span></span><br><span class="line"><span class="meta"># Provides:          ss.sh</span></span><br><span class="line"><span class="meta"># Required-start:    $local_fs $remote_fs $network $syslog</span></span><br><span class="line"><span class="meta"># Required-Stop:     $local_fs $remote_fs $network $syslog</span></span><br><span class="line"><span class="meta"># Default-Start:     2 3 4 5</span></span><br><span class="line"><span class="meta"># Default-Stop:      0 1 6</span></span><br><span class="line"><span class="meta"># Short-Description: starts the ss.sh daemon</span></span><br><span class="line"><span class="meta"># Description:       starts ss.sh using start-stop-daemon</span></span><br><span class="line"><span class="meta">### END INIT INFO</span></span><br><span class="line">screen -dmS shadowsocks</span><br><span class="line">screen -r shadowsocks -X stuff $<span class="string">'sslocal -c /etc/shadowsocks.json\n'</span></span><br></pre></td></tr></table></figure>
-<p>$是为了能够解析换行符。这里换行符的作用相当于enter，如果没有\n则只是将command送进screen但是并没有运行。</p>
-<p>注意，shadowsocks需要在root权限下安装，不然会找不到sslocal命令。</p>
-<p>由于在root权限下安装后shadowsocks后，会在/etc/init.d下出现shadowsock文件，在这种情况下如果把启动脚本命令为shadowsocks.sh，好像会出现冲突导致无法启动。我将脚本名称改成ss.sh后，可以正常开机启动。</p>
-<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://www.cnblogs.com/end/archive/2012/10/12/2721059.html" target="_blank" rel="noopener">ubuntu下设置开机自启动项</a></p>
-<p><a href="https://stackoverflow.com/questions/7049252/how-to-create-a-screen-executing-given-command" target="_blank" rel="noopener">How to create a screen, executing given command?</a></p>
-<p><a href="http://blog.csdn.net/Blue_Sky8888/article/details/51302777" target="_blank" rel="noopener">ubuntu 16.04 svn开机启动的两种方法</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/09/03/development/environment/jetbrains softwares破解方法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/09/03/development/environment/jetbrains softwares破解方法/" class="post-title-link" itemprop="url">jetbrains softwares破解方法</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-09-03 19:47:44" itemprop="dateCreated datePublished" datetime="2017-09-03T19:47:44+08:00">2017-09-03</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="搭建本地服务器进行破解"><a href="#搭建本地服务器进行破解" class="headerlink" title="搭建本地服务器进行破解"></a>搭建本地服务器进行破解</h1><p><a href="http://blog.lanyus.com/archives/174.html" target="_blank" rel="noopener">搭建文件下载地址</a></p>
-<p>直接后台run对应版本的文件，比如</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/path_to_file/</span>IntelliJIDEALicenseServer_linux_amd64</span><br></pre></td></tr></table></figure>
-<p>设为开机自启动更加方便</p>
-<p>然后打开软件，进行注册。具体的端口号视所使用文件版本而定。在运行以上文件后输出内容中就包含端口号。</p>
-<p><img src="http://omdhuynsr.bkt.clouddn.com/17-9-3/53896227.jpg" alt></p>
-<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://idea.lanyus.com/" target="_blank" rel="noopener">IntelliJ IDEA 注册码</a></p>
-<p><a href="http://blog.lanyus.com/archives/174.html" target="_blank" rel="noopener">IntelliJ IDEA License Server本地搭建教程</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/09/03/python/tensor&array&broadcast/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/09/03/python/tensor&array&broadcast/" class="post-title-link" itemprop="url">tensor&array&broadcast</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-09-03 19:47:42" itemprop="dateCreated datePublished" datetime="2017-09-03T19:47:42+08:00">2017-09-03</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>本篇解释array和tensor的相关问题。目前为止，我觉得tensorflow的tensor和numpy的arary是一样的东西，一样的使用方法。因此，下文以array统一替代。</p>
-<h1 id="shape"><a href="#shape" class="headerlink" title="shape"></a>shape</h1><p>常数是0维张量，列向量是1维张量！</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">import</span> <span class="selector-tag">numpy</span> <span class="selector-tag">as</span> <span class="selector-tag">np</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">np</span><span class="selector-class">.array</span>(2)<span class="selector-class">.shape</span></span><br><span class="line"><span class="selector-tag">Out</span><span class="selector-attr">[15]</span>: ()</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">np</span><span class="selector-class">.array</span>(<span class="selector-attr">[1,2,3]</span>)<span class="selector-class">.shape</span></span><br><span class="line"><span class="selector-tag">Out</span><span class="selector-attr">[16]</span>: (3,)</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">np</span><span class="selector-class">.array</span>(<span class="selector-attr">[[1]</span>, <span class="selector-attr">[3]</span>, <span class="selector-attr">[2]</span>])<span class="selector-class">.shape</span></span><br><span class="line"><span class="selector-tag">Out</span><span class="selector-attr">[17]</span>: (3, 1)</span><br></pre></td></tr></table></figure>
-<h1 id="reshape"><a href="#reshape" class="headerlink" title="reshape"></a>reshape</h1><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">a = np.array(range(<span class="number">9</span>))</span><br><span class="line"></span><br><span class="line">a</span><br><span class="line">Out[<span class="number">19</span>]: array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>])</span><br><span class="line"></span><br><span class="line">a.shape</span><br><span class="line">Out[<span class="number">20</span>]: (<span class="number">9</span>,)</span><br><span class="line"></span><br><span class="line">a.reshape((<span class="number">3</span>,<span class="number">3</span>))</span><br><span class="line">Out[<span class="number">21</span>]: </span><br><span class="line">array(<span class="string">[[0, 1, 2],</span></span><br><span class="line"><span class="string">       [3, 4, 5],</span></span><br><span class="line"><span class="string">       [6, 7, 8]]</span>)</span><br><span class="line"></span><br><span class="line">a.reshape((<span class="number">3</span>,<span class="number">3</span>,<span class="number">1</span>))</span><br><span class="line">Out[<span class="number">22</span>]: </span><br><span class="line">array(<span class="string">[[[0],</span></span><br><span class="line"><span class="string">        [1],</span></span><br><span class="line"><span class="string">        [2]]</span>,</span><br><span class="line"></span><br><span class="line">       <span class="string">[[3],</span></span><br><span class="line"><span class="string">        [4],</span></span><br><span class="line"><span class="string">        [5]]</span>,</span><br><span class="line"></span><br><span class="line">       <span class="string">[[6],</span></span><br><span class="line"><span class="string">        [7],</span></span><br><span class="line"><span class="string">        [8]]</span>])</span><br><span class="line"></span><br><span class="line">a.reshape((<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>))</span><br><span class="line">Out[<span class="number">23</span>]: </span><br><span class="line">array(<span class="string">[[[0, 1, 2]]</span>,</span><br><span class="line"></span><br><span class="line">       <span class="string">[[3, 4, 5]]</span>,</span><br><span class="line"></span><br><span class="line">       <span class="string">[[6, 7, 8]]</span>])</span><br></pre></td></tr></table></figure>
-<p>在reshape的时候，是从最后一个维度开始，往前推。最后一个维度也可以理解为张量的最小单元。</p>
-<h1 id="broadcast"><a href="#broadcast" class="headerlink" title="broadcast"></a>broadcast</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> = np.array(range(<span class="number">8</span>)).reshape((<span class="number">2</span>, <span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">a</span><br><span class="line">Out[<span class="number">28</span>]: </span><br><span class="line">array([[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">       [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>]])</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">b</span> = np.array(range(<span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">b</span><br><span class="line">Out[<span class="number">30</span>]: array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">a</span> + b</span><br><span class="line">Out[<span class="number">31</span>]: </span><br><span class="line">array([[ <span class="number">0</span>,  <span class="number">2</span>,  <span class="number">4</span>,  <span class="number">6</span>],</span><br><span class="line">       [ <span class="number">4</span>,  <span class="number">6</span>,  <span class="number">8</span>, <span class="number">10</span>]])</span><br><span class="line"></span><br><span class="line">c = np.array([<span class="number">0</span>,<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">a</span> + c</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line"></span><br><span class="line">  File <span class="string">"&lt;ipython-input-34-ca57d551b7f3&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="selector-tag">a</span> + c</span><br><span class="line"></span><br><span class="line">ValueError: operands could not be broadcast together with shapes (<span class="number">2</span>,<span class="number">4</span>) (<span class="number">2</span>,)</span><br></pre></td></tr></table></figure>
-<p>对于两个shape不一致的数组，广播时将低维度的数组b和高维数组a的子单元进行匹配。或者说将低维数组通过复制的方式reshape成和高维数组一致的形状然后计算。</p>
-<p>再看一个例子：<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">d = np.array(range(5)).reshape((5, 1))</span><br><span class="line"></span><br><span class="line">d</span><br><span class="line">Out<span class="comment">[43]</span>: </span><br><span class="line">array(<span class="comment">[<span class="comment">[0]</span>,</span></span><br><span class="line"><span class="comment">       <span class="comment">[1]</span>,</span></span><br><span class="line"><span class="comment">       <span class="comment">[2]</span>,</span></span><br><span class="line"><span class="comment">       <span class="comment">[3]</span>,</span></span><br><span class="line"><span class="comment">       <span class="comment">[4]</span>]</span>)</span><br><span class="line"></span><br><span class="line">b</span><br><span class="line">Out<span class="comment">[44]</span>: array(<span class="comment">[0, 1, 2, 3]</span>)</span><br><span class="line"></span><br><span class="line">d + b</span><br><span class="line">Out<span class="comment">[45]</span>: </span><br><span class="line">array(<span class="comment">[<span class="comment">[0, 1, 2, 3]</span>,</span></span><br><span class="line"><span class="comment">       <span class="comment">[1, 2, 3, 4]</span>,</span></span><br><span class="line"><span class="comment">       <span class="comment">[2, 3, 4, 5]</span>,</span></span><br><span class="line"><span class="comment">       <span class="comment">[3, 4, 5, 6]</span>,</span></span><br><span class="line"><span class="comment">       <span class="comment">[4, 5, 6, 7]</span>]</span>)</span><br></pre></td></tr></table></figure></p>
-<p>这里b按照d的第一维度做了延展，接着d按照b的第二维度做了延展，从而两者形状一致。那么，上一个例子中，为什么a + c会报错呢？不妨再尝试下：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">f</span><br><span class="line">Out[<span class="number">47</span>]: </span><br><span class="line">array(<span class="string">[[0, 1],</span></span><br><span class="line"><span class="string">       [2, 3],</span></span><br><span class="line"><span class="string">       [4, 5],</span></span><br><span class="line"><span class="string">       [6, 7],</span></span><br><span class="line"><span class="string">       [8, 9]]</span>)</span><br><span class="line"></span><br><span class="line">f + b</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line"></span><br><span class="line">  File <span class="string">"&lt;ipython-input-48-2174dbbc2903&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    f + b</span><br><span class="line"></span><br><span class="line">ValueError: operands could <span class="keyword">not</span> be broadcast together with shapes (<span class="number">5</span>,<span class="number">2</span>) (<span class="number">4</span>,)</span><br></pre></td></tr></table></figure>
-<p>由此，可以推断，仅仅是不存在的维度或者维度长度为1的维度可以进行复制延展。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/08/30/machine learning/NLP/pyltp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/08/30/machine learning/NLP/pyltp/" class="post-title-link" itemprop="url">pyltp</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-08-30 10:11:58" itemprop="dateCreated datePublished" datetime="2017-08-30T10:11:58+08:00">2017-08-30</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="pyltp-安装"><a href="#pyltp-安装" class="headerlink" title="pyltp 安装"></a>pyltp 安装</h1><p><a href="https://github.com/HIT-SCIR/pyltp" target="_blank" rel="noopener">pyltp repo</a></p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> pyltp</span><br></pre></td></tr></table></figure>
-<p>同时还需要下载ltp model（现使用3.3.1版本）。自行关注版本update。<a href="https://pan.baidu.com/share/link?shareid=1988562907&amp;uk=2738088569#list/path=%2F" target="_blank" rel="noopener">模型下载地址</a></p>
-<p>如果安装后 import报以下两种错误之一，可能是anaconda4.2.0  libstdc++ 的环境问题。</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">...</span> undefined symbol: <span class="string">...</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/home/</span>?<span class="regexp">/anaconda2/</span>bin<span class="regexp">/../</span>lib<span class="regexp">/libstdc++.so.6: version `GLIBCXX_3.4.20' not found (required by /u</span>sr<span class="regexp">/local/</span>lib<span class="regexp">/python2.7/</span>dist-packages<span class="regexp">/pyltp-0.1.9.1-py2.7-linux-x86_64.egg/</span>pyltp.so)</span><br></pre></td></tr></table></figure>
-<p>解决方法如下：</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~<span class="regexp">/anaconda2/lib</span></span><br><span class="line">rm libstdc++.so.<span class="number">6.0</span>.<span class="number">19</span></span><br><span class="line">ln -s /usr/<span class="class"><span class="keyword">lib</span>/<span class="title">x86_64</span>-<span class="title">linux</span>-<span class="title">gnu</span>/<span class="title">libstdc</span>++.<span class="title">so</span>.6 <span class="title">libstdc</span>++.<span class="title">so</span>.6.0.19</span></span><br></pre></td></tr></table></figure>
-<p>解决方法来源于<a href="https://github.com/HIT-SCIR/pyltp/issues/58" target="_blank" rel="noopener">pyltp 0.1.9.1 conflict with anaconda 4.2.0</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/08/28/pansee/book review/《浪潮之巅》/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/08/28/pansee/book review/《浪潮之巅》/" class="post-title-link" itemprop="url">《浪潮之巅》</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-08-28 15:27:02" itemprop="dateCreated datePublished" datetime="2017-08-28T15:27:02+08:00">2017-08-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/book-review/" itemprop="url" rel="index"><span itemprop="name">book review</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>《浪潮之巅》——作者：吴军</p>
-<h1 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h1><p>正如我第一次知道作为业界成功人士的李开复竟然是语音识别的顶级科学家一样，当我看完《浪潮之巅》，不得不惊叹一个计算机领域的工程师竟然对企业管理与运作有如此深刻的洞察。更何况，书中还展露出吴军博士对经济、金融的理解、对历史（对欧洲封建社会变革的论述）、人文（对海明威作品的引用）领域的熟悉。最为难能可贵的是，这些知识与思考是如此自然的流于笔端，无比的真实与贴近生活。而不是生硬机械的硬搬概念、强行关联，刻意堆砌。</p>
-<p>读书何为？难道是为了知道一些高大上的概念然后到人前炫耀么？以此来展现自己的博学多才而收获仰慕之眼光？写作何为？难道是为了词藻华丽，为了用一堆似是而非的引用和例子，配合上貌似气势高昂的排比修辞来揭示空中浮萍般的可笑“真理”？交流何为？难道是为了用空洞而无根底的言辞，空想而无逻辑的语言来交流思想？</p>
-<p>那么，读《浪潮之巅》又有什么意义？</p>
-<p>事实上，对于类似形式的书目，即书写一个恢宏大世或者一个领域思想，每一个章节通过聊聊几十页就妄图说清楚其中一个思想流派这样的概述书我是相当抵制的。这就好像以亚当斯密为代表的古典经济学到了最后只剩下看不见的手五个字，看起来精简概括，实则丢掉了太多细节，甚至于引入了谬误。如此书目往往只能从中学到概念，而对其真正的思维过程一无所知。当然，借这样的书来先行建立一个整体框架和概念有利于后期深入研究倒是尚有可取之处，可惜大部分人的所谓“研究”也就止步于这样的概述了。</p>
-<p>但《浪潮之巅》不同，或许书本身就并不是想要向读者说清每家科技公司的盛衰兴亡，而是用各家公司的发展与衰落来说明一场场浪潮的发展趋势，并从中抽离出共性，“世界上失败者的失败各有各的不同，而成功者的成功却具有惊人的相似之处”。其实，失败者的病痛也往往相似。</p>
-<p>然而，我依旧不建议不在科技行业之内或者对计算机科技不敢兴趣的读者给予此书过高的阅读优先级。跨领域的阅读往往痛苦，而一本书如果不能感同身受或者怀有极大的兴趣，读完之后不过束之高阁，了不起作为茶余饭后无意义的谈资。至于所谓广度的延展与知识的积累，恕我偏狭之眼光，很多人收获的只有肤浅。广度当然很重要，可以开阔视野和思路，但其只应该作为一种补充。如果一个人连在一个特定领域的深度都没有，不过一事无成，又有什么资格谈思想之丰满。科幻小说本该带来对于宇宙的敬畏，有人反而从中读出了量子力学，岂不可笑。</p>
-<p>回归本书，我并不做管理，很难在具体的企业运作细节上有太大的感触。但也简单总结下。</p>
-<p>成功或者失败大体出于以下几点：</p>
-<ul>
-<li>是否顺应潮流，把握机遇</li>
-<li>是否能够平衡长短期利益、公司股东利益。克制贪婪，甚至于短期让利</li>
-<li>是否有优秀的管理层和领导者</li>
-<li>是否具有技术优势，以及找到合适的商业模式</li>
-</ul>
-<p>最后，想要屹立不倒还需要做到：</p>
-<ul>
-<li>有坚实的”群众基础“，或者说营收不依赖于泡沫。</li>
-<li>扬弃。一方面不断创新，不断寻找新的增长点;另一方面对于旧的不再盈利或者江河日下的部门需要果断处理。避免机构冗余和旧体制妨碍新部门的发展。</li>
-</ul>
-<p>对于不是创业者的我而言，以上诸点或许除了知道之外很难有进一步的作用，也很难真正知道其中痛点。</p>
-<p>那么，本书对我更为真实的意义在哪里呢？</p>
-<ol>
-<li><p>让我对近百年来对科技发展（主要是计算机领域）有了一个相对清晰的认识，从最初的有线电话到PC到互联网再到云计算的脉络有了一定了解。</p>
-</li>
-<li><p>书中展示了一个个科技公司的发展兴衰。</p>
-</li>
-</ol>
-<p>如此一来，至少在找工作时不至于被各种打着大数据、人工智能名号的创业公司忽悠，能够自身对于公司业务的靠谱性有一个评判。再者，可以一定程度上培养科技、商业、业务上的嗅觉，还可以和面试官扯淡，以此来加点分。</p>
-<p>我无意于将贪婪、平衡、稳健这些公司或成或败的因素与个人生活相结合，以便于长篇大论，各种感触深刻。这些东西其实早已知道，然而翻来覆去也不曾有所大的改变。</p>
-<p>正如尼采的强力意志或者海德格尔的存在主义，如果仅仅是归纳成那么两三句话，就会发现其实有太多的人早已有相似想法。可惜的是，尼采和海德格尔终究都只有一个。真正高贵而丰满的东西显然不会只是犀利深刻的那么几句话。回归细节和真实，才是真正的困难也是真正的珠宝。正如苹果的每一款产品都并非完全的原创，但它做到了极致，并从中产生了独属于它的亮点和创新。虽然我完全不看好苹果软硬件一体的封闭式发展。</p>
-<p>本书中揭示的另一个现象也让我惊诧。复杂指令集打败了更先进的精简指令集，DOS通过持久战坚持到了windows的出现。这样两个以弱胜强的案例乍看起来无法理解，其实是充分利用用户依赖或者说”群众基础“所营造的的商业优势来打败技术优势。但更基本的前提应当是：”够用“。厂家是否应该花精力去制造更先进的产品，消费者是否应该去追求过剩的性能？当一个对于产品的公正统一而客观的标准丧失，市场又可以相对轻易的进入时，只好通过各种性能指标或其他来进行质量宣示，营造壁垒，很多时候门槛的存在不再是追求良币，而是为了排除劣币。这不仅体现在商品市场，还体现在人才市场的学历门槛以及其他。</p>
-<p>思科支持雇员创业并回购的管理与创新模式实在精彩。华为曾经也尝试发动高管和干部自立门户，进行创新，然而最后却是勾心斗角，反目成仇。何以如此？</p>
-<p>雅虎虽然没有什么技术上的革新与贡献，但是杨致远和菲洛所开创的互联网免费模式却足以让他们英明不朽。</p>
-<p>斯坦福的校园文化亦让我心向往之。确切的说，我所向往的是洪堡式的研究型教育和纽曼式的大行之道（学生间的交流学习）的结合。然而，如何真正有益的交流而不沦为聚众扯淡实在很难，当然最容易的做就是找靠谱的人。</p>
-<p>那么，这本书是否对得起我所花去的阅读时间呢？以及什么样的书才是值得读的好书呢？</p>
-<p>其实，很多情况下，与其谈怎么利用时间，不如想办法不浪费时间更为实在。所以，与其谈什么书值得花时间去读，不如少读点毫无价值的书，少做些毫无价值的事。也就是争取机会成本最小化而已。</p>
-<h1 id="第一章-帝国的余晖——AT-amp-T公司"><a href="#第一章-帝国的余晖——AT-amp-T公司" class="headerlink" title="第一章 帝国的余晖——AT&amp;T公司"></a>第一章 帝国的余晖——AT&amp;T公司</h1><p>由发明电话的贝尔所创立，传统电话通信行业的巨头。贝尔实验室的拥有者。</p>
-<p>没有被美国反垄断法所打败，却死于贪婪。为了获得资本运作所产生的短期既得利益，多次进行拆分，导致拆分后的各个公司无法共享资金和技术优势，最终死亡。</p>
-<p>反垄断法诉讼也导致了AT&amp;T的拆分，但是那更多的是修剪枝干，使得公司管理组织结构更合理而不臃肿。但是其自行拆分导致资金和技术的分离使其无法保有并发展其创新优势却是致命的。最终被互联网浪潮所吞没。</p>
-<h1 id="第二章-蓝色巨人——IBM公司"><a href="#第二章-蓝色巨人——IBM公司" class="headerlink" title="第二章 蓝色巨人——IBM公司"></a>第二章 蓝色巨人——IBM公司</h1><p>紧紧抓住了大型政企客户。</p>
-<p>小沃森抓住了时代的潮流，领导了电子技术革命的浪潮。将计算机从政府部门和军方推广到民间。将它的功能由科学计算变成商用。</p>
-<p>没有能够重视PC市场。当微机性能不断提升开始危险大型计算机时，IBM在80年代末出现了第一次严重亏损，有史以来第一次开始大规模裁员。原因主要有三个：</p>
-<ol>
-<li>由于开始阶段微机利润远远无法和IBM传统的大型机市场相比（第一年pc营业额只占IBM总营业额1%）,因此没有上升到战略高度</li>
-<li>反垄断的限制，使得其他小公司可以比较容易的入场竞争</li>
-<li>盖茨的长远眼光。不管是以版权费的方式卖DOS（从每台PC中收取版权费而非一次性卖断）还是独立开发windows（而非和IBM合作研发）都是明智之举，尤其是前者</li>
-</ol>
-<p>危机时刻郭士纳的救场：</p>
-<ol>
-<li>裁掉冗余部门和毫无前途的项目以节流</li>
-<li>变卖一些资产获取资金以开源</li>
-<li>买回曾经分离出去的服务公司，将硬件制造，软件开发，服务合成一体</li>
-<li>公司内部引入竞争机制，将员工退休金和整个公司（以前是和部门）效益挂钩，从而加强部门间合作</li>
-<li>削减研发经费，砍掉一些偏理论而无效益的研究，将研究和开发结合起来。研究人员的部分工资直接和产品项目挂钩</li>
-<li>为了弥补由此带来的长线研究和基础研究方面的损失，加强了和大学的合作</li>
-</ol>
-<p>IBM将用户群定位为企业级客户，最终放弃了终端消费市场。IBM实验室不断创新，但是在产品与市场上相当保守，创新更多的是一种自我保护而非开拓。</p>
-<p>为什么IBM能够在2000年后的两次金融危机中屹立不倒？</p>
-<ol>
-<li>核心业务是IT服务业，和金融关系不大。即使其企业终止产品采购，对已有产品的服务需求依旧存在</li>
-<li>由于其内部不断的优胜劣汰，不断淘汰低利润服务，使得其毛利润一直很高。虽然存在机构臃肿，但是危机时裁员并不会影响公司运转。更进一步的，工作岗位开始永久性向印度转移，降低人力成本</li>
-<li>全球化背景下跨国公司抗打击能力提升</li>
-</ol>
-<p>保守和谨慎是其鲜明特质。</p>
-<h1 id="第三章-“水果”公司的复兴——乔布斯和苹果公司"><a href="#第三章-“水果”公司的复兴——乔布斯和苹果公司" class="headerlink" title="第三章 “水果”公司的复兴——乔布斯和苹果公司"></a>第三章 “水果”公司的复兴——乔布斯和苹果公司</h1><blockquote>
-<p>公平的讲，现在苹果的每一款产品都并非它的原创……但是，苹果把每一款产都做到了极致，这很大程度上是乔布斯达到了一个将技术和艺术结合的炉火纯青的境界……如果要问什么是创新，这就是创新！</p>
-</blockquote>
-<blockquote>
-<p>乔布斯送给年轻人两句话：永远渴望、大智若愚（Stay Huntry，Stay Foolish）</p>
-</blockquote>
-<p>无中生有的创新太难，能把已有的东西做好就已经领先于人。</p>
-<h1 id="第四章-计算机工业的生态链"><a href="#第四章-计算机工业的生态链" class="headerlink" title="第四章 计算机工业的生态链"></a>第四章 计算机工业的生态链</h1><ul>
-<li><p>摩尔定律：每18个月硬件性能翻一番或者说旧产品价格降低一半，远超传统行业的更新速度</p>
-</li>
-<li><p>安迪-比尔定律：软件更新把硬件提升带来的好处几乎全部占光了</p>
-</li>
-<li><p>反摩尔定律：每18个月，同样产品营业额要降一半。因此逼着硬件设备公司必须赶上摩尔定律规定的的更新速度。由于过不了多少年，量变潜力就会被挖掘光，因此为了跟上摩尔定律的更新速度还需要质变。反摩尔定律使得新兴小公司有希望和大公司站在同一起跑线上。创新更容易被迅速接受，赢得市场。</p>
-</li>
-</ul>
-<p>IT行业，犹如逆水行舟，不进则退。处于上游的是软件和IT服务业，下游才是硬件和半导体。而非相反！</p>
-<h1 id="第五章-奔腾的芯——英特尔公司"><a href="#第五章-奔腾的芯——英特尔公司" class="headerlink" title="第五章 奔腾的芯——英特尔公司"></a>第五章 奔腾的芯——英特尔公司</h1><p>专心只作一件产品，这样的孤注一掷让它在微机处理器上不断进步</p>
-<p>市场依赖和市场选择让intel没有被RISC的高性能所迷惑，也最终让处于性能劣势的复杂指令集打败了精简指令集</p>
-<p>没有新的增长点将会让它在新的浪潮中老去</p>
-<h1 id="第六章-IT领域的罗马帝国——微软公司"><a href="#第六章-IT领域的罗马帝国——微软公司" class="headerlink" title="第六章 IT领域的罗马帝国——微软公司"></a>第六章 IT领域的罗马帝国——微软公司</h1><p>DOS对苹果和IBM OS/2的胜利，为windows的诞生赢得了时间，又是利用市场依赖以弱胜强。单单技术的先进并不是决定性的。<strong>利用人民的力量和市场的依赖却导致先进的技术难以快速普及，这实在是一个有趣的现象，值得深思。</strong></p>
-<p>苹果在兼容性上的失误，选择了封闭式发展，导致更新换代软硬件的成本巨大。</p>
-<p>同时，苹果在一定程度上违反了信息领域的摩尔定律和安迪比尔定律。软硬件全部抓在手上，导致很难平衡硬件和软件的研发速度。选择性舍弃反而会铸就更大的成功。</p>
-<p>微软的成功：</p>
-<ol>
-<li>保守和冒险的平衡;</li>
-<li>心比天高却又脚踏实地。</li>
-</ol>
-<p>在互联网和浏览器窗口上的战略失误。</p>
-<p>在家庭娱乐中心战场的失利。</p>
-<h1 id="第七章-互联网的金门大桥——思科公司"><a href="#第七章-互联网的金门大桥——思科公司" class="headerlink" title="第七章 互联网的金门大桥——思科公司"></a>第七章 互联网的金门大桥——思科公司</h1><p>合适时间点出现的多协议路由器从一开始就获得了市场优势。</p>
-<p>开明的内部管理模式：提供投资让员工创业在回购，垄断了技术市场。</p>
-<p>诺威格定律：当一家公司的市占率超过50%，就不要指望在市场占有率上翻番了。寻找新的增长点——家庭娱乐。</p>
-<h1 id="第八章-英明不朽——杨致远、菲洛和雅虎公司"><a href="#第八章-英明不朽——杨致远、菲洛和雅虎公司" class="headerlink" title="第八章 英明不朽——杨致远、菲洛和雅虎公司"></a>第八章 英明不朽——杨致远、菲洛和雅虎公司</h1><p>制定了互联网这个行业全世界至今遵守的游戏规则——开放、免费、盈利。使“免费的午餐”成为了可能。</p>
-<p>选错了战略方向，在不擅长的搜索引擎上徒费心力。在优势的品牌传媒方向又止步不前。</p>
-<p>没有强力的技术支撑，缺少技术基因，整体的工作环境和企业文化也不对技术人员胃口。</p>
-<p>失败的高层管理，差劲的掌舵人。</p>
-<h1 id="第九章-硅谷的见证人——惠普公司"><a href="#第九章-硅谷的见证人——惠普公司" class="headerlink" title="第九章 硅谷的见证人——惠普公司"></a>第九章 硅谷的见证人——惠普公司</h1><p>惠普衰落的原因：</p>
-<ul>
-<li>领导者的错误</li>
-<li>“日本/中国制造“的冲击</li>
-</ul>
-<h1 id="第十章-没落的贵族——摩托罗拉公司"><a href="#第十章-没落的贵族——摩托罗拉公司" class="headerlink" title="第十章 没落的贵族——摩托罗拉公司"></a>第十章 没落的贵族——摩托罗拉公司</h1><p>衰落的原因：</p>
-<ol>
-<li>低估了摩尔定律的作用和产品更新的速度，对数字手机关注不足，依旧将主要精力放在落后的模拟手机上</li>
-<li>领导层不能开拓，或许也无力守成</li>
-</ol>
-<p>铱星计划： 对市场的错误评估</p>
-<blockquote>
-<p>摩托罗拉至今都看不起三星和诺基亚不注重核心技术、只在外型和功能上搞花架子的做法。</p>
-</blockquote>
-<p>长于技术，弱于市场。不够重视市场和客户需求。</p>
-<p>与AT&amp;T的短视和贪婪相反，摩托罗拉作为一个家族企业，不会出现把AT&amp;T拆了卖的败家行为，但家族第三代领导人也心有余而力不足。君子之泽，五世而折。</p>
-<h1 id="第十一章-硅谷的另一面"><a href="#第十一章-硅谷的另一面" class="headerlink" title="第十一章 硅谷的另一面"></a>第十一章 硅谷的另一面</h1><p>幸存者偏差</p>
-<p>勤奋与创新</p>
-<h1 id="第十二章-短暂的春秋——与机会失之交臂的公司"><a href="#第十二章-短暂的春秋——与机会失之交臂的公司" class="headerlink" title="第十二章 短暂的春秋——与机会失之交臂的公司"></a>第十二章 短暂的春秋——与机会失之交臂的公司</h1><h1 id="第十三章-幕后的英雄——风险投资"><a href="#第十三章-幕后的英雄——风险投资" class="headerlink" title="第十三章 幕后的英雄——风险投资"></a>第十三章 幕后的英雄——风险投资</h1><h1 id="第十四章-信息产业的规律性"><a href="#第十四章-信息产业的规律性" class="headerlink" title="第十四章 信息产业的规律性"></a>第十四章 信息产业的规律性</h1><ul>
-<li><p>70-20-10律：科技产品的指标往往是硬性的，没有办法制造差异度。以至于强者恒强。然而我不大认可这种说法。。更多的应该是先发至人和（或）配套软硬件带来的强大用户粘性导致的市场独占。</p>
-</li>
-<li><p>诺威格定律：一家公司市场占有率超过50%后，就无法再使市场占有率翻番了。而开拓新的财源有效的途径只有两条：扩展现有业务和转型。</p>
-</li>
-<li><p>基因决定定律：基因决定了公司的市场运作，发展模式等，并难以改变。我觉得基因有两种：一种是从创始之时开始确立的公司的发展方向和管理方式，市场运作方式等，还有一场则是公司成型之后各个部门之间的利益纠葛。</p>
-</li>
-</ul>
-<h1 id="第十五章-硅谷的摇篮——斯坦福大学"><a href="#第十五章-硅谷的摇篮——斯坦福大学" class="headerlink" title="第十五章 硅谷的摇篮——斯坦福大学"></a>第十五章 硅谷的摇篮——斯坦福大学</h1><ul>
-<li><p>纽曼教育</p>
-</li>
-<li><p>洪堡教育</p>
-</li>
-<li><p>斯坦福和工业界的紧密联系，创业成风的校园氛围，以及能够给学生和教授提供商业资源的能力。</p>
-</li>
-</ul>
-<h1 id="第十六章-科技公司的吹鼓手——投资银行"><a href="#第十六章-科技公司的吹鼓手——投资银行" class="headerlink" title="第十六章 科技公司的吹鼓手——投资银行"></a>第十六章 科技公司的吹鼓手——投资银行</h1><p>华尔街对经济的影响确实可怖，但也确实有所益处。</p>
-<h1 id="第十七章-挑战者——Google公司"><a href="#第十七章-挑战者——Google公司" class="headerlink" title="第十七章 挑战者——Google公司"></a>第十七章 挑战者——Google公司</h1><ul>
-<li><p>个人英雄主义的文化，宁缺勿滥、一个顶十个的择人标准</p>
-</li>
-<li><p>公平、平等的领导、员工关系，开放、自由的工作环境</p>
-</li>
-<li><p>不作恶的企业原则，善待竞争者（不采用收购等合法而略显无耻的手段，在雅虎放弃低价购买google股票后悔不迭之后依旧以低价给了雅虎大量股票等），赢得了业界的尊重和支持，组建了强大的同盟军</p>
-</li>
-<li><p>“快速向前跑，不要看两边”的研发策略，以领先的技术击溃对手</p>
-</li>
-<li><p>商业运作、市场脉搏等方面的成功等</p>
-</li>
-</ul>
-<h1 id="第十八章-成功的转基因——诺基亚、3M、GE公司"><a href="#第十八章-成功的转基因——诺基亚、3M、GE公司" class="headerlink" title="第十八章 成功的转基因——诺基亚、3M、GE公司"></a>第十八章 成功的转基因——诺基亚、3M、GE公司</h1><p>3M不断保持活力的原因：</p>
-<ul>
-<li><p>扬新。创新往往伴随着失败。只有能够容忍失败、容忍表面的不可能才能真正的实现创新。</p>
-</li>
-<li><p>弃旧。不仅弃掉已经旧的，还要弃掉虽然有盈利但是前景不佳还会阻碍创新的旧部门、旧势力</p>
-</li>
-<li><p>群众基础。日用品之类是最不容易受到冲击的。</p>
-</li>
-</ul>
-<h1 id="第十九章-印钞机——最佳的商业模式"><a href="#第十九章-印钞机——最佳的商业模式" class="headerlink" title="第十九章 印钞机——最佳的商业模式"></a>第十九章 印钞机——最佳的商业模式</h1><p>下面三种商业模式都算不上好的：</p>
-<ul>
-<li><p>每增加一份营收就必须多雇佣一个人</p>
-</li>
-<li><p>无法横向拓展的业务，例如从一个地区扩展到另外一个地区需要做需要额外的工作</p>
-</li>
-<li><p>需要消耗过多的原料和成本</p>
-</li>
-</ul>
-<h1 id="第二十章-互联网2-0"><a href="#第二十章-互联网2-0" class="headerlink" title="第二十章 互联网2.0"></a>第二十章 互联网2.0</h1><p>互联网2.0公司应该具备的特征（至少其中之一）：</p>
-<ul>
-<li><p>必须有一个平台，可以接受并且管理用户提交的内容，并且这些内容是服务主体</p>
-</li>
-<li><p>提供一个开放平台，让用户可以在平台上开发自己的应用程序，并且提供给其他用户使用</p>
-</li>
-<li><p>交互性</p>
-</li>
-<li><p>非竞争性和自足性</p>
-</li>
-</ul>
-<h1 id="第二十一章-金融风暴的冲击"><a href="#第二十一章-金融风暴的冲击" class="headerlink" title="第二十一章 金融风暴的冲击"></a>第二十一章 金融风暴的冲击</h1><ul>
-<li><p>生产和供给能力的大大提高，资本从实体经济向虚拟虚拟经济转移</p>
-</li>
-<li><p>超前消费的流行</p>
-</li>
-</ul>
-<p>上述两种风气使社会变得浮躁和短视，很多良好的价值观被破坏。在经济危机之下，这些泡沫将会被打破，人们会捡起稳健、勤勉的传统。</p>
-<p>对于欧洲封建社会变革的分析非常真实而有趣。商人用金钱作为借贷一步步蚕食领主的权力。</p>
-<h1 id="第二十二章-云计算"><a href="#第二十二章-云计算" class="headerlink" title="第二十二章 云计算"></a>第二十二章 云计算</h1><h1 id="第二十三章-下一个Google"><a href="#第二十三章-下一个Google" class="headerlink" title="第二十三章 下一个Google"></a>第二十三章 下一个Google</h1><p>分析了几个新兴行业发展方向以及国内的潜力公司和发展状况。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/08/25/python/traceback/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/08/25/python/traceback/" class="post-title-link" itemprop="url">traceback</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-08-25 16:07:35" itemprop="dateCreated datePublished" datetime="2017-08-25T16:07:35+08:00">2017-08-25</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="或许详细的异常信息"><a href="#或许详细的异常信息" class="headerlink" title="或许详细的异常信息"></a>或许详细的异常信息</h1><p>当通过<code>try...except...</code>进行处理时，往往需要打印出来详细的一场信息，方便debug。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> traceback</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    print(str(e))</span><br><span class="line">    print(traceback.format_exc())</span><br></pre></td></tr></table></figure>
-<p>这里主要区分<code>str(e)</code>和<code>traceback.format_exc()</code>两种异常或许方式。</p>
-<ul>
-<li><p>str(e)<br>仅仅给出最简单的异常信息，不包括异常信息的类型，更不包括改异常对应的一系列有问题的代码。</p>
-</li>
-<li><p>traceback.format_exc()<br>给出详细的异常信息，与python在命令行运行程序出现错误信息一致。</p>
-</li>
-</ul>
-<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://www.cnblogs.com/klchang/p/4635040.html" target="_blank" rel="noopener">Python中获取异常（Exception）信息</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/08/10/development/environment/ubuntu16.04 install gtx1080ti+cuda+tensorflow/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/08/10/development/environment/ubuntu16.04 install gtx1080ti+cuda+tensorflow/" class="post-title-link" itemprop="url">ubuntu16.04 install gtx1080ti+cuda+tensorflow</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-08-10 21:36:18" itemprop="dateCreated datePublished" datetime="2017-08-10T21:36:18+08:00">2017-08-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="environment"><a href="#environment" class="headerlink" title="environment"></a>environment</h1><p>本机环境： E5 2670V2 GTX1080TI</p>
-<h1 id="install-drivers"><a href="#install-drivers" class="headerlink" title="install drivers"></a>install drivers</h1><p>安装一张亮机卡，然后安装ubuntu16.04。我有尝试过直接装好gtx1080ti安装系统。装好后无法进入桌面，也无法进入命令行。按左shift也无法进入grub。如果使用i7这样带集显的cpu情况未知，e5不带集显。但是如果采用i7，可能需要有禁用ubuntu集成显卡驱动nouveau的操作，e5不需要。</p>
-<p>装好后进入系统通过下方ppa方式安装驱动。如果是在nvidia官网下载deb包则无法安装，因为会要求有nvidia显卡在机器上。</p>
-<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo<span class="built_in"> add-apt-repository </span>ppa:graphics-drivers/ppa</span><br><span class="line">sudo apt-get update </span><br><span class="line">sudo apt-get install nvidia-384</span><br><span class="line">sudo apt-get install mesa-common-dev </span><br><span class="line">sudo apt-get install freeglut3-dev</span><br><span class="line"><span class="comment"># then restart system</span></span><br></pre></td></tr></table></figure>
-<p>装上驱动后关闭电脑换上gtx1080ti然后启动电脑进入下一步。</p>
-<h1 id="install-cuda"><a href="#install-cuda" class="headerlink" title="install cuda"></a>install cuda</h1><p>官网下载cuda8.0,选择.run文件下载。deb没有尝试过。在安装时会提示是否安装驱动nvidia-375或其他版本号，选择n，因为我们在上一步已经安装好驱动。我选择安装的是最新的384驱动。对于安装开始时显示的一大串文字，可以按ctrl+c直接到100%。</p>
-<p><a href="https://developer.nvidia.com/cuda-downloads" target="_blank" rel="noopener">download cuda</a></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">sudo</span> <span class="selector-tag">sh</span> <span class="selector-tag">cuda_8</span><span class="selector-class">.0</span><span class="selector-class">.27_linux</span><span class="selector-class">.run</span></span><br></pre></td></tr></table></figure>
-<p>when install cuda,it will let you choose whether install nvidia-375 or not. Choose n(no),because you have installed nvidia-driver.</p>
-<p>安装好后配置环境变量，将以下内容写入 /etc/profile。网上有写入～/.bashrc的教程（写入内容也有所区别），我试过不行。</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=/usr/local/cuda-8.0/bin:$PATH</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">LD_LIBRARY_PATH</span>=/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH</span><br></pre></td></tr></table></figure>
-<p>写入后通过 <code>source /etc/profile</code> 使设置生效。</p>
-<p>关闭shell在重开后用 <code>nvcc -V</code> 验证是否安装成功。最好能运行安装的samples来进行严格验证。方法见references给出的链接。</p>
-<h1 id="install-cudnn"><a href="#install-cudnn" class="headerlink" title="install cudnn"></a>install cudnn</h1><p>去官网下载cudnn，选择5.1版本。最好不要选择高版本。那样会报错虽然可以找到解决方案，见<a href="https://stackoverflow.com/questions/42013316/after-building-tensorflow-from-source-seeing-libcudart-so-and-libcudnn-errors" target="_blank" rel="noopener">After building TensorFlow from source, seeing libcudart.so and libcudnn errors</a>。</p>
-<p>进入下载的文件所在文件夹，执行以下命令</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar -xzf cudnn-<span class="number">8.0</span>-linux-x64-v5.<span class="number">1</span>.tgz</span><br><span class="line">cd cuda</span><br><span class="line">sudo cp lib64<span class="regexp">/* /u</span>sr<span class="regexp">/local/</span>cuda<span class="regexp">/lib64/</span></span><br><span class="line">sudo cp include<span class="regexp">/* /u</span>sr<span class="regexp">/local/</span>cuda<span class="regexp">/include/</span></span><br></pre></td></tr></table></figure>
-<h1 id="install-anaconda"><a href="#install-anaconda" class="headerlink" title="install anaconda"></a>install anaconda</h1><p><strong><em>选择Anaconda3-4.2.0-Linux-x86_64.sh，在本文写成（2017年7月7日）之时，tensorflow最高只支持python3.5和python2.7，因此选择此版本</em></strong>。国内可以通过清华源下载。</p>
-<h1 id="install-tensorflow-amp-keras"><a href="#install-tensorflow-amp-keras" class="headerlink" title="install tensorflow&amp;keras"></a>install tensorflow&amp;keras</h1><p>通过pip3方式安装。</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 <span class="keyword">install</span> tensorflow-gpu</span><br><span class="line">pip3 <span class="keyword">install</span> keras</span><br></pre></td></tr></table></figure>
-<p>收工。</p>
-<h1 id="uninstall-nvidia"><a href="#uninstall-nvidia" class="headerlink" title="uninstall nvidia"></a>uninstall nvidia</h1><p>如果想要卸载nvidia相关，可见Removing nvidia cuda toolkit and installing new one](<a href="https://askubuntu.com/questions/530043/removing-nvidia-cuda-toolkit-and-installing-new-one" target="_blank" rel="noopener">https://askubuntu.com/questions/530043/removing-nvidia-cuda-toolkit-and-installing-new-one</a>)</p>
-<p>查看安装的nvidia包</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -l <span class="string">| grep -i nvidia</span></span><br></pre></td></tr></table></figure>
-<p>This method will give a complete removal of Cuda:</p>
-<p>Simple</p>
-<p>remove the CUDA files in /usr/local/cuda-5.0</p>
-<p>Advanced</p>
-<p>Uninstall just nvidia-cuda-toolkit</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> <span class="builtin-name">remove</span> nvidia-cuda-toolkit</span><br></pre></td></tr></table></figure>
-<p>Uninstall nvidia-cuda-toolkit and it’s dependencies</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> <span class="builtin-name">remove</span> --auto-<span class="builtin-name">remove</span> nvidia-cuda-toolkit</span><br></pre></td></tr></table></figure>
-<p>Purging config/data</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> purge nvidia-cuda-toolkit <span class="keyword">or</span> sudo apt-<span class="builtin-name">get</span> purge --auto-<span class="builtin-name">remove</span> nvidia-cuda-toolkit</span><br></pre></td></tr></table></figure>
-<p>Additionally, delete the /opt/cuda and ~/NVIDIA_GPU_Computing_SDK folders if they are present. and remove the export PATH=$PATH:/opt/cuda/bin and export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/cuda/lib:/opt/cuda/lib64 lines of the ~/.bash_profile file</p>
-<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://www.jianshu.com/p/5b708817f5d8?from=groupmessage" target="_blank" rel="noopener">Ubuntu16.04 + 1080Ti深度学习环境配置教程</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/08/08/development/develepment/debug/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/08/08/development/develepment/debug/" class="post-title-link" itemprop="url">debug</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-08-08 15:58:44" itemprop="dateCreated datePublished" datetime="2017-08-08T15:58:44+08:00">2017-08-08</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/develepment/" itemprop="url" rel="index"><span itemprop="name">develepment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>本篇为debug的一些总结</p>
-<ol>
-<li><p>使用print进行问题的定位和明晰。如果pirnt无反应可能是因为本身print的就是none。最好的办法是标准格式，比如 <code>print(&#39;------------params: &#39;, params)</code>，这样即使是none值也可以看的很清楚。</p>
-</li>
-<li><p>如果出错的地方自己始终觉得没问题，那么就应该怀疑自己对错误的定位本身就出了问题。因此，当定位到一个大问题之后，首先应该做的是梳理清楚各条通向该行code的逻辑线，而不是闷着头盯着一条线死干。</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/08/05/machine learning/competition/quora/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/08/05/machine learning/competition/quora/" class="post-title-link" itemprop="url">quora</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-08-05 19:36:50" itemprop="dateCreated datePublished" datetime="2017-08-05T19:36:50+08:00">2017-08-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/competition/" itemprop="url" rel="index"><span itemprop="name">competition</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
-<h1 id="sources"><a href="#sources" class="headerlink" title="sources"></a>sources</h1><p><a href="https://www.kaggle.com/c/quora-question-pairs" target="_blank" rel="noopener">quora</a></p>
-<h1 id="what-have-I-learned"><a href="#what-have-I-learned" class="headerlink" title="what have I learned?"></a>what have I learned?</h1><p><a href="https://www.kaggle.com/anokas/quora-question-pairs/data-analysis-xgboost-starter-0-35460-lb/notebook" target="_blank" rel="noopener">Data Analysis &amp; XGBoost Starter (0.35460 LB)
-</a></p>
-<ul>
-<li><p>画图时通过<code>plt.yscale(&#39;log&#39;, nonposy=&#39;clip&#39;)</code>可以改变纵轴量级，使得原本因为量级差距巨大而造成的图形更有可看性。</p>
-</li>
-<li><p>通过提交均值来寻找一个基础的benchmark。</p>
-</li>
-<li><p>根据提交均值后的得分估算出测试集中的正样本比例。</p>
-</li>
-<li><p>绘制词云图。</p>
-</li>
-<li><p>用nltk包中的stopwords来进行停用词剔除。</p>
-</li>
-<li><p>计算两个句子共享词时，用共有词的数量除以两个句子长度均值来正则化。</p>
-</li>
-<li><p>能够自己实现并定制tf，idf。</p>
-</li>
-<li><p>平衡数据集比例，使得train和test一致，从而得到好的结果。</p>
-</li>
-<li><p>会使用xgboost的early_stopping_rounds参数</p>
-</li>
-</ul>
-<p><a href="https://www.kaggle.com/philschmidt/quora-question-pairs/quora-eda-model-selection-roc-pr-plots/comments" target="_blank" rel="noopener">Quora EDA &amp; Model selection (ROC, PR plots)
-</a></p>
-<ul>
-<li>优美的降维和可视化技巧。待学习[TBC]</li>
-</ul>
-<p><a href="https://www.kaggle.com/puneetsl/quora-question-pairs/unusual-meaning-map/notebook" target="_blank" rel="noopener">Unusual meaning map
-</a></p>
-<ul>
-<li><p>学习到了nltk.word_tokenize</p>
-</li>
-<li><p>巧妙的特征构造方法，利用笛卡尔积形式计算两个句子各词的相似度。并最后扑展（扩充）成一定维数的特征。</p>
-</li>
-<li><p>进一步了解了w2v和wmd</p>
-</li>
-</ul>
-<p><a href="https://www.kaggle.com/c/quora-question-pairs/discussion/31019" target="_blank" rel="noopener">fm benchmark with tfidf around 29</a></p>
-<ul>
-<li><p>学习到了使用nltk寻找词干，<a href="https://www.kaggle.com/currie32/quora-question-pairs/the-importance-of-cleaning-text/comments" target="_blank" rel="noopener">The Importance of Cleaning Text
-</a>中亦有介绍，更为简单。</p>
-</li>
-<li><p>学习到了使用a.intersection(b)计算集合间的交集。</p>
-</li>
-<li><p>学习到了如何清爽的整理代码，生成特征。</p>
-</li>
-<li><p>学习到了字串的jaccard距离，编辑距离及其计算。</p>
-</li>
-<li><p>给出了fm实现，待学习[TBC]。</p>
-<p><a href="https://www.kaggle.com/c/quora-question-pairs/discussion/30967" target="_blank" rel="noopener">Score 0.3250 (or 0.31) using StackNet with sparse data</a></p>
-<ul>
-<li>stacknet，待学习[TBC]。</li>
-</ul>
-</li>
-</ul>
-<p> # </p>
-<ul>
-<li>crowdfloer</li>
-<li>homedepot</li>
-<li>SemEval<br><a href="https://github.com/rgtjf/Semantic-Texual-Similarity-Toolkits" target="_blank" rel="noopener">https://github.com/rgtjf/Semantic-Texual-Similarity-Toolkits</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/08/05/python/queue/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/08/05/python/queue/" class="post-title-link" itemprop="url">queue</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-08-05 14:00:31" itemprop="dateCreated datePublished" datetime="2017-08-05T14:00:31+08:00">2017-08-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="http://www.cnblogs.com/itogo/p/5635629.html" target="_blank" rel="noopener">python队列Queue</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/08/05/development/database/mysql/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/08/05/development/database/mysql/" class="post-title-link" itemprop="url">mysql</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-08-05 14:00:31" itemprop="dateCreated datePublished" datetime="2017-08-05T14:00:31+08:00">2017-08-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/database/" itemprop="url" rel="index"><span itemprop="name">database</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="ubuntu安装mysql"><a href="#ubuntu安装mysql" class="headerlink" title="ubuntu安装mysql"></a>ubuntu安装mysql</h1><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> install mysql-server</span><br><span class="line">sudo apt-<span class="builtin-name">get</span> isntall mysql-client</span><br><span class="line">sudo apt-<span class="builtin-name">get</span> install libmysqlclient-dev</span><br></pre></td></tr></table></figure>
-<p>如果只是安装mysql客户端用来链接远程服务器mysql的话，好像也要全装？可以只装mysql-client试下。</p>
-<p><a href="http://www.linuxidc.com/Linux/2014-03/97440.htm" target="_blank" rel="noopener">Ubuntu 安装MySQL和简单操作</a></p>
-<h1 id="ubuntu-mysql-客户端"><a href="#ubuntu-mysql-客户端" class="headerlink" title="ubuntu mysql 客户端"></a>ubuntu mysql 客户端</h1><p><a href="https://www.jetbrains.com/datagrip/" target="_blank" rel="noopener">Datagrip Jetbrains</a> 挺好。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/08/05/development/linux/screen/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/08/05/development/linux/screen/" class="post-title-link" itemprop="url">screen</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-08-05 14:00:31" itemprop="dateCreated datePublished" datetime="2017-08-05T14:00:31+08:00">2017-08-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>创建screen </p>
-<p><code>screen -S ss</code></p>
-<p>在screen内部对screen进行挂起（detached）</p>
-<p><code>ctrl-a d</code> 或者<code>screen -d ss</code></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/08/05/machine learning/cv/ffmpeg/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/08/05/machine learning/cv/ffmpeg/" class="post-title-link" itemprop="url">ffmpeg</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-08-05 14:00:31" itemprop="dateCreated datePublished" datetime="2017-08-05T14:00:31+08:00">2017-08-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/cv/" itemprop="url" rel="index"><span itemprop="name">cv</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近在做物体识别方面的工作，整体流程是接收直播流，用yolo进行特定物体识别，推送处理后的视频流到指定地址。其中，需要用到ffmpeg进行处理。现将ffmpeg使用过程总结一下。</p>
-<h1 id="install"><a href="#install" class="headerlink" title="install"></a>install</h1><p>ffmpeg有一系列依赖包，可按照官网直接用<code>sudo apt-get</code>依次安装 <a href="https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu" target="_blank" rel="noopener">Compilation &amp; Installation</a></p>
-<p><code>sudo apt-get install ffmpeg</code></p>
-<h1 id="process"><a href="#process" class="headerlink" title="process"></a>process</h1><h2 id="编码格式"><a href="#编码格式" class="headerlink" title="编码格式"></a>编码格式</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffprobe <span class="selector-tag">input</span>.mp4</span><br></pre></td></tr></table></figure>
-<p>可以使用以上命令去查看文件的视频和音频编码格式</p>
-<h2 id="视频切割："><a href="#视频切割：" class="headerlink" title="视频切割："></a>视频切割：</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -<span class="selector-tag">i</span> <span class="selector-tag">input</span><span class="selector-class">.mp4</span> -ss <span class="number">0</span> -c copy -t <span class="number">60</span> -y output.mp4</span><br></pre></td></tr></table></figure>
-<p><code>-i</code> 表示待处理的视频源</p>
-<p><code>-ss</code>，<code>-t</code> 表示切割视频的起始时间点和切割时长。有两种写法：<code>0</code>，<code>00：01：20</code>。前者表示秒，后者是时:分:秒格式。</p>
-<p><code>-to</code> 表示结束时间点。 但如果 <code>-ss</code> 放在 <code>-i</code> 前面，则效果和 <code>-t</code> 一样。有的blog在这个问题上说反了，特此说明。只要 <code>-ss</code> 始终放 <code>-i</code> 后面，就不会出问题了。</p>
-<p><code>-y</code> 表示如果输出文件存在，则覆盖原文件</p>
-<p><code>-c</code> 表示编码器，是<code>-codec</code>的缩写。 <code>-c copy</code>指复制原视频编码流。</p>
-<p><code>-c:v -c:a</code> 表示分别指定视频音频编码流格式。也可以写成 <code>-vcodec -acodec</code>或者 <code>-c:0 -c:1</code>一般0是视频流，1是音频流。如果出现多音频流，可以用<code>-c:a:0</code>形式去选择。</p>
-<p><code>-vn -an</code> 分别表示屏蔽视频流，音频流。 </p>
-<p>在使用命令时好像必须同时指定视频流和音频流的处理，不能只指定某一个。</p>
-<h2 id="视频拼接："><a href="#视频拼接：" class="headerlink" title="视频拼接："></a>视频拼接：</h2><p>需要先将需要拼接的视频文件按以下格式保存在一个列表 list.txt 中：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">file</span> '/path/<span class="keyword">to</span>/file1'</span><br><span class="line"><span class="built_in">file</span> '/path/<span class="keyword">to</span>/file2'</span><br><span class="line"><span class="built_in">file</span> '/path/<span class="keyword">to</span>/file3'</span><br></pre></td></tr></table></figure></p>
-<p>然后使用一下命令拼接<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -f concat -<span class="selector-tag">i</span> list<span class="selector-class">.txt</span> -c copy output.mp4</span><br></pre></td></tr></table></figure></p>
-<h2 id="视频转换为ts格式"><a href="#视频转换为ts格式" class="headerlink" title="视频转换为ts格式"></a>视频转换为ts格式</h2><p>将视频转换为ts</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -<span class="selector-tag">i</span> <span class="selector-tag">input</span><span class="selector-class">.mp4</span> -c copy -bsf h264_mp4toannexb output.ts</span><br></pre></td></tr></table></figure>
-<p><code>-bsf</code> 是比特流过滤器。不知道具体有什么用，但是必须得有。而且参数必须设置成<code>h264_mp4toannexb</code>,其他过滤器可以通过<code>ffmpeg -bsfs</code>查看。如果是转成flv则不需要该参数，其他格式没有尝试。</p>
-<h1 id="视频切片并生成m3u8播放列表"><a href="#视频切片并生成m3u8播放列表" class="headerlink" title="视频切片并生成m3u8播放列表"></a>视频切片并生成m3u8播放列表</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ffmpeg</span> <span class="selector-tag">-i</span> <span class="selector-tag">output</span><span class="selector-class">.mp4</span> <span class="selector-tag">-f</span> <span class="selector-tag">segment</span> <span class="selector-tag">-segment_time</span> 10 <span class="selector-tag">-segment_format</span> <span class="selector-tag">mpegts</span> <span class="selector-tag">-segment_list</span> <span class="selector-tag">list_file</span><span class="selector-class">.m3u8</span> <span class="selector-tag">-c</span> <span class="selector-tag">copy</span> <span class="selector-tag">-bsf</span><span class="selector-pseudo">:v</span> <span class="selector-tag">h264_mp4toannexb</span> <span class="selector-tag">-map</span> 0 <span class="selector-tag">output_file-</span>%<span class="selector-tag">d</span><span class="selector-class">.ts</span></span><br></pre></td></tr></table></figure>
-<p>如果输入是ts文件，不需要加<code>-bsf</code>参数</p>
-<p><code>-map</code> 没有具体搞懂这个参数。只知道<code>-map 0</code>代表复制第一个文件中的所有流到输出文件中。详情参<a href="http://blog.csdn.net/tao_627/article/details/22403615" target="_blank" rel="noopener">FFMPEG转码常用命令研究</a></p>
-<p><code>-segment_format</code> 去掉后不影响命令实现。可能和跟严格的格式要求和应用有关。</p>
-<p>首先，我们需要有一个原生直播流。暂时采用的是将直播流分割成一个一个ts不断传给后端，然后后端进行处理。因此，我们可以使用一个本地视频</p>
-<p>直播：本地运行：<br>ffmpeg -f avfoundation -framerate 30 -i “1:0” -f avfoundation -framerate 30 -video_size 640x480 -i “0” -c:v libx264 -preset ultrafast -filter_complex ‘overlay=main_w-overlay_w-10:main_h-overlay_h-10’ -acodec libmp3lame -ar 44100 -ac 1  -f flv rtmp://10.165.33.20:1935/hls/test</p>
-<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://blog.csdn.net/redstarofsleep/article/details/45092145" target="_blank" rel="noopener">ubuntu14.04安装ffmpeg</a></p>
-<p><a href="https://segmentfault.com/a/1190000000414341" target="_blank" rel="noopener">通过 ffmpeg 无损剪切/拼接视频</a></p>
-<p><a href="http://blog.csdn.net/leixiaohua1020/article/details/15811977/" target="_blank" rel="noopener">[总结]FFMPEG视音频编解码零基础学习方法</a></p>
-<p><strong><em><a href="http://blog.csdn.net/tao_627/article/details/22403615" target="_blank" rel="noopener">FFMPEG转码常用命令研究</a></em></strong></p>
-<p><strong><em><a href="http://www.360doc.com/content/13/0901/17/9305922_311411358.shtml" target="_blank" rel="noopener">FFMPEG详解</a></em></strong></p>
-<p><a href="http://blog.csdn.net/zhichao2001/article/details/12610465" target="_blank" rel="noopener">ffmpeg教程</a></p>
-<p><strong><em><a href="http://www.cnblogs.com/wainiwann/p/4128154.html" target="_blank" rel="noopener">FFmpeg常用基本命令</a></em></strong></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/08/05/pansee/book review/《打开文学的方式》/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/08/05/pansee/book review/《打开文学的方式》/" class="post-title-link" itemprop="url">《打开文学的方式》</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-08-05 14:00:31" itemprop="dateCreated datePublished" datetime="2017-08-05T14:00:31+08:00">2017-08-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/book-review/" itemprop="url" rel="index"><span itemprop="name">book review</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>《打开文学的方式》——王敦</p>
-<h1 id="1-1-“文学名著看不进去，一定是我打开的方式不对”"><a href="#1-1-“文学名著看不进去，一定是我打开的方式不对”" class="headerlink" title="1.1 “文学名著看不进去，一定是我打开的方式不对”"></a>1.1 “文学名著看不进去，一定是我打开的方式不对”</h1><blockquote>
-<p>众口难调，感动你的不一定能感动他或她，若去追究和讨论“什么”让我感动，势必会忽略我是“怎样”被感动，以及“为什么”我被感动了——对这后两者的分析，才是“解读”，才能有助于打开我们所遭受的感动，看看它到底是怎么回事儿。</p>
-</blockquote>
-<h1 id="1-2-学会“打开文学的方式”，是一件正经事"><a href="#1-2-学会“打开文学的方式”，是一件正经事" class="headerlink" title="1.2 学会“打开文学的方式”，是一件正经事"></a>1.2 学会“打开文学的方式”，是一件正经事</h1><blockquote>
-<p>“解读”之事，说到底，绝不是去“还原”作者的“圣旨”，也不是选择一位权威的“批评家”，然后站到他的身后，成为一个无关紧要的“零”，而是充分发挥读者的“主体”作用，为作品有效地生成新的意义。解读出来的新的意义，是解读者的私有财产，并参与到与作者，与其他读者的交流之中，成为读者自己对文学这件事儿的贡献。……“文学解读讲义”所讲的就是读者如何发挥主体性进行“二度创造”。</p>
-</blockquote>
-<blockquote>
-<p>想一想美国电影《黑客帝国》和《楚门的世界》吧。我们被别人精心炮制的说辞和字符矩阵所包围，如果不去“close reading”，多分析分析“为什么”（why）和“如何”（how）的问题，被其里面的“what”所裹挟、忽悠、催眠，我们被骗的几率就是99.9%了。在社会上往往是整整一代代的人集体被骗。（很显然他们都没有读过这本书，幽默一下儿。）在比较糟糕的时代，比如希特勒时代的德国，你个人幸福追求的回旋余地就变得近乎于零了。</p>
-</blockquote>
-<h1 id="1-3-七次Lecture帮你打开文学"><a href="#1-3-七次Lecture帮你打开文学" class="headerlink" title="1.3 七次Lecture帮你打开文学"></a>1.3 七次Lecture帮你打开文学</h1><blockquote>
-<p>我们讨论文学的解读，绝不仅仅是为了欣赏文学本身，更重要的是学会从语言符号里来解读社会话语的能力，学会社会性思考和生存。</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/08/05/pansee/book review/《进化！进化？达尔文背后的战争》/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/08/05/pansee/book review/《进化！进化？达尔文背后的战争》/" class="post-title-link" itemprop="url">《进化！进化？达尔文背后的战争》</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-08-05 14:00:31" itemprop="dateCreated datePublished" datetime="2017-08-05T14:00:31+08:00">2017-08-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/book-review/" itemprop="url" rel="index"><span itemprop="name">book review</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="01-一个严重的问题：我们从何而来"><a href="#01-一个严重的问题：我们从何而来" class="headerlink" title="01 一个严重的问题：我们从何而来"></a>01 一个严重的问题：我们从何而来</h1><blockquote>
-<p>休谟指责设计论说……无疑这个上帝是一个低能儿。（P8）<br>休谟对于自然神学的批判是怎样的？[TBC]</p>
-</blockquote>
-<blockquote>
-<p>科学界迫切的任务是，需要彻底排除超自然的力量，向自然寻求真正的规律，以科学的态度研究生物和人的由来。（P14）</p>
-</blockquote>
-<p>应该先明确何为科学。然后再看科学界迫切的任务是什么？科学是否需要排除超自然的力量，不能兼容？研究生物和人的由来难道成了整个科学界的任务？</p>
-<h1 id="02-拉马克主义，以及铁匠的儿子和老鼠的尾巴"><a href="#02-拉马克主义，以及铁匠的儿子和老鼠的尾巴" class="headerlink" title="02 拉马克主义，以及铁匠的儿子和老鼠的尾巴"></a>02 拉马克主义，以及铁匠的儿子和老鼠的尾巴</h1><blockquote>
-<p>根据自己的这一观点，出于学术上争论的目的，居维叶对提出了进化论的老同事拉马克竭尽嘲笑讽刺之能事。（P14）</p>
-</blockquote>
-<p>居维叶何以对拉马克的观点和证据视而不见？如果没有看到，是何缘故？如果看到了，又是怎样去作出辩驳和批评的呢？</p>
-<blockquote>
-<p>“用进废退”“获得性遗传”（P15）</p>
-</blockquote>
-<p>退不是指退步，向不好的方向发展。只是指因为官能派不上用场而退化这一中性的事实性描述而已。</p>
-<p>“获得性遗传”并没有能在书中被严肃的解释。</p>
-<p>需要考虑遗传退火的问题。或许不是用进废退。而是持续不断的基因变化以及更适合环境的基因在竞争中获胜，从而造成用进废退的表象。应该搞清楚何为因何为果。</p>
-<blockquote>
-<p>他认为物种只是一个认为的概念，事实上并不存在。（P16）</p>
-</blockquote>
-<p>这是一个概念厘定问题。还是有必要深思一下的。必须搞清楚在怎样的问题下应当关注怎样的概念，才不至于落入无意义的逻辑语辞游戏，也不至于忽略真正的细节和逻辑关键。</p>
-<blockquote>
-<p>如果有喜欢人文学科的朋友们加入到这个讨论中来的话，无疑会把这个讨论搅得一团糟……而纯正的进化理论，必须把这种力量排除在外，因为对动物的“意志”的依赖，一不留意，就会滑向“神的意志”，有变为自然神学的危险。（P18）</p>
-</blockquote>
-<p>“纯正的进化理论”？谁来定义纯正？前文就以出现这样的问题，作者无任何论证的将科学和神学、人文主观进行想当然的割裂，好像这是一个不言自明的真理与共识一样。这样的态度是非常危险的，尤其作为科普读物。既然是科普，那么不管是个人私货还是未经定论的事情，甚至于哪怕相对定论的事情，都应当清晰的论述清楚它的前设，推理，结论并其存在的漏洞以及未竟之处。尤其是前设和缺陷最为重要。如若不然，不过是普及了知识，却愚弄了思想。</p>
-<p>人文主观的力量或许并没有那么小，不仅是潜藏在社会诸领域之下的巨龙，足以影响到人类所以为的客观领域也未可知。</p>
-<p>自然神学从本书一开始就已经成为了被批评的靶子，然而仅仅只是被零散的论述，而且对于其死而不僵甚至于重新活跃到目前为止并没有论述。</p>
-<p>关于“科学”问题，有必要回顾波普尔的科学哲学。如有精力，日后补足。[TBC]</p>
-<blockquote>
-<p>但由于受到了居维叶的打压，所以在当时的影响较小。（P19）</p>
-</blockquote>
-<p>读到本章结束，我的感觉是虽然达尔文及达尔文主义者对拉马克之思想也有嘲笑讽刺但止于学术，而居维叶则还进行了人身攻击，有学品人品皆欠佳之嫌。这是作者言辞的误导还是确实如此呢？</p>
-<blockquote>
-<p>达尔文没有度过拉马克的原著……（P19）</p>
-</blockquote>
-<p>没读过原著，却对拉马克有各种批评和赞美……这治学的态度可不严谨。或许是当时难以搞到原著资料？</p>
-<h1 id="地质学的发展与《圣经》的尴尬"><a href="#地质学的发展与《圣经》的尴尬" class="headerlink" title="地质学的发展与《圣经》的尴尬"></a>地质学的发展与《圣经》的尴尬</h1>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/08/05/pansee/film review/紫日/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/08/05/pansee/film review/紫日/" class="post-title-link" itemprop="url">紫日</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-08-05 14:00:31" itemprop="dateCreated datePublished" datetime="2017-08-05T14:00:31+08:00">2017-08-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
             
           </span>
 
@@ -3812,15 +385,28 @@
       
         
           
-            <p>紫日——论文艺创作之前提</p>
-<p>2013年2月3日星期日</p>
-<p>《紫日》这部片子就细节而言颇有可圈可点之处。</p>
-<p>战火纷飞的年代，却能有一片静谧了无人烟的大兴安岭，这是一种幸运？白种人，黄种人，日本人，中国人，俄国人，不同的肤色，不同的立场，曾经有刻骨铭心的民族大恨，曾经有忠诚爱国的思想灌输，却在荒原之中为了生存主动将生命连结在一起。大兴安岭给出了一个苍茫天地下的人生战场，在这里，三个人进行的是一场源自内心的战争，他们的行为反映出来的是人最原初的追求。但这样的追求，这样的大兴安岭是无法长居的，终究要出去，而且是从何处来便往何处去，回归到那个充满人烟的战场，回归到那个需要去捡拾民族捡拾家国责任的现实世界。</p>
-<p>另一方面，哪怕是在大兴安岭之中，依旧有着虎豹虫豺的危险，依旧需要拿起刀枪。净土又在何方？</p>
-<p>日本女子的态度变化，中国农民数次将刀垂落入土里的细节变化，都可以去深入挖掘，但这些特殊的寓意这些精妙的设计并不足以使这部电影成为一部佳作。原因很简单——无法吸引观者！</p>
-<p>电影一旦被搬上了荧幕，就与创作者失去了关系。再好的立意，再好的构思，都不属于观者，也就自然无法打动观者。同样的，一部电影对于导演本人而言再次再没有价值但如果能够凭借它的无厘头它的各种搞怪去吸引观者，并让观者自觉地从中挖出某些深意，那便是一部佳作。譬如《让子弹飞》，姜文的初始立意早已不重要，就算这是一部哗众取宠之作又如何呢？它成功了吸引了观者，并衍生了千百种的解读，追连出许多永恒的话题。借用一句老话，一千个读者便有一千个哈姆雷特。但是想要出现一千个哈姆雷特的前提乃是有一千个人愿意去读它愿意去深究它，否则不过一场空谈，束之高阁的货物罢了！</p>
-<p>故而，文艺创作如果是以公众为对象，就不该有太过强烈的个人观念，此处之意不在于让创作者放弃自身的思想而去迎合大众潮流，而在于创作者需要铭记以公众为对象就必须以吸引公众为第一前提！再次前提下，创作者可以尽情展示其本人的思想，去改变这个世界！</p>
-<p>《紫日》的失败就在于没有做到这第一前提，相对于两个小时的电影片长有太多的絮叨啰嗦，太少的精妙激动，让观者昏昏然欲睡。</p>
+            <p>12 Years a Slave</p>
+<p>《12 Years a Slave》，即《为奴十二年》，史蒂夫·麦奎因导演，第86届奥斯卡年度最佳影片。</p>
+<p>台湾将之译成《自由之心》。这显然是意译，但颇为不妥。翻译方面的问题不做涉及，直接就该部电影之剧情和主题来看问题所在。</p>
+<p>影片讲述一个美国北方自由黑人诺瑟普被拐卖至南方为奴长达十二年方成功自救得到自由的故事。其间他经历了福特和艾普斯两任奴隶主。</p>
+<p>在主题方面，追求自由当然是显而易见的一个。但这一主题在整部影片显得无足轻重，更多乃是作为一种推动情节发展的情感线索。那么，更核心的主题是什么呢？</p>
+<p>一、现世的无奈、痛苦。</p>
+<p>对比两个情节。一者是影片开头与诺瑟谱同行的黑人雷被主人救回，诺瑟谱高声向之呼叫而无回应。一者是影片结尾诺瑟谱被救之时对饱受折磨的女黑人帕特茜境遇之无力。</p>
+<p>诚如影片结尾所言，被救的重获自由的黑人终究只是那极少极少的一两个，更多人则是依旧生活在痛苦折磨之中，无能脱身，充斥着无奈与绝望。</p>
+<p>二、来世的自由、幸福</p>
+<p>诚如安徒生《卖火柴的小女孩》，今世所遭受的苦痛乃是为了死后去向天国，永享自由与幸福。这部电影确实是在谈论自由，但它所谈的绝不是一般人所以为的自由，而是基督教文化下的自由观念。</p>
+<p>下面谈一些背景或旁支问题。</p>
+<p>三、现世痛苦的根源——罪</p>
+<p>不再赘述。</p>
+<p>四、生存、忍耐、反抗</p>
+<p>这是非常有意思的问题。何以一个人能够奴役一群人？一个皇帝可以掌控千万大军，万万黎民，百万沃土？待考。忍耐又何解？可结合日本文化。待考。</p>
+<p>五、反抗行为的合法性？法律、真理</p>
+<p>中国有个典，就做“以暴易暴兮，不知其非矣”。此问题何解？待考。简单摘录片中对白“法律是人定的，真理却是永恒不变的，是事实”（1:43:00），真理何在？待考。</p>
+<p>六、精神奴役与肉体奴役、道德教化与律法主义</p>
+<p>福德和艾普斯恰恰是两种代表。</p>
+<p>七、人、社会的复杂性</p>
+<p>整部电影中我最欣赏福德这一人物的塑造。作为占据分量不多的配角，却通过几个简单事件漂亮的描绘出了这一人物的丰满形象。他有善良的一面，同样有残酷的一面，他有温煦的一面，同样有阴毒的一面，他掌握着权力，同样要慌张的持枪防备他的木匠，他是个坐拥庄园的奴隶主，他同样背负着债务。原来如此复杂纠结。</p>
+<p>2014年3月4日星期二</p>
 
           
         
@@ -3877,7 +463,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/07/23/development/linux/常用操作/">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/film review/12只猴子/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="muzhen">
@@ -3897,7 +483,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2017/07/23/development/linux/常用操作/" class="post-title-link" itemprop="url">常用操作</a>
+                <a href="/2019/02/28/pansee/film review/12只猴子/" class="post-title-link" itemprop="url">12只猴子</a>
               
             
           </h1>
@@ -3922,25 +508,9 @@
                 
               
 
-              <time title="Created: 2017-07-23 10:33:58" itemprop="dateCreated datePublished" datetime="2017-07-23T10:33:58+08:00">2017-07-23</time>
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
             
 
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
             
           </span>
 
@@ -3956,7 +526,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/film-review/" itemprop="url" rel="index"><span itemprop="name">film review</span></a></span>
 
                 
                 
@@ -3993,8 +563,15 @@
       
         
           
-            <h1 id="convert-txt-to-pdf"><a href="#convert-txt-to-pdf" class="headerlink" title="convert txt to pdf"></a>convert txt to pdf</h1><p>使用okular直接转pdf。</p>
-<h1 id="操作文件名带空格的文件，使用-转义。"><a href="#操作文件名带空格的文件，使用-转义。" class="headerlink" title="操作文件名带空格的文件，使用\转义。"></a>操作文件名带空格的文件，使用\转义。</h1><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#<span class="keyword">file</span> <span class="keyword">name</span>.txt</span><br><span class="line"><span class="keyword">file</span>\ <span class="keyword">name</span>.txt</span><br></pre></td></tr></table></figure>
+            <p>12只猴子</p>
+<p>《蝴蝶效应》已看很久，记忆模糊，无甚出色的印象。《恐怖游轮》也是随意看之。倒是这部《12只猴子》在时空穿越的架接上虽然并不繁复倒也因之而无多大破绽。而在过去和未来之间的穿越导致的对真实和幻象的区分问题之解决颇为精彩。</p>
+<p>“But that’s not why you’re here. You’re here because of the system. There’s the television. It’s all right here. All right here. Look, listen, kneel, pray. The commercials! We’re not productive any more. Don’t make things. It’s all automated. What are we for then? We’re consumers, Jim. Okay, okay. Buy a lot of stuff. You’re a good citizen. But if you don’t buy a lot of stuff, what are you then? What? You’re mentally ill.”(00:18:40)</p>
+<p>“Do you know what “crazy” is? Crazy is “majority rules”.”(00:26:21)</p>
+<p>“Psychiatry is the latest religion. We decide what’s right and wrong. We decide who’s crazy or not.”(01:23:40)</p>
+<p>直接看翻译确有偏差，还是原文来得好。当然，翻译本身是二次创作过程，并不好直接和原文作比较。</p>
+<p>关于疯癫的问题过去已有零散论述，此处不论。</p>
+<p>至于环境保护问题，此处不论，或在《寂静的春天》书评里来论。</p>
+<p>——2014年1月28日星期二    素素</p>
 
           
         
@@ -4051,7 +628,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/07/21/machine learning/NLP/nlp汇总/">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/film review/92家有喜事——高志森/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="muzhen">
@@ -4071,7 +648,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2017/07/21/machine learning/NLP/nlp汇总/" class="post-title-link" itemprop="url">nlp汇总</a>
+                <a href="/2019/02/28/pansee/film review/92家有喜事——高志森/" class="post-title-link" itemprop="url">92家有喜事——高志森</a>
               
             
           </h1>
@@ -4096,25 +673,9 @@
                 
               
 
-              <time title="Created: 2017-07-21 20:55:50" itemprop="dateCreated datePublished" datetime="2017-07-21T20:55:50+08:00">2017-07-21</time>
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
             
 
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
             
           </span>
 
@@ -4130,7 +691,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/film-review/" itemprop="url" rel="index"><span itemprop="name">film review</span></a></span>
 
                 
                 
@@ -4167,7 +728,2741 @@
       
         
           
-            <script type"text javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+            <p>电影名： 92家有喜事</p>
+<p>导演： 高志森</p>
+<p>评分： 7</p>
+<p>剧情： 一家三个儿子的三场爱情感情故事，合成一个其乐融融的大家庭。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/film review/97家有喜事——张坚庭/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/pansee/film review/97家有喜事——张坚庭/" class="post-title-link" itemprop="url">97家有喜事——张坚庭</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/film-review/" itemprop="url" rel="index"><span itemprop="name">film review</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>电影名： 97家有喜事</p>
+<p>导演： 张坚庭</p>
+<p>评分： 7</p>
+<p>剧情： 一家三个儿子的三场爱情感情故事，合成一个其乐融融的大家庭。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/film review/FUKE ME/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/pansee/film review/FUKE ME/" class="post-title-link" itemprop="url">FUKE ME</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/film-review/" itemprop="url" rel="index"><span itemprop="name">film review</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>FUKE ME</p>
+<p>《FUKE ME》，《操我》，又译为《法国悲情城市》。导演：Coralie。国家：法国。</p>
+<p>十大伦理禁片之一，尚在可接受程度内，不算多么“另类”。</p>
+<p>2014年3月10日星期一    牧</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/film review/一出好戏——黄渤/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/pansee/film review/一出好戏——黄渤/" class="post-title-link" itemprop="url">一出好戏——黄渤</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/film-review/" itemprop="url" rel="index"><span itemprop="name">film review</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>电影名：一出好戏</p>
+<p>导演： 黄渤</p>
+<p>评分： 0</p>
+<p>剧情： 在陨石将要撞击地球的谣言背景下，公司团建遇到风浪，导致全员被困孤岛，误以为世界已经毁灭。退伍军人出身的导游凭借出色的荒野生存能力被拥护为领袖，并慢慢有了暴力权威的特质。公司老板意外发现有充裕生活物资的游轮残骸，利用商业头脑带一批人另起炉灶。中了千万大奖的马进急于返回陆地，为两派所不容。他巧妙的挑起两派之间矛盾，坐收渔利，成为最大赢家。马进弟弟小兴在这个过程从一个老实被欺负的角色成长为一个阴谋家，他发现了海上游轮的踪迹，但隐瞒事实并欺骗老板签署财产转让协议。马进良心发现，阻止了小兴的计划，点燃大火传递信号，让所有人都得救。</p>
+<p>或许是困于荒岛的时间太短，人们之间的行为并没有明显的逾越，没有蝇王的残酷。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/film review/七月十三之龙婆——钱升玮/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/pansee/film review/七月十三之龙婆——钱升玮/" class="post-title-link" itemprop="url">七月十三之龙婆——钱升玮</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/film-review/" itemprop="url" rel="index"><span itemprop="name">film review</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>电影名： 七月十三之龙婆</p>
+<p>导演： 钱升玮</p>
+<p>评分： 0</p>
+<p>剧情： 龙婆为给重病的儿子续命，帮邪神害人。警察在查证之下逐渐发现真相。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/film review/上帝之女/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/pansee/film review/上帝之女/" class="post-title-link" itemprop="url">上帝之女</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/film-review/" itemprop="url" rel="index"><span itemprop="name">film review</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>《上帝之女》（Gee Malik Linton） 评分： 0</p>
+<p>剧情非常散，完全没有重心和焦点，以及故布疑阵。</p>
+<p>想要表达的是少数种族，性侵女童，警察腐败等问题。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/film review/不二神探——王子鸣/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/pansee/film review/不二神探——王子鸣/" class="post-title-link" itemprop="url">不二神探——王子鸣</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/film-review/" itemprop="url" rel="index"><span itemprop="name">film review</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>电影名： 不二神探</p>
+<p>导演： 王子鸣</p>
+<p>评分： 0</p>
+<p>剧情： 讲述了警局乌龙神探王不二在同事黄飞红和上司angela的帮助下破获女演员刘金水引发的微笑连环杀人案的故事。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/film review/两个只能活一个/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/pansee/film review/两个只能活一个/" class="post-title-link" itemprop="url">两个只能活一个</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/film-review/" itemprop="url" rel="index"><span itemprop="name">film review</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>电影名： 两个只能活一个</p>
+<p>导演： 游达志</p>
+<p>评分： 0</p>
+<p>剧情： 小混混赌场失意，为了钱接了一桩买命生意。但却意外在赌场转运，大发横财。因此出钱雇了一个女杀手为他完成买命生意。在两人的相处中互相爱上了对方。最后，男主调离女主，自己去杀人，并成功逃脱。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/film review/两个月亮/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/pansee/film review/两个月亮/" class="post-title-link" itemprop="url">两个月亮</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/film-review/" itemprop="url" rel="index"><span itemprop="name">film review</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>电影名：两个月亮</p>
+<p>导演： 金东彬</p>
+<p>评分： 0</p>
+<p>剧情： 可以通灵的女主工作是通过与鬼魂交流破解鬼屋之谜并将此过程拍成纪录片。在一次鬼屋探秘中，却遇到人间和鬼界交互，两个月亮同时出现，女主最终被鬼魂杀死。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/film review/侠盗联盟——舒淇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/pansee/film review/侠盗联盟——舒淇/" class="post-title-link" itemprop="url">侠盗联盟——舒淇</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/film-review/" itemprop="url" rel="index"><span itemprop="name">film review</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>电影名： 侠盗联盟</p>
+<p>导演： 舒淇</p>
+<p>评分： 0</p>
+<p>剧情： 大盗张丹被黑吃黑，为了报仇，偷盗出宝物，引出幕后黑手。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/film review/偶滴神啊/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/pansee/film review/偶滴神啊/" class="post-title-link" itemprop="url">偶滴神啊</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/film-review/" itemprop="url" rel="index"><span itemprop="name">film review</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>偶滴神啊</p>
+<p>导演：Umesh Shukla。</p>
+<p>谈问题要先谈前设。同样的，评价一部电影亦需要先谈评价的视角和规则。</p>
+<p>如果放在一个宗教迷信的时代，这部电影或许是发人深省，有意于促进人的独立思考的。</p>
+<p>但如果是放在一个人人具有独立思考能力的公民社会，这部电影所反映的宗教观念甚至于是最起码的剧情进展逻辑都是愚昧而可笑的。</p>
+<p>当然，不管怎样，这部电影的戏剧性还是很足够的，印度电影特色的舞蹈和配乐也确实挺好，至少就院线大屏幕而言是成功的。</p>
+<p>厘清同时提及几个问题：</p>
+<p>1、独立思考的能力是一回事，独立思考的意愿又是一回事。二者不可混为一谈。同时，有一句古语尤当紧记“学而不思则罔，思而不学则殆”。</p>
+<p>2、传福音过程中，总常见的一种说法便是你要站在信神的、圣经为真的视角来认识神。这说法实质性内容本身并没有问题。毕竟不同视角、范畴的两个人是没有办法对话的。人的主观偏见和自以为是的立场又总是使其与真理失之交臂。但有信徒在传福音过程中对此说法的表述存在问题以至于使对话无法继续。更有甚者则是在滥用这一说法，进一步说要去无条件接受圣经的每一句话，不信便是愚顽。如果无神论者真能这样无条件无抵触的接受圣经，那还需要你来传什么福音，还需要专门的传道人做什么？故而福音的传播依旧要依凭逻辑，而不是一被问倒就来上这么几句：圣经就是这么说的，你要先信神的存在，你要听凭圣灵的安排。对于无神论者而言，这都是不疼不痒的废话。甚至于有些信徒虽然张口闭口谈圣经谈神但可能根本不理解圣经也不要谈认识神了。他们不过是缺乏独立思考和辨识能力而被忽悠而已。当然，并不是说一定要逻辑上明察秋毫的理解才能认识神。逻辑上的认识和心灵上的认识是两个概念。（我离圣道越来越远了，或有大错谬，尚望批评指正）</p>
+<p>3、有些无神论者也总是喜欢大发议论，以各种自以为是的自以为逻辑的推断和论述去谈论宗教和神。其中最通常的谈法便是：神既然仁慈爱人，何以令我受苦受难？依旧引此古语“思而不学则殆”。难道你以为你是天上地下第一聪明人，你以为那么多的先贤圣哲没有考虑过你所想到的问题，你以为所有的信徒都是傻瓜？遇到问题尤其是千百年来被崇信着的还是先去看看书吧，无根无据的议论可显现不出来你的思考能力，不过是个痴妄自大的傻瓜或者说愤青罢了！</p>
+<p>2014年6月1日星期日</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/film review/全民目击——非行/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/pansee/film review/全民目击——非行/" class="post-title-link" itemprop="url">全民目击——非行</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/film-review/" itemprop="url" rel="index"><span itemprop="name">film review</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>电影名： 全民目击</p>
+<p>导演： 非行</p>
+<p>评分： 10</p>
+<p>剧情： 富豪林泰之女林萌萌开车撞人致死。检察官童涛多次想要将欺诈犯罪的林泰绳之以法而未果。为了帮林萌萌脱罪，林泰司机自愿顶罪。为了防止童涛穷追不舍，林泰在司机顶罪之后又故意露出破绽自己顶罪为女儿洗罪。</p>
+<p>律师的操守，既要保护当事人权益又要对真相负责。检察官的坚持，对罪犯持之以恒的追查但也不污蔑栽脏。父亲的爱，人性的复杂，有其欺诈犯罪恶的一面，也有优待旁人为爱舍身善的一面。洁白的羽毛真难。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/film review/八恶人——昆汀·塔伦蒂诺/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/pansee/film review/八恶人——昆汀·塔伦蒂诺/" class="post-title-link" itemprop="url">八恶人——昆汀·塔伦蒂诺</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/film-review/" itemprop="url" rel="index"><span itemprop="name">film review</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>电影名：八恶人</p>
+<p>导演： 昆汀·塔伦蒂诺</p>
+<p>评分： 10</p>
+<p>剧情：赏金猎人带着罪犯多沫歌前去红石镇领赏。多沫歌帮在酒店就行伏击，最终全部死光。中间黑人与白人的仇恨也是一条主线。</p>
+<p>并没有必要从这样一部电影中去解读何谓正义，去理解种族冲突。大道理就那么多，早就已经被讲过无数遍，人需要的是自我的坚持和反思，是去看不同的世界，不同的事物，不同的可能，从而更好地理解自己的周遭，更好地知道自己将要面对的，以及自己需要去做的。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/film review/冒险王——程小东/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/pansee/film review/冒险王——程小东/" class="post-title-link" itemprop="url">冒险王——程小东</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/film-review/" itemprop="url" rel="index"><span itemprop="name">film review</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>电影名： 冒险王</p>
+<p>导演： 程小东</p>
+<p>评分： 0</p>
+<p>剧情： 编剧周情场失意，创作了一部剧本用来发泄。剧本讲述了民国时期冒险王和日军特务争抢宝藏的故事。而现实中，老婆也被周的爱感动，重回周的身边。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/film review/冰雪奇缘/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/pansee/film review/冰雪奇缘/" class="post-title-link" itemprop="url">冰雪奇缘</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/film-review/" itemprop="url" rel="index"><span itemprop="name">film review</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Frozen</p>
+<p>《Frozen》，中文名《冰雪奇缘》。导演：克里斯·巴克，珍妮弗·李。国家：美国。</p>
+<p>甚好。</p>
+<p>主题曲：”Let It Go”，Demi Lovato。非常好。</p>
+<p>2014年3月10日星期一    牧</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/film review/北京遇上西雅图/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/pansee/film review/北京遇上西雅图/" class="post-title-link" itemprop="url">北京遇上西雅图</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/film-review/" itemprop="url" rel="index"><span itemprop="name">film review</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>电影名： 北京遇上西雅图</p>
+<p>导演：      薛晓路</p>
+<p>评分： 0</p>
+<p>剧情： 小三来美国待产。在和月子中心其他人接触中直接竖立起正常的价值观，并与月子中心司机日久生情。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/film review/印度合伙人——R·巴尔基/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/pansee/film review/印度合伙人——R·巴尔基/" class="post-title-link" itemprop="url">印度合伙人——R·巴尔基</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/film-review/" itemprop="url" rel="index"><span itemprop="name">film review</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>电影名： 印度合伙人</p>
+<p>导演： R·巴尔基</p>
+<p>评分： 10</p>
+<p>剧情： 为了能够让妻子用上卫生巾，保证生理期的卫生安全，在印度世俗的巨大压力下发明了生产卫生巾的低成本机器，在印度社会推广了卫生巾的普及。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/film review/反贪风暴3——林德禄/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/pansee/film review/反贪风暴3——林德禄/" class="post-title-link" itemprop="url">反贪风暴3——林德禄</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/film-review/" itemprop="url" rel="index"><span itemprop="name">film review</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>电影名： 反贪风暴3</p>
+<p>导演： 林德禄</p>
+<p>评分： 7</p>
+<p>剧情： 香港警方和ICAC追查一桩巨额洗黑钱犯罪。其间，ICAC首席主任在陷害停职，但其依靠同事的帮助拿到录音证据，最终和各部门同事一起破获该案件。</p>
+<p>片子开头和结尾大陆反贪污处的生硬嵌入和官话实在无语。</p>
 
           
         
@@ -4342,7 +3637,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">37</span>
+                      
+                    
+                    <span class="site-state-item-count">38</span>
                     <span class="site-state-item-name">categories</span>
                   
                 </div>

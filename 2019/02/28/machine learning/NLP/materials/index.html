@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="中文词向量开源共享一个训练好的中文词向量（语料是维基百科的内容，大概1G多一点） jieba php版本汉语词性对照表jieba-php 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657a 形容词 (取英语形容词 adjective 的第">
+<meta name="keywords" content="machine learning,NLP,w2v">
+<meta property="og:type" content="article">
+<meta property="og:title" content="materials">
+<meta property="og:url" content="http://www.muzhen.tk/2019/02/28/machine learning/NLP/materials/index.html">
+<meta property="og:site_name" content="the Home of MuZhen">
+<meta property="og:description" content="中文词向量开源共享一个训练好的中文词向量（语料是维基百科的内容，大概1G多一点） jieba php版本汉语词性对照表jieba-php 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657a 形容词 (取英语形容词 adjective 的第">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-02-28T12:45:06.537Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="materials">
+<meta name="twitter:description" content="中文词向量开源共享一个训练好的中文词向量（语料是维基百科的内容，大概1G多一点） jieba php版本汉语词性对照表jieba-php 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657a 形容词 (取英语形容词 adjective 的第">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.muzhen.tk/2019/02/28/machine learning/NLP/materials/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>materials | the Home of MuZhen</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">the Home of MuZhen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/NLP/materials/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">materials
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="中文词向量"><a href="#中文词向量" class="headerlink" title="中文词向量"></a>中文词向量</h1><p><a href="http://www.cnblogs.com/Darwin2000/p/5786984.html" target="_blank" rel="noopener">开源共享一个训练好的中文词向量（语料是维基百科的内容，大概1G多一点）</a></p>
+<h1 id="jieba-php版本汉语词性对照表"><a href="#jieba-php版本汉语词性对照表" class="headerlink" title="jieba php版本汉语词性对照表"></a>jieba php版本汉语词性对照表</h1><p><a href="https://www.ctolib.com/jieba-php.html" target="_blank" rel="noopener">jieba-php</a></p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> 形容词 (取英语形容词 adjective 的第 <span class="number">1</span> 个字母。)</span><br><span class="line">  <span class="selector-tag">ad</span> 副形词 (直接作状语的形容词，形容词代码 a 和副词代码 d 并在一起。)</span><br><span class="line">  <span class="selector-tag">ag</span> 形容词性语素 (形容词性语素，形容词代码为 a，语素代码 ｇ 前面置以 a。)</span><br><span class="line">  <span class="selector-tag">an</span> 名形词 (具有名词功能的形容词，形容词代码 a 和名词代码 n 并在一起。)</span><br><span class="line"><span class="selector-tag">b</span> 区别词 (取汉字「别」的声母。)</span><br><span class="line"><span class="selector-tag">c</span> 连词 (取英语连词 conjunction 的第 <span class="number">1</span> 个字母。)</span><br><span class="line"><span class="selector-tag">d</span> 副词 (取 adverb 的第 <span class="number">2</span> 个字母，因其第 <span class="number">1</span> 个字母已用于形容词。)</span><br><span class="line">  <span class="selector-tag">df</span> 副词*</span><br><span class="line">  <span class="selector-tag">dg</span> 副语素 (副词性语素，副词代码为 d，语素代码 ｇ 前面置以 d。)</span><br><span class="line"><span class="selector-tag">e</span> 叹词 (取英语叹词 exclamation 的第 <span class="number">1</span> 个字母。)</span><br><span class="line"><span class="selector-tag">eng</span> 外语</span><br><span class="line"><span class="selector-tag">f</span> 方位词 (取汉字「方」的声母。)</span><br><span class="line"><span class="selector-tag">g</span> 语素 (绝大多数语素都能作为合成词的「词根」，取汉字「根」的声母。)</span><br><span class="line"><span class="selector-tag">h</span> 前接成分 (取英语 head 的第 <span class="number">1</span> 个字母。)</span><br><span class="line"><span class="selector-tag">i</span> 成语 (取英语成语 idiom 的第 <span class="number">1</span> 个字母。)</span><br><span class="line"><span class="selector-tag">j</span> 简称略语 (取汉字「简」的声母。)</span><br><span class="line"><span class="selector-tag">k</span> 后接成分</span><br><span class="line"><span class="selector-tag">l</span> 习用语 (习用语尚未成为成语，有点「临时性」，取「临」的声母。)</span><br><span class="line"><span class="selector-tag">m</span> 数词 (取英语 numeral 的第 <span class="number">3</span> 个字母，n，u 已有他用。)</span><br><span class="line">  <span class="selector-tag">mg</span> 数语素</span><br><span class="line">  <span class="selector-tag">mq</span> 数词*</span><br><span class="line"><span class="selector-tag">n</span> 名词 (取英语名词 noun 的第 <span class="number">1</span> 个字母。)</span><br><span class="line">  <span class="selector-tag">ng</span> 名语素 (名词性语素，名词代码为 n，语素代码 ｇ 前面置以 n。)</span><br><span class="line">  <span class="selector-tag">nr</span> 人名 (名词代码n和「人(ren)」的声母并在一起。)</span><br><span class="line">  <span class="selector-tag">nrfg</span> 名词*</span><br><span class="line">  <span class="selector-tag">nrt</span> 名词*</span><br><span class="line">  <span class="selector-tag">ns</span> 地名 (名词代码 n 和处所词代码 s 并在一起。)</span><br><span class="line">  <span class="selector-tag">nt</span> 机构团体 (「团」的声母为 t，名词代码 n 和 t 并在一起。)</span><br><span class="line">  <span class="selector-tag">nz</span> 其他专名 (「专」的声母的第 <span class="number">1</span> 个字母为 z，名词代码 n 和 z 并在一起。)</span><br><span class="line"><span class="selector-tag">o</span> 拟声词 (取英语拟声词 onomatopoeia 的第 <span class="number">1</span> 个字母。)</span><br><span class="line"><span class="selector-tag">p</span> 介词 (取英语介词 prepositional 的第 <span class="number">1</span> 个字母。)</span><br><span class="line"><span class="selector-tag">q</span> 量词 (取英语 quantity 的第 <span class="number">1</span> 个字母。)</span><br><span class="line"><span class="selector-tag">r</span> 代词 (取英语代词 pronoun的 第 <span class="number">2</span> 个字母，因 p 已用于介词。)</span><br><span class="line">  <span class="selector-tag">rg</span> 代词语素</span><br><span class="line">  <span class="selector-tag">rr</span> 代词*</span><br><span class="line">  <span class="selector-tag">rz</span> 代词*</span><br><span class="line"><span class="selector-tag">s</span> 处所词 (取英语 space 的第 <span class="number">1</span> 个字母。)</span><br><span class="line"><span class="selector-tag">t</span> 时间词 (取英语 time 的第 <span class="number">1</span> 个字母。)</span><br><span class="line">  <span class="selector-tag">tg</span> 时语素 (时间词性语素，时间词代码为 t，在语素的代码 g 前面置以 t。)</span><br><span class="line"><span class="selector-tag">u</span> 助词 (取英语助词 auxiliary 的第 <span class="number">2</span> 个字母，因 a 已用于形容词。)</span><br><span class="line">  <span class="selector-tag">ud</span> 助词*</span><br><span class="line">  <span class="selector-tag">ug</span> 助词*</span><br><span class="line">  <span class="selector-tag">uj</span> 助词*</span><br><span class="line">  <span class="selector-tag">ul</span> 助词*</span><br><span class="line">  <span class="selector-tag">uv</span> 助词*</span><br><span class="line">  <span class="selector-tag">uz</span> 助词*</span><br><span class="line"><span class="selector-tag">v</span> 动词 (取英语动词 verb 的第一个字母。)</span><br><span class="line">  <span class="selector-tag">vd</span> 副动词 (直接作状语的动词，动词和副词的代码并在一起。)</span><br><span class="line">  <span class="selector-tag">vg</span> 动语素</span><br><span class="line">  <span class="selector-tag">vi</span> 动词*</span><br><span class="line">  <span class="selector-tag">vn</span> 名动词 (指具有名词功能的动词，动词和名词的代码并在一起。)</span><br><span class="line">  <span class="selector-tag">vq</span> 动词*</span><br><span class="line"><span class="selector-tag">w</span> 标点符号</span><br><span class="line"><span class="selector-tag">x</span> 非语素字 (非语素字只是一个符号，字母 x 通常用于代表未知数、符号。)</span><br><span class="line"><span class="selector-tag">y</span> 语气词 (取汉字「语」的声母。)</span><br><span class="line"><span class="selector-tag">z</span> 状态词 (取汉字「状」的声母的前一个字母。)</span><br><span class="line">  <span class="selector-tag">zg</span> 状态词*</span><br></pre></td></tr></table></figure>
+<h1 id="中科院版汉语词性对照表"><a href="#中科院版汉语词性对照表" class="headerlink" title="中科院版汉语词性对照表"></a>中科院版汉语词性对照表</h1><p><a href="http://blog.csdn.net/kevin_darkelf/article/details/39520881" target="_blank" rel="noopener">汉语词性对照表[北大标准/中科院标准]</a></p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line">词性编码</span><br><span class="line">词性名称</span><br><span class="line">注 解</span><br><span class="line">Ag</span><br><span class="line">形语素</span><br><span class="line">形容词性语素。形容词代码为 a，语素代码ｇ前面置以A。</span><br><span class="line">a</span><br><span class="line">形容词</span><br><span class="line">取英语形容词 adjective的第<span class="number">1</span>个字母。</span><br><span class="line">ad</span><br><span class="line">副形词</span><br><span class="line">直接作状语的形容词。形容词代码 a和副词代码d并在一起。</span><br><span class="line">an</span><br><span class="line">名形词</span><br><span class="line">具有名词功能的形容词。形容词代码 a和名词代码n并在一起。</span><br><span class="line">b</span><br><span class="line">区别词</span><br><span class="line">取汉字“别”的声母。</span><br><span class="line">c</span><br><span class="line">连词</span><br><span class="line">取英语连词 conjunction的第<span class="number">1</span>个字母。</span><br><span class="line">dg</span><br><span class="line">副语素</span><br><span class="line">副词性语素。副词代码为 d，语素代码ｇ前面置以D。</span><br><span class="line">d</span><br><span class="line">副词</span><br><span class="line">取 adverb的第<span class="number">2</span>个字母，因其第<span class="number">1</span>个字母已用于形容词。</span><br><span class="line">e</span><br><span class="line">叹词</span><br><span class="line">取英语叹词 exclamation的第<span class="number">1</span>个字母。</span><br><span class="line">f</span><br><span class="line">方位词</span><br><span class="line">取汉字“方”</span><br><span class="line">g</span><br><span class="line">语素</span><br><span class="line">绝大多数语素都能作为合成词的“词根”，取汉字“根”的声母。</span><br><span class="line">h</span><br><span class="line">前接成分</span><br><span class="line">取英语 head的第<span class="number">1</span>个字母。</span><br><span class="line">i</span><br><span class="line">成语</span><br><span class="line">取英语成语 idiom的第<span class="number">1</span>个字母。</span><br><span class="line">j</span><br><span class="line">简称略语</span><br><span class="line">取汉字“简”的声母。</span><br><span class="line">k</span><br><span class="line">后接成分</span><br><span class="line"> </span><br><span class="line">l</span><br><span class="line">习用语</span><br><span class="line">习用语尚未成为成语，有点“临时性”，取“临”的声母。</span><br><span class="line">m</span><br><span class="line">数词</span><br><span class="line">取英语 numeral的第<span class="number">3</span>个字母，n，u已有他用。</span><br><span class="line">Ng</span><br><span class="line">名语素</span><br><span class="line">名词性语素。名词代码为 n，语素代码ｇ前面置以N。</span><br><span class="line">n</span><br><span class="line">名词</span><br><span class="line">取英语名词 noun的第<span class="number">1</span>个字母。</span><br><span class="line">nr</span><br><span class="line">人名</span><br><span class="line">名词代码 n和“人(ren)”的声母并在一起。</span><br><span class="line">ns</span><br><span class="line">地名</span><br><span class="line">名词代码 n和处所词代码s并在一起。</span><br><span class="line">nt</span><br><span class="line">机构团体</span><br><span class="line">“团”的声母为 t，名词代码n和t并在一起。</span><br><span class="line">nz</span><br><span class="line">其他专名</span><br><span class="line">“专”的声母的第 <span class="number">1</span>个字母为z，名词代码n和z并在一起。</span><br><span class="line">o</span><br><span class="line">拟声词</span><br><span class="line">取英语拟声词 onomatopoeia的第<span class="number">1</span>个字母。</span><br><span class="line">p</span><br><span class="line">介词</span><br><span class="line">取英语介词 prepositional的第<span class="number">1</span>个字母。</span><br><span class="line">q</span><br><span class="line">量词</span><br><span class="line">取英语 quantity的第<span class="number">1</span>个字母。</span><br><span class="line">r</span><br><span class="line">代词</span><br><span class="line">取英语代词 pronoun的第<span class="number">2</span>个字母,因p已用于介词。</span><br><span class="line">s</span><br><span class="line">处所词</span><br><span class="line">取英语 space的第<span class="number">1</span>个字母。</span><br><span class="line">tg</span><br><span class="line">时语素</span><br><span class="line">时间词性语素。时间词代码为 t,在语素的代码g前面置以T。</span><br><span class="line">t</span><br><span class="line">时间词</span><br><span class="line">取英语 time的第<span class="number">1</span>个字母。</span><br><span class="line">u</span><br><span class="line">助词</span><br><span class="line">取英语助词 auxiliary</span><br><span class="line">vg</span><br><span class="line">动语素</span><br><span class="line">动词性语素。动词代码为 v。在语素的代码g前面置以V。</span><br><span class="line">v</span><br><span class="line">动词</span><br><span class="line">取英语动词 verb的第一个字母。</span><br><span class="line">vd</span><br><span class="line">副动词</span><br><span class="line">直接作状语的动词。动词和副词的代码并在一起。</span><br><span class="line">vn</span><br><span class="line">名动词</span><br><span class="line">指具有名词功能的动词。动词和名词的代码并在一起。</span><br><span class="line">w</span><br><span class="line">标点符号</span><br><span class="line"> </span><br><span class="line">x</span><br><span class="line">非语素字</span><br><span class="line">非语素字只是一个符号，字母 x通常用于代表未知数、符号。</span><br><span class="line">y</span><br><span class="line">语气词</span><br><span class="line">取汉字“语”的声母。</span><br><span class="line">z</span><br><span class="line">状态词</span><br><span class="line">取汉字“状”的声母的前一个字母。</span><br><span class="line">un</span><br><span class="line">未知词</span><br><span class="line">不可识别词及用户自定义词组。取英文Unkonwn首两个字母。(非北大标准，CSW分词中定义)</span><br></pre></td></tr></table></figure>
+<h1 id="中文文本分类语料"><a href="#中文文本分类语料" class="headerlink" title="中文文本分类语料"></a>中文文本分类语料</h1><p><a href="http://www.newsmth.net/nForum/#!article/NLP/13408?p=1" target="_blank" rel="noopener">中文文本分类语料</a></p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">文本分类作为一项基础的研究，技术上已经很成熟了。下面提供一些网上能下载到的中文的好语料，供研究人员学习使用。 </span><br><span class="line">  </span><br><span class="line"><span class="number">1.</span>中科院自动化所的中英文新闻语料库    <span class="string">http:</span><span class="comment">//www.datatang.com/data/13484 </span></span><br><span class="line">中文新闻分类语料库从凤凰、新浪、网易、腾讯等版面搜集。英语新闻分类语料库为Reuters<span class="number">-21578</span>的ModApte版本。 </span><br><span class="line">  </span><br><span class="line"><span class="number">2.</span>搜狗的中文新闻语料库    <span class="string">http:</span><span class="comment">//www.sogou.com/labs/dl/c.html </span></span><br><span class="line">包括搜狐的大量新闻语料与对应的分类信息。有不同大小的版本可以下载。 </span><br><span class="line">  </span><br><span class="line"><span class="number">3.</span>李荣陆老师的中文语料库    <span class="string">http:</span><span class="comment">//www.datatang.com/data/11968 </span></span><br><span class="line">压缩后有<span class="number">240</span>M大小 </span><br><span class="line">  </span><br><span class="line"><span class="number">4.</span>谭松波老师的中文文本分类语料    <span class="string">http:</span><span class="comment">//www.datatang.com/data/11970 </span></span><br><span class="line">不仅包含大的分类，例如经济、运动等等，每个大类下面还包含具体的小类，例如运动包含篮球、足球等等。能够作为层次分类的语料库，非常实用。 </span><br><span class="line">  </span><br><span class="line"><span class="number">5.</span>网易分类文本数据    <span class="string">http:</span><span class="comment">//www.datatang.com/data/11965 </span></span><br><span class="line">包含运动、汽车等六大类的<span class="number">4000</span>条文本数据。 </span><br><span class="line">  </span><br><span class="line"><span class="number">6.</span>中文文本分类语料    <span class="string">http:</span><span class="comment">//www.datatang.com/data/11963 </span></span><br><span class="line">包含Arts、Literature等类别的语料文本。</span><br></pre></td></tr></table></figure>
+<h1 id="中文情感分析资源"><a href="#中文情感分析资源" class="headerlink" title="中文情感分析资源"></a>中文情感分析资源</h1><p><a href="http://blog.sina.com.cn/s/blog_8af1069601019flb.html" target="_blank" rel="noopener">中英文情感分析资源</a></p>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">情感词典</span><br><span class="line">1.知网的情感词典</span><br><span class="line">-<span class="ruby"> <span class="symbol">http:</span>/<span class="regexp">/www.keenage.com/html</span><span class="regexp">/c_bulletin_2007.htm</span></span></span><br><span class="line"><span class="ruby">由知网发布的词典，包括中文情感词典和英文情感词典</span></span><br><span class="line"><span class="ruby">（以下需要论坛积分）</span></span><br><span class="line"><span class="ruby"><span class="number">2</span>.台湾大学的情感极性词典</span></span><br><span class="line"><span class="ruby">- <span class="symbol">http:</span>/<span class="regexp">/www.datatang.com/data</span><span class="regexp">/11837</span></span></span><br><span class="line"><span class="ruby">包括<span class="number">2810</span>个正极性词语和<span class="number">8276</span>个负极性词语。准确度很高</span></span><br><span class="line"><span class="ruby"></span></span><br><span class="line"><span class="ruby">情感分析语料</span></span><br><span class="line"><span class="ruby"><span class="number">3</span>.酒店评论语料</span></span><br><span class="line"><span class="ruby">- <span class="symbol">http:</span>/<span class="regexp">/www.datatang.com/data</span><span class="regexp">/11936 </span></span></span><br><span class="line"><span class="ruby">谭松波整理的一个较大规模的酒店评论语料。</span></span><br><span class="line"><span class="ruby">语料规模为<span class="number">10000</span>篇。语料从携程网上自动采集，并经过整理而成。</span></span><br><span class="line"><span class="ruby"><span class="number">4</span>.豆瓣网影评情感测试语料</span></span><br><span class="line"><span class="ruby">- <span class="symbol">http:</span>/<span class="regexp">/www.datatang.com/data</span><span class="regexp">/13539 </span></span></span><br><span class="line"><span class="ruby">来自豆瓣网对电影《ICE AGE3》的评论，评分标准均按照<span class="number">5</span> stars评分在网页中有标注。语料至<span class="number">527</span>页。每页<span class="number">20</span>条短评。共计<span class="number">11323</span>条评论</span></span><br><span class="line"><span class="ruby"><span class="number">5</span>.酒店、电脑与书籍的评论语料</span></span><br><span class="line"><span class="ruby">- <span class="symbol">http:</span>/<span class="regexp">/www.datatang.com/data</span><span class="regexp">/11937</span></span></span><br><span class="line"><span class="ruby">数据量不太大，也有一些重复的数据</span></span><br><span class="line"><span class="ruby"><span class="number">6</span>.评论网页数据集</span></span><br><span class="line"><span class="ruby">- <span class="symbol">http:</span>/<span class="regexp">/www.datatang.com/data</span><span class="regexp">/12044</span></span></span><br><span class="line"><span class="ruby">数据量不小，包括的电影和评论都不少</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+          
+            <a href="/tags/NLP/" rel="tag"># NLP</a>
+          
+            <a href="/tags/w2v/" rel="tag"># w2v</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/28/machine learning/ensemble/adaboost/" rel="next" title="adaboost">
+                <i class="fa fa-chevron-left"></i> adaboost
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/28/machine learning/NLP/WMD/" rel="prev" title="WMD">
+                WMD <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">muzhen</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">358</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">113</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#中文词向量"><span class="nav-number">1.</span> <span class="nav-text">中文词向量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jieba-php版本汉语词性对照表"><span class="nav-number">2.</span> <span class="nav-text">jieba php版本汉语词性对照表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#中科院版汉语词性对照表"><span class="nav-number">3.</span> <span class="nav-text">中科院版汉语词性对照表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#中文文本分类语料"><span class="nav-number">4.</span> <span class="nav-text">中文文本分类语料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#中文情感分析资源"><span class="nav-number">5.</span> <span class="nav-text">中文情感分析资源</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">muzhen</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

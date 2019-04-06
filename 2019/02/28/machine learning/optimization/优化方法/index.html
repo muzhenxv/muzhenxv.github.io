@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="梯度下降法SGD/batch GD/mini-batch GDSGD: 每次对一个样本点计算梯度进行更新batch GD： 每次都所有样本点计算梯度进行更新mini-batch GD: 每次对一小批样本点计算梯度进行更新 momentum\begin{split} v_t &amp;amp;&amp;amp;= \gamma v_{t-1} + \eta \cdot \nabla_\theta J(\theta">
+<meta name="keywords" content="optimization,parameter estimation,gradient">
+<meta property="og:type" content="article">
+<meta property="og:title" content="优化方法">
+<meta property="og:url" content="http://www.muzhen.tk/2019/02/28/machine learning/optimization/优化方法/index.html">
+<meta property="og:site_name" content="the Home of MuZhen">
+<meta property="og:description" content="梯度下降法SGD/batch GD/mini-batch GDSGD: 每次对一个样本点计算梯度进行更新batch GD： 每次都所有样本点计算梯度进行更新mini-batch GD: 每次对一小批样本点计算梯度进行更新 momentum\begin{split} v_t &amp;amp;&amp;amp;= \gamma v_{t-1} + \eta \cdot \nabla_\theta J(\theta">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://omdhuynsr.bkt.clouddn.com/17-5-5/39961276-file_1493979742645_3f6b.png">
+<meta property="og:image" content="http://omdhuynsr.bkt.clouddn.com/17-5-5/49809367-file_1493979972098_105f0.png">
+<meta property="og:updated_time" content="2019-02-28T12:45:06.541Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="优化方法">
+<meta name="twitter:description" content="梯度下降法SGD/batch GD/mini-batch GDSGD: 每次对一个样本点计算梯度进行更新batch GD： 每次都所有样本点计算梯度进行更新mini-batch GD: 每次对一小批样本点计算梯度进行更新 momentum\begin{split} v_t &amp;amp;&amp;amp;= \gamma v_{t-1} + \eta \cdot \nabla_\theta J(\theta">
+<meta name="twitter:image" content="http://omdhuynsr.bkt.clouddn.com/17-5-5/39961276-file_1493979742645_3f6b.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.muzhen.tk/2019/02/28/machine learning/optimization/优化方法/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>优化方法 | the Home of MuZhen</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">the Home of MuZhen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/optimization/优化方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">优化方法
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/optimization/" itemprop="url" rel="index"><span itemprop="name">optimization</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="梯度下降法"><a href="#梯度下降法" class="headerlink" title="梯度下降法"></a>梯度下降法</h1><h2 id="SGD-batch-GD-mini-batch-GD"><a href="#SGD-batch-GD-mini-batch-GD" class="headerlink" title="SGD/batch GD/mini-batch GD"></a>SGD/batch GD/mini-batch GD</h2><p>SGD: 每次对一个样本点计算梯度进行更新<br>batch GD： 每次都所有样本点计算梯度进行更新<br>mini-batch GD: 每次对一小批样本点计算梯度进行更新</p>
+<h2 id="momentum"><a href="#momentum" class="headerlink" title="momentum"></a>momentum</h2><p>\begin{split} v_t &amp;&amp;= \gamma v_{t-1} + \eta \cdot \nabla_\theta J(\theta)  \newline<br>\theta &amp;&amp;= \theta - v_t \end{split}</p>
+<p><img src="http://omdhuynsr.bkt.clouddn.com/17-5-5/39961276-file_1493979742645_3f6b.png" alt><br><img src="http://omdhuynsr.bkt.clouddn.com/17-5-5/49809367-file_1493979972098_105f0.png" alt>  </p>
+<p>峡谷区域： 某些方向比另一些方向上陡峭的多，常见于局部极值点<br>在这种情况下，会出现一个方向更新缓慢（如图中x轴），一个方向更新剧烈震荡（如y轴）。<br>使用momentum后，x轴方向可以叠加历史效应使得变化便快，而y轴方向则由于前后梯度方向相反，会发生抑制，不再剧烈震荡。可以参考右图理解。</p>
+<h2 id="NAG"><a href="#NAG" class="headerlink" title="NAG"></a>NAG</h2><p>NAG是对momentum的改进。<br>\begin{split} v_t &amp;&amp;= \gamma v_{t-1} + \eta \cdot \nabla J(\theta - \gamma v_{t-1})  \newline<br>\theta &amp;&amp;= \theta - v_t \end{split}<br>可以看到，差异在于当前梯度的计算上。<br>正常情况下就是算当前参数位置的梯度。但是，NAG算的却是近似未来位置的梯度。因为我们知道，参数的更新有一部分就是根据momentum作出的。这里提前将参数位置提前做了momentum这一部分变化，并计算对应梯度。<br>为什么这样更好呢？</p>
+<p>NAG用到了近似二阶导信息，详见 <a href="http://www.360doc.com/content/16/1010/08/36492363_597225745.shtml" target="_blank" rel="noopener">比Momentum更快：揭开Nesterov Accelerated Gradient的真面目</a></p>
+<h2 id="Adagrad"><a href="#Adagrad" class="headerlink" title="Adagrad"></a>Adagrad</h2><p>Adagrad可以对每个参数自适应不同的学习速率，对稀疏特征，得到大的学习更系，对非稀疏特征，得到较小的学习更新，因此该算法适合处理稀疏特征数据。  </p>
+<p>其参数更新方程如下：<br>\begin{split} &amp;&amp;g_{t,i} = \nabla_{\theta_i} (\theta_i) \newline<br>&amp;&amp;\theta_{t+1,i} = \theta_{t,i} - \frac{\eta}{\sqrt{G_{t,ii} + \epsilon}} \cdot g_{t,i}\newline<br>&amp;&amp;G_t \text{为一个对角矩阵，对角元素 } e_{ii} \text{ 为过去到当前第 i 个参数 } \theta_i \text{ 的梯度平方和} \newline<br>&amp;&amp;\epsilon \text{是一个平滑参数，为了使分母不为0} \newline<br>&amp;&amp;\text{如果分母不开根号，算法性能会很糟糕} \end{split}</p>
+<p>需要注意，前期很可能先起到一个梯度放大的作用！而非梯度从一开始就不断的衰减！  </p>
+<p>Adagrad 存在学习速率衰减过快的问题。因此，深度学习中可能会造成训练提前结束。</p>
+<h2 id="RMSProp"><a href="#RMSProp" class="headerlink" title="RMSProp"></a>RMSProp</h2><p>\begin{split} &amp;&amp;g = \nabla J(\theta) \newline<br>&amp;&amp;r = \rho r + (1- \rho) \cdot (g \odot g) \newline<br>&amp;&amp; \theta = \theta - \frac{\eta}{\epsilon + \sqrt{r}} \odot g \newline<br>&amp;&amp; \text{注： 此处为向量写法， } \odot \text{为点乘} \end{split}</p>
+<p>RMSProp在Adagrad基础上引入了动量思想,并由于分母不再是以前所有时刻的梯度平方和，减小了衰减速度。</p>
+<p>同样的，也可以进一步引入NAG方法，只需要在梯度计算上做改进，同时引入动量。</p>
+<p>\begin{split} &amp;&amp;\theta’ = \theta - \alpha v \newline<br>&amp;&amp;g = \nabla J(\theta’) \newline<br>&amp;&amp;r = \rho r + (1- \rho) \cdot (g \odot g) \newline<br>&amp;&amp;v = \alpha v + \frac{\eta}{\epsilon + \sqrt{r}} \odot g \newline<br>&amp;&amp; \theta = \theta - v \newline<br>&amp;&amp; \text{注： 此处为向量写法， } \odot \text{为点乘} \end{split}</p>
+<h2 id="Adadelta"><a href="#Adadelta" class="headerlink" title="Adadelta"></a>Adadelta</h2><p>Adagrad存在三个问题：</p>
+<ol>
+<li>其学习率单调递减，训练后期学习率非常小</li>
+<li>其需要手工设置一个全局的初始学习率</li>
+<li>更新参数时，左右两边单位不同一</li>
+</ol>
+<p>针对第一个问题，RMSprop可以解决。</p>
+<p>针对第三个问题，我们来讨论一下。</p>
+<p>对于一般的sgd方法：<br>\begin{split} unit(\Delta \theta)  \propto unit(\nabla J(\theta)) \propto  \frac{\partial{J}}{\partial{\theta}} \propto \frac{1}{unit(\theta)} \end{split}</p>
+<p>类似的，在Adagrad中：<br>\begin{split} unit(\Delta \theta)  \propto 1 \end{split}</p>
+<p>在牛顿法中：<br>\begin{split} unit(\Delta \theta)  \propto H^{-1} \nabla J(\theta) \propto  \frac{\partial{J}/ \partial{\theta}}{\partial^2{J}/ \partial{\theta^2}} \propto unit(\theta) \end{split}</p>
+<p>可以看到，牛顿法的更新单位是一致的。</p>
+<p>因此，可以仿牛顿法进行构造：</p>
+<p>\begin{split} g_t &amp;&amp;= \nabla J(\theta_t) \newline<br>\Delta \theta_t &amp;&amp;= - \frac{\sqrt{E[\Delta \theta^2]_{t-1}}}{\sqrt{E[g^2]_t}+\epsilon} g_t \newline<br>E[g^2]_t &amp;&amp;= \rho E[g^2]_{t-1} + (1 - \rho) g_t^2 \newline<br>E[\Delta \theta^2]_t &amp;&amp;= \rho E[\Delta \theta^2]_{t-1} + (1 - \rho) \Delta \theta^2 \newline<br>\theta_t &amp;&amp;= \theta_{t-1} + \Delta \theta_t<br>\end{split}</p>
+<p>如此一来，第三个问题就得到了解决，并且顺带解决了第二个问题。<br>为何如此仿造是合理的，参<a href="http://www.cnblogs.com/neopenx/p/4768388.html" target="_blank" rel="noopener">自适应学习率调整：AdaDelta</a>  </p>
+<p>总结一下：<br>Adagrad进行了学习率衰减，RMSProp优化了Adagrad衰减过快的问题，Adadelta进一步利用了近似二阶导数信息优化了RMSProp。</p>
+<h2 id="Adam"><a href="#Adam" class="headerlink" title="Adam"></a>Adam</h2><p>\begin{split} g &amp;&amp;= \nabla J(\theta) \newline<br>s &amp;&amp;= \rho_1 s + (1 - \rho_1) g \newline<br>r &amp;&amp;= \rho_2 r + (1 - \rho_2) g^2 \newline<br>\hat{s} &amp;&amp;= \frac{s}{1 - \rho_1} \newline<br>\hat{r} &amp;&amp;= \frac{r}{1 - \rho_2} \newline<br>\Delta \theta &amp;&amp;= - \eta \frac{\hat{s}}{\sqrt{\hat{r}}+\epsilon} \newline<br>\theta &amp;&amp;= \theta + \Delta \theta \end{split}</p>
+<h1 id="二阶方法"><a href="#二阶方法" class="headerlink" title="二阶方法"></a>二阶方法</h1><h2 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h2><p>\begin{split} &amp;&amp;f(x) \approx f(x_k) + f’(x_k)(x-x_k) + \frac{1}{2} f’’(x_k)(x-x_k)^2 = \varphi (x)\newline<br> \text{在x处取极值时满足： } &amp;&amp;\varphi’(x) = 0 \newline<br> \text{推出： } &amp;&amp;f’(x_k) + f’’(x_k)(x-x_k) = 0 \newline<br> &amp;&amp;x = x_k - \frac{f’(x_k)}{f’’(x_k)} \newline<br> &amp;&amp; x_{k+1} = x_k - \frac{f’(x_k)}{f’’(x_k)}, k =0,1,… \end{split}</p>
+<p>多维情况下：<br>\begin{split} &amp;&amp;f(x) \approx f(x_k) + \nabla f(x_k)(x-x_k) + \frac{1}{2}(x-x_k)^T \cdot \nabla^2 f(x_k) \cdot (x-x_k) = \varphi (x)\newline<br> \text{在x处取极值时满足： } &amp;&amp;\nabla \varphi(x) = 0 \newline<br> \text{推出： } &amp;&amp;g_k + H_k \cdot (x-x_k) = 0 \newline<br> &amp;&amp;x = x_k - H_k^{-1} \cdot g_k \newline<br> &amp;&amp; x_{k+1} = x_k -  H_k^{-1} \cdot g_k, k =0,1,… \newline<br> &amp;&amp; g = \nabla, H = \nabla^2 \end{split}</p>
+<p>牛顿法利用二阶泰勒展开自动选择更新方向。<br>当目标是二次函数时，由于二次泰勒展开函数与原目标函数不是近似而是完全相同的二次式，Hessian矩阵退化成一个常数矩阵，从任一初始点出发，只需要一步迭代即可达到最小值点。对于非二次函数，若函数的二次性态较强，或迭代点以进入极小值的领域，则其收敛速度也是很快的。<br>但对于非二次型目标函数，有时会使函数值上升，不能保证函数值稳定下降，甚至可能发散。因为在极大值处也可以一阶导数为0。<br>以及可能会陷入局部极小值中无法跳出。</p>
+<p>牛顿法存在连个主要缺点：</p>
+<ol>
+<li>对目标函数有较严格的要求。函数必须具有连续的一、二阶偏导数，Hessian矩阵必须正定;</li>
+<li>计算复杂。计算量、存储量均很大，且均以维数N的平方比增加。</li>
+</ol>
+<h2 id="阻尼牛顿法"><a href="#阻尼牛顿法" class="headerlink" title="阻尼牛顿法"></a>阻尼牛顿法</h2><p>阻尼牛顿法在牛顿法的基础上引入了步长：<br>\begin{split} &amp;&amp;d_k = - H_k^{-1} \cdot g_k \newline<br>&amp;&amp;\lambda_k = \arg \min_{\lambda \in R} f(x_k + \lambda d_k) \newline<br>&amp;&amp;x_{k+1} = x_k + \lambda_k d_k \newline\end{split}</p>
+<p>前面说到 $f(x_{k+1}) &gt; f(x_k))$ 的情况可能发生，因此，我们可以引入步长因子，进行一维搜索，使得更新后得到的 $f(x_{k+1})$ 必然不会变大，从而一直沿着正确的方向前进。</p>
+<p>一维搜索可以使用进退法寻找到单谷所在区间，然后使用黄金分割法、评分法等在区间内找寻最小值。（理想情况下是单谷，但即使不是单谷，也并不会影响更新方向）</p>
+<h2 id="拟牛顿法"><a href="#拟牛顿法" class="headerlink" title="拟牛顿法"></a>拟牛顿法</h2><p>这个方法的基本思想是：不用二阶偏导数而构造出可以近似Hessian矩阵（或其逆）的正定对称矩阵，在“拟牛顿”的条件下优化目标函数。<br>为明确起见，用B表示对H的近似，用D表示对H的逆的近似。</p>
+<p>对H作出近似，需要满足拟牛顿条件，下面推导之。</p>
+<p>\begin{split} &amp;&amp;f(x) \approx f(x_{k+1}) +  \nabla f(x_{k+1}) \cdot (x - x_{k+1}) + \frac{1}{2} \cdot (x - x_{k+1})^T \cdot \nabla^2 f(x_{k+1}) \cdot (x - x_{k+1}) \newline<br>\text{两边同时对x求导: } &amp;&amp;\nabla f(x) \approx \nabla f(x_{k+1}) + H_{k+1} \cdot (x - x_{k+1}) \newline<br>\text{令} x = x_k \text{整理得: }  &amp;&amp;g_{k+1} - g_k \approx H_{k+1} \cdot (x_{k+1} - x_k) \newline<br>\text{引入记号: } &amp;&amp;s_k = x_{k+1} - x_k,y_k = g_{k+1} - g_k \newline<br>\text{有: } &amp;&amp;y_k \approx H_{k+1} \cdot s_k \newline<br>\text{或: } &amp;&amp;s_k \approx H^{-1}_{k+1} \cdot y_k \end{split}</p>
+<p>这就是拟牛顿条件，他对迭代过程中的 $H_{k+1}$ 作出了约束。因此，作为近似的 $B_{k+1}$ 和 $D_{k+1}$ 可以将以下公式作为指导。<br>\begin{split} &amp;&amp;y_k = B_{k+1} \cdot s_k \newline<br>&amp;&amp;s_k = D_{k+1} \cdot y_k \end{split}</p>
+<p>根据H的构造函数不同，可以分为不同的拟牛顿法。下面介绍。</p>
+<h2 id="DFP法"><a href="#DFP法" class="headerlink" title="DFP法"></a>DFP法</h2><p>该算法的核心是：通过迭代的方法，对H的逆做近似：<br>\begin{split} D_{k+1} = D_k + \Delta D_k, k = 0,1,2,……, D_0 = I \end{split}</p>
+<p>显然，关键在于 $\Delta D_k$ 的构造，很容易猜想其可能会和 $s_k,y_k,D_k$ 发生关联。这里，我们采用待定法，即首先将其待定为某种形式，然后结合拟牛顿条件来推导。</p>
+<p>可以将其待定为：<br>\begin{split} \Delta D_k = \alpha \mathbf{uu}^T +\beta \mathbf{vv}^T \end{split}<br>从形式上看，至少保证了其对称性。</p>
+<p>将之代入拟牛顿条件：<br>\begin{split} \mathbf{s}_k &amp;&amp;= D_k \mathbf{y}_k + \alpha \mathbf{uu}^T \mathbf{y}_k + \beta \mathbf{vv}^T \mathbf{y}_k \newline<br>&amp;&amp;= D_k \mathbf{y}_k + (\alpha \mathbf{u}^T \mathbf{y}_k) \mathbf{u} + (\beta \mathbf{v}^T \mathbf{y}_k) \mathbf{v} \newline<br>\text{不妨令: } &amp;&amp;\alpha \mathbf{u}^T \mathbf{y}_k = 1, \beta \mathbf{v}^T \mathbf{y}_k = -1 \newline<br>\text{得: } &amp;&amp;\alpha = \frac{1}{\mathbf{u}^T \mathbf{y}_k}, \beta = - \frac{1}{\mathbf{v}^T \mathbf{y}_k} \newline \newline<br>&amp;&amp;\mathbf{u} - \mathbf{v} = \mathbf{s}_k - D_k \mathbf{y}_k \newline<br>\text{为使上式成立，不妨直接令: } &amp;&amp;\mathbf{u} = \mathbf{s}_k, \mathbf{v} = D_k \mathbf{y}_k \newline<br>\text{代入有: } &amp;&amp;\alpha = \frac{1}{\mathbf{s}_k^T \mathbf{y}_k}, \beta = - \frac{1}{\mathbf{y}_k^T D_k \mathbf{Y}_k} \text{ 其中第二个等式用到了对称性} D_k^T = D_k \newline<br>&amp;&amp;\Delta D_k = \frac{\mathbf{s}_k\mathbf{s}_k^T}{\mathbf{s}_k^T \mathbf{y}_k} - \frac{D_k \mathbf{y}_k \mathbf{y}_k^T D_k}{\mathbf{y}_k^T D_k \mathbf{y}_k} \end{split}</p>
+<p>由此可以利用近似的H运用牛顿法。</p>
+<h2 id="BFGS法"><a href="#BFGS法" class="headerlink" title="BFGS法"></a>BFGS法</h2><p>BFGS则是通过迭代的方法，直接对H做近似。其形式和思路和DFP基本相同。最后再去求近似H的逆运用牛顿法即可。</p>
+<p>另外，除了前面提到的一维搜索来计算步长之外，还有其他搜索方法。Powell证明了带Wolfe搜索的BFGS算法的全局收敛性和超线性收敛性。</p>
+<p>具体见 <a href="http://blog.csdn.net/itplus/article/details/21897443" target="_blank" rel="noopener">牛顿法与拟牛顿法学习笔记（四）BFGS 算法</a></p>
+<h2 id="L-BFGS法"><a href="#L-BFGS法" class="headerlink" title="L-BFGS法"></a>L-BFGS法</h2><p>考虑一个N阶矩阵，当N=10万时，用double（8字节）来存储该矩阵将需要74.5GB内存。其内存开销非常大！</p>
+<p>因此，L-BFGS 对 BFGS 进行了近似，可以减小内存开销。其基本思想是： 不再存储完整的矩阵 $D_k$ ,而是存储计算过程中的向量序列 ${s_i},{y_i}$ ，需要矩阵 $D_k$ 时，利用向量序列的计算来代替。而且，向量序列不是所有的都存，而是固定存最新的m个。每次计算 $D_k$ 时，只利用最新的m个来进行近似计算。</p>
+<p>具体见<a href="http://blog.csdn.net/itplus/article/details/21897715" target="_blank" rel="noopener">牛顿法与拟牛顿法学习笔记（五）L-BFGS 算法</a></p>
+<h1 id="其他策略"><a href="#其他策略" class="headerlink" title="其他策略"></a>其他策略</h1><h2 id="Shuffling-and-Curriculum-Learning"><a href="#Shuffling-and-Curriculum-Learning" class="headerlink" title="Shuffling and Curriculum Learning"></a>Shuffling and Curriculum Learning</h2><p>为了使得学习过程更加无偏，可以打乱训练样本。  </p>
+<p>另一方面，可以将训练集按照某个有意义的顺序排列一次来提高模型性能和SGD收敛性，如何建立有意义的排列成为Curriculum Learning。</p>
+<h2 id="Batch-normalization"><a href="#Batch-normalization" class="headerlink" title="Batch normalization"></a>Batch normalization</h2><p>\begin{split} \mu &amp;&amp;= \frac{1}{m} \sum_{i=1}^m x_i \newline<br>\sigma &amp;&amp;= \frac{1}{m} \sum_{i=1}^m (x_i - \mu)^2 \newline<br>\hat{x_i} &amp;&amp;= \frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}} \newline<br>y_i &amp;&amp;= \gamma \hat{x_i} + \beta \equiv BN_{\gamma,\beta}(x_i) \end{split}</p>
+<p>BN方法对需要层的输出做z标准化，然后再训练参数进行还原，通过这种方式来保存原输出数据的分布特征。  </p>
+<p>在原paper中作者建议BN放在激活函数之前，但也有实验表明放在激活值后更好。<br>[TBC]为什么经过这样的变化之后会更好？并解决梯度消失问题？Batch Normalization: Accelerating Deep Network Training by  Reducing Internal Covariate Shift</p>
+<h2 id="LRN"><a href="#LRN" class="headerlink" title="LRN"></a>LRN</h2><p>[TBC]</p>
+<h2 id="Early-stopping"><a href="#Early-stopping" class="headerlink" title="Early stopping"></a>Early stopping</h2><p>当验证集效果不再显著提升时，提前结束训练。</p>
+<h2 id="Gradient-noise"><a href="#Gradient-noise" class="headerlink" title="Gradient noise"></a>Gradient noise</h2><p>对于计算出的梯度增加一个高斯分布的随机误差，即：<br>\begin{split} g_{t,i} &amp;&amp;= g_{t,i} + N(0,\sigma_t^2) \newline<br>\sigma_t^2 &amp;&amp;= \frac{\eta}{(1+t)^\gamma} \end{split}</p>
+<p>对梯度增加误差可以增加鲁棒性，即使初始参数值选择不好。<br>并且适合对深层次网络进行你个训练。原因在于增加随机噪声会有更多的可能性跳过局部极值点并去寻找一个更好的局部极值点，这种可能性在深层次网络中更常见。</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><p><a href="http://sebastianruder.com/optimizing-gradient-descent/" target="_blank" rel="noopener">An overview of gradient descent optimization algorithms</a><br><a href="http://blog.csdn.net/heyongluoyao8/article/details/52478715" target="_blank" rel="noopener">梯度下降优化算法综述</a><br><a href="https://zhuanlan.zhihu.com/p/21486826" target="_blank" rel="noopener">路遥知马力——Momentum</a><br><a href="http://www.360doc.com/content/16/1010/08/36492363_597225745.shtml" target="_blank" rel="noopener">比Momentum更快：揭开Nesterov Accelerated Gradient的真面目</a><br><a href="http://blog.csdn.net/u014595019/article/details/52989301" target="_blank" rel="noopener">深度学习笔记：优化方法总结(BGD,SGD,Momentum,AdaGrad,RMSProp,Adam)</a><br><a href="http://climin.readthedocs.io/en/latest/rmsprop.html" target="_blank" rel="noopener">rmsprop</a><br><a href="http://www.cnblogs.com/neopenx/p/4768388.html" target="_blank" rel="noopener">自适应学习率调整：AdaDelta</a><br><a href="http://blog.csdn.net/luo123n/article/details/48239963" target="_blank" rel="noopener">各种优化方法总结比较（sgd/momentum/Nesterov/adagrad/adadelta）</a><br><a href="http://blog.csdn.net/elaine_bao/article/details/50890491" target="_blank" rel="noopener">解读Batch Normalization</a><br><a href="http://blog.csdn.net/itplus/article/details/21896453" target="_blank" rel="noopener">牛顿法与拟牛顿法学习笔记（一）牛顿法</a><br><a href="http://dataunion.org/20714.html" target="_blank" rel="noopener"><strong><em>寻找最优参数解：最速下降法，牛顿下降法，阻尼牛顿法，拟牛顿法DFP/BFGS</em></strong></a><br><a href="https://wenku.baidu.com/view/22138d22bcd126fff7050b99.html" target="_blank" rel="noopener">一维搜索</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/optimization/" rel="tag"># optimization</a>
+          
+            <a href="/tags/parameter-estimation/" rel="tag"># parameter estimation</a>
+          
+            <a href="/tags/gradient/" rel="tag"># gradient</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/28/pansee/book review/《书中之书讲演录》读书杂感系列·第五讲至第十二讲/" rel="next" title="《书中之书讲演录》读书杂感系列·第五讲至第十二讲">
+                <i class="fa fa-chevron-left"></i> 《书中之书讲演录》读书杂感系列·第五讲至第十二讲
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/28/machine learning/ensemble/adaboost/" rel="prev" title="adaboost">
+                adaboost <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">muzhen</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">358</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">113</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#梯度下降法"><span class="nav-number">1.</span> <span class="nav-text">梯度下降法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SGD-batch-GD-mini-batch-GD"><span class="nav-number">1.1.</span> <span class="nav-text">SGD/batch GD/mini-batch GD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#momentum"><span class="nav-number">1.2.</span> <span class="nav-text">momentum</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAG"><span class="nav-number">1.3.</span> <span class="nav-text">NAG</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adagrad"><span class="nav-number">1.4.</span> <span class="nav-text">Adagrad</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RMSProp"><span class="nav-number">1.5.</span> <span class="nav-text">RMSProp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adadelta"><span class="nav-number">1.6.</span> <span class="nav-text">Adadelta</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adam"><span class="nav-number">1.7.</span> <span class="nav-text">Adam</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二阶方法"><span class="nav-number">2.</span> <span class="nav-text">二阶方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#牛顿法"><span class="nav-number">2.1.</span> <span class="nav-text">牛顿法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阻尼牛顿法"><span class="nav-number">2.2.</span> <span class="nav-text">阻尼牛顿法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拟牛顿法"><span class="nav-number">2.3.</span> <span class="nav-text">拟牛顿法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DFP法"><span class="nav-number">2.4.</span> <span class="nav-text">DFP法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BFGS法"><span class="nav-number">2.5.</span> <span class="nav-text">BFGS法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#L-BFGS法"><span class="nav-number">2.6.</span> <span class="nav-text">L-BFGS法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他策略"><span class="nav-number">3.</span> <span class="nav-text">其他策略</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Shuffling-and-Curriculum-Learning"><span class="nav-number">3.1.</span> <span class="nav-text">Shuffling and Curriculum Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Batch-normalization"><span class="nav-number">3.2.</span> <span class="nav-text">Batch normalization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LRN"><span class="nav-number">3.3.</span> <span class="nav-text">LRN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Early-stopping"><span class="nav-number">3.4.</span> <span class="nav-text">Early stopping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-noise"><span class="nav-number">3.5.</span> <span class="nav-text">Gradient noise</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number">4.</span> <span class="nav-text">References</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">muzhen</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="此文为 CHAPTER 9 CONVALUTIONAL NETWORKS 的简要翻译。 9.1 The Convolution Operation一般意义上，卷积是一个 在与一个实值参数相关的两个函数上 的操作。为了引出卷积定义，我们先来看个例子。 假设我们通过激光传感器来跟踪太空船的位置。我们的激光传感器提供了一个简单的输出\(x(t)\)，表示时刻 \(t\) 太空船的位置。每个瞬间（假设可以">
+<meta name="keywords" content="machine learning,NN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="convalutional networks">
+<meta property="og:url" content="http://www.muzhen.tk/2019/02/28/machine learning/NN/convalutional networks/index.html">
+<meta property="og:site_name" content="the Home of MuZhen">
+<meta property="og:description" content="此文为 CHAPTER 9 CONVALUTIONAL NETWORKS 的简要翻译。 9.1 The Convolution Operation一般意义上，卷积是一个 在与一个实值参数相关的两个函数上 的操作。为了引出卷积定义，我们先来看个例子。 假设我们通过激光传感器来跟踪太空船的位置。我们的激光传感器提供了一个简单的输出\(x(t)\)，表示时刻 \(t\) 太空船的位置。每个瞬间（假设可以">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://omdhuynsr.bkt.clouddn.com/17-5-14/9012565-file_1494766766447_7474.png">
+<meta property="og:image" content="http://omdhuynsr.bkt.clouddn.com/17-5-14/219219-file_1494768700480_12a78.png">
+<meta property="og:updated_time" content="2019-02-28T12:45:06.537Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="convalutional networks">
+<meta name="twitter:description" content="此文为 CHAPTER 9 CONVALUTIONAL NETWORKS 的简要翻译。 9.1 The Convolution Operation一般意义上，卷积是一个 在与一个实值参数相关的两个函数上 的操作。为了引出卷积定义，我们先来看个例子。 假设我们通过激光传感器来跟踪太空船的位置。我们的激光传感器提供了一个简单的输出\(x(t)\)，表示时刻 \(t\) 太空船的位置。每个瞬间（假设可以">
+<meta name="twitter:image" content="http://omdhuynsr.bkt.clouddn.com/17-5-14/9012565-file_1494766766447_7474.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.muzhen.tk/2019/02/28/machine learning/NN/convalutional networks/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>convalutional networks | the Home of MuZhen</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">the Home of MuZhen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/NN/convalutional networks/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">convalutional networks
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/NN/" itemprop="url" rel="index"><span itemprop="name">NN</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script><br>此文为 <a href="http://www.deeplearningbook.org/contents/convnets.html" target="_blank" rel="noopener">CHAPTER 9 CONVALUTIONAL NETWORKS</a> 的简要翻译。</p>
+<h1 id="9-1-The-Convolution-Operation"><a href="#9-1-The-Convolution-Operation" class="headerlink" title="9.1 The Convolution Operation"></a>9.1 The Convolution Operation</h1><p>一般意义上，卷积是一个 在与一个实值参数相关的两个函数上 的操作。为了引出卷积定义，我们先来看个例子。</p>
+<p>假设我们通过激光传感器来跟踪太空船的位置。我们的激光传感器提供了一个简单的输出\(x(t)\)，表示时刻 \(t\) 太空船的位置。每个瞬间（假设可以连续不间断的）光传感器都会传给我们一个值。</p>
+<p>现在假设我们的光传感器有了噪音。为了降低噪音影响，我们会想对一些观测去平均。当然，时间越近的观测越重要，因此我们会做一个加权平均。我们可以利用 \(\omega(a)\) 来进行加权， \(a\) 是观测的年龄。如果我们对每个时刻运用这样一个加权操作，我们获得了一个新的函数 \(s\) ，它提供了一个太空船位置的光滑估计：</p>
+<p>\[s(t) = \int x(a) \omega(t-a) da \tag{9.1}\]</p>
+<p>这个操作就叫做卷积。卷积操作使用星号表示：</p>
+<p>\[s(t) = (x*\omega)(t) \tag{9.2}\]</p>
+<p>在我们的例子中， \(\omega\) 需要是一个概率密度函数，不然的话输出将不再是一个加权平均。通常，卷积可以定义在任意函数上，它可以用于除了加权平均之外的其他目的。</p>
+<p>（译者注：太空船应该是静止不动的，只有这样对不同时刻传回观测进行加权平均去定位才有意义）</p>
+<p>在卷积网络术语中，卷积的第一个参数（在这个例子中是函数 \(x\)通常被成为input（特征维度），第二个参数（函数\(\omega\)）被成为kernel。输出被成为feature map。</p>
+<p>每个瞬间都回传值是不大现实的，更为现实的是每隔一段时间（比如说1秒）回传一个值。因此，我们可以去定义一个离散卷积：</p>
+<p>\[s(t) = (x*\omega)(t) = \sum x(a) \omega(t-a) \tag{9.3}\]</p>
+<p>在机器学习中，input通常是一个多维数组，而kernel通常是需要通过算法去学习的参数。下图表明了一个卷积过程。</p>
+<p><img src="http://omdhuynsr.bkt.clouddn.com/17-5-14/9012565-file_1494766766447_7474.png" alt></p>
+<h1 id="9-2-Motivation"><a href="#9-2-Motivation" class="headerlink" title="9.2 Motivation"></a>9.2 Motivation</h1><p>卷积运用三个重要的idea去帮助改善机器学习系统：sparse interactions,parameter sharing,equivariant representations。</p>
+<p>传统神经网络层对有独立参数组成的参数矩阵使用矩阵乘法，以此来描述输入单元和输出单元之间的交互关系。这意味着每个输出单元和每个输入单元都相关。但是卷积网络则是局部相关（sparse interactions，也叫做sparse connectivity或者sparse weights）。通过使用一个比input小的kernel可以实现sparse interactions。这意味着我们只需要存储更少的参数，既可以减少内存需求，也可以改善它的统计有效性。这也意味着可以简化输出的计算量。这些效率上的改善通常非常大。如果有m个inputs和n个outputs，矩阵乘法需要m×n个参数，并且每个样本的时间复杂度是O(m×n)。但是如果我们把每个输出对输入单元的连接限制为k，那么局部连接方法仅需要k×n个参数和O(k×n)的时间复杂度。在许多实践应用中，即使k比m小几个数量级，在机器学习任务中获得好的表现也是可能的。在深度网络中，深层的单元依旧会间接的被大部分input所影响。这就允许我们通过合适的局部连接去表述复杂的变量间关系，如下图：</p>
+<p><img src="http://omdhuynsr.bkt.clouddn.com/17-5-14/219219-file_1494768700480_12a78.png" alt></p>
+<p>参数共享指的是在模型的多个函数中使用相同的参数。作为parameter sharing的同义词，我们可以说一个网络有tied weights。这并不会减少时间复杂度，但是它可以进一步降低存储需求。</p>
+<h1 id="9-3-Pooling"><a href="#9-3-Pooling" class="headerlink" title="9.3 Pooling"></a>9.3 Pooling</h1><p>一个卷积层一般包含三个步骤。第一个步骤是用（多个）卷积核进行卷积，第二个步骤是用利用非线性激活函数进行转换，这个步骤也就做detector stage。第三个步骤，我们使用池化函数进一步改善输出层。</p>
+<p>池化使得representation对于input的小改变具有近似不变性。</p>
+<h1 id="9-4-Convolution-and-Pooling-as-an-Infinitely-Strong-Prior"><a href="#9-4-Convolution-and-Pooling-as-an-Infinitely-Strong-Prior" class="headerlink" title="9.4 Convolution and Pooling as an Infinitely Strong Prior"></a>9.4 Convolution and Pooling as an Infinitely Strong Prior</h1><p>弱先验意味着参数取值的选择更多，比如说具有高方差的高斯分布。强先验意味着取值范围更小，比如低方差的高斯分布。</p>
+<p>卷积可以理解为这样一种强先验假设：除了局部区域外，其他输入单元的对应权重都是0。</p>
+<p>池化可以理解为这样一种假设：小改变不导致取值变化。</p>
+<p>显然，当假设和事实不符时，会出现欠拟合。</p>
+<h1 id="9-5-Variants-of-the-Basic-Convolution-Function"><a href="#9-5-Variants-of-the-Basic-Convolution-Function" class="headerlink" title="9.5 Variants of the Basic Convolution Function"></a>9.5 Variants of the Basic Convolution Function</h1>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+          
+            <a href="/tags/NN/" rel="tag"># NN</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/28/machine learning/NN/convolutional neural networks/" rel="next" title="convolutional neural networks">
+                <i class="fa fa-chevron-left"></i> convolutional neural networks
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/28/machine learning/NN/activation function/" rel="prev" title="activation function">
+                activation function <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">muzhen</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">358</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">113</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#9-1-The-Convolution-Operation"><span class="nav-number">1.</span> <span class="nav-text">9.1 The Convolution Operation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-2-Motivation"><span class="nav-number">2.</span> <span class="nav-text">9.2 Motivation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-3-Pooling"><span class="nav-number">3.</span> <span class="nav-text">9.3 Pooling</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-4-Convolution-and-Pooling-as-an-Infinitely-Strong-Prior"><span class="nav-number">4.</span> <span class="nav-text">9.4 Convolution and Pooling as an Infinitely Strong Prior</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-5-Variants-of-the-Basic-Convolution-Function"><span class="nav-number">5.</span> <span class="nav-text">9.5 Variants of the Basic Convolution Function</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">muzhen</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

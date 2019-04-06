@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="由于以前大部分做的是10W数据量级的简单特征工程和模型，基本都是使用python进行单机处理。即使是一些log数据的分析，特征衍生的逻辑也相对简单，即使用写的比较低效的sql代码也可以跑批出结果。本次参与的某银行反欺诈项目，数据量级在亿级，主要的特征工程是滑窗构造特征。在这个项目过程中，凸显了原先的小数据思维的局限性和误区。 stage-0:自关联对于滑窗特征的构造方法，一开始采用的是自关联的方式">
+<meta name="keywords" content="pansee,work">
+<meta property="og:type" content="article">
+<meta property="og:title" content="某银行项目的经验和教训">
+<meta property="og:url" content="http://www.muzhen.tk/2019/03/13/pansee/work/某银行项目的经验和教训/index.html">
+<meta property="og:site_name" content="the Home of MuZhen">
+<meta property="og:description" content="由于以前大部分做的是10W数据量级的简单特征工程和模型，基本都是使用python进行单机处理。即使是一些log数据的分析，特征衍生的逻辑也相对简单，即使用写的比较低效的sql代码也可以跑批出结果。本次参与的某银行反欺诈项目，数据量级在亿级，主要的特征工程是滑窗构造特征。在这个项目过程中，凸显了原先的小数据思维的局限性和误区。 stage-0:自关联对于滑窗特征的构造方法，一开始采用的是自关联的方式">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-03-13T13:55:04.708Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="某银行项目的经验和教训">
+<meta name="twitter:description" content="由于以前大部分做的是10W数据量级的简单特征工程和模型，基本都是使用python进行单机处理。即使是一些log数据的分析，特征衍生的逻辑也相对简单，即使用写的比较低效的sql代码也可以跑批出结果。本次参与的某银行反欺诈项目，数据量级在亿级，主要的特征工程是滑窗构造特征。在这个项目过程中，凸显了原先的小数据思维的局限性和误区。 stage-0:自关联对于滑窗特征的构造方法，一开始采用的是自关联的方式">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.muzhen.tk/2019/03/13/pansee/work/某银行项目的经验和教训/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>某银行项目的经验和教训 | the Home of MuZhen</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">the Home of MuZhen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/03/13/pansee/work/某银行项目的经验和教训/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">某银行项目的经验和教训
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-03-13 21:55:04" itemprop="dateCreated datePublished" datetime="2019-03-13T21:55:04+08:00">2019-03-13</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/work/" itemprop="url" rel="index"><span itemprop="name">work</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>由于以前大部分做的是10W数据量级的简单特征工程和模型，基本都是使用python进行单机处理。即使是一些log数据的分析，特征衍生的逻辑也相对简单，即使用写的比较低效的sql代码也可以跑批出结果。本次参与的某银行反欺诈项目，数据量级在亿级，主要的特征工程是滑窗构造特征。在这个项目过程中，凸显了原先的小数据思维的局限性和误区。</p>
+<h1 id="stage-0-自关联"><a href="#stage-0-自关联" class="headerlink" title="stage-0:自关联"></a>stage-0:自关联</h1><p>对于滑窗特征的构造方法，一开始采用的是自关联的方式。比如客户号子关联加上时间限制（例如3个月），这样就可以拿到每个客户3个月内的所有交易记录。这样的做法会造成表数据量级激增。在该项目中，40w样本自关联后变成6000w，可以看到对于上亿数据，自关联是不现实的！</p>
+<p>由于在滑窗的时候，可能不是单纯的根据客户号进行窗口内交易筛选。可能只关心该客户+本次交易使用设备在窗口内的交易行为。类似客户+设备这样的限制成为双主体，只是客户称为单主体。一般会关注几个主要的单主体，以及这些单主体配合一些其他字段形成的双主体。这样的主体可能会有很多，最笨的方法就是在自关联的时候将关联键设为主体，一个主体一个临时表。</p>
+<p>当主体很多的时候，临时表太多，极为不利于管理。因此想到了只以核心主体进行关联，然后添加标识列，标识该记录是否属于某个主体或主体组合。这样也就是有多少需要考察的主体，就要有多少标识列。</p>
+<p>另一方面，一般窗口可能会是时间窗口和次数窗口两种。时间窗口直接就是交易时间差，并不随主体而变化，很容易。但是次数窗却受限制于主体，同一笔交易，在不同的主体下，对应的次数排序是不一样的，因此也需要添加标识列，一个主体一个次数标识列。</p>
+<p>临时表出来后，将数据拉到python中，进行窗口内的聚合操作，对于连续型变量考察mean、max、median、min等，对于离散型变量考察该字段取值在窗口内的出现频率、与窗口内众数频率差等。需要注意的是，这些聚合函数一般都是聚合后在和当笔交易的变量值进行做差、作除等操作，这样做的好处是可以让该特征变为相对值，考察的是当笔与历史行为的差异。</p>
+<h1 id="stage-1：滑窗"><a href="#stage-1：滑窗" class="headerlink" title="stage-1：滑窗"></a>stage-1：滑窗</h1><p>上述自关联的做法在大数据量情况下是行不通的！</p>
+<p>经过调研，发现spark本身提供了window窗口函数，可以按照次数或特定变量取值范围进行滑窗。</p>
+<p>在使用spark的过程中，面临几个问题：</p>
+<ol>
+<li>次数窗其实有一个隐藏条件，就是必须是某个时间段内的，比如3个月。不可能无限往前追溯。对每笔记录，在滑窗的时候都必须有这个时间段限制，从而保证口径一致。</li>
+<li>时间窗原先是严格按照秒进行滑窗的，但是这在工程实现中无法实现。因为工程实现的时候时间窗需要拆解为可以在redis里实时流计算的小窗和批量离线运算的大窗。</li>
+<li>中位数、众数这样的运算复杂度非常高，spark也并没有可用的高效函数。</li>
+</ol>
+<p>对于时间窗问题，小窗直接按秒滑窗是没有问题的。对于大窗，必须要改为天粒度，至于当天的时间是否需要纳入滑窗范围可以根据需求来。建议是不纳入的，同时采用t+2的窗口，也就是当天和昨天都不纳入窗口范围。这样工程跑批会没有压力。t+1会出现凌晨的交易流水对应的跑批特征出不来的情况。</p>
+<p>对于函数问题，采用的方案是使用spark window函数，然后用collect_list将窗口内值彻底聚合成一个list，对该list施加相应的python udf。</p>
+<h1 id="stage-2：-优化"><a href="#stage-2：-优化" class="headerlink" title="stage-2： 优化"></a>stage-2： 优化</h1><p>上述做法依旧存在低效率的问题。个人认为collect_list-&gt;python udf这个步骤会很低效。</p>
+<p>采用的优化方式如下：</p>
+<ol>
+<li>弃用中位数、众数这样的复杂运算</li>
+<li>对于时间窗，可以利用窗口函数分别计算对应大小窗的值：大窗按照主体分组按照天时间戳滑窗，小窗按照主体分组按照秒时间戳滑窗。大窗包含小窗，<strong><em>按照天时间滑窗+按照主体及交易天分组按照秒时间滑24小时</em></strong>即可。其实还有一种方法是，将当天的零头时间压缩10000倍，加到天时间戳上，这样就可以保证记录的秒级排序，同时只需要控制rangeBetween的下界就可以得到喊大窗的小窗。rangeBetween的边界条件不支持浮点，所以前面得到的时间戳需要在放大100000倍被成一个长整型。于是，问题来了，spark2.1的rangeBetween不支持长整型，spark2.3才支持。所以在该项目中，受限于环境，没有使用这种方法。</li>
+<li>对于次数窗，先分别利用窗口函数计算次数时间限对应的时间窗和次数窗，需要计算对应的聚合函数和记录数计数。然后根据记录数来判定应该使用哪个窗口的聚合值来作为该记录次数窗的取值。比如如果3个月记录数12条，次数窗为10,那么取次数窗对应聚合值，如果3个月记录数为8条，那么取时间窗。</li>
+<li>对于离散型变量聚合，滑窗函数partition by的对象改为主体字段+该变量字段，在对应窗口内聚合就可以得到该字段取值在窗口内的出现频次。对于频率，只要除以窗口记录数就好。</li>
+</ol>
+<h1 id="stage-3：教训"><a href="#stage-3：教训" class="headerlink" title="stage-3：教训"></a>stage-3：教训</h1><p>由于以前一直是小样本的玩耍，犯错的成本很低，可以从容的重跑。但是大样本情况下，运算逻辑一旦有问题，就要浪费几天时间重跑，时间代价非常大。所以一定要做好：</p>
+<ol>
+<li>小样本测试</li>
+<li>边界测试</li>
+</ol>
+<p>确保没有问题后再去全量运行。</p>
+<h1 id="stage-4：思维"><a href="#stage-4：思维" class="headerlink" title="stage-4：思维"></a>stage-4：思维</h1><p>对于一个项目，应该先去考虑能不能做出来，再去考虑有没有价值，然后是优化空间，最后是创新问题。另外，需要贯穿始终的是风险意识，既不给自己挖坑，也不给客户挖坑。</p>
+<ul>
+<li>工程思维： 什么可以在规定的时间和资源内做出来，什么做不出来</li>
+<li>产品思维：有大局观，考虑到做出来的东西有什么用，怎么用，如何真正可行的应用于生产？</li>
+<li>优化思维：如何在作出一个产品的基础上去优化开发效率、优化产品的质量</li>
+<li>创新思维：尝试新技术、新方法，新角度</li>
+<li>风险思维：贯穿全局的风险思维，考虑到项目风险，可行性等</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/pansee/" rel="tag"># pansee</a>
+          
+            <a href="/tags/work/" rel="tag"># work</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/02/development/environment/install vps/" rel="next" title="install vps">
+                <i class="fa fa-chevron-left"></i> install vps
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/16/pansee/film review/致命危机——Frank A. Cappello/" rel="prev" title="致命危机——Frank A. Cappello">
+                致命危机——Frank A. Cappello <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">muzhen</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">358</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">113</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#stage-0-自关联"><span class="nav-number">1.</span> <span class="nav-text">stage-0:自关联</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#stage-1：滑窗"><span class="nav-number">2.</span> <span class="nav-text">stage-1：滑窗</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#stage-2：-优化"><span class="nav-number">3.</span> <span class="nav-text">stage-2： 优化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#stage-3：教训"><span class="nav-number">4.</span> <span class="nav-text">stage-3：教训</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#stage-4：思维"><span class="nav-number">5.</span> <span class="nav-text">stage-4：思维</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">muzhen</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

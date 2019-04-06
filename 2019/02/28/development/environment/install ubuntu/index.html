@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="download ubuntu.iso and make boot diskdownload 123456// find the mount point of your u disk df// cd to the location of your iso cd Downloads// make itsudo dd if=./name.iso of=/dev/sd? install terminat">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="install ubuntu">
+<meta property="og:url" content="http://www.muzhen.tk/2019/02/28/development/environment/install ubuntu/index.html">
+<meta property="og:site_name" content="the Home of MuZhen">
+<meta property="og:description" content="download ubuntu.iso and make boot diskdownload 123456// find the mount point of your u disk df// cd to the location of your iso cd Downloads// make itsudo dd if=./name.iso of=/dev/sd? install terminat">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://omdhuynsr.bkt.clouddn.com/17-8-5/29236859.jpg">
+<meta property="og:image" content="http://omdhuynsr.bkt.clouddn.com/17-8-5/42988679.jpg">
+<meta property="og:image" content="http://omdhuynsr.bkt.clouddn.com/17-8-5/74327262.jpg">
+<meta property="og:image" content="http://omdhuynsr.bkt.clouddn.com/17-8-5/39084595.jpg">
+<meta property="og:image" content="http://omdhuynsr.bkt.clouddn.com/17-8-5/38492276.jpg">
+<meta property="og:updated_time" content="2019-02-28T12:45:06.521Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="install ubuntu">
+<meta name="twitter:description" content="download ubuntu.iso and make boot diskdownload 123456// find the mount point of your u disk df// cd to the location of your iso cd Downloads// make itsudo dd if=./name.iso of=/dev/sd? install terminat">
+<meta name="twitter:image" content="http://omdhuynsr.bkt.clouddn.com/17-8-5/29236859.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.muzhen.tk/2019/02/28/development/environment/install ubuntu/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>install ubuntu | the Home of MuZhen</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">the Home of MuZhen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/environment/install ubuntu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">install ubuntu
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="download-ubuntu-iso-and-make-boot-disk"><a href="#download-ubuntu-iso-and-make-boot-disk" class="headerlink" title="download ubuntu.iso and make boot disk"></a>download ubuntu.iso and make boot disk</h1><p><a href="https://mirrors.ustc.edu.cn/" target="_blank" rel="noopener">download</a></p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// find the mount point of your u disk </span></span><br><span class="line">df</span><br><span class="line"><span class="comment">// cd to the location of your iso </span></span><br><span class="line">cd Downloads</span><br><span class="line"><span class="comment">// make it</span></span><br><span class="line">sudo dd <span class="keyword">if</span>=./<span class="keyword">name</span>.iso <span class="keyword">of</span>=/dev/sd?</span><br></pre></td></tr></table></figure>
+<h1 id="install-terminator"><a href="#install-terminator" class="headerlink" title="install terminator"></a>install terminator</h1><p><a href="http://blog.csdn.net/liuxiaoheng1992/article/details/54409711" target="_blank" rel="noopener"> ubuntu14.04终端分屏terminator的安装使用与配置</a></p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> install terminator</span><br></pre></td></tr></table></figure>
+<p>then you can change config to let your terminal more beautiful.</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.<span class="built_in">config</span>/terminator/ </span><br><span class="line">sudo vim <span class="built_in">config</span></span><br></pre></td></tr></table></figure>
+<p>if <code>~/.config/terminator/config</code> is not exists, you can open a terminal then right click to <code>perference-layouts-add-close</code>. the config file exists now.</p>
+<p>there is a config templet below:</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[global_config]</span><br><span class="line">[keybindings]</span><br><span class="line">[profiles]</span><br><span class="line">  [[default]]</span><br><span class="line">    use_system_font = <span class="literal">False</span> # 是否启用系统字体</span><br><span class="line">    login_shell = <span class="literal">True</span></span><br><span class="line">    background_darkness = 0.92 # 背景颜色</span><br><span class="line">    background_type = transparent</span><br><span class="line">    background_image = None</span><br><span class="line">    cursor_color = <span class="string">"#3036ec"</span> # 光标颜色</span><br><span class="line">    foreground_color = <span class="string">"#00ff00"</span></span><br><span class="line">    show_titlebar = <span class="literal">False</span> # 不显示标题栏，也就是 terminator 中那个默认的红色的标题栏</span><br><span class="line">    custom_command = tmux</span><br><span class="line">    font = Ubuntu Mono 15  # 字体设置，后面的数字表示字体大小</span><br><span class="line">[layouts]</span><br><span class="line">  [[default]]</span><br><span class="line">    [[[child1]]]</span><br><span class="line">     <span class="built_in"> type </span>= Terminal</span><br><span class="line">      parent = window0</span><br><span class="line">    [[[window0]]]</span><br><span class="line">     <span class="built_in"> type </span>= Window</span><br><span class="line">      parent = <span class="string">""</span></span><br><span class="line">[plugins]</span><br></pre></td></tr></table></figure>
+<h1 id="install-vim-amp-gdebi"><a href="#install-vim-amp-gdebi" class="headerlink" title="install vim &amp; gdebi"></a>install vim &amp; gdebi</h1><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> install vim-gtk</span><br><span class="line">sudo apt-<span class="builtin-name">get</span> install gdebi</span><br></pre></td></tr></table></figure>
+<h1 id="install-shadowsocks"><a href="#install-shadowsocks" class="headerlink" title="install shadowsocks"></a>install shadowsocks</h1><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get <span class="keyword">install</span> python-pip</span><br><span class="line">pip <span class="keyword">install</span> shadowsocks</span><br></pre></td></tr></table></figure>
+<p>Create a config file /etc/shadowsocks.json. Example:<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"server"</span>:<span class="string">"my_server_ip"</span>,</span><br><span class="line">    <span class="attr">"server_port"</span>:<span class="number">8388</span>,</span><br><span class="line">    <span class="attr">"local_address"</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">    <span class="attr">"local_port"</span>:<span class="number">1080</span>,</span><br><span class="line">    <span class="attr">"password"</span>:<span class="string">"mypassword"</span>,</span><br><span class="line">    <span class="attr">"timeout"</span>:<span class="number">300</span>,</span><br><span class="line">    <span class="attr">"method"</span>:<span class="string">"aes-256-cfb"</span>,</span><br><span class="line">    <span class="attr">"fast_open"</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>run shadowsocks:<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sslocal -c <span class="regexp">/etc/</span>shadowsocks.json</span><br></pre></td></tr></table></figure></p>
+<p>启动shadowsocks时，必须进入settings-network进行如下图设置：</p>
+<p><img src="http://omdhuynsr.bkt.clouddn.com/17-8-5/29236859.jpg" alt></p>
+<p>待安装好chrome后，安装switchyomega并如下图设置好代理后，将network proxy还原为none，就可以利用局部代理模式科学上网了。</p>
+<p>先增一个ss代理，名字随便取，我下图中已经增加过了。只是演示如何增加。</p>
+<p><img src="http://omdhuynsr.bkt.clouddn.com/17-8-5/42988679.jpg" alt></p>
+<p><img src="http://omdhuynsr.bkt.clouddn.com/17-8-5/74327262.jpg" alt></p>
+<p><img src="http://omdhuynsr.bkt.clouddn.com/17-8-5/39084595.jpg" alt></p>
+<p><a href="https://github.com/shadowsocks/shadowsocks/tree/master" target="_blank" rel="noopener">install shadowsocks guide</a><br><a href="http://wxhp.org/shadowsocksr.html" target="_blank" rel="noopener">set swithchyomega proxy</a><br><em>rulelist</em>:<a href="https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt" target="_blank" rel="noopener">https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt</a></p>
+<h1 id="install-chrome"><a href="#install-chrome" class="headerlink" title="install chrome"></a>install chrome</h1><p>download .deb from <a href="https://www.google.com/chrome/browser/desktop/index.html?brand=CHBD&amp;gclid=CjwKCAjwzYDMBRA1EiwAwCv6Jtpe6PR1NYtzKPSVgnCLaWIbQCDJxZB_gyBBBndhfEu-E_BnUoOjaxoCFLUQAvD_BwE" target="_blank" rel="noopener">google chrome</a> then  <code>sudo gdebi chrome*.deb</code></p>
+<p>When you install chrome at once,system maybe remind you to create keyring passward when you open chrome for the first time,you can set normally.<br>If you want to disable keyring,you can <code>seahorse</code> then right click <em>default keyring</em> to change passward to blank(first input old passward then blank new passward).</p>
+<p>if you add ppa then <code>apt-get install</code>, you maybe find a lot of problems in that version.</p>
+<p>在官网下载deb包安装后基本不会有下面问题出现，可以直接登录使用。但是貌似需要注销一次系统才能正常同步。</p>
+<p>Maybe you will find a problem that external links are opened as blank tabs in new brower window in Chrome.The solution is below:</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo vim <span class="variable">$HOME</span>/.local/share/applications/google-chrome.desktop</span><br><span class="line">\\<span class="builtin-name">find</span> the line <span class="attribute">Exec</span>=/opt/google/chrome/chrome <span class="keyword">and</span> change <span class="keyword">to</span></span><br><span class="line"><span class="attribute">Exec</span>=/opt/google/chrome/chrome %U</span><br></pre></td></tr></table></figure>
+<p><a href="http://askubuntu.com/questions/689449/external-links-are-opened-as-blank-tabs-in-new-browser-window-in-chrome" target="_blank" rel="noopener">External links are opened as blank tabs in new browser window in Chrome</a></p>
+<h1 id="install-git"><a href="#install-git" class="headerlink" title="install git"></a>install git</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install git</span><br><span class="line"></span><br><span class="line"><span class="comment">//配置个人信息</span></span><br><span class="line">git config --global user<span class="selector-class">.name</span> <span class="string">"Your Name Here"</span></span><br><span class="line">git config --global user<span class="selector-class">.email</span> your_email@example.com</span><br><span class="line">#查看已有的配置信息：</span><br><span class="line">git config --list</span><br></pre></td></tr></table></figure>
+<p>if you use shadowsocks,you can use below codes to speed up:<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http<span class="selector-class">.proxy</span> socks5:<span class="comment">//127.0.0.1:1080 </span></span><br><span class="line">git config --global https<span class="selector-class">.proxy</span> socks5:<span class="comment">//127.0.0.1:1080</span></span><br></pre></td></tr></table></figure></p>
+<p>add ssh-key<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">\\check the exist of ssh-key</span><br><span class="line">cd ~/.ssh</span><br><span class="line">\\<span class="keyword">if</span> <span class="keyword">not</span> exist,generate ssh-key</span><br><span class="line">ssh-keygen -t rsa -C <span class="string">"your_email@youremail.com"</span> </span><br><span class="line">\\<span class="builtin-name">print</span> enter over time,then <span class="builtin-name">add</span> ssh-key <span class="keyword">to</span> your github</span><br><span class="line">\\copy key </span><br><span class="line">sudo vim ~/.ssh/id_rsa.pub</span><br><span class="line">\\load github by browser &gt;<span class="built_in"> Settings </span>&gt; SSH <span class="keyword">and</span> GPG keys &gt; <span class="builtin-name">add</span> key</span><br></pre></td></tr></table></figure></p>
+<h1 id="install-vscode"><a href="#install-vscode" class="headerlink" title="install vscode"></a>install vscode</h1><p><a href="https://code.visualstudio.com/" target="_blank" rel="noopener">download</a></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sudo</span> gdebi vscode<span class="regexp">*.deb</span></span><br></pre></td></tr></table></figure>
+<h1 id="install-fcitx"><a href="#install-fcitx" class="headerlink" title="install fcitx"></a>install fcitx</h1><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> install fcitx-googlepinyin</span><br></pre></td></tr></table></figure>
+<p>then <em>setting</em> &gt; <em>Language Support</em> &gt; ‘Keyboard input method system’ change to fcitx and add <em>chinese</em> by <em>Install/Remove Languages</em> &gt; log out &gt; add <em>google pinyin</em> by <em>configure</em> in input button which at the screen top.</p>
+<h1 id="mount-ntfs"><a href="#mount-ntfs" class="headerlink" title="mount ntfs"></a>mount ntfs</h1><p>rename the ntfs disk</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ntfslabel <span class="regexp">/dev/</span>sdxN my_label</span><br></pre></td></tr></table></figure>
+<p>mount the ntfs disk</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/fstab</span><br><span class="line">\\ <span class="builtin-name">add</span> below texts <span class="keyword">in</span> it</span><br><span class="line"><span class="attribute">UUID</span>=04BA87A6BA8792BA /media/database ntfs rw,auto,users,exec,<span class="attribute">nls</span>=utf8,umask=003,gid=46,uid=1000    0   0</span><br></pre></td></tr></table></figure>
+<p>uuid can be found by <code>sudo blkid</code></p>
+<h1 id="install-zoom"><a href="#install-zoom" class="headerlink" title="install zoom"></a>install zoom</h1><p><a href="https://zoom.us/download?os=linux" target="_blank" rel="noopener">Doanload zoom client</a></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sudo</span> gdebi zoom<span class="regexp">*.deb</span></span><br></pre></td></tr></table></figure>
+<h1 id="install-okular"><a href="#install-okular" class="headerlink" title="install okular"></a>install okular</h1><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> install okular</span><br><span class="line"><span class="comment">#uninstall default pdf viewer</span></span><br><span class="line">sudo apt-<span class="builtin-name">get</span> <span class="builtin-name">remove</span> --purge evince</span><br></pre></td></tr></table></figure>
+<h1 id="install-ksnapshot"><a href="#install-ksnapshot" class="headerlink" title="install ksnapshot"></a>install ksnapshot</h1><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> install ksnapshot</span><br></pre></td></tr></table></figure>
+<h1 id="install-dropbox"><a href="#install-dropbox" class="headerlink" title="install dropbox"></a>install dropbox</h1><p><a href="https://www.dropbox.com/install-linux" target="_blank" rel="noopener">Download dropbox</a></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sudo</span> gdebi dropbox<span class="regexp">*.deb</span></span><br><span class="line">dropbox start -i</span><br></pre></td></tr></table></figure>
+<p>Maybe you need a pptp vpn to download complete package when you type <code>dropbox start -i</code>.</p>
+<p>At least,I can’t normally download in the internet environment which built by shadowsocks and chrome proxy(SwithyOmega).</p>
+<p>there is a method to install dropbox without downloading the complete package. <a href="http://blog.csdn.net/Jarlinn/article/details/38867455" target="_blank" rel="noopener">在Ubuntu14.04中，安装Dropbox后怎么在没有连接vpn的情况下启动Dropbox</a></p>
+<p>step 1: </p>
+<p><a href="https://www.dropbox.com/install-linux" target="_blank" rel="noopener">Download dropbox</a></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sudo</span> gdebi dropbox<span class="regexp">*.deb</span></span><br></pre></td></tr></table></figure>
+<p>step 2:</p>
+<p>download daemon <a href="http://www.dropbox.com/download/?plat=lnx.x86_64" target="_blank" rel="noopener">x86_64</a>. Or download from baiduyun(link: <a href="https://pan.baidu.com/s/1geBKJdD" target="_blank" rel="noopener">https://pan.baidu.com/s/1geBKJdD</a> pwd: dfww)</p>
+<p>unzip daemon to root directory.</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xzf dropbox-lnx<span class="selector-class">.x86_64-2</span>.<span class="number">10.28</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span> -C ~/</span><br></pre></td></tr></table></figure>
+<p>step 3:</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> ~/</span><br><span class="line"><span class="string">.dropbox-dist/dropboxd</span></span><br></pre></td></tr></table></figure>
+<p>then you can set the dropbox proxy.</p>
+<p><img src="http://omdhuynsr.bkt.clouddn.com/17-8-5/38492276.jpg" alt></p>
+<p>reference: <a href="http://blog.csdn.net/Jarlinn/article/details/38867455" target="_blank" rel="noopener">在Ubuntu14.04中，安装Dropbox后怎么在没有连接vpn的情况下启动Dropbox</a></p>
+<h1 id="install-wps"><a href="#install-wps" class="headerlink" title="install wps"></a>install wps</h1><p>download latest wps and install. <a href="http://community.wps.cn/download/" target="_blank" rel="noopener">download wps</a></p>
+<p><a href="http://www.cnblogs.com/liangml/p/5969404.html" target="_blank" rel="noopener">WPS for Linux（ubuntu）字体配置(字体缺失解决办法)</a></p>
+<h1 id="install-gnome3"><a href="#install-gnome3" class="headerlink" title="install gnome3"></a>install gnome3</h1><p>when I install gnome3,some problems arise.I can’t address it yet!</p>
+<h1 id="set-thunderbird"><a href="#set-thunderbird" class="headerlink" title="set thunderbird"></a>set thunderbird</h1><p>It’s easy.</p>
+<h1 id="install-rar"><a href="#install-rar" class="headerlink" title="install rar"></a>install rar</h1><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> install unrar</span><br></pre></td></tr></table></figure>
+<h1 id="install-filezilla"><a href="#install-filezilla" class="headerlink" title="install filezilla"></a>install filezilla</h1><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo<span class="built_in"> add-apt-repository </span>ppa:n-muench/programs-ppa</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install filezilla</span><br></pre></td></tr></table></figure>
+<h1 id="install-Xournal"><a href="#install-Xournal" class="headerlink" title="install Xournal"></a>install Xournal</h1><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo<span class="built_in"> add-apt-repository </span>ppa:nilarimogard/webupd8</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install xournal</span><br></pre></td></tr></table></figure>
+<h1 id="install-wechart"><a href="#install-wechart" class="headerlink" title="install wechart"></a>install wechart</h1><p><a href="https://github.com/geeeeeeeeek/electronic-wechat/releases" target="_blank" rel="noopener">download wechart</a></p>
+<p>unzip it and double click <em>electronic-wechat</em>.</p>
+<h1 id="install-wineqq"><a href="#install-wineqq" class="headerlink" title="install wineqq"></a>install wineqq</h1><p>download <a href="http://www.ubuntukylin.com/application/show.php?lang=cn&amp;id=279" target="_blank" rel="noopener">winQQ国际版下载地址</a> and unzip it, then use below commands by order because of the dependency relationship:</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -<span class="selector-tag">i</span> ./fonts-wqy-microhei_0.<span class="number">2.0</span>-beta-<span class="number">2</span>_all.deb</span><br><span class="line">sudo dpkg -<span class="selector-tag">i</span> ./ttf-wqy-microhei_0.<span class="number">2.0</span>-beta-<span class="number">2</span>_all.deb</span><br><span class="line">sudo dpkg -<span class="selector-tag">i</span> ./wine-qqintl_0.<span class="number">1.3</span>-<span class="number">2</span>_i386.deb</span><br></pre></td></tr></table></figure>
+<p>if you encounter problems, you can browse <a href="http://blog.csdn.net/fuchaosz/article/details/51919607" target="_blank" rel="noopener">Ubuntu 16.04 安装QQ解决方案</a></p>
+<h1 id="install-download-tool"><a href="#install-download-tool" class="headerlink" title="install download tool"></a>install download tool</h1><ul>
+<li>install Xware(迅雷)</li>
+</ul>
+<p><a href="http://forum.ubuntu.org.cn/viewtopic.php?t=461341" target="_blank" rel="noopener">xware deb 64位</a></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">sudo</span> <span class="selector-tag">gdebi</span> <span class="selector-tag">xware-desktop_</span>??????<span class="selector-class">.deb</span></span><br></pre></td></tr></table></figure>
+<p><a href="http://www.ubuntukylin.com/ukylin/forum.php?mod=viewthread&amp;tid=12324" target="_blank" rel="noopener">使用说明</a></p>
+<h1 id="install-vlc"><a href="#install-vlc" class="headerlink" title="install vlc"></a>install vlc</h1><p><a href="http://www.linuxdiyf.com/linux/22727.html" target="_blank" rel="noopener">install vlc</a></p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo<span class="built_in"> add-apt-repository </span>ppa:videolan/master-daily</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install vlc</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/28/machine learning/NLP/WMD/" rel="next" title="WMD">
+                <i class="fa fa-chevron-left"></i> WMD
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/28/development/datacenter/Detecting Large-Scale System Problems by Mining Console Logs/" rel="prev" title="Detecting Large-Scale System Problems by Mining Console Logs">
+                Detecting Large-Scale System Problems by Mining Console Logs <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">muzhen</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">358</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">113</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#download-ubuntu-iso-and-make-boot-disk"><span class="nav-number">1.</span> <span class="nav-text">download ubuntu.iso and make boot disk</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-terminator"><span class="nav-number">2.</span> <span class="nav-text">install terminator</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-vim-amp-gdebi"><span class="nav-number">3.</span> <span class="nav-text">install vim &amp; gdebi</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-shadowsocks"><span class="nav-number">4.</span> <span class="nav-text">install shadowsocks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-chrome"><span class="nav-number">5.</span> <span class="nav-text">install chrome</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-git"><span class="nav-number">6.</span> <span class="nav-text">install git</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-vscode"><span class="nav-number">7.</span> <span class="nav-text">install vscode</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-fcitx"><span class="nav-number">8.</span> <span class="nav-text">install fcitx</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mount-ntfs"><span class="nav-number">9.</span> <span class="nav-text">mount ntfs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-zoom"><span class="nav-number">10.</span> <span class="nav-text">install zoom</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-okular"><span class="nav-number">11.</span> <span class="nav-text">install okular</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-ksnapshot"><span class="nav-number">12.</span> <span class="nav-text">install ksnapshot</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-dropbox"><span class="nav-number">13.</span> <span class="nav-text">install dropbox</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-wps"><span class="nav-number">14.</span> <span class="nav-text">install wps</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-gnome3"><span class="nav-number">15.</span> <span class="nav-text">install gnome3</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#set-thunderbird"><span class="nav-number">16.</span> <span class="nav-text">set thunderbird</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-rar"><span class="nav-number">17.</span> <span class="nav-text">install rar</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-filezilla"><span class="nav-number">18.</span> <span class="nav-text">install filezilla</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-Xournal"><span class="nav-number">19.</span> <span class="nav-text">install Xournal</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-wechart"><span class="nav-number">20.</span> <span class="nav-text">install wechart</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-wineqq"><span class="nav-number">21.</span> <span class="nav-text">install wineqq</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-download-tool"><span class="nav-number">22.</span> <span class="nav-text">install download tool</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-vlc"><span class="nav-number">23.</span> <span class="nav-text">install vlc</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">muzhen</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
