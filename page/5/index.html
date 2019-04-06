@@ -285,6 +285,382 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2018/07/10/machine learning/NN/tensorflow函数说明/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/07/10/machine learning/NN/tensorflow函数说明/" class="post-title-link" itemprop="url">tensorflow函数说明</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-07-10 22:04:23" itemprop="dateCreated datePublished" datetime="2018-07-10T22:04:23+08:00">2018-07-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/NN/" itemprop="url" rel="index"><span itemprop="name">NN</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="tf-nn-embedding-lookup-amp-tf-nn-embedding-lookup-sparse"><a href="#tf-nn-embedding-lookup-amp-tf-nn-embedding-lookup-sparse" class="headerlink" title="tf.nn.embedding_lookup&amp;tf.nn.embedding_lookup_sparse"></a>tf.nn.embedding_lookup&amp;tf.nn.embedding_lookup_sparse</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">tf.nn.embedding_lookup(</span><br><span class="line">    params,</span><br><span class="line">    ids,</span><br><span class="line">    partition_strategy=<span class="string">'mod'</span>,</span><br><span class="line">    name=<span class="keyword">None</span>,</span><br><span class="line">    validate_indices=<span class="keyword">True</span>,</span><br><span class="line">    max_norm=<span class="keyword">None</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">tf.nn.embedding_lookup_sparse(</span><br><span class="line">    params,</span><br><span class="line">    sp_ids,</span><br><span class="line">    sp_weights,</span><br><span class="line">    partition_strategy=<span class="string">'mod'</span>,</span><br><span class="line">    name=<span class="keyword">None</span>,</span><br><span class="line">    combiner=<span class="keyword">None</span>,</span><br><span class="line">    max_norm=<span class="keyword">None</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>params是embedding的参数tensor（设为$F*K$），ids是指明索引的tensor， sp_ids是指明索引的sparse_tensor。</p>
+<p>函数的目的是根据索引来进行embedding tensor的按第一维度切片。</p>
+<p>如果ids是一维张量N，就是按ids寻找index对应元素，返回tensor是$N*K$。</p>
+<p>如果是ids二维张量$N<em>M$，则是按照第二维度寻找index对应元素，寻找N次，组合后返回就是$N</em>M*K$。</p>
+<p>在embedding_lookup_sparse中，则是根据稀疏矩阵sp_ids（设为$N<em>M$）来寻找index对应元素。不同点在于，按照index找到的元素需要根据combiner参数指定的方式来进行聚合操作，最终变成$(K,)$的tensor。因此完整的返回是$N</em>K$</p>
+<p>另外需要注意的是partition_strategy参数。当params为多个tensor构成的list（实际上会合并成一个大tensor）时，该参数负责指定合并后大tensor的index编排方法。list的长度为分区数，设为p。总元素数量（第一维度总长度）设为$id+1$。</p>
+<p>在div情况下就按照顺序来排index；</p>
+<p>在mod情况下，每个分区的基本元素数量为$id //p$，由于不一定能够整除，前$(id+ 1) \% p$个分区的元素数量加一。那么index的编排就是</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">params = [<span class="number">2</span>*<span class="number">4</span>, <span class="number">2</span>*<span class="number">4</span>, <span class="number">3</span>*<span class="number">4</span>]</span><br><span class="line">三个分区，每个分区的基本元素数为<span class="number">6</span>//<span class="number">3</span>=<span class="number">2</span>, 前<span class="number">7</span>%<span class="number">3</span>=<span class="number">1</span>个分区元素数量加一</span><br><span class="line">重新编排后就是</span><br><span class="line">[<span class="number">3</span>*<span class="number">4</span>, <span class="number">2</span>*<span class="number">4</span>, <span class="number">2</span>*<span class="number">4</span>]</span><br><span class="line">他们的index则是</span><br><span class="line">[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>]*<span class="number">3</span>+<span class="number">0</span>, [<span class="number">0</span>,<span class="number">1</span>]*<span class="number">3</span>+<span class="number">1</span>, [<span class="number">0</span>,<span class="number">1</span>]*<span class="number">3</span>+<span class="number">2</span>, 即是</span><br><span class="line">[<span class="number">0</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>]。</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2018/07/03/machine learning/cv/End-to-End Learning of Motion Representation for Video Understanding/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/07/03/machine learning/cv/End-to-End Learning of Motion Representation for Video Understanding/" class="post-title-link" itemprop="url">End-to-End Learning of Motion Representation for Video Understanding</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-07-03 17:10:32" itemprop="dateCreated datePublished" datetime="2018-07-03T17:10:32+08:00">2018-07-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/cv/" itemprop="url" rel="index"><span itemprop="name">cv</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>人工抽取的光流特征被广泛的应用在视频分析问题上，并没有能够end-to-end。本文提出TVNet解决这个问题。</p>
+<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p>现有的光流特征提取方法有效但是运算低效。存在一些显著的缺点：</p>
+<ul>
+<li>训练分为两步。先抽取光流特征在训练，不是end-to-end</li>
+<li>光流特征抽取时间和空间资源占用很大</li>
+</ul>
+<p>为了处理这些问题，通过模仿和展开TV-L1的迭代优化过程，文章提出了TVNet。特别的，我们将TV-L1的迭代方法做成了nn的一个自定义层。结果是：</p>
+<ul>
+<li>TVNet可以直接使用，而不需要基于标注好的光流数据进行额外训练</li>
+<li>TVNet可以end-to-end，不需要预计算和存储光流特征</li>
+<li>由于网络直接和label关联，因此可以进一步自动学习光流抽取器的参数，使得特征更加丰富和task-specific</li>
+</ul>
+<h1 id="2-Related-Work"><a href="#2-Related-Work" class="headerlink" title="2. Related Work"></a>2. Related Work</h1><p>有许多深度构架的尝试去学习视频的运动特征，主要有两个大方向：</p>
+<ul>
+<li>将2D卷积扩展到3D，但这样会计算量大、对数据量要求高</li>
+<li>two-stream networks，训练两个网络，一个使用图像（i.e. RGB）数据，一个使用手工运动特征例如光流来表征运动模式</li>
+</ul>
+<p>光流特征抽取一般使用cnn，需要大量的成本高昂的光流标注数据。</p>
+<p>近期，FlowNet被提出，它通过单个网络，利用合成的真实数据来学习光流特征和行为识别。</p>
+<h1 id="3-Notations-and-background"><a href="#3-Notations-and-background" class="headerlink" title="3. Notations and background"></a>3. Notations and background</h1><h2 id="3-1-Notations"><a href="#3-1-Notations" class="headerlink" title="3.1 Notations"></a>3.1 Notations</h2><p>视频是一个图像序列，定义$I_t(x,y)$为像素亮度函数，$x$，$y$为平面坐标，$t$为时间，$I$为亮度。</p>
+<h2 id="3-2-The-TV-L1-method"><a href="#3-2-The-TV-L1-method" class="headerlink" title="3.2 The TV-L1 method"></a>3.2 The TV-L1 method</h2><p>在现有的估计光流的方法中，TV-L1很好的实现了效率和精度之间的平衡。</p>
+<p>min  (|∇u (x)| + |∇u (x)|) + λ|ρ(u(x))|<br>$$<br>\min_{u(\bold x), \bold x\in \Omega} \sum_{\bold x \in \Omega}()<br>$$</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2018/06/25/pansee/book review/宽容——房龙/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3650,360 +4026,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2018/04/29/pansee/film review/犬之岛——韦斯·安德森/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/04/29/pansee/film review/犬之岛——韦斯·安德森/" class="post-title-link" itemprop="url">犬之岛——韦斯·安德森</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-04-29 14:10:09" itemprop="dateCreated datePublished" datetime="2018-04-29T14:10:09+08:00">2018-04-29</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/film-review/" itemprop="url" rel="index"><span itemprop="name">film review</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>电影名：犬之岛</p>
-<p>导演： 韦斯·安德森</p>
-<p>评分： 7</p>
-<p>剧情： 小林家族非常厌恶狗，并设计了一场狗流感阴谋将所有的狗流放到垃圾岛，并妄图引起公愤，从而彻底消灭狗。小林家的义子前往狗岛寻找自己的爱犬，并最终揭露小林家的阴谋。</p>
-<p>节奏感非常棒。然而人狗关系的处理很庸俗。人驯养狗，狗服从人。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2018/04/29/pansee/film review/头号玩家——史蒂文·斯皮尔伯格/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/04/29/pansee/film review/头号玩家——史蒂文·斯皮尔伯格/" class="post-title-link" itemprop="url">头号玩家——史蒂文·斯皮尔伯格</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-04-29 14:04:58" itemprop="dateCreated datePublished" datetime="2018-04-29T14:04:58+08:00">2018-04-29</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/film-review/" itemprop="url" rel="index"><span itemprop="name">film review</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>电影名：头号玩家</p>
-<p>导演： 史蒂文·斯皮尔伯格</p>
-<p>评分： 0</p>
-<p>剧情： 未来，人类沉醉于虚拟游戏之中。虚拟游戏发明人去世，在游戏中留下彩蛋，找到的人可以继承他的股权。一家游戏道具公司积极寻找，希望借此掌控虚拟游戏。一群彩蛋猎人与之竞赛，最终胜利。</p>
-<p>该电影唯一的出彩之处可能就是历史游戏彩蛋的集结了。然而这样的杂糅是无法形成一部好电影的。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -4050,7 +4072,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">347</span>
+                    <span class="site-state-item-count">358</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

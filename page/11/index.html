@@ -285,6 +285,2007 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/10/01/spark/spark入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/10/01/spark/spark入门/" class="post-title-link" itemprop="url">spark入门</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-10-01 20:18:34" itemprop="dateCreated datePublished" datetime="2017-10-01T20:18:34+08:00">2017-10-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/spark/" itemprop="url" rel="index"><span itemprop="name">spark</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="ubuntu-安装-virtualbox-无需安装"><a href="#ubuntu-安装-virtualbox-无需安装" class="headerlink" title="ubuntu 安装 virtualbox(无需安装)"></a>ubuntu 安装 virtualbox(无需安装)</h1><p><a href="https://www.virtualbox.org/wiki/Linux_Downloads" target="_blank" rel="noopener">Download VirtualBox for Linux Hosts</a>，根据自己系统选择对应版本进行下载。</p>
+<p>考虑到docker更为方便，virtualbox其实并没有安装必要。</p>
+<h1 id="安装spark"><a href="#安装spark" class="headerlink" title="安装spark"></a>安装spark</h1><p>参照<a href="http://maxmelnick.com/2016/06/04/spark-docker.html" target="_blank" rel="noopener">Quick-start Apache Spark Environment Using Docker Containers</a></p>
+<p>这里采用一个现成的docker镜像——<code>jupyter/pyspark-notebook</code>进行安装。</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p <span class="number">8888</span><span class="symbol">:</span><span class="number">8888</span> -v <span class="variable">$PWD</span><span class="symbol">:/home/jovyan/work</span> --name spark jupyter/pyspark-notebook</span><br></pre></td></tr></table></figure>
+<p>其中$PWD为运行命令的当前路径，你可以按照自己的习惯创建一个文件夹和docker容器中的<code>/home/jovyan/work</code>进行映射，该路径为jupyter的工作目录。</p>
+<p>docker容器启动后通过<code>docker exec -it spark bash</code>进入容器内部，然后利用<code>jupyter notebook list</code>获取token。</p>
+<p>通过chrome登入<code>http://localhost:8888</code>，密码就是刚刚得到的token。下面就可以使用spark了。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/09/28/development/environment/vscode快捷键/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/09/28/development/environment/vscode快捷键/" class="post-title-link" itemprop="url">vscode快捷键</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-09-28 22:09:12" itemprop="dateCreated datePublished" datetime="2017-09-28T22:09:12+08:00">2017-09-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>打开侧边栏： ctrl+shift+e<br>隐藏侧边栏： ctrl+b<br>全局搜素： ctrl+shift+f</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/09/26/machine learning/NLP/LDA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/09/26/machine learning/NLP/LDA/" class="post-title-link" itemprop="url">LDA</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-09-26 17:24:27" itemprop="dateCreated datePublished" datetime="2017-09-26T17:24:27+08:00">2017-09-26</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <script type"text javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+<h1 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h1><p>可以理解为将相似的词归类为一个特定主题</p>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://blog.csdn.net/huagong_adu/article/details/7937616" target="_blank" rel="noopener">主题模型-LDA浅析</a></p>
+<p><a href="http://blog.csdn.net/yt71656/article/details/50016067" target="_blank" rel="noopener">如何确定LDA的topic个数</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/09/26/machine learning/NLP/gensim w2v/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/09/26/machine learning/NLP/gensim w2v/" class="post-title-link" itemprop="url">gensim w2v</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-09-26 14:00:39" itemprop="dateCreated datePublished" datetime="2017-09-26T14:00:39+08:00">2017-09-26</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="使用迭代器进行语料传输"><a href="#使用迭代器进行语料传输" class="headerlink" title="使用迭代器进行语料传输"></a>使用迭代器进行语料传输</h1><p>gensim word2vec输入是句子序列。每个句子是由单词组成的list。</p>
+<p>支持逐条处理，因此可以迭代器来减少内存损耗：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">mysentences</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,dirname)</span>:</span></span><br><span class="line">        self.dirname = dirname</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__iter__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> subdir <span class="keyword">in</span> os.listdir(self.dirname):</span><br><span class="line">            <span class="keyword">if</span> subdir[<span class="number">0</span>] == <span class="string">'.'</span>:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">for</span> fname <span class="keyword">in</span> os.listdir(os.path.join(self.dirname,subdir)):</span><br><span class="line">                <span class="keyword">with</span> open(os.path.join(self.dirname,subdir,fname)) <span class="keyword">as</span> f:</span><br><span class="line">                    ft = f.read()</span><br><span class="line">                    <span class="keyword">try</span>:</span><br><span class="line">                        ft = ft.split(<span class="string">'【 正  文 】\n'</span>,<span class="number">2</span>)[<span class="number">1</span>]</span><br><span class="line">                    <span class="keyword">except</span>:</span><br><span class="line">                        <span class="keyword">pass</span></span><br><span class="line">                    <span class="keyword">for</span> line <span class="keyword">in</span> ft.split(<span class="string">'。'</span>):</span><br><span class="line">                        l = <span class="string">' '</span>.join(jieba.cut(line))</span><br><span class="line">                        l = <span class="string">''</span>.join(re.findall(<span class="string">u'[\u4e00-\u9fff ]+'</span>, l))</span><br><span class="line">                        <span class="keyword">yield</span> l.strip().split()</span><br></pre></td></tr></table></figure>
+<p>注意，必须使用class的_iter__方法来形成迭代器，不然即使用yield也只是生成器，传进w2v中会报错。</p>
+<h1 id="匹配词向量和相对应的单词"><a href="#匹配词向量和相对应的单词" class="headerlink" title="匹配词向量和相对应的单词"></a>匹配词向量和相对应的单词</h1><figure class="highlight stan"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#zip the two lists containing vectors and words</span></span><br><span class="line">zipped = zip(<span class="title">model</span>.wv.index2word, <span class="title">model</span>.wv.syn0)</span><br><span class="line"></span><br><span class="line"><span class="comment">#the resulting list contains `(word, wordvector)` tuples. We can extract the entry for any `word` or `vector` (replace with the word/vector you're looking for) using a list comprehension:</span></span><br><span class="line">wordresult = [i <span class="name">for</span> i <span class="name">in</span> zipped <span class="name">if</span> i[<span class="number">0</span>] == word]</span><br><span class="line">vecresult = [i <span class="name">for</span> i <span class="name">in</span> zipped <span class="name">if</span> i[<span class="number">1</span>] == <span class="selector-tag">vector</span>]</span><br></pre></td></tr></table></figure>
+<p>model.wv.index2word（词列表） 和 model.wv.syn0（词向量矩阵）在位置上已经是一一对应的了。</p>
+<h1 id="增量训练"><a href="#增量训练" class="headerlink" title="增量训练"></a>增量训练</h1><p>如果已经有一个训练好的词向量模型,那么在读取之后可以使用train方法进行进一步训练，但是如果新语料中出现了新词，无法被训练到，只是能够进一步修改已存在词的词向量。以及，train方法需要指定一些参数，不然会报错。具体需要制定的参数看函数说明。</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">model = gensim.models.Word2Vec(corpus, min_count=<span class="number">1</span>)</span><br><span class="line">model.save(<span class="string">'/home/muzhen/mymodel'</span>)</span><br><span class="line"><span class="keyword">new</span><span class="type">_model</span> = gensim.models.Word2Vec.load(<span class="string">'/home/muzhen/mymodel'</span>)</span><br><span class="line">matrix = model.wv.syn0</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span><span class="type">_model</span>.train(<span class="keyword">new</span><span class="type">_corpus</span>, total_examples=len(<span class="keyword">new</span><span class="type">_tl</span>), epochs=<span class="number">10</span>)</span><br><span class="line"><span class="keyword">new</span><span class="type">_matrix</span> = <span class="keyword">new</span><span class="type">_model</span>.wv.syn0</span><br><span class="line"></span><br><span class="line">(matrix == <span class="keyword">new</span><span class="type">_matrix</span>).all()</span><br></pre></td></tr></table></figure>
+<p>另外，<code>new_model.build_vocab(new_tl, update=True)</code>方法我实验后发现无效，并不能增加新词。另外，有看到<code>model.update_vocab(new_sentences)</code>方法，至少在gensim 2.3.1版本中没有这个方法。</p>
+<h1 id="references"><a href="#references" class="headerlink" title="references:"></a>references:</h1><p><a href="http://blog.csdn.net/Star_Bob/article/details/47808499" target="_blank" rel="noopener">Gensim Word2vec 使用教程</a></p>
+<p><a href="http://www.cnblogs.com/iloveai/p/gensim_tutorial2.html" target="_blank" rel="noopener">Gensim进阶教程：训练word2vec与doc2vec模型</a></p>
+<p><a href="https://stackoverflow.com/questions/38665556/matching-words-and-vectors-in-gensim-word2vec-model" target="_blank" rel="noopener">Matching words and vectors in gensim Word2Vec model</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/09/26/machine learning/machine learning/pagerank/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/09/26/machine learning/machine learning/pagerank/" class="post-title-link" itemprop="url">pagerank</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-09-26 13:44:31" itemprop="dateCreated datePublished" datetime="2017-09-26T13:44:31+08:00">2017-09-26</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/machine-learning/" itemprop="url" rel="index"><span itemprop="name">machine learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>pagerank算法是为了分析网页排名（PR值）。可以想象：</p>
+<ul>
+<li>网页被其他网页指向次数越多，越重要</li>
+<li>排名高的网页具有更大的表决权，换言之，具有更大的权重</li>
+</ul>
+<p>所以，pagerank的原理就是： 一个网页的排名等于所有链接到该网页的网页的排名加权和。</p>
+<p>显然，这样的排名相较于根据关键词在网页中出现次数的搜索更为客观。</p>
+<p>但是，每个网页应该只能投一票。因此，如果一个网页链接到10个网页，那么它对每个网页的贡献就是其自身排名的1/10。</p>
+<p>由于每个网页排名取决于其他，因此就存在“鸡生蛋蛋生鸡”的问题。通过赋初值，然后求收敛值的方法来求解。pagerank是否有解通过以下两点来决定：</p>
+<ul>
+<li>是否存在收敛值</li>
+<li>收敛极限是否与初值有关</li>
+</ul>
+<p>这样，问题也就转化成了Markov过程的收敛性证明。若要收敛，需要状态转移矩阵满足3个条件：</p>
+<ul>
+<li>是随机矩阵，严格的说是每一列的矩阵元素非负、之和为1（随机矩阵并非只有这一种形式）</li>
+<li>不可约，即矩阵对应有向图必须强连通，对于任意两个节点存在连通路径</li>
+<li>非周期，每个节点存在自回路</li>
+</ul>
+<p>当我们假设用户可以一定概率不根据状态转移矩阵而是随机访问（等概率访问）每个网页时，不可约和非周期就得到了满足。这个假设的现实意义就是用户不通过链接进行跳转而是直接在地址栏输入网址进行访问。</p>
+<h1 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h1><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>是一个与查询无关的静态算法，所有网页的PageRank值通过离线计算获得；有效减少在线查询时的计算量，极大降低了查询响应时间。</p>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ol>
+<li><p>人们的查询具有主题特征，PageRank忽略了主题相关性，导致结果的相关性和主题性降低</p>
+</li>
+<li><p>没有区分站内导航链接。很多网站的首页都有很多对站内其他页面的链接，称为站内导航链接。这些链接与不同网站之间的链接相比，肯定是后者更能体现PageRank值的传递关系。</p>
+</li>
+<li><p>没有过滤广告链接和功能链接（例如常见的“分享到微博”）。这些链接通常没有什么实际价值，前者链接到广告页面，后者常常链接到某个社交网站首页。</p>
+</li>
+<li><p>对新网页不友好。一个新网页的一般入链相对较少，即使它的内容的质量很高，要成为一个高PR值的页面仍需要很长时间的推广。</p>
+</li>
+</ol>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Created on Sat Sep  2 18:52:27 2017</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">@author: muzhen</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># transition matrix a, a[i][j] represents whether web j exists link to web i or not.</span></span><br><span class="line">a = np.array([[<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">              [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">              [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">              [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>]], dtype=float)</span><br><span class="line"></span><br><span class="line"><span class="comment"># compute the transition probability matrix</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">graphmove</span><span class="params">(a)</span>:</span></span><br><span class="line">    b = np.sum(a, axis=<span class="number">0</span>)</span><br><span class="line">    c = a / b</span><br><span class="line">    <span class="keyword">return</span> c</span><br><span class="line">    </span><br><span class="line"><span class="comment"># init probability vector which represents the probability user in each web at first.</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">firstPr</span><span class="params">(c)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> np.full((c.shape[<span class="number">0</span>],<span class="number">1</span>), <span class="number">1.0</span>/c.shape[<span class="number">1</span>])</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pagerank</span><span class="params">(c,pr,b)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        b is the prob user changes web by transition matrix, (1 - b) is the prob user changes web accordding to probability vector.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    pr_init = pr</span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        pr_new = b * np.dot(c, pr) + (<span class="number">1</span> - b) * pr_init</span><br><span class="line">        <span class="keyword">if</span> (pr == pr_new).all() == <span class="keyword">True</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            pr = pr_new</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> pr_new</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:o</span><br><span class="line"></span><br><span class="line">    c = graphmove(a)</span><br><span class="line">    pr = firstPr(c)</span><br><span class="line">    b = <span class="number">0.85</span></span><br><span class="line">    pr = pagerank(c, pr, b)</span><br><span class="line">    print(pr)</span><br></pre></td></tr></table></figure>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://blog.csdn.net/hguisu/article/details/7996185" target="_blank" rel="noopener">PageRank算法</a></p>
+<p><a href="http://blog.csdn.net/lanchunhui/article/details/50618566" target="_blank" rel="noopener">随机矩阵（stochastic matrix）与 PageRank</a></p>
+<p><a href="http://www.cnblogs.com/en-heng/p/6124526.html" target="_blank" rel="noopener">【十大经典数据挖掘算法】PageRank</a></p>
+<p><a href="http://www.cnblogs.com/rubinorth/p/5799848.html" target="_blank" rel="noopener">PageRank算法–从原理到实现</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/09/25/machine learning/dimensionality reduction/SNE与t-SNE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/09/25/machine learning/dimensionality reduction/SNE与t-SNE/" class="post-title-link" itemprop="url">SNE与t-SNE</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-09-25 17:15:53" itemprop="dateCreated datePublished" datetime="2017-09-25T17:15:53+08:00">2017-09-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/dimensionality-reduction/" itemprop="url" rel="index"><span itemprop="name">dimensionality reduction</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h1><p>本文是对 <a href="http://bindog.github.io/blog/2016/06/04/from-sne-to-tsne-to-largevis/" target="_blank" rel="noopener">从SNE到t-SNE再到LargeVis</a> 的阅读笔记。</p>
+<h1 id="SNE"><a href="#SNE" class="headerlink" title="SNE"></a>SNE</h1><p>SNE原理是希望尽可能保存原数据的空间结构。</p>
+<p>它利用条件概率来描述两个点之间的距离，距离越近，概率越大。之所以如此是因为直接使用欧式距离并不合适。[TBC]<br>\begin{split} p_{j|i} = \frac{\exp ((- \Vert x_i - x_j \Vert)^2)/2 \sigma^2}{\sum_{k \neq i} \exp ((- \Vert x_i - x_k \Vert)^2)/2 \sigma^2}\end{split}<br>其中 \(\sigma_i\) 是以 $x_i$ 为中心点的高斯分布的方差。设定 $p_{i|i} = 0$  。<br>降维后对应 \( y_i\) 点的条件分布相似定义，但是方差直接定为 \(\frac{1}{\sqrt{2}}\) ，有：<br>\begin{split} q_{j|i} = \frac{\exp ((- \Vert y_i - y_j \Vert)^2)}{\sum_{k \neq i} \exp ((- \Vert y_i - y_k \Vert)^2)}\end{split}</p>
+<p>我们希望降维后点的条件概率分布应当尽可能与原数据条件概率一致。故而选择KL散度作为代价函数。<br>\begin{split} C =  \sum_i KL(P_i \Vert Q_i) = \sum_i \sum_j p_{j|i} \log \frac{p_{j|i}}{q_{j|i}}\end{split}<br>但是由于KL的不对称性，会出现一个问题：当p大q小时，代价较高，反之，则代价较低。因此代价函数更关注局部结构而忽视了全局结构。</p>
+<h1 id="t-SNE"><a href="#t-SNE" class="headerlink" title="t-SNE"></a>t-SNE</h1><p>t-SNE解决了SNE的两个问题：对称性和拥挤问题。</p>
+<p>先看对称性。（我并没有理解它是如何解决KL不对称带来的代价函数不对称性的[TBC]）<br>在SNE中，$p_{i|j}$ 和 $p_{j|i}$ 是不对等的，降维后的空间中也是如此。因此现在我们寻找一个满足对称性的联合概率分布：<br>\begin{split} q_{ij} = \frac{\exp ((- \Vert y_i - y_j \Vert)^2)}{\sum_{k \neq l} \exp ((- \Vert y_l - y_k \Vert)^2)}\end{split}</p>
+<p>那么，在原空间是否也可以这样定义呢？如果这样，考虑一个离群点 $x_i$ ,那么对任意j， $p_{ij}$ 都会较小，从而不管降维后处于什么位置，代价都不会太大。<br>故而采用更简单直观的方式进行定义：<br>\begin{split} p_{ij} = \frac{p_{j|i} + p_{i|j}}{2n}\end{split}<br>代价函数为：<br>\begin{split} C =  \sum_i KL(P_i \Vert Q_i) = \sum_i \sum_j p_{ij} \log \frac{p_{ij}}{q_{ij}}\end{split}</p>
+<p>在来看拥挤问题的解决。<br>在SNE时，虽然可以区分出不同类，但是类间边界并不明显，不同类依旧簇拥在一起，这就是拥挤问题。</p>
+<p>通过对降维数据使用自由度为1的t分布描述条件概率，就可以解决这个问题。<br>\begin{split} q_{ij} = \frac{(1 + (\Vert y_i - y_j \Vert)^2)^{-1}}{\sum_{k \neq l} （1 + (\Vert y_k - y_l \Vert)^2)^{-1}}\end{split}<br>原数据空间依旧使用高斯分布。</p>
+<p>我们通过以下两幅图来描述使用t分布的好处。</p>
+<p>首先，t分布是长尾分布，对于边缘异常值不敏感，因此可以更好的捕捉全局特征。<br><img src="http://i4.buimg.com/567571/962ae3921b331a8f.png" alt></p>
+<p>其次，高斯分布转t分布，可以使得邻近点间距离更近，距离大的点间距离更大，从而有效分离不同类。<br><img src="http://i1.piimg.com/567571/f26982cc085019a5.png" alt></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/09/24/pansee/book review/《老人与海》/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/09/24/pansee/book review/《老人与海》/" class="post-title-link" itemprop="url">《老人与海》</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-09-24 17:44:20" itemprop="dateCreated datePublished" datetime="2017-09-24T17:44:20+08:00">2017-09-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/book-review/" itemprop="url" rel="index"><span itemprop="name">book review</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>《老人与海》——海明威</p>
+<p>我并没有读过多少所谓经典外国小说，比如《红与黑》之流。我从翻开书页的起初就厌倦于这些小说华美的文笔，对于环境、人物的精致刻画。曾经着迷于村上春树、昆德拉干净或者说不拖泥带水的文风，带有悬疑色彩的布局和叙述。然而一旦熟悉了这样的套路，看着似曾相识的故事，品着老生常谈的主题，也就只好厌倦。现下我更感兴趣的是《查特莱夫人的情人》这样曾经的禁书，或者陀斯妥耶夫斯基这样尖利的小说。至于《百年孤独》这样的魔幻现实主义，或者乔伊斯的天书，反而无感。毕竟这样的书目往往给我一种无聊书生耍弄奇技淫巧，没事找事之感，但不得不说《霍乱时期的爱情》是本好小说。</p>
+<p>本文的论述中心局限于小说，我并不想涵盖至其他领域书目，特此声明。</p>
+<p>《老人与海》能够带来什么呢？如果是一个十来岁的孩子去读，或许真的可以在不断潜移默化之中学会坚强，学会勇敢这些世人夸耀的英雄品质。然而，这样强行刻意的性格塑造，真的是合适的么？本文也不讨论这个问题，我只关心对于一个有一定思考能力的人，小说应该是怎样的。</p>
+<p>《老人与海》是个很简单的故事，可以从中读出孤独，读出绝望，读出曙光，就好像推着巨石来回往复的普罗米修斯，也好像痛饮美酒的狄奥尼索斯，在苦难中舞蹈、欢笑。然而问题也恰恰在此。普罗米修斯与狄奥尼索斯已经传承千年之久，为什么还要再造一个英雄老人圣迭戈？老人圣迭戈的出现，岂不正意味着普罗米修斯与狄奥尼索斯的失败？那既已失败的又怎能希望重获新生？或许，并不是失败，久远的英雄早已死亡，新的时代需要新的英雄带来光芒。然而，这依旧是很悲哀的事情啊。不管怎样掩饰，这至少是一个看不到跳脱希望的轮回啊。有趣的是，老人圣迭戈最后吐出了些东西。我的理解是，老人吐出了不切实际的英雄主义，吐出了虚幻谵妄的骄傲，回归为一个真实而软弱的个体，终于不用再强做笑颜，强裝坚强。这一点相较于四分五裂的狄奥尼索斯，少了神圣，多了血肉之躯的真实。那么小男孩又代表着什么呢？先人回归尘世，新人却执着于梦想，小男孩或许就是下一个老人圣迭戈。</p>
+<p>虽然时代在发展，然而人的一生思想变化却往往是一种复现。放下高高在上的上帝视角，回归个体本身吧。只是路在何方，依旧迷惘。</p>
+<p>回归小说这一主题。我不想为《老人与海》单独写一篇书评。我不是文学批评家，我写作这是为了理清纷繁思绪。</p>
+<p>我觉得有价值的小说有两种：强化细化一些本不在意或者理解不深的真实生活体悟以及写出一些读者看不到的东西。前者更多的依赖于读者自身的思考，书籍不过是个激发工具。如果无法从生活中捕捉体悟，那么该看的其实应该是厚黑学，哲学之类，而非更加迷幻的小说。毕竟从三两句的段子或者鸡汤中看出圣迭戈实在不难。如此一来，小说真正可以做的其实就是想象空间的延展了。当然，这两个特性并不能绝然的割裂，往往正是通过那想象不到的幽深或者空旷，才能反思真实的生活。</p>
+<p>长久而专注的做一件事就好像马拉松，需要足够的毅力和坚持，以及清晰的逻辑。搁笔。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/09/18/development/linux/ubuntu parsing filters is unsupported/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/09/18/development/linux/ubuntu parsing filters is unsupported/" class="post-title-link" itemprop="url">ubuntu parsing filters is unsupported</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-09-18 21:31:35" itemprop="dateCreated datePublished" datetime="2017-09-18T21:31:35+08:00">2017-09-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="“ubuntu-parsing-filters-is-unsupported”-error-during-extraction-of-file"><a href="#“ubuntu-parsing-filters-is-unsupported”-error-during-extraction-of-file" class="headerlink" title="“ubuntu parsing filters is unsupported” error during extraction of file"></a>“ubuntu parsing filters is unsupported” error during extraction of file</h1><p>solution from <a href="https://askubuntu.com/questions/801426/parsing-filters-unsupported-error-during-extraction-of-rar-file" target="_blank" rel="noopener">“Parsing filters unsupported” error during extraction of RAR file</a>:</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> install unrar</span><br><span class="line">sudo apt-<span class="builtin-name">get</span> install file-roller</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/09/18/development/environment/fastdfs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/09/18/development/environment/fastdfs/" class="post-title-link" itemprop="url">fastdfs</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-09-18 21:27:36" itemprop="dateCreated datePublished" datetime="2017-09-18T21:27:36+08:00">2017-09-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="fastdfs"><a href="#fastdfs" class="headerlink" title="fastdfs"></a>fastdfs</h1><p>因工作需要搭建一个分布式文件系统，用于文件存储。公司的选择是fastdfs。<br>fastdfs上传文件时系统自动指定路径和文件名，因此如果想要传一个文件夹上去。内部的目录结构会被打乱。不会再以完整文件夹形式存储在服务器上。</p>
+<p>fastdfs作者有对fastdfs优缺点和问题做过总结，见 <a href="http://bbs.chinaunix.net/thread-1920470-1-1.html" target="_blank" rel="noopener">FastDFS FAQ</a></p>
+<h1 id="fastdfs-部署"><a href="#fastdfs-部署" class="headerlink" title="fastdfs 部署"></a>fastdfs 部署</h1><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> /<span class="keyword">opt</span> &amp;&amp; <span class="built_in">mkdir</span> fastdfs &amp;&amp; <span class="keyword">cd</span> fastdfs  </span><br><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/happyfish100/fastdfs.git  </span><br><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/happyfish100/libfastcommon.git  </span><br><span class="line"><span class="keyword">cd</span> /<span class="keyword">opt</span>/fastdfs/libfastcommon  </span><br><span class="line">./<span class="keyword">make</span>.<span class="keyword">sh</span> &amp;&amp; ./<span class="keyword">make</span>.<span class="keyword">sh</span> install  </span><br><span class="line"><span class="keyword">cd</span> /<span class="keyword">opt</span>/fastdfs/fastdfs  </span><br><span class="line">./<span class="keyword">make</span>.<span class="keyword">sh</span> &amp;&amp; ./<span class="keyword">make</span>.<span class="keyword">sh</span> install</span><br></pre></td></tr></table></figure>
+<p>安装成功后，FastDFS安装在/usr/bin中。配置文件在/etc/fdfs中。</p>
+<p>配置文件放在/etc/fdfs下面：</p>
+<p>client配置文件：/etc/fdfs/client.conf.sample</p>
+<p>storage配置文件：/etc/fdfs/storage.com.sample</p>
+<p>tracker配置文件：/etc/fdfs/tracker.com.sample</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/fdfs  </span><br><span class="line">mv client<span class="selector-class">.conf</span><span class="selector-class">.sample</span> client<span class="selector-class">.conf</span>  </span><br><span class="line">mv storage<span class="selector-class">.conf</span><span class="selector-class">.sample</span> storage<span class="selector-class">.conf</span>  </span><br><span class="line">mv tracker<span class="selector-class">.conf</span><span class="selector-class">.sample</span> tracker.conf</span><br></pre></td></tr></table></figure>
+<p>如果只是使用python客户端进行文件上传下载操作。应该只需要修改 client.conf 即可。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">base_path</span>=/etc/fdfs</span><br><span class="line"><span class="attr">tracker_server</span>=node2:<span class="number">22122</span>  </span><br><span class="line"><span class="attr">tracker_server</span>=node3:<span class="number">22122</span></span><br></pre></td></tr></table></figure>
+<p>其中tracker_server是master ip。可以只有一个。</p>
+<p>具体安装细节参见 <a href="http://blog.csdn.net/lavorange/article/details/50814086" target="_blank" rel="noopener">【FastDFS分布式文件系统之一】：搭建、部署、配置</a></p>
+<h1 id="fdfs-client-安装和使用"><a href="#fdfs-client-安装和使用" class="headerlink" title="fdfs_client 安装和使用"></a>fdfs_client 安装和使用</h1><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/jefforeilly/fdfs_client-<span class="keyword">py</span>.git</span><br><span class="line"><span class="keyword">cd</span> fdfs_client-<span class="keyword">py</span></span><br><span class="line"><span class="keyword">vi</span> ./fdfs_client/storage_client.<span class="keyword">py</span></span><br><span class="line">将第<span class="number">12</span>行 from fdfs_client.sendfile import * 注释掉</span><br><span class="line"><span class="keyword">python3</span> setup.<span class="keyword">py</span> install</span><br><span class="line"></span><br><span class="line">sudo pip3 install mutagen</span><br></pre></td></tr></table></figure>
+<p>fastdfs python客户端只有python2版本，python3版本需要自己下载源码并且修改代码后安装。</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from fdfs_client.<span class="keyword">client</span> import * </span><br><span class="line"><span class="keyword">client</span> = Fdfs_client(<span class="string">'/etc/fdfs/client.conf'</span>)</span><br><span class="line"><span class="meta"># upload</span></span><br><span class="line"><span class="keyword">client</span>.upload_by_filename(filename)  </span><br><span class="line"><span class="meta"># download</span></span><br><span class="line"><span class="keyword">client</span>.download_to_file(local_filename, remote_file_id)</span><br></pre></td></tr></table></figure>
+<p>其中remote_file_id应该形如<code>group1/M00/00/00/...</code></p>
+<p>具体的并行上传操作参见 <a href="http://blog.csdn.net/lavorange/article/details/50829552" target="_blank" rel="noopener">【FastDFS分布式文件系统之二】：FastDFS小文件上传性能测试及Python客户端上传操作</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/09/18/development/environment/flask_uwsgi_nginx部署/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/09/18/development/environment/flask_uwsgi_nginx部署/" class="post-title-link" itemprop="url">fastdfs</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-09-18 21:27:36" itemprop="dateCreated datePublished" datetime="2017-09-18T21:27:36+08:00">2017-09-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/09/18/machine learning/cv/opencv/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/09/18/machine learning/cv/opencv/" class="post-title-link" itemprop="url">opencv</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-09-18 20:38:49" itemprop="dateCreated datePublished" datetime="2017-09-18T20:38:49+08:00">2017-09-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/cv/" itemprop="url" rel="index"><span itemprop="name">cv</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="查看opencv配置信息"><a href="#查看opencv配置信息" class="headerlink" title="查看opencv配置信息"></a>查看opencv配置信息</h1><figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -<span class="keyword">c</span> <span class="string">"import cv2; print(cv2.getBuildInformation())"</span></span><br></pre></td></tr></table></figure>
+<h1 id="安装opencv"><a href="#安装opencv" class="headerlink" title="安装opencv"></a>安装opencv</h1><p>opencv安装过程需要选择支持ffmpeg，有显卡还需要支持cuda。一般是采用编译安装，安装好后不需要利用pip install方式安装opencv-python，这点非常重要！不然会覆盖先前的opencv安装。</p>
+<p>下面提供一个具有python3.5+cuda+ffmpeg+opencv环境的dockerfile前半部分。该dockerfile学自<a href="https://hub.docker.com/r/valian/docker-python-opencv-ffmpeg/" target="_blank" rel="noopener">valian/docker-python-opencv-ffmpeg</a>，但做了一些修改，已确保能够跑通。</p>
+<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">FROM </span><span class="string">tensorflow/</span><span class="string">tensorflow:1.</span>2.<span class="string">1-devel-</span><span class="string">gpu-py3</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">ENV </span><span class="string">PYTHON_VERSION </span>3.5</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install all dependencies for OpenCV 3.2</span></span><br><span class="line"><span class="string">RUN </span><span class="string">apt-get </span>-y <span class="string">update </span>&amp;&amp; <span class="string">apt-get </span>-y <span class="string">install </span><span class="string">python$</span><span class="string">PYTHON_VERSION-dev </span><span class="string">wget </span><span class="string">unzip </span>\</span><br><span class="line">    <span class="string">build-essential </span><span class="string">cmake </span><span class="string">git </span><span class="string">pkg-config </span><span class="string">libatlas-base-</span><span class="string">dev </span><span class="string">gfortran </span>\</span><br><span class="line">    <span class="string">libjasper-dev </span><span class="string">libgtk2.</span><span class="string">0-dev </span><span class="string">libavcodec-dev </span><span class="string">libavformat-dev </span>\</span><br><span class="line">    <span class="string">libswscale-dev </span><span class="string">libjpeg-dev </span><span class="string">libpng-dev </span><span class="string">libtiff-dev </span><span class="string">libjasper-dev </span><span class="string">libv4l-dev </span>\</span><br><span class="line">    &amp;&amp; <span class="string">wget </span><span class="string">https:</span>//<span class="string">bootstrap.</span><span class="string">pypa.</span><span class="string">io/</span><span class="built_in">get-pip.py</span> &amp;&amp; <span class="string">python3 </span><span class="built_in">get-pip.py</span> &amp;&amp; <span class="string">pip3 </span><span class="string">install </span><span class="string">numpy </span>&amp;&amp; <span class="string">rm </span><span class="built_in">get-pip.py</span> \</span><br><span class="line">    &amp;&amp; <span class="string">wget </span><span class="string">https:</span>//<span class="string">github.</span><span class="string">com/</span><span class="string">Itseez/</span><span class="string">opencv/</span><span class="string">archive/</span>3.2.0.<span class="string">zip </span>-O /<span class="string">opencv3.</span><span class="string">zip </span>\</span><br><span class="line">    &amp;&amp; <span class="string">unzip </span>-q /<span class="string">opencv3.</span><span class="string">zip </span>-d / &amp;&amp; <span class="string">mv </span>/<span class="string">opencv-3.</span>2.0 /<span class="string">opencv </span>&amp;&amp; <span class="string">rm </span>/<span class="string">opencv3.</span><span class="string">zip </span>\</span><br><span class="line">    &amp;&amp; <span class="string">wget </span><span class="string">https:</span>//<span class="string">github.</span><span class="string">com/</span><span class="string">Itseez/</span><span class="string">opencv_contrib/</span><span class="string">archive/</span>3.2.0.<span class="string">zip </span>-O <span class="string">opencv_contrib3.</span><span class="string">zip </span>\</span><br><span class="line">    &amp;&amp; <span class="string">unzip </span>-q <span class="string">opencv_contrib3.</span><span class="string">zip </span>-d / &amp;&amp; <span class="string">mv </span>/<span class="string">opencv_contrib-3.</span>2.0 /<span class="string">opencv_contrib </span>&amp;&amp; <span class="string">rm </span><span class="string">opencv_contrib3.</span><span class="string">zip </span>\</span><br><span class="line"></span><br><span class="line">    <span class="comment"># prepare build</span></span><br><span class="line">    &amp;&amp; <span class="string">mkdir </span>/<span class="string">opencv/</span><span class="string">build </span>&amp;&amp; <span class="string">cd </span>/<span class="string">opencv/</span><span class="string">build </span>\</span><br><span class="line">    &amp;&amp; <span class="string">cmake </span>-D <span class="string">CMAKE_BUILD_TYPE=</span><span class="string">RELEASE </span>\</span><br><span class="line">      -D <span class="string">BUILD_PYTHON_SUPPORT=</span><span class="string">ON </span>\</span><br><span class="line">      -D <span class="string">CMAKE_INSTALL_PREFIX=</span>/<span class="string">usr/</span><span class="string">local </span>\</span><br><span class="line">      -D <span class="string">OPENCV_EXTRA_MODULES_PATH=</span>/<span class="string">opencv_contrib/</span><span class="string">modules </span>\</span><br><span class="line">      -D <span class="string">BUILD_EXAMPLES=</span><span class="string">OFF </span>\</span><br><span class="line">      -D <span class="string">PYTHON_DEFAULT_EXECUTABLE=</span>/<span class="string">usr/</span><span class="string">bin/</span><span class="string">python3 </span>\</span><br><span class="line">      -D <span class="string">BUILD_opencv_python3=</span><span class="string">ON </span>\</span><br><span class="line">      -D <span class="string">BUILD_opencv_python2=</span><span class="string">OFF </span>\</span><br><span class="line">      -D <span class="string">WITH_IPP=</span><span class="string">OFF </span>\</span><br><span class="line">      -D <span class="string">WITH_FFMPEG=</span><span class="string">ON </span>\</span><br><span class="line">      -D <span class="string">WITH_V4L=</span><span class="string">ON </span>\</span><br><span class="line">      -D <span class="string">WITH_CUDA=</span><span class="string">ON </span>.. \</span><br><span class="line"></span><br><span class="line">    <span class="comment"># install</span></span><br><span class="line">    &amp;&amp; <span class="string">cd </span>/<span class="string">opencv/</span><span class="string">build </span>&amp;&amp; <span class="string">make </span>-j$(<span class="string">nproc)</span> &amp;&amp; <span class="string">make </span><span class="string">install </span>&amp;&amp; <span class="string">ldconfig </span>\</span><br><span class="line"></span><br><span class="line">    <span class="comment">#clean</span></span><br><span class="line">    &amp;&amp; <span class="string">apt-get </span>-y <span class="string">remove </span><span class="string">build-essential </span><span class="string">cmake </span><span class="string">git </span><span class="string">pkg-config </span><span class="string">libatlas-base-</span><span class="string">dev </span><span class="string">gfortran </span>\</span><br><span class="line">    <span class="string">libjasper-dev </span><span class="string">libgtk2.</span><span class="string">0-dev </span><span class="string">libavcodec-dev </span><span class="string">libavformat-dev </span>\</span><br><span class="line">    <span class="string">libswscale-dev </span><span class="string">libjpeg-dev </span><span class="string">libpng-dev </span><span class="string">libtiff-dev </span><span class="string">libjasper-dev </span><span class="string">libv4l-dev </span>\</span><br><span class="line">    &amp;&amp; <span class="string">apt-get </span><span class="string">clean </span>\</span><br><span class="line">    &amp;&amp; <span class="string">rm </span>-<span class="string">rf </span>/<span class="string">opencv </span>/<span class="string">opencv_contrib </span>/<span class="string">var/</span><span class="string">lib/</span><span class="string">apt/</span><span class="string">lists/</span>*</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define other commands.</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="https://hub.docker.com/r/valian/docker-python-opencv-ffmpeg/" target="_blank" rel="noopener">valian/docker-python-opencv-ffmpeg</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/09/16/pansee/book review/《中华帝制的衰落》魏斐德/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1909,2295 +3910,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/09/08/development/environment/install ubuntu16.04 on xiaomi AIr/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/09/08/development/environment/install ubuntu16.04 on xiaomi AIr/" class="post-title-link" itemprop="url">install ubuntu16.04 on xiaomi AIr</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-09-08 12:47:18" itemprop="dateCreated datePublished" datetime="2017-09-08T12:47:18+08:00">2017-09-08</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="hardware-environment"><a href="#hardware-environment" class="headerlink" title="hardware environment"></a>hardware environment</h1><p>13.3寸小米笔记本，20176月版，i5-7200u，mx150,8g，256g，指纹识别。</p>
-<h1 id="install-ubuntu16-04"><a href="#install-ubuntu16-04" class="headerlink" title="install ubuntu16.04"></a>install ubuntu16.04</h1><p>首先正常安装。有教程提到需要进bios关闭secure boot，我因为是直接装的ubuntu单系统，不存在这个问题。</p>
-<p>安装好后，发现如下问题：</p>
-<ol>
-<li>无线网不能用</li>
-<li>蓝牙不能用</li>
-<li>指纹识别不能用</li>
-<li>双显卡驱动</li>
-<li>电池只能支撑4h左右（看视频，文本编辑）</li>
-<li>触摸板无法快捷键关闭</li>
-</ol>
-<p>解决方案如下：</p>
-<h2 id="无线网"><a href="#无线网" class="headerlink" title="无线网"></a>无线网</h2><p>编辑blacklist.conf文件：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="keyword">vi</span> /etc/modprobe.d/blacklist.<span class="keyword">conf</span></span><br></pre></td></tr></table></figure>
-<p>在文件最后加上<code>blacklist acer-wmi</code>，重启即可。</p>
-<h2 id="蓝牙"><a href="#蓝牙" class="headerlink" title="蓝牙"></a>蓝牙</h2><p>使用如下命令即可：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget http:<span class="regexp">//mi</span>rrors.kernel.org<span class="regexp">/ubuntu/</span>pool<span class="regexp">/main/</span>l<span class="regexp">/linux-firmware/</span>linux-firmware_1.<span class="number">161.1</span>_all.deb</span><br><span class="line">sudo dpkg -i linux-firmware_1.<span class="number">161.1</span>_all.deb</span><br></pre></td></tr></table></figure>
-<p>参考<a href="https://askubuntu.com/questions/881239/bluetooth-not-working-on-xps-13-9360-running-16-04-1" target="_blank" rel="noopener">Bluetooth not working on XPS 13 9360 running 16.04.1</a></p>
-<h2 id="指纹识别"><a href="#指纹识别" class="headerlink" title="指纹识别"></a>指纹识别</h2><p>暂未解决</p>
-<h2 id="双显卡驱动"><a href="#双显卡驱动" class="headerlink" title="双显卡驱动"></a>双显卡驱动</h2><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装nvidia驱动</span></span><br><span class="line">sudo<span class="built_in"> add-apt-repository </span>ppa:graphics-drivers/ppa</span><br><span class="line">sudo apt-get update </span><br><span class="line">sudo apt-get install nvidia-384</span><br><span class="line"><span class="comment"># 安装双显卡驱动工具</span></span><br><span class="line">sudo apt-get install nvidia-prime</span><br></pre></td></tr></table></figure>
-<p>安装好后启动<code>nvidia x-server settings</code> 切换显卡后注销即可。建议使用核显。</p>
-<p>参考<a href="http://www.linuxidc.com/Linux/2016-05/131553.htm" target="_blank" rel="noopener">为Ubuntu 16.04安装Nvidia驱动解决笔记本发热风扇狂转等问题</a></p>
-<p>我没有使用参考教程中的ppa仓库，安装好后，并没有在系统托盘中出现nvidia-logo图标。可以使用教程中仓库尝试。</p>
-<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo<span class="built_in"> add-apt-repository </span>ppa:mamarley/nvidia</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install nvidia-384 nvidia-prime</span><br></pre></td></tr></table></figure>
-<h2 id="电池耗电"><a href="#电池耗电" class="headerlink" title="电池耗电"></a>电池耗电</h2><p>还没有试过只敲代码情况下的电池耐用情况，用过后补充说明。目前来看不够持久，也达不到官方8h标准。</p>
-<h2 id="触摸板无法快捷键关闭"><a href="#触摸板无法快捷键关闭" class="headerlink" title="触摸板无法快捷键关闭"></a>触摸板无法快捷键关闭</h2><p>首先，该版本笔记本好像本身就没有提供触摸板快捷键，并非系统问题。</p>
-<p>解决方法为自设快捷键。参考<a href="http://blog.csdn.net/hchhbbcxl/article/details/77542975" target="_blank" rel="noopener">小米笔记本12.5英寸装ubuntu后设置快捷键开启和关闭触摸板</a></p>
-<ol>
-<li><p>使用xinput命令查看设备，并找到触摸板对应设备名称和ID。一般其中带有touchpad单词。注意即使关掉触摸板后指针也无法隐去（我尝试过关闭pointer设备，无效）。具体可以用<code>xinput set-prop （id号） &quot;Device Enabled&quot; 0</code>命令去一个个试出来触摸板对应的id。</p>
-</li>
-<li><p>编写shell脚本进行操作。</p>
-</li>
-</ol>
-<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="string">t1=</span>$(<span class="string">xinput </span>| <span class="string">grep </span>‘<span class="string">decive_name’</span>)</span><br><span class="line"><span class="string">t2=</span>$(<span class="string">echo </span>$<span class="string">t1 </span>| <span class="string">sed </span><span class="string">'s/ /\n/g'</span> | <span class="string">grep </span><span class="string">"id"</span>)</span><br><span class="line"><span class="string">res=</span>$&#123;<span class="string">t2#</span><span class="string">"id="</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="string">var=</span>$(<span class="string">xinput </span><span class="built_in">list-props</span> $<span class="string">res </span>| <span class="string">grep </span><span class="string">"Device Enabled"</span>)</span><br><span class="line"><span class="string">resultv=</span>$&#123;<span class="string">var:</span>(($&#123;<span class="comment">#var&#125;-1))&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="string">if </span>[ $<span class="string">resultv </span>-<span class="string">eq </span>1 ];<span class="string">then</span></span><br><span class="line"><span class="string">xinput </span><span class="built_in">set-prop</span> $<span class="string">res </span><span class="string">"Device Enabled"</span> 0</span><br><span class="line"><span class="string">else</span></span><br><span class="line"><span class="string">xinput </span><span class="built_in">set-prop</span> $<span class="string">res </span><span class="string">"Device Enabled"</span> 1</span><br><span class="line"><span class="string">fi</span></span><br></pre></td></tr></table></figure>
-<p>其中，device_name使用设备名称去匹配，不能用id匹配。</p>
-<p>将该shell脚本取名为padchange，放到/bin目录下。</p>
-<p>在System Setting-&gt;Keyboard-&gt;Shortcuts中设置该脚本的启动快捷键。该脚本的启动命令为’/bin/padchange’。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/09/08/development/linux/ssh免密登录/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/09/08/development/linux/ssh免密登录/" class="post-title-link" itemprop="url">ssh免密登录</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-09-08 12:31:14" itemprop="dateCreated datePublished" datetime="2017-09-08T12:31:14+08:00">2017-09-08</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="ssh免密码登录"><a href="#ssh免密码登录" class="headerlink" title="ssh免密码登录"></a>ssh免密码登录</h1><p>机器A想要通过ssh登录到机器B。可以用ssh-keygen生成公钥/私钥对来实现。以下操作流程不需要root权限，普通权限即可。</p>
-<ol>
-<li>利用ssh-keygen生成公钥/私钥对，如果本机上已经存在，不需要重复生成。</li>
-</ol>
-<figure class="highlight tp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -r rsa -<span class="keyword">P</span> <span class="string">''</span></span><br></pre></td></tr></table></figure>
-<p>-P表示密码，-P ‘’ 就表示空密码，也可以不用-P参数，这样就要三车回车，用-P就一次回车。<br>它在/home/yonghuming下生成.ssh目录，.ssh下有id_rsa和id_rsa.pub。</p>
-<ol start="2">
-<li>将id_rsa.pub传送到服务器上，并且使用cat命令追加到.ssh/authorzied_keys中,并赋予600权限。</li>
-</ol>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># on local</span></span><br><span class="line">scp -P <span class="number">22</span> /home/muzhen/.ssh/id_rsa.pub muzhen<span class="variable">@ip</span><span class="symbol">:/home/muzhen/</span>.</span><br><span class="line"><span class="comment"># on remote</span></span><br><span class="line">cat /home/muzhen/id_rsa.pub &gt;&gt; <span class="regexp">/home/muzhen</span><span class="regexp">/.ssh/authorzied</span>_keys</span><br><span class="line">chmod <span class="number">600</span> /home/muzhen/.ssh/authorzied_keys</span><br></pre></td></tr></table></figure>
-<p>其中 -P 为端口号，如果是默认的22端口不需要特别指定。-P 必须紧跟在scp后面，不然不会被认为是端口参数。</p>
-<ol start="3">
-<li>ssh登录服务器，不再需要密码。如果是连接root用户，则.ssh在/root下而非/home/yonghuming下。</li>
-</ol>
-<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://chenlb.iteye.com/blog/211809" target="_blank" rel="noopener">ssh 免密码登录</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/09/04/development/linux/开机自启动/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/09/04/development/linux/开机自启动/" class="post-title-link" itemprop="url">开机自启动</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-09-04 22:10:40" itemprop="dateCreated datePublished" datetime="2017-09-04T22:10:40+08:00">2017-09-04</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="开机自启动"><a href="#开机自启动" class="headerlink" title="开机自启动"></a>开机自启动</h1><p>创建自启动脚本，在其中写入需要的命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash<span class="comment">### BEGIN INIT INFO</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Provides:          xxx.sh</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Required-start:    <span class="variable">$local_fs</span> <span class="variable">$remote_fs</span> <span class="variable">$network</span> <span class="variable">$syslog</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Required-Stop:     <span class="variable">$local_fs</span> <span class="variable">$remote_fs</span> <span class="variable">$network</span> <span class="variable">$syslog</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Default-Start:     2 3 4 5</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Default-Stop:      0 1 6</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Short-Description: starts the xxx.sh daemon</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Description:       starts xxx.sh using start-stop-daemon</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">## END INIT INFO</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="built_in">command</span></span></span><br><span class="line">write your command here!</span><br></pre></td></tr></table></figure>
-<p>将脚本放到 <code>/etc/init.d</code>中，赋予777权限(好像755权限就够了）</p>
-<p>然后执行一下命令：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/init.d</span><br><span class="line">sudo update-rc<span class="selector-class">.d</span> xxx<span class="selector-class">.sh</span> defaults <span class="number">95</span></span><br></pre></td></tr></table></figure>
-<p>其中 xxx.sh 为脚本名称， 95为启动顺序，需要网络的可以放到最后启动，也就是99。</p>
-<p>如果有多个开机启动脚本，需要注意把启动顺序错开，如果使用同一个数字，也会造成冲突。有的无法启动成功。</p>
-<h1 id="卸载开机启动项"><a href="#卸载开机启动项" class="headerlink" title="卸载开机启动项"></a>卸载开机启动项</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/init.d</span><br><span class="line">sudo update-rc<span class="selector-class">.d</span> -f svnd<span class="selector-class">.sh</span> remove</span><br></pre></td></tr></table></figure>
-<h1 id="开机使用screen启动脚本"><a href="#开机使用screen启动脚本" class="headerlink" title="开机使用screen启动脚本"></a>开机使用screen启动脚本</h1><p>以启动shadowsocks为例,步骤如上，但是脚本要如此写：</p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#！bin/bash</span></span><br><span class="line"><span class="meta">#!/bin/bash### BEGIN INIT INFO</span></span><br><span class="line"><span class="meta"># Provides:          ss.sh</span></span><br><span class="line"><span class="meta"># Required-start:    $local_fs $remote_fs $network $syslog</span></span><br><span class="line"><span class="meta"># Required-Stop:     $local_fs $remote_fs $network $syslog</span></span><br><span class="line"><span class="meta"># Default-Start:     2 3 4 5</span></span><br><span class="line"><span class="meta"># Default-Stop:      0 1 6</span></span><br><span class="line"><span class="meta"># Short-Description: starts the ss.sh daemon</span></span><br><span class="line"><span class="meta"># Description:       starts ss.sh using start-stop-daemon</span></span><br><span class="line"><span class="meta">### END INIT INFO</span></span><br><span class="line">screen -dmS shadowsocks</span><br><span class="line">screen -r shadowsocks -X stuff $<span class="string">'sslocal -c /etc/shadowsocks.json\n'</span></span><br></pre></td></tr></table></figure>
-<p>$是为了能够解析换行符。这里换行符的作用相当于enter，如果没有\n则只是将command送进screen但是并没有运行。</p>
-<p>注意，shadowsocks需要在root权限下安装，不然会找不到sslocal命令。</p>
-<p>由于在root权限下安装后shadowsocks后，会在/etc/init.d下出现shadowsock文件，在这种情况下如果把启动脚本命令为shadowsocks.sh，好像会出现冲突导致无法启动。我将脚本名称改成ss.sh后，可以正常开机启动。</p>
-<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://www.cnblogs.com/end/archive/2012/10/12/2721059.html" target="_blank" rel="noopener">ubuntu下设置开机自启动项</a></p>
-<p><a href="https://stackoverflow.com/questions/7049252/how-to-create-a-screen-executing-given-command" target="_blank" rel="noopener">How to create a screen, executing given command?</a></p>
-<p><a href="http://blog.csdn.net/Blue_Sky8888/article/details/51302777" target="_blank" rel="noopener">ubuntu 16.04 svn开机启动的两种方法</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/09/03/development/environment/jetbrains softwares破解方法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/09/03/development/environment/jetbrains softwares破解方法/" class="post-title-link" itemprop="url">jetbrains softwares破解方法</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-09-03 19:47:44" itemprop="dateCreated datePublished" datetime="2017-09-03T19:47:44+08:00">2017-09-03</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="搭建本地服务器进行破解"><a href="#搭建本地服务器进行破解" class="headerlink" title="搭建本地服务器进行破解"></a>搭建本地服务器进行破解</h1><p><a href="http://blog.lanyus.com/archives/174.html" target="_blank" rel="noopener">搭建文件下载地址</a></p>
-<p>直接后台run对应版本的文件，比如</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/path_to_file/</span>IntelliJIDEALicenseServer_linux_amd64</span><br></pre></td></tr></table></figure>
-<p>设为开机自启动更加方便</p>
-<p>然后打开软件，进行注册。具体的端口号视所使用文件版本而定。在运行以上文件后输出内容中就包含端口号。</p>
-<p><img src="http://omdhuynsr.bkt.clouddn.com/17-9-3/53896227.jpg" alt></p>
-<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://idea.lanyus.com/" target="_blank" rel="noopener">IntelliJ IDEA 注册码</a></p>
-<p><a href="http://blog.lanyus.com/archives/174.html" target="_blank" rel="noopener">IntelliJ IDEA License Server本地搭建教程</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/09/03/python/tensor&array&broadcast/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/09/03/python/tensor&array&broadcast/" class="post-title-link" itemprop="url">tensor&array&broadcast</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-09-03 19:47:42" itemprop="dateCreated datePublished" datetime="2017-09-03T19:47:42+08:00">2017-09-03</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>本篇解释array和tensor的相关问题。目前为止，我觉得tensorflow的tensor和numpy的arary是一样的东西，一样的使用方法。因此，下文以array统一替代。</p>
-<h1 id="shape"><a href="#shape" class="headerlink" title="shape"></a>shape</h1><p>常数是0维张量，列向量是1维张量！</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">import</span> <span class="selector-tag">numpy</span> <span class="selector-tag">as</span> <span class="selector-tag">np</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">np</span><span class="selector-class">.array</span>(2)<span class="selector-class">.shape</span></span><br><span class="line"><span class="selector-tag">Out</span><span class="selector-attr">[15]</span>: ()</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">np</span><span class="selector-class">.array</span>(<span class="selector-attr">[1,2,3]</span>)<span class="selector-class">.shape</span></span><br><span class="line"><span class="selector-tag">Out</span><span class="selector-attr">[16]</span>: (3,)</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">np</span><span class="selector-class">.array</span>(<span class="selector-attr">[[1]</span>, <span class="selector-attr">[3]</span>, <span class="selector-attr">[2]</span>])<span class="selector-class">.shape</span></span><br><span class="line"><span class="selector-tag">Out</span><span class="selector-attr">[17]</span>: (3, 1)</span><br></pre></td></tr></table></figure>
-<h1 id="reshape"><a href="#reshape" class="headerlink" title="reshape"></a>reshape</h1><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">a = np.array(range(<span class="number">9</span>))</span><br><span class="line"></span><br><span class="line">a</span><br><span class="line">Out[<span class="number">19</span>]: array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>])</span><br><span class="line"></span><br><span class="line">a.shape</span><br><span class="line">Out[<span class="number">20</span>]: (<span class="number">9</span>,)</span><br><span class="line"></span><br><span class="line">a.reshape((<span class="number">3</span>,<span class="number">3</span>))</span><br><span class="line">Out[<span class="number">21</span>]: </span><br><span class="line">array(<span class="string">[[0, 1, 2],</span></span><br><span class="line"><span class="string">       [3, 4, 5],</span></span><br><span class="line"><span class="string">       [6, 7, 8]]</span>)</span><br><span class="line"></span><br><span class="line">a.reshape((<span class="number">3</span>,<span class="number">3</span>,<span class="number">1</span>))</span><br><span class="line">Out[<span class="number">22</span>]: </span><br><span class="line">array(<span class="string">[[[0],</span></span><br><span class="line"><span class="string">        [1],</span></span><br><span class="line"><span class="string">        [2]]</span>,</span><br><span class="line"></span><br><span class="line">       <span class="string">[[3],</span></span><br><span class="line"><span class="string">        [4],</span></span><br><span class="line"><span class="string">        [5]]</span>,</span><br><span class="line"></span><br><span class="line">       <span class="string">[[6],</span></span><br><span class="line"><span class="string">        [7],</span></span><br><span class="line"><span class="string">        [8]]</span>])</span><br><span class="line"></span><br><span class="line">a.reshape((<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>))</span><br><span class="line">Out[<span class="number">23</span>]: </span><br><span class="line">array(<span class="string">[[[0, 1, 2]]</span>,</span><br><span class="line"></span><br><span class="line">       <span class="string">[[3, 4, 5]]</span>,</span><br><span class="line"></span><br><span class="line">       <span class="string">[[6, 7, 8]]</span>])</span><br></pre></td></tr></table></figure>
-<p>在reshape的时候，是从最后一个维度开始，往前推。最后一个维度也可以理解为张量的最小单元。</p>
-<h1 id="broadcast"><a href="#broadcast" class="headerlink" title="broadcast"></a>broadcast</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> = np.array(range(<span class="number">8</span>)).reshape((<span class="number">2</span>, <span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">a</span><br><span class="line">Out[<span class="number">28</span>]: </span><br><span class="line">array([[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">       [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>]])</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">b</span> = np.array(range(<span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">b</span><br><span class="line">Out[<span class="number">30</span>]: array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">a</span> + b</span><br><span class="line">Out[<span class="number">31</span>]: </span><br><span class="line">array([[ <span class="number">0</span>,  <span class="number">2</span>,  <span class="number">4</span>,  <span class="number">6</span>],</span><br><span class="line">       [ <span class="number">4</span>,  <span class="number">6</span>,  <span class="number">8</span>, <span class="number">10</span>]])</span><br><span class="line"></span><br><span class="line">c = np.array([<span class="number">0</span>,<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">a</span> + c</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line"></span><br><span class="line">  File <span class="string">"&lt;ipython-input-34-ca57d551b7f3&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="selector-tag">a</span> + c</span><br><span class="line"></span><br><span class="line">ValueError: operands could not be broadcast together with shapes (<span class="number">2</span>,<span class="number">4</span>) (<span class="number">2</span>,)</span><br></pre></td></tr></table></figure>
-<p>对于两个shape不一致的数组，广播时将低维度的数组b和高维数组a的子单元进行匹配。或者说将低维数组通过复制的方式reshape成和高维数组一致的形状然后计算。</p>
-<p>再看一个例子：<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">d = np.array(range(5)).reshape((5, 1))</span><br><span class="line"></span><br><span class="line">d</span><br><span class="line">Out<span class="comment">[43]</span>: </span><br><span class="line">array(<span class="comment">[<span class="comment">[0]</span>,</span></span><br><span class="line"><span class="comment">       <span class="comment">[1]</span>,</span></span><br><span class="line"><span class="comment">       <span class="comment">[2]</span>,</span></span><br><span class="line"><span class="comment">       <span class="comment">[3]</span>,</span></span><br><span class="line"><span class="comment">       <span class="comment">[4]</span>]</span>)</span><br><span class="line"></span><br><span class="line">b</span><br><span class="line">Out<span class="comment">[44]</span>: array(<span class="comment">[0, 1, 2, 3]</span>)</span><br><span class="line"></span><br><span class="line">d + b</span><br><span class="line">Out<span class="comment">[45]</span>: </span><br><span class="line">array(<span class="comment">[<span class="comment">[0, 1, 2, 3]</span>,</span></span><br><span class="line"><span class="comment">       <span class="comment">[1, 2, 3, 4]</span>,</span></span><br><span class="line"><span class="comment">       <span class="comment">[2, 3, 4, 5]</span>,</span></span><br><span class="line"><span class="comment">       <span class="comment">[3, 4, 5, 6]</span>,</span></span><br><span class="line"><span class="comment">       <span class="comment">[4, 5, 6, 7]</span>]</span>)</span><br></pre></td></tr></table></figure></p>
-<p>这里b按照d的第一维度做了延展，接着d按照b的第二维度做了延展，从而两者形状一致。那么，上一个例子中，为什么a + c会报错呢？不妨再尝试下：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">f</span><br><span class="line">Out[<span class="number">47</span>]: </span><br><span class="line">array(<span class="string">[[0, 1],</span></span><br><span class="line"><span class="string">       [2, 3],</span></span><br><span class="line"><span class="string">       [4, 5],</span></span><br><span class="line"><span class="string">       [6, 7],</span></span><br><span class="line"><span class="string">       [8, 9]]</span>)</span><br><span class="line"></span><br><span class="line">f + b</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line"></span><br><span class="line">  File <span class="string">"&lt;ipython-input-48-2174dbbc2903&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    f + b</span><br><span class="line"></span><br><span class="line">ValueError: operands could <span class="keyword">not</span> be broadcast together with shapes (<span class="number">5</span>,<span class="number">2</span>) (<span class="number">4</span>,)</span><br></pre></td></tr></table></figure>
-<p>由此，可以推断，仅仅是不存在的维度或者维度长度为1的维度可以进行复制延展。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/08/30/machine learning/NLP/pyltp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/08/30/machine learning/NLP/pyltp/" class="post-title-link" itemprop="url">pyltp</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-08-30 10:11:58" itemprop="dateCreated datePublished" datetime="2017-08-30T10:11:58+08:00">2017-08-30</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="pyltp-安装"><a href="#pyltp-安装" class="headerlink" title="pyltp 安装"></a>pyltp 安装</h1><p><a href="https://github.com/HIT-SCIR/pyltp" target="_blank" rel="noopener">pyltp repo</a></p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> pyltp</span><br></pre></td></tr></table></figure>
-<p>同时还需要下载ltp model（现使用3.3.1版本）。自行关注版本update。<a href="https://pan.baidu.com/share/link?shareid=1988562907&amp;uk=2738088569#list/path=%2F" target="_blank" rel="noopener">模型下载地址</a></p>
-<p>如果安装后 import报以下两种错误之一，可能是anaconda4.2.0  libstdc++ 的环境问题。</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">...</span> undefined symbol: <span class="string">...</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/home/</span>?<span class="regexp">/anaconda2/</span>bin<span class="regexp">/../</span>lib<span class="regexp">/libstdc++.so.6: version `GLIBCXX_3.4.20' not found (required by /u</span>sr<span class="regexp">/local/</span>lib<span class="regexp">/python2.7/</span>dist-packages<span class="regexp">/pyltp-0.1.9.1-py2.7-linux-x86_64.egg/</span>pyltp.so)</span><br></pre></td></tr></table></figure>
-<p>解决方法如下：</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~<span class="regexp">/anaconda2/lib</span></span><br><span class="line">rm libstdc++.so.<span class="number">6.0</span>.<span class="number">19</span></span><br><span class="line">ln -s /usr/<span class="class"><span class="keyword">lib</span>/<span class="title">x86_64</span>-<span class="title">linux</span>-<span class="title">gnu</span>/<span class="title">libstdc</span>++.<span class="title">so</span>.6 <span class="title">libstdc</span>++.<span class="title">so</span>.6.0.19</span></span><br></pre></td></tr></table></figure>
-<p>解决方法来源于<a href="https://github.com/HIT-SCIR/pyltp/issues/58" target="_blank" rel="noopener">pyltp 0.1.9.1 conflict with anaconda 4.2.0</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/08/28/pansee/book review/《浪潮之巅》/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/08/28/pansee/book review/《浪潮之巅》/" class="post-title-link" itemprop="url">《浪潮之巅》</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-08-28 15:27:02" itemprop="dateCreated datePublished" datetime="2017-08-28T15:27:02+08:00">2017-08-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/book-review/" itemprop="url" rel="index"><span itemprop="name">book review</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>《浪潮之巅》——作者：吴军</p>
-<h1 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h1><p>正如我第一次知道作为业界成功人士的李开复竟然是语音识别的顶级科学家一样，当我看完《浪潮之巅》，不得不惊叹一个计算机领域的工程师竟然对企业管理与运作有如此深刻的洞察。更何况，书中还展露出吴军博士对经济、金融的理解、对历史（对欧洲封建社会变革的论述）、人文（对海明威作品的引用）领域的熟悉。最为难能可贵的是，这些知识与思考是如此自然的流于笔端，无比的真实与贴近生活。而不是生硬机械的硬搬概念、强行关联，刻意堆砌。</p>
-<p>读书何为？难道是为了知道一些高大上的概念然后到人前炫耀么？以此来展现自己的博学多才而收获仰慕之眼光？写作何为？难道是为了词藻华丽，为了用一堆似是而非的引用和例子，配合上貌似气势高昂的排比修辞来揭示空中浮萍般的可笑“真理”？交流何为？难道是为了用空洞而无根底的言辞，空想而无逻辑的语言来交流思想？</p>
-<p>那么，读《浪潮之巅》又有什么意义？</p>
-<p>事实上，对于类似形式的书目，即书写一个恢宏大世或者一个领域思想，每一个章节通过聊聊几十页就妄图说清楚其中一个思想流派这样的概述书我是相当抵制的。这就好像以亚当斯密为代表的古典经济学到了最后只剩下看不见的手五个字，看起来精简概括，实则丢掉了太多细节，甚至于引入了谬误。如此书目往往只能从中学到概念，而对其真正的思维过程一无所知。当然，借这样的书来先行建立一个整体框架和概念有利于后期深入研究倒是尚有可取之处，可惜大部分人的所谓“研究”也就止步于这样的概述了。</p>
-<p>但《浪潮之巅》不同，或许书本身就并不是想要向读者说清每家科技公司的盛衰兴亡，而是用各家公司的发展与衰落来说明一场场浪潮的发展趋势，并从中抽离出共性，“世界上失败者的失败各有各的不同，而成功者的成功却具有惊人的相似之处”。其实，失败者的病痛也往往相似。</p>
-<p>然而，我依旧不建议不在科技行业之内或者对计算机科技不敢兴趣的读者给予此书过高的阅读优先级。跨领域的阅读往往痛苦，而一本书如果不能感同身受或者怀有极大的兴趣，读完之后不过束之高阁，了不起作为茶余饭后无意义的谈资。至于所谓广度的延展与知识的积累，恕我偏狭之眼光，很多人收获的只有肤浅。广度当然很重要，可以开阔视野和思路，但其只应该作为一种补充。如果一个人连在一个特定领域的深度都没有，不过一事无成，又有什么资格谈思想之丰满。科幻小说本该带来对于宇宙的敬畏，有人反而从中读出了量子力学，岂不可笑。</p>
-<p>回归本书，我并不做管理，很难在具体的企业运作细节上有太大的感触。但也简单总结下。</p>
-<p>成功或者失败大体出于以下几点：</p>
-<ul>
-<li>是否顺应潮流，把握机遇</li>
-<li>是否能够平衡长短期利益、公司股东利益。克制贪婪，甚至于短期让利</li>
-<li>是否有优秀的管理层和领导者</li>
-<li>是否具有技术优势，以及找到合适的商业模式</li>
-</ul>
-<p>最后，想要屹立不倒还需要做到：</p>
-<ul>
-<li>有坚实的”群众基础“，或者说营收不依赖于泡沫。</li>
-<li>扬弃。一方面不断创新，不断寻找新的增长点;另一方面对于旧的不再盈利或者江河日下的部门需要果断处理。避免机构冗余和旧体制妨碍新部门的发展。</li>
-</ul>
-<p>对于不是创业者的我而言，以上诸点或许除了知道之外很难有进一步的作用，也很难真正知道其中痛点。</p>
-<p>那么，本书对我更为真实的意义在哪里呢？</p>
-<ol>
-<li><p>让我对近百年来对科技发展（主要是计算机领域）有了一个相对清晰的认识，从最初的有线电话到PC到互联网再到云计算的脉络有了一定了解。</p>
-</li>
-<li><p>书中展示了一个个科技公司的发展兴衰。</p>
-</li>
-</ol>
-<p>如此一来，至少在找工作时不至于被各种打着大数据、人工智能名号的创业公司忽悠，能够自身对于公司业务的靠谱性有一个评判。再者，可以一定程度上培养科技、商业、业务上的嗅觉，还可以和面试官扯淡，以此来加点分。</p>
-<p>我无意于将贪婪、平衡、稳健这些公司或成或败的因素与个人生活相结合，以便于长篇大论，各种感触深刻。这些东西其实早已知道，然而翻来覆去也不曾有所大的改变。</p>
-<p>正如尼采的强力意志或者海德格尔的存在主义，如果仅仅是归纳成那么两三句话，就会发现其实有太多的人早已有相似想法。可惜的是，尼采和海德格尔终究都只有一个。真正高贵而丰满的东西显然不会只是犀利深刻的那么几句话。回归细节和真实，才是真正的困难也是真正的珠宝。正如苹果的每一款产品都并非完全的原创，但它做到了极致，并从中产生了独属于它的亮点和创新。虽然我完全不看好苹果软硬件一体的封闭式发展。</p>
-<p>本书中揭示的另一个现象也让我惊诧。复杂指令集打败了更先进的精简指令集，DOS通过持久战坚持到了windows的出现。这样两个以弱胜强的案例乍看起来无法理解，其实是充分利用用户依赖或者说”群众基础“所营造的的商业优势来打败技术优势。但更基本的前提应当是：”够用“。厂家是否应该花精力去制造更先进的产品，消费者是否应该去追求过剩的性能？当一个对于产品的公正统一而客观的标准丧失，市场又可以相对轻易的进入时，只好通过各种性能指标或其他来进行质量宣示，营造壁垒，很多时候门槛的存在不再是追求良币，而是为了排除劣币。这不仅体现在商品市场，还体现在人才市场的学历门槛以及其他。</p>
-<p>思科支持雇员创业并回购的管理与创新模式实在精彩。华为曾经也尝试发动高管和干部自立门户，进行创新，然而最后却是勾心斗角，反目成仇。何以如此？</p>
-<p>雅虎虽然没有什么技术上的革新与贡献，但是杨致远和菲洛所开创的互联网免费模式却足以让他们英明不朽。</p>
-<p>斯坦福的校园文化亦让我心向往之。确切的说，我所向往的是洪堡式的研究型教育和纽曼式的大行之道（学生间的交流学习）的结合。然而，如何真正有益的交流而不沦为聚众扯淡实在很难，当然最容易的做就是找靠谱的人。</p>
-<p>那么，这本书是否对得起我所花去的阅读时间呢？以及什么样的书才是值得读的好书呢？</p>
-<p>其实，很多情况下，与其谈怎么利用时间，不如想办法不浪费时间更为实在。所以，与其谈什么书值得花时间去读，不如少读点毫无价值的书，少做些毫无价值的事。也就是争取机会成本最小化而已。</p>
-<h1 id="第一章-帝国的余晖——AT-amp-T公司"><a href="#第一章-帝国的余晖——AT-amp-T公司" class="headerlink" title="第一章 帝国的余晖——AT&amp;T公司"></a>第一章 帝国的余晖——AT&amp;T公司</h1><p>由发明电话的贝尔所创立，传统电话通信行业的巨头。贝尔实验室的拥有者。</p>
-<p>没有被美国反垄断法所打败，却死于贪婪。为了获得资本运作所产生的短期既得利益，多次进行拆分，导致拆分后的各个公司无法共享资金和技术优势，最终死亡。</p>
-<p>反垄断法诉讼也导致了AT&amp;T的拆分，但是那更多的是修剪枝干，使得公司管理组织结构更合理而不臃肿。但是其自行拆分导致资金和技术的分离使其无法保有并发展其创新优势却是致命的。最终被互联网浪潮所吞没。</p>
-<h1 id="第二章-蓝色巨人——IBM公司"><a href="#第二章-蓝色巨人——IBM公司" class="headerlink" title="第二章 蓝色巨人——IBM公司"></a>第二章 蓝色巨人——IBM公司</h1><p>紧紧抓住了大型政企客户。</p>
-<p>小沃森抓住了时代的潮流，领导了电子技术革命的浪潮。将计算机从政府部门和军方推广到民间。将它的功能由科学计算变成商用。</p>
-<p>没有能够重视PC市场。当微机性能不断提升开始危险大型计算机时，IBM在80年代末出现了第一次严重亏损，有史以来第一次开始大规模裁员。原因主要有三个：</p>
-<ol>
-<li>由于开始阶段微机利润远远无法和IBM传统的大型机市场相比（第一年pc营业额只占IBM总营业额1%）,因此没有上升到战略高度</li>
-<li>反垄断的限制，使得其他小公司可以比较容易的入场竞争</li>
-<li>盖茨的长远眼光。不管是以版权费的方式卖DOS（从每台PC中收取版权费而非一次性卖断）还是独立开发windows（而非和IBM合作研发）都是明智之举，尤其是前者</li>
-</ol>
-<p>危机时刻郭士纳的救场：</p>
-<ol>
-<li>裁掉冗余部门和毫无前途的项目以节流</li>
-<li>变卖一些资产获取资金以开源</li>
-<li>买回曾经分离出去的服务公司，将硬件制造，软件开发，服务合成一体</li>
-<li>公司内部引入竞争机制，将员工退休金和整个公司（以前是和部门）效益挂钩，从而加强部门间合作</li>
-<li>削减研发经费，砍掉一些偏理论而无效益的研究，将研究和开发结合起来。研究人员的部分工资直接和产品项目挂钩</li>
-<li>为了弥补由此带来的长线研究和基础研究方面的损失，加强了和大学的合作</li>
-</ol>
-<p>IBM将用户群定位为企业级客户，最终放弃了终端消费市场。IBM实验室不断创新，但是在产品与市场上相当保守，创新更多的是一种自我保护而非开拓。</p>
-<p>为什么IBM能够在2000年后的两次金融危机中屹立不倒？</p>
-<ol>
-<li>核心业务是IT服务业，和金融关系不大。即使其企业终止产品采购，对已有产品的服务需求依旧存在</li>
-<li>由于其内部不断的优胜劣汰，不断淘汰低利润服务，使得其毛利润一直很高。虽然存在机构臃肿，但是危机时裁员并不会影响公司运转。更进一步的，工作岗位开始永久性向印度转移，降低人力成本</li>
-<li>全球化背景下跨国公司抗打击能力提升</li>
-</ol>
-<p>保守和谨慎是其鲜明特质。</p>
-<h1 id="第三章-“水果”公司的复兴——乔布斯和苹果公司"><a href="#第三章-“水果”公司的复兴——乔布斯和苹果公司" class="headerlink" title="第三章 “水果”公司的复兴——乔布斯和苹果公司"></a>第三章 “水果”公司的复兴——乔布斯和苹果公司</h1><blockquote>
-<p>公平的讲，现在苹果的每一款产品都并非它的原创……但是，苹果把每一款产都做到了极致，这很大程度上是乔布斯达到了一个将技术和艺术结合的炉火纯青的境界……如果要问什么是创新，这就是创新！</p>
-</blockquote>
-<blockquote>
-<p>乔布斯送给年轻人两句话：永远渴望、大智若愚（Stay Huntry，Stay Foolish）</p>
-</blockquote>
-<p>无中生有的创新太难，能把已有的东西做好就已经领先于人。</p>
-<h1 id="第四章-计算机工业的生态链"><a href="#第四章-计算机工业的生态链" class="headerlink" title="第四章 计算机工业的生态链"></a>第四章 计算机工业的生态链</h1><ul>
-<li><p>摩尔定律：每18个月硬件性能翻一番或者说旧产品价格降低一半，远超传统行业的更新速度</p>
-</li>
-<li><p>安迪-比尔定律：软件更新把硬件提升带来的好处几乎全部占光了</p>
-</li>
-<li><p>反摩尔定律：每18个月，同样产品营业额要降一半。因此逼着硬件设备公司必须赶上摩尔定律规定的的更新速度。由于过不了多少年，量变潜力就会被挖掘光，因此为了跟上摩尔定律的更新速度还需要质变。反摩尔定律使得新兴小公司有希望和大公司站在同一起跑线上。创新更容易被迅速接受，赢得市场。</p>
-</li>
-</ul>
-<p>IT行业，犹如逆水行舟，不进则退。处于上游的是软件和IT服务业，下游才是硬件和半导体。而非相反！</p>
-<h1 id="第五章-奔腾的芯——英特尔公司"><a href="#第五章-奔腾的芯——英特尔公司" class="headerlink" title="第五章 奔腾的芯——英特尔公司"></a>第五章 奔腾的芯——英特尔公司</h1><p>专心只作一件产品，这样的孤注一掷让它在微机处理器上不断进步</p>
-<p>市场依赖和市场选择让intel没有被RISC的高性能所迷惑，也最终让处于性能劣势的复杂指令集打败了精简指令集</p>
-<p>没有新的增长点将会让它在新的浪潮中老去</p>
-<h1 id="第六章-IT领域的罗马帝国——微软公司"><a href="#第六章-IT领域的罗马帝国——微软公司" class="headerlink" title="第六章 IT领域的罗马帝国——微软公司"></a>第六章 IT领域的罗马帝国——微软公司</h1><p>DOS对苹果和IBM OS/2的胜利，为windows的诞生赢得了时间，又是利用市场依赖以弱胜强。单单技术的先进并不是决定性的。<strong>利用人民的力量和市场的依赖却导致先进的技术难以快速普及，这实在是一个有趣的现象，值得深思。</strong></p>
-<p>苹果在兼容性上的失误，选择了封闭式发展，导致更新换代软硬件的成本巨大。</p>
-<p>同时，苹果在一定程度上违反了信息领域的摩尔定律和安迪比尔定律。软硬件全部抓在手上，导致很难平衡硬件和软件的研发速度。选择性舍弃反而会铸就更大的成功。</p>
-<p>微软的成功：</p>
-<ol>
-<li>保守和冒险的平衡;</li>
-<li>心比天高却又脚踏实地。</li>
-</ol>
-<p>在互联网和浏览器窗口上的战略失误。</p>
-<p>在家庭娱乐中心战场的失利。</p>
-<h1 id="第七章-互联网的金门大桥——思科公司"><a href="#第七章-互联网的金门大桥——思科公司" class="headerlink" title="第七章 互联网的金门大桥——思科公司"></a>第七章 互联网的金门大桥——思科公司</h1><p>合适时间点出现的多协议路由器从一开始就获得了市场优势。</p>
-<p>开明的内部管理模式：提供投资让员工创业在回购，垄断了技术市场。</p>
-<p>诺威格定律：当一家公司的市占率超过50%，就不要指望在市场占有率上翻番了。寻找新的增长点——家庭娱乐。</p>
-<h1 id="第八章-英明不朽——杨致远、菲洛和雅虎公司"><a href="#第八章-英明不朽——杨致远、菲洛和雅虎公司" class="headerlink" title="第八章 英明不朽——杨致远、菲洛和雅虎公司"></a>第八章 英明不朽——杨致远、菲洛和雅虎公司</h1><p>制定了互联网这个行业全世界至今遵守的游戏规则——开放、免费、盈利。使“免费的午餐”成为了可能。</p>
-<p>选错了战略方向，在不擅长的搜索引擎上徒费心力。在优势的品牌传媒方向又止步不前。</p>
-<p>没有强力的技术支撑，缺少技术基因，整体的工作环境和企业文化也不对技术人员胃口。</p>
-<p>失败的高层管理，差劲的掌舵人。</p>
-<h1 id="第九章-硅谷的见证人——惠普公司"><a href="#第九章-硅谷的见证人——惠普公司" class="headerlink" title="第九章 硅谷的见证人——惠普公司"></a>第九章 硅谷的见证人——惠普公司</h1><p>惠普衰落的原因：</p>
-<ul>
-<li>领导者的错误</li>
-<li>“日本/中国制造“的冲击</li>
-</ul>
-<h1 id="第十章-没落的贵族——摩托罗拉公司"><a href="#第十章-没落的贵族——摩托罗拉公司" class="headerlink" title="第十章 没落的贵族——摩托罗拉公司"></a>第十章 没落的贵族——摩托罗拉公司</h1><p>衰落的原因：</p>
-<ol>
-<li>低估了摩尔定律的作用和产品更新的速度，对数字手机关注不足，依旧将主要精力放在落后的模拟手机上</li>
-<li>领导层不能开拓，或许也无力守成</li>
-</ol>
-<p>铱星计划： 对市场的错误评估</p>
-<blockquote>
-<p>摩托罗拉至今都看不起三星和诺基亚不注重核心技术、只在外型和功能上搞花架子的做法。</p>
-</blockquote>
-<p>长于技术，弱于市场。不够重视市场和客户需求。</p>
-<p>与AT&amp;T的短视和贪婪相反，摩托罗拉作为一个家族企业，不会出现把AT&amp;T拆了卖的败家行为，但家族第三代领导人也心有余而力不足。君子之泽，五世而折。</p>
-<h1 id="第十一章-硅谷的另一面"><a href="#第十一章-硅谷的另一面" class="headerlink" title="第十一章 硅谷的另一面"></a>第十一章 硅谷的另一面</h1><p>幸存者偏差</p>
-<p>勤奋与创新</p>
-<h1 id="第十二章-短暂的春秋——与机会失之交臂的公司"><a href="#第十二章-短暂的春秋——与机会失之交臂的公司" class="headerlink" title="第十二章 短暂的春秋——与机会失之交臂的公司"></a>第十二章 短暂的春秋——与机会失之交臂的公司</h1><h1 id="第十三章-幕后的英雄——风险投资"><a href="#第十三章-幕后的英雄——风险投资" class="headerlink" title="第十三章 幕后的英雄——风险投资"></a>第十三章 幕后的英雄——风险投资</h1><h1 id="第十四章-信息产业的规律性"><a href="#第十四章-信息产业的规律性" class="headerlink" title="第十四章 信息产业的规律性"></a>第十四章 信息产业的规律性</h1><ul>
-<li><p>70-20-10律：科技产品的指标往往是硬性的，没有办法制造差异度。以至于强者恒强。然而我不大认可这种说法。。更多的应该是先发至人和（或）配套软硬件带来的强大用户粘性导致的市场独占。</p>
-</li>
-<li><p>诺威格定律：一家公司市场占有率超过50%后，就无法再使市场占有率翻番了。而开拓新的财源有效的途径只有两条：扩展现有业务和转型。</p>
-</li>
-<li><p>基因决定定律：基因决定了公司的市场运作，发展模式等，并难以改变。我觉得基因有两种：一种是从创始之时开始确立的公司的发展方向和管理方式，市场运作方式等，还有一场则是公司成型之后各个部门之间的利益纠葛。</p>
-</li>
-</ul>
-<h1 id="第十五章-硅谷的摇篮——斯坦福大学"><a href="#第十五章-硅谷的摇篮——斯坦福大学" class="headerlink" title="第十五章 硅谷的摇篮——斯坦福大学"></a>第十五章 硅谷的摇篮——斯坦福大学</h1><ul>
-<li><p>纽曼教育</p>
-</li>
-<li><p>洪堡教育</p>
-</li>
-<li><p>斯坦福和工业界的紧密联系，创业成风的校园氛围，以及能够给学生和教授提供商业资源的能力。</p>
-</li>
-</ul>
-<h1 id="第十六章-科技公司的吹鼓手——投资银行"><a href="#第十六章-科技公司的吹鼓手——投资银行" class="headerlink" title="第十六章 科技公司的吹鼓手——投资银行"></a>第十六章 科技公司的吹鼓手——投资银行</h1><p>华尔街对经济的影响确实可怖，但也确实有所益处。</p>
-<h1 id="第十七章-挑战者——Google公司"><a href="#第十七章-挑战者——Google公司" class="headerlink" title="第十七章 挑战者——Google公司"></a>第十七章 挑战者——Google公司</h1><ul>
-<li><p>个人英雄主义的文化，宁缺勿滥、一个顶十个的择人标准</p>
-</li>
-<li><p>公平、平等的领导、员工关系，开放、自由的工作环境</p>
-</li>
-<li><p>不作恶的企业原则，善待竞争者（不采用收购等合法而略显无耻的手段，在雅虎放弃低价购买google股票后悔不迭之后依旧以低价给了雅虎大量股票等），赢得了业界的尊重和支持，组建了强大的同盟军</p>
-</li>
-<li><p>“快速向前跑，不要看两边”的研发策略，以领先的技术击溃对手</p>
-</li>
-<li><p>商业运作、市场脉搏等方面的成功等</p>
-</li>
-</ul>
-<h1 id="第十八章-成功的转基因——诺基亚、3M、GE公司"><a href="#第十八章-成功的转基因——诺基亚、3M、GE公司" class="headerlink" title="第十八章 成功的转基因——诺基亚、3M、GE公司"></a>第十八章 成功的转基因——诺基亚、3M、GE公司</h1><p>3M不断保持活力的原因：</p>
-<ul>
-<li><p>扬新。创新往往伴随着失败。只有能够容忍失败、容忍表面的不可能才能真正的实现创新。</p>
-</li>
-<li><p>弃旧。不仅弃掉已经旧的，还要弃掉虽然有盈利但是前景不佳还会阻碍创新的旧部门、旧势力</p>
-</li>
-<li><p>群众基础。日用品之类是最不容易受到冲击的。</p>
-</li>
-</ul>
-<h1 id="第十九章-印钞机——最佳的商业模式"><a href="#第十九章-印钞机——最佳的商业模式" class="headerlink" title="第十九章 印钞机——最佳的商业模式"></a>第十九章 印钞机——最佳的商业模式</h1><p>下面三种商业模式都算不上好的：</p>
-<ul>
-<li><p>每增加一份营收就必须多雇佣一个人</p>
-</li>
-<li><p>无法横向拓展的业务，例如从一个地区扩展到另外一个地区需要做需要额外的工作</p>
-</li>
-<li><p>需要消耗过多的原料和成本</p>
-</li>
-</ul>
-<h1 id="第二十章-互联网2-0"><a href="#第二十章-互联网2-0" class="headerlink" title="第二十章 互联网2.0"></a>第二十章 互联网2.0</h1><p>互联网2.0公司应该具备的特征（至少其中之一）：</p>
-<ul>
-<li><p>必须有一个平台，可以接受并且管理用户提交的内容，并且这些内容是服务主体</p>
-</li>
-<li><p>提供一个开放平台，让用户可以在平台上开发自己的应用程序，并且提供给其他用户使用</p>
-</li>
-<li><p>交互性</p>
-</li>
-<li><p>非竞争性和自足性</p>
-</li>
-</ul>
-<h1 id="第二十一章-金融风暴的冲击"><a href="#第二十一章-金融风暴的冲击" class="headerlink" title="第二十一章 金融风暴的冲击"></a>第二十一章 金融风暴的冲击</h1><ul>
-<li><p>生产和供给能力的大大提高，资本从实体经济向虚拟虚拟经济转移</p>
-</li>
-<li><p>超前消费的流行</p>
-</li>
-</ul>
-<p>上述两种风气使社会变得浮躁和短视，很多良好的价值观被破坏。在经济危机之下，这些泡沫将会被打破，人们会捡起稳健、勤勉的传统。</p>
-<p>对于欧洲封建社会变革的分析非常真实而有趣。商人用金钱作为借贷一步步蚕食领主的权力。</p>
-<h1 id="第二十二章-云计算"><a href="#第二十二章-云计算" class="headerlink" title="第二十二章 云计算"></a>第二十二章 云计算</h1><h1 id="第二十三章-下一个Google"><a href="#第二十三章-下一个Google" class="headerlink" title="第二十三章 下一个Google"></a>第二十三章 下一个Google</h1><p>分析了几个新兴行业发展方向以及国内的潜力公司和发展状况。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/08/25/python/traceback/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/08/25/python/traceback/" class="post-title-link" itemprop="url">traceback</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-08-25 16:07:35" itemprop="dateCreated datePublished" datetime="2017-08-25T16:07:35+08:00">2017-08-25</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="或许详细的异常信息"><a href="#或许详细的异常信息" class="headerlink" title="或许详细的异常信息"></a>或许详细的异常信息</h1><p>当通过<code>try...except...</code>进行处理时，往往需要打印出来详细的一场信息，方便debug。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> traceback</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    print(str(e))</span><br><span class="line">    print(traceback.format_exc())</span><br></pre></td></tr></table></figure>
-<p>这里主要区分<code>str(e)</code>和<code>traceback.format_exc()</code>两种异常或许方式。</p>
-<ul>
-<li><p>str(e)<br>仅仅给出最简单的异常信息，不包括异常信息的类型，更不包括改异常对应的一系列有问题的代码。</p>
-</li>
-<li><p>traceback.format_exc()<br>给出详细的异常信息，与python在命令行运行程序出现错误信息一致。</p>
-</li>
-</ul>
-<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://www.cnblogs.com/klchang/p/4635040.html" target="_blank" rel="noopener">Python中获取异常（Exception）信息</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/08/10/development/environment/ubuntu16.04 install gtx1080ti+cuda+tensorflow/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/08/10/development/environment/ubuntu16.04 install gtx1080ti+cuda+tensorflow/" class="post-title-link" itemprop="url">ubuntu16.04 install gtx1080ti+cuda+tensorflow</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-08-10 21:36:18" itemprop="dateCreated datePublished" datetime="2017-08-10T21:36:18+08:00">2017-08-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="environment"><a href="#environment" class="headerlink" title="environment"></a>environment</h1><p>本机环境： E5 2670V2 GTX1080TI</p>
-<h1 id="install-drivers"><a href="#install-drivers" class="headerlink" title="install drivers"></a>install drivers</h1><p>安装一张亮机卡，然后安装ubuntu16.04。我有尝试过直接装好gtx1080ti安装系统。装好后无法进入桌面，也无法进入命令行。按左shift也无法进入grub。如果使用i7这样带集显的cpu情况未知，e5不带集显。但是如果采用i7，可能需要有禁用ubuntu集成显卡驱动nouveau的操作，e5不需要。</p>
-<p>装好后进入系统通过下方ppa方式安装驱动。如果是在nvidia官网下载deb包则无法安装，因为会要求有nvidia显卡在机器上。</p>
-<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo<span class="built_in"> add-apt-repository </span>ppa:graphics-drivers/ppa</span><br><span class="line">sudo apt-get update </span><br><span class="line">sudo apt-get install nvidia-384</span><br><span class="line">sudo apt-get install mesa-common-dev </span><br><span class="line">sudo apt-get install freeglut3-dev</span><br><span class="line"><span class="comment"># then restart system</span></span><br></pre></td></tr></table></figure>
-<p>装上驱动后关闭电脑换上gtx1080ti然后启动电脑进入下一步。</p>
-<h1 id="install-cuda"><a href="#install-cuda" class="headerlink" title="install cuda"></a>install cuda</h1><p>官网下载cuda8.0,选择.run文件下载。deb没有尝试过。在安装时会提示是否安装驱动nvidia-375或其他版本号，选择n，因为我们在上一步已经安装好驱动。我选择安装的是最新的384驱动。对于安装开始时显示的一大串文字，可以按ctrl+c直接到100%。</p>
-<p><a href="https://developer.nvidia.com/cuda-downloads" target="_blank" rel="noopener">download cuda</a></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">sudo</span> <span class="selector-tag">sh</span> <span class="selector-tag">cuda_8</span><span class="selector-class">.0</span><span class="selector-class">.27_linux</span><span class="selector-class">.run</span></span><br></pre></td></tr></table></figure>
-<p>when install cuda,it will let you choose whether install nvidia-375 or not. Choose n(no),because you have installed nvidia-driver.</p>
-<p>安装好后配置环境变量，将以下内容写入 /etc/profile。网上有写入～/.bashrc的教程（写入内容也有所区别），我试过不行。</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=/usr/local/cuda-8.0/bin:$PATH</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">LD_LIBRARY_PATH</span>=/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH</span><br></pre></td></tr></table></figure>
-<p>写入后通过 <code>source /etc/profile</code> 使设置生效。</p>
-<p>关闭shell在重开后用 <code>nvcc -V</code> 验证是否安装成功。最好能运行安装的samples来进行严格验证。方法见references给出的链接。</p>
-<h1 id="install-cudnn"><a href="#install-cudnn" class="headerlink" title="install cudnn"></a>install cudnn</h1><p>去官网下载cudnn，选择5.1版本。最好不要选择高版本。那样会报错虽然可以找到解决方案，见<a href="https://stackoverflow.com/questions/42013316/after-building-tensorflow-from-source-seeing-libcudart-so-and-libcudnn-errors" target="_blank" rel="noopener">After building TensorFlow from source, seeing libcudart.so and libcudnn errors</a>。</p>
-<p>进入下载的文件所在文件夹，执行以下命令</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar -xzf cudnn-<span class="number">8.0</span>-linux-x64-v5.<span class="number">1</span>.tgz</span><br><span class="line">cd cuda</span><br><span class="line">sudo cp lib64<span class="regexp">/* /u</span>sr<span class="regexp">/local/</span>cuda<span class="regexp">/lib64/</span></span><br><span class="line">sudo cp include<span class="regexp">/* /u</span>sr<span class="regexp">/local/</span>cuda<span class="regexp">/include/</span></span><br></pre></td></tr></table></figure>
-<h1 id="install-anaconda"><a href="#install-anaconda" class="headerlink" title="install anaconda"></a>install anaconda</h1><p><strong><em>选择Anaconda3-4.2.0-Linux-x86_64.sh，在本文写成（2017年7月7日）之时，tensorflow最高只支持python3.5和python2.7，因此选择此版本</em></strong>。国内可以通过清华源下载。</p>
-<h1 id="install-tensorflow-amp-keras"><a href="#install-tensorflow-amp-keras" class="headerlink" title="install tensorflow&amp;keras"></a>install tensorflow&amp;keras</h1><p>通过pip3方式安装。</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 <span class="keyword">install</span> tensorflow-gpu</span><br><span class="line">pip3 <span class="keyword">install</span> keras</span><br></pre></td></tr></table></figure>
-<p>收工。</p>
-<h1 id="uninstall-nvidia"><a href="#uninstall-nvidia" class="headerlink" title="uninstall nvidia"></a>uninstall nvidia</h1><p>如果想要卸载nvidia相关，可见Removing nvidia cuda toolkit and installing new one](<a href="https://askubuntu.com/questions/530043/removing-nvidia-cuda-toolkit-and-installing-new-one" target="_blank" rel="noopener">https://askubuntu.com/questions/530043/removing-nvidia-cuda-toolkit-and-installing-new-one</a>)</p>
-<p>查看安装的nvidia包</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -l <span class="string">| grep -i nvidia</span></span><br></pre></td></tr></table></figure>
-<p>This method will give a complete removal of Cuda:</p>
-<p>Simple</p>
-<p>remove the CUDA files in /usr/local/cuda-5.0</p>
-<p>Advanced</p>
-<p>Uninstall just nvidia-cuda-toolkit</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> <span class="builtin-name">remove</span> nvidia-cuda-toolkit</span><br></pre></td></tr></table></figure>
-<p>Uninstall nvidia-cuda-toolkit and it’s dependencies</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> <span class="builtin-name">remove</span> --auto-<span class="builtin-name">remove</span> nvidia-cuda-toolkit</span><br></pre></td></tr></table></figure>
-<p>Purging config/data</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> purge nvidia-cuda-toolkit <span class="keyword">or</span> sudo apt-<span class="builtin-name">get</span> purge --auto-<span class="builtin-name">remove</span> nvidia-cuda-toolkit</span><br></pre></td></tr></table></figure>
-<p>Additionally, delete the /opt/cuda and ~/NVIDIA_GPU_Computing_SDK folders if they are present. and remove the export PATH=$PATH:/opt/cuda/bin and export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/cuda/lib:/opt/cuda/lib64 lines of the ~/.bash_profile file</p>
-<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://www.jianshu.com/p/5b708817f5d8?from=groupmessage" target="_blank" rel="noopener">Ubuntu16.04 + 1080Ti深度学习环境配置教程</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/08/08/development/develepment/debug/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/08/08/development/develepment/debug/" class="post-title-link" itemprop="url">debug</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-08-08 15:58:44" itemprop="dateCreated datePublished" datetime="2017-08-08T15:58:44+08:00">2017-08-08</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/develepment/" itemprop="url" rel="index"><span itemprop="name">develepment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>本篇为debug的一些总结</p>
-<ol>
-<li><p>使用print进行问题的定位和明晰。如果pirnt无反应可能是因为本身print的就是none。最好的办法是标准格式，比如 <code>print(&#39;------------params: &#39;, params)</code>，这样即使是none值也可以看的很清楚。</p>
-</li>
-<li><p>如果出错的地方自己始终觉得没问题，那么就应该怀疑自己对错误的定位本身就出了问题。因此，当定位到一个大问题之后，首先应该做的是梳理清楚各条通向该行code的逻辑线，而不是闷着头盯着一条线死干。</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2017/08/05/machine learning/competition/quora/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/08/05/machine learning/competition/quora/" class="post-title-link" itemprop="url">quora</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-08-05 19:36:50" itemprop="dateCreated datePublished" datetime="2017-08-05T19:36:50+08:00">2017-08-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-28 20:45:06" itemprop="dateModified" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/competition/" itemprop="url" rel="index"><span itemprop="name">competition</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
-<h1 id="sources"><a href="#sources" class="headerlink" title="sources"></a>sources</h1><p><a href="https://www.kaggle.com/c/quora-question-pairs" target="_blank" rel="noopener">quora</a></p>
-<h1 id="what-have-I-learned"><a href="#what-have-I-learned" class="headerlink" title="what have I learned?"></a>what have I learned?</h1><p><a href="https://www.kaggle.com/anokas/quora-question-pairs/data-analysis-xgboost-starter-0-35460-lb/notebook" target="_blank" rel="noopener">Data Analysis &amp; XGBoost Starter (0.35460 LB)
-</a></p>
-<ul>
-<li><p>画图时通过<code>plt.yscale(&#39;log&#39;, nonposy=&#39;clip&#39;)</code>可以改变纵轴量级，使得原本因为量级差距巨大而造成的图形更有可看性。</p>
-</li>
-<li><p>通过提交均值来寻找一个基础的benchmark。</p>
-</li>
-<li><p>根据提交均值后的得分估算出测试集中的正样本比例。</p>
-</li>
-<li><p>绘制词云图。</p>
-</li>
-<li><p>用nltk包中的stopwords来进行停用词剔除。</p>
-</li>
-<li><p>计算两个句子共享词时，用共有词的数量除以两个句子长度均值来正则化。</p>
-</li>
-<li><p>能够自己实现并定制tf，idf。</p>
-</li>
-<li><p>平衡数据集比例，使得train和test一致，从而得到好的结果。</p>
-</li>
-<li><p>会使用xgboost的early_stopping_rounds参数</p>
-</li>
-</ul>
-<p><a href="https://www.kaggle.com/philschmidt/quora-question-pairs/quora-eda-model-selection-roc-pr-plots/comments" target="_blank" rel="noopener">Quora EDA &amp; Model selection (ROC, PR plots)
-</a></p>
-<ul>
-<li>优美的降维和可视化技巧。待学习[TBC]</li>
-</ul>
-<p><a href="https://www.kaggle.com/puneetsl/quora-question-pairs/unusual-meaning-map/notebook" target="_blank" rel="noopener">Unusual meaning map
-</a></p>
-<ul>
-<li><p>学习到了nltk.word_tokenize</p>
-</li>
-<li><p>巧妙的特征构造方法，利用笛卡尔积形式计算两个句子各词的相似度。并最后扑展（扩充）成一定维数的特征。</p>
-</li>
-<li><p>进一步了解了w2v和wmd</p>
-</li>
-</ul>
-<p><a href="https://www.kaggle.com/c/quora-question-pairs/discussion/31019" target="_blank" rel="noopener">fm benchmark with tfidf around 29</a></p>
-<ul>
-<li><p>学习到了使用nltk寻找词干，<a href="https://www.kaggle.com/currie32/quora-question-pairs/the-importance-of-cleaning-text/comments" target="_blank" rel="noopener">The Importance of Cleaning Text
-</a>中亦有介绍，更为简单。</p>
-</li>
-<li><p>学习到了使用a.intersection(b)计算集合间的交集。</p>
-</li>
-<li><p>学习到了如何清爽的整理代码，生成特征。</p>
-</li>
-<li><p>学习到了字串的jaccard距离，编辑距离及其计算。</p>
-</li>
-<li><p>给出了fm实现，待学习[TBC]。</p>
-<p><a href="https://www.kaggle.com/c/quora-question-pairs/discussion/30967" target="_blank" rel="noopener">Score 0.3250 (or 0.31) using StackNet with sparse data</a></p>
-<ul>
-<li>stacknet，待学习[TBC]。</li>
-</ul>
-</li>
-</ul>
-<p> # </p>
-<ul>
-<li>crowdfloer</li>
-<li>homedepot</li>
-<li>SemEval<br><a href="https://github.com/rgtjf/Semantic-Texual-Similarity-Toolkits" target="_blank" rel="noopener">https://github.com/rgtjf/Semantic-Texual-Similarity-Toolkits</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -4244,7 +3956,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">347</span>
+                    <span class="site-state-item-count">358</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
