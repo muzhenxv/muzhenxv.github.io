@@ -285,7 +285,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/competition/quora/">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/NN/lstm/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="muzhen">
@@ -305,7 +305,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/02/28/machine learning/competition/quora/" class="post-title-link" itemprop="url">quora</a>
+                <a href="/2019/02/28/machine learning/NN/lstm/" class="post-title-link" itemprop="url">lstm</a>
               
             
           </h1>
@@ -348,7 +348,653 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/competition/" itemprop="url" rel="index"><span itemprop="name">competition</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/NN/" itemprop="url" rel="index"><span itemprop="name">NN</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="如何理解TF中BasicLSTMCell的输入参数size"><a href="#如何理解TF中BasicLSTMCell的输入参数size" class="headerlink" title="如何理解TF中BasicLSTMCell的输入参数size"></a><a href="https://www.zhihu.com/question/57981847" target="_blank" rel="noopener">如何理解TF中BasicLSTMCell的输入参数size</a></h1><p>就是指隐藏状态的维数。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/NN/rnn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/machine learning/NN/rnn/" class="post-title-link" itemprop="url">rnn</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/NN/" itemprop="url" rel="index"><span itemprop="name">NN</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+<h1 id="lstm"><a href="#lstm" class="headerlink" title="lstm"></a>lstm</h1><p>此处先说明tensorflow中以下代码的输出<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">outputs,final_state = tf<span class="selector-class">.nn</span><span class="selector-class">.dynamic_rnn</span>(lstm_cell,x_in,initial_state=init_state,time_major=False)</span><br></pre></td></tr></table></figure></p>
+<p>outputs储存每个时刻的输出，也就是下面的分线输出（它也同时被复制为当时时刻的外部输出）,它的形状是[batch_size,n_steps,n_hidden_units]（如果一开始的输入形式为[n_steps,batch_size,n_inputs]，则time_major=True，output形状为[n_steps,batch_size,n_hidden_units]）</p>
+<p>final_state仅仅只记录最后时刻的主线状态和分线状态，默认以元组形式保存，主线状态在前。</p>
+<p>因此，分线state和outputs最后一个时刻的记录是相同的，至少在基础lstm上。</p>
+<p>lstm一开始需要定义的初始状态应该就是指一开始的主线和分线state。</p>
+<p><img src="http://i2.muimg.com/567571/e28747d6a50b8fad.png" alt></p>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://blog.csdn.net/mydear_11000/article/details/52414342" target="_blank" rel="noopener">解读tensorflow之rnn</a><br><a href="http://www.jianshu.com/p/9dc9f41f0b29" target="_blank" rel="noopener">[译] 理解 LSTM 网络</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/NN/tensorflow函数说明/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/machine learning/NN/tensorflow函数说明/" class="post-title-link" itemprop="url">tensorflow函数说明</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/NN/" itemprop="url" rel="index"><span itemprop="name">NN</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="tf-nn-embedding-lookup-amp-tf-nn-embedding-lookup-sparse"><a href="#tf-nn-embedding-lookup-amp-tf-nn-embedding-lookup-sparse" class="headerlink" title="tf.nn.embedding_lookup&amp;tf.nn.embedding_lookup_sparse"></a>tf.nn.embedding_lookup&amp;tf.nn.embedding_lookup_sparse</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">tf.nn.embedding_lookup(</span><br><span class="line">    params,</span><br><span class="line">    ids,</span><br><span class="line">    partition_strategy=<span class="string">'mod'</span>,</span><br><span class="line">    name=<span class="keyword">None</span>,</span><br><span class="line">    validate_indices=<span class="keyword">True</span>,</span><br><span class="line">    max_norm=<span class="keyword">None</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">tf.nn.embedding_lookup_sparse(</span><br><span class="line">    params,</span><br><span class="line">    sp_ids,</span><br><span class="line">    sp_weights,</span><br><span class="line">    partition_strategy=<span class="string">'mod'</span>,</span><br><span class="line">    name=<span class="keyword">None</span>,</span><br><span class="line">    combiner=<span class="keyword">None</span>,</span><br><span class="line">    max_norm=<span class="keyword">None</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>params是embedding的参数tensor（设为$F*K$），ids是指明索引的tensor， sp_ids是指明索引的sparse_tensor。</p>
+<p>函数的目的是根据索引来进行embedding tensor的按第一维度切片。</p>
+<p>如果ids是一维张量N，就是按ids寻找index对应元素，返回tensor是$N*K$。</p>
+<p>如果是ids二维张量$N<em>M$，则是按照第二维度寻找index对应元素，寻找N次，组合后返回就是$N</em>M*K$。</p>
+<p>在embedding_lookup_sparse中，则是根据稀疏矩阵sp_ids（设为$N<em>M$）来寻找index对应元素。不同点在于，按照index找到的元素需要根据combiner参数指定的方式来进行聚合操作，最终变成$(K,)$的tensor。因此完整的返回是$N</em>K$</p>
+<p>另外需要注意的是partition_strategy参数。当params为多个tensor构成的list（实际上会合并成一个大tensor）时，该参数负责指定合并后大tensor的index编排方法。list的长度为分区数，设为p。总元素数量（第一维度总长度）设为$id+1$。</p>
+<p>在div情况下就按照顺序来排index；</p>
+<p>在mod情况下，每个分区的基本元素数量为$id //p$，由于不一定能够整除，前$(id+ 1) \% p$个分区的元素数量加一。那么index的编排就是</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">params = [<span class="number">2</span>*<span class="number">4</span>, <span class="number">2</span>*<span class="number">4</span>, <span class="number">3</span>*<span class="number">4</span>]</span><br><span class="line">三个分区，每个分区的基本元素数为<span class="number">6</span>//<span class="number">3</span>=<span class="number">2</span>, 前<span class="number">7</span>%<span class="number">3</span>=<span class="number">1</span>个分区元素数量加一</span><br><span class="line">重新编排后就是</span><br><span class="line">[<span class="number">3</span>*<span class="number">4</span>, <span class="number">2</span>*<span class="number">4</span>, <span class="number">2</span>*<span class="number">4</span>]</span><br><span class="line">他们的index则是</span><br><span class="line">[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>]*<span class="number">3</span>+<span class="number">0</span>, [<span class="number">0</span>,<span class="number">1</span>]*<span class="number">3</span>+<span class="number">1</span>, [<span class="number">0</span>,<span class="number">1</span>]*<span class="number">3</span>+<span class="number">2</span>, 即是</span><br><span class="line">[<span class="number">0</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>]。</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/NN/tensorflow变量初始化方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/machine learning/NN/tensorflow变量初始化方法/" class="post-title-link" itemprop="url">tensorflow变量初始化方法</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/NN/" itemprop="url" rel="index"><span itemprop="name">NN</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://blog.csdn.net/fireflychh/article/details/73692183" target="_blank" rel="noopener">tensorflow中tf.random_normal和tf.truncated_normal的区别</a></p>
+<p><a href="http://www.bubuko.com/infodetail-2099623.html" target="_blank" rel="noopener">tensorflow 1.0 学习：参数初始化（initializer)</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/NN/《神经网络和深度学习》第三章——改进神经网络的学习方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/machine learning/NN/《神经网络和深度学习》第三章——改进神经网络的学习方法/" class="post-title-link" itemprop="url">《神经网络和深度学习》第三章——改进神经网络的学习方法</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/NN/" itemprop="url" rel="index"><span itemprop="name">NN</span></a></span>
 
                 
                 
@@ -386,68 +1032,924 @@
         
           
             <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
-<h1 id="sources"><a href="#sources" class="headerlink" title="sources"></a>sources</h1><p><a href="https://www.kaggle.com/c/quora-question-pairs" target="_blank" rel="noopener">quora</a></p>
-<h1 id="what-have-I-learned"><a href="#what-have-I-learned" class="headerlink" title="what have I learned?"></a>what have I learned?</h1><p><a href="https://www.kaggle.com/anokas/quora-question-pairs/data-analysis-xgboost-starter-0-35460-lb/notebook" target="_blank" rel="noopener">Data Analysis &amp; XGBoost Starter (0.35460 LB)
-</a></p>
+<h1 id="损失函数选择"><a href="#损失函数选择" class="headerlink" title="损失函数选择"></a>损失函数选择</h1><p>当均方误差作为损失函数，S型曲线作为激活函数时，梯度和激活函数导数相关。<br>因此当严重误判时（i.e.真值为0预测输出接近1），由于此时S型激活函数在两侧导数都非常小，会出现犯了明显错误但学习却非常缓慢的情况。<br>而交叉熵和S型输出层组合并不会出现这个问题，因为经过计算可知梯度和预测错误相关（预测错误 = 预测值-真值），但仅仅限于输出神经元上。但遗憾的是，<br>交叉熵情况下，对权重梯度跟输入\(a_j^l\)相关，因此当\(a_j^l\)趋向于0时，权重梯度会很小，学习缓慢。  </p>
+<p>回顾logistic回归，交叉熵可以由极大似然估计推出。</p>
+<p>softmax输出层和对数似然代价组合是另一种可能。</p>
+<p><em>交叉熵代价在变大，而分类准确率在上升，这是可能的。合理的选用代价函数（便于优化），以及合理的调参（提高分类准确率）。</em></p>
+<h1 id="防止过拟合"><a href="#防止过拟合" class="headerlink" title="防止过拟合"></a>防止过拟合</h1><ol>
+<li><p>增加样本</p>
+</li>
+<li><p>L2规范化/权重衰减<br>规范化项里面不包含偏置。因此，对于偏置梯度不变。对于权重梯度：<br>$$\frac{\partial C}{\partial \omega} = \frac{\partial C_0}{\partial \omega} + \frac{\lambda}{n}\omega$$<br>$$\frac{\partial C}{\partial b} = \frac{\partial C_0}{\partial b}$$<br>其中\(C_0\)是原始代价函数：<br>$$C = C_0 + \frac{\lambda}{2n}\sum_\omega\omega^2$$<br>因此，权重学习规则就变成：<br>\begin{split}\omega \rightarrow \omega - \eta\frac{\partial C_0}{\partial \omega} - \frac{\eta\lambda}{n}\omega\newline<br>= (1 - \frac{\eta\lambda}{n})\omega - \eta\frac{\partial C_0}{\partial \omega}\end{split}<br>故而它又被称作权重衰减。<br><em>L2规范化还可以帮助逃离局部最优值。</em><br>规范化更倾向于小权重，对于输入噪音不会过度敏感。<br>不对偏置进行规范化，是因为：</p>
 <ul>
-<li><p>画图时通过<code>plt.yscale(&#39;log&#39;, nonposy=&#39;clip&#39;)</code>可以改变纵轴量级，使得原本因为量级差距巨大而造成的图形更有可看性。</p>
-</li>
-<li><p>通过提交均值来寻找一个基础的benchmark。</p>
-</li>
-<li><p>根据提交均值后的得分估算出测试集中的正样本比例。</p>
-</li>
-<li><p>绘制词云图。</p>
-</li>
-<li><p>用nltk包中的stopwords来进行停用词剔除。</p>
-</li>
-<li><p>计算两个句子共享词时，用共有词的数量除以两个句子长度均值来正则化。</p>
-</li>
-<li><p>能够自己实现并定制tf，idf。</p>
-</li>
-<li><p>平衡数据集比例，使得train和test一致，从而得到好的结果。</p>
-</li>
-<li><p>会使用xgboost的early_stopping_rounds参数</p>
-</li>
-</ul>
-<p><a href="https://www.kaggle.com/philschmidt/quora-question-pairs/quora-eda-model-selection-roc-pr-plots/comments" target="_blank" rel="noopener">Quora EDA &amp; Model selection (ROC, PR plots)
-</a></p>
-<ul>
-<li>优美的降维和可视化技巧。待学习[TBC]</li>
-</ul>
-<p><a href="https://www.kaggle.com/puneetsl/quora-question-pairs/unusual-meaning-map/notebook" target="_blank" rel="noopener">Unusual meaning map
-</a></p>
-<ul>
-<li><p>学习到了nltk.word_tokenize</p>
-</li>
-<li><p>巧妙的特征构造方法，利用笛卡尔积形式计算两个句子各词的相似度。并最后扑展（扩充）成一定维数的特征。</p>
-</li>
-<li><p>进一步了解了w2v和wmd</p>
-</li>
-</ul>
-<p><a href="https://www.kaggle.com/c/quora-question-pairs/discussion/31019" target="_blank" rel="noopener">fm benchmark with tfidf around 29</a></p>
-<ul>
-<li><p>学习到了使用nltk寻找词干，<a href="https://www.kaggle.com/currie32/quora-question-pairs/the-importance-of-cleaning-text/comments" target="_blank" rel="noopener">The Importance of Cleaning Text
-</a>中亦有介绍，更为简单。</p>
-</li>
-<li><p>学习到了使用a.intersection(b)计算集合间的交集。</p>
-</li>
-<li><p>学习到了如何清爽的整理代码，生成特征。</p>
-</li>
-<li><p>学习到了字串的jaccard距离，编辑距离及其计算。</p>
-</li>
-<li><p>给出了fm实现，待学习[TBC]。</p>
-<p><a href="https://www.kaggle.com/c/quora-question-pairs/discussion/30967" target="_blank" rel="noopener">Score 0.3250 (or 0.31) using StackNet with sparse data</a></p>
-<ul>
-<li>stacknet，待学习[TBC]。</li>
+<li>实践看来改善不明显</li>
+<li>大的偏置并不会对噪音敏感</li>
+<li>大的偏置让网络更加灵活，让神经元更加容易饱和  </li>
 </ul>
 </li>
+</ol>
+<p>为什么L2规范化往往比不做规范化有更好的结果？<br>仅是实践经验，并不是因为“奥卡姆剃刀”。因为简单更好本身就无法证明，何况也无法严格判定在他同等效果下哪个模型更简单（对效果除权很难）。<br>对模型真正的测试不是简单性，而是在新场景中新活动的预测能力。</p>
+<ol start="3">
+<li><p>L1规范化<br>代价函数变为：<br>$$C = C_0 + \frac{\lambda}{2n}\sum_\omega|\omega|$$<br>求导得：<br>$$\frac{\partial C}{\partial \omega} = \frac{\partial C_0}{\partial \omega} + \frac{\lambda}{n}sgn(\omega)$$<br>因此更新规则为：<br>$$\omega \rightarrow \omega - \frac{\lambda}{n}sgn(\omega) - \frac{\partial C_0}{\partial \omega}$$<br>在L2规范化中，权重通过一个和$\omega$成比例的量进行缩小。在L1中，权重通过一个常量向0缩小。<br>所以，当权重绝对值很大时，L1规范化的权重缩小原比L2规范化要小的多。相反，当一个特定的权重绝对值很小时，L1规范化的权重缩小要比L2规范化大的多。<br>最终结果就是，L1规范化倾向于聚集网络权重在相对少量的高重要度连接上，而其他权重就会被驱使向0接近。</p>
+</li>
+<li><p>弃权（dropout）<br>在训练过程中通过概率使得部分隐藏神经元不参与计算和更新，不断重复这个过程使得权重选择性更新。最终得到的结果就可以视为bagging。<br>这样理解好象是错的？</p>
+</li>
+<li><p>人为扩展训练数据<br>就MNIST而言，可以通过对图像进行小幅旋转来认为产生新数据。<br>在语音识别中，还可以通过增加背景噪声来扩展训练数据，从而更加关注普适特征，训练出更具范化能力的模型。</p>
+</li>
+</ol>
+<h1 id="权重初始化"><a href="#权重初始化" class="headerlink" title="权重初始化"></a>权重初始化</h1><p>一般采用标准正态分布来进行权重和偏置初始化。<br>考虑一个极端情况，一共n个输入神经元，输入值都为1。那么加权和就会服从均值0,方差n+1的正态分布，形如：<br><img src="http://p1.bpimg.com/567571/d42d2eff91ab2285.png" alt><br>就会造成带权和很大，从而相对应的隐藏神经元饱和，激活值接近0或1。从而梯度下降学习将会非常缓慢。<br>因此，我们可以选择均值0,方差1/n的正态分布来进行权重初始化，对于偏置习惯上依旧使用标准正态分布。</p>
+<h1 id="其他参数"><a href="#其他参数" class="headerlink" title="其他参数"></a>其他参数</h1><ul>
+<li>学习率</li>
+<li>正则项系数</li>
+<li>minibatch数量</li>
+<li>迭代次数</li>
+<li>隐藏神经元数量</li>
+<li>层数</li>
+<li>输出编码方式</li>
 </ul>
-<p> # </p>
+<h1 id="其他技术"><a href="#其他技术" class="headerlink" title="其他技术"></a>其他技术</h1><ol>
+<li><p>Hessian优化（泰勒展开与二阶近似）</p>
+</li>
+<li><p>基于momentum的梯度下降</p>
+</li>
+</ol>
+<h1 id="其他激活函数"><a href="#其他激活函数" class="headerlink" title="其他激活函数"></a>其他激活函数</h1><ul>
+<li><p>tanh<br><img src="http://i1.piimg.com/567571/32cda276ddd538ca.png" alt>  </p>
+</li>
+<li><p>relu<br><img src="http://i1.piimg.com/567571/c10b3dae75ed663c.png" alt></p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/NN/《神经网络和深度学习》第五章——深度神经网络为何很难训练/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/machine learning/NN/《神经网络和深度学习》第五章——深度神经网络为何很难训练/" class="post-title-link" itemprop="url">《神经网络和深度学习》第五章——深度神经网络为何很难训练</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/NN/" itemprop="url" rel="index"><span itemprop="name">NN</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="不稳定的梯度问题"><a href="#不稳定的梯度问题" class="headerlink" title="不稳定的梯度问题"></a>不稳定的梯度问题</h1><p><img src="http://p1.bpimg.com/567571/c337283e1a426f2f.png" alt>  </p>
+<p>以上图为例，会出现：</p>
+<ol>
+<li><p><strong>消失的梯度问题</strong>：<br>当$\omega_i\sigma_i^{‘}$小于1时。由于一般初始权重在0附近，且使用sigmoid神经元，所以消失的梯度问题更容易出现。<br>其实，即使权重很大，对于sigmoid函数而言，越大的权重会导致对应的sigmoid函数倒数越接近0,因此更容易梯度消失。</p>
+</li>
+<li><p><strong>激增的梯度问题</strong>：<br>当$\omega_i\sigma_i^{‘}$大于1时。当初始权重很大时出现。</p>
+</li>
+</ol>
+<p>根本问题是因为前面层上的梯度是来自后面层上项的乘积。当存在过多的层次时，就出现了内在本质上的不稳定场景。<br>所以，如果我们使用标准的基于梯度的学习算法，在网络中的不同层就会出现按照不同学习速度学习的情况。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/NN/《神经网络和深度学习》第二章——反向传播算法如何工作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/machine learning/NN/《神经网络和深度学习》第二章——反向传播算法如何工作/" class="post-title-link" itemprop="url">《神经网络和深度学习》第二章——反向传播算法如何工作</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/NN/" itemprop="url" rel="index"><span itemprop="name">NN</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="反向传播算法"><a href="#反向传播算法" class="headerlink" title="反向传播算法"></a>反向传播算法</h1><p>反向传播算法通过<em>链式法则</em>来简化计算<em>损失函数对各权重和偏置的梯度</em>。</p>
+<h2 id="符号说明、一个定义、四个关键方程："><a href="#符号说明、一个定义、四个关键方程：" class="headerlink" title="符号说明、一个定义、四个关键方程："></a>符号说明、一个定义、四个关键方程：</h2><ol>
+<li><p>符号说明：<br>\(l-1\)层\(k\)神经元与\(l\)层\(j\)神经元连接权重： \(\omega_{jk}^l\)<br>带权和： \(z_j^{l} = \sum\limits_{k}{\omega_{jk}^{l}a_k^{l-1}} + b_j^l\)<br>激活值： \(a_j^l = \sigma(z_j^l)\)</p>
+</li>
+<li><p>定义\(l\)层\(j\)神经元误差：<br>$$\delta_j^l = \frac{\partial C}{\partial z_j^l}$$<br>最优化时，梯度应当为0,因此可以理解为梯度绝对值越大，离最优化状态越远，误差越大。之所以对z而不是a求梯度，则是计算方便的考虑。</p>
+</li>
+<li><p>输出层误差方程：<br>$$\delta_j^L = \frac{\partial C}{\partial a_j^L}\sigma^{‘}(z_j^L)$$<br>矩阵形式：<br>$$\delta^L = \nabla_aC \odot \sigma^{‘}(z^L)$$</p>
+</li>
+<li><p>使用下一层的误差\(\delta^{l+1}\)来表示当前层的误差\(\delta^l\)：<br>$$\delta_j^l = \sum_k{\omega_{kj}^{l+1}\delta_k^{l+1}\sigma^{‘}(z_j^l)}$$<br>矩阵形式：<br>$$\delta^l = ((\omega^{l+1})^T\delta^{l+1}) \odot \sigma^{‘}(z^l)$$</p>
+</li>
+<li><p>损失函数对偏置的导数：<br>$$\frac{\partial C}{\partial b_j^l} = \delta_j^l$$</p>
+</li>
+<li><p>损失函数对权重的导数：<br>$$\frac{\partial C}{\partial \omega_{jk}^l} = a_k^{l-1}\sigma_j^l$$</p>
+</li>
+</ol>
+<h2 id="伪代码如下："><a href="#伪代码如下：" class="headerlink" title="伪代码如下："></a>伪代码如下：</h2><ol>
+<li><p>计算并记录前向传播过程中<em>带权和</em>和<em>激活值</em>;</p>
+</li>
+<li><p>利用公式计算代价函数对参数梯度</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/NN/《神经网络和深度学习》第六章——深度学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/machine learning/NN/《神经网络和深度学习》第六章——深度学习/" class="post-title-link" itemprop="url">《神经网络和深度学习》第六章——深度学习</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/NN/" itemprop="url" rel="index"><span itemprop="name">NN</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h1><p>充分利用空间特征。</p>
 <ul>
-<li>crowdfloer</li>
-<li>homedepot</li>
-<li>SemEval<br><a href="https://github.com/rgtjf/Semantic-Texual-Similarity-Toolkits" target="_blank" rel="noopener">https://github.com/rgtjf/Semantic-Texual-Similarity-Toolkits</a></li>
+<li><p>局部感受野<br>隐藏层中每个神经元链接到输入神经元的一个小区域。</p>
+</li>
+<li><p>共享权重和偏置<br>即是应用相同的特征检测器。因此也可以很好的适应图像的平移不变性。<br>我们有时候把从输入层到隐藏层的映射称为一个特征映射。我们把定义特征映射的权重称为共享权重。我们把以这种方式定义特征映射的偏置称为共享偏置。<br>共享权重和偏置经常被称为一个卷积核或者滤波器。</p>
+</li>
+<li><p>混合层（pooling layers）<br>混合层通常紧接着在卷积层之后使用。用于简化从卷积层输出的信息。</p>
+</li>
 </ul>
+<p>一些常用的混合程序：</p>
+<ul>
+<li>最大值混合（max-pooling）：取最大值</li>
+<li>L2混合（L2-pooling）：取激活值平方和的平方根</li>
+</ul>
+<p>一个使用5×5局部感受野和3个特征映射，以及应用于2×2区域的最大值混合层如下所示：</p>
+<p><img src="http://i4.buimg.com/567571/3dae256ad7f99167.png" alt></p>
+<p>[TBC]卷积网络中的反向传播？</p>
+<h1 id="CNN实践"><a href="#CNN实践" class="headerlink" title="CNN实践"></a>CNN实践</h1><ul>
+<li><p>加入第二个卷积-混合层<br>地一个卷积-混合层的输出是经过抽象和凝缩过的版本，但仍然有大量的空间结构。因此使用第二个卷积-混合层是有意义的。<br>以上例来说，输出是3×12×12,那么第二个卷积层的局部感受野应该是3×k×k。也就是说使用前面所有混合层数据。这是一个需要注意的地方。</p>
+</li>
+<li><p>切换激活函数<br>tanh，relu等。</p>
+</li>
+<li><p>扩展训练数据</p>
+</li>
+<li><p>插入额外的全连接层</p>
+</li>
+<li><p>使用组合网络<br>训练多个网络进行投票</p>
+</li>
+<li><p>对全连接层进行dropout<br>卷积层先天可以抵抗过拟合。原因是共享权重意味着卷积滤波器被强制从整个图像中学习。这使他们不太可能去选择在训练数据中的局部特质。于是就很少有必要来应用其他规范化，例如弃权。</p>
+</li>
+</ul>
+<h1 id="为什么我们能够训练"><a href="#为什么我们能够训练" class="headerlink" title="为什么我们能够训练"></a>为什么我们能够训练</h1><p>我们是如何克服不稳定的梯度问题的？</p>
+<ul>
+<li>使用卷积层极大的减少了这些层中的参数的数目，使学习的问题更容易</li>
+<li>使用更多强有力的规范化技术（尤其是弃权和卷积层）来减少过度拟合</li>
+<li>使用修正线性单元而不是S型神经元，来加速训练 [TBC]?</li>
+<li>使用GPU并愿意长时间训练</li>
+</ul>
+<p>以及其他技巧：</p>
+<ul>
+<li>使用充分大的数据集（避免过拟合）</li>
+<li>使用正确的代价函数（避免学习减速）</li>
+<li>使用好的权重初始化（避免神经元饱和和其引起的学习减速）</li>
+</ul>
+<h1 id="TBC-一些问题"><a href="#TBC-一些问题" class="headerlink" title="[TBC]一些问题"></a>[TBC]一些问题</h1><ul>
+<li><p>对relu使用sigmoid函数的初始化方法会怎么样？</p>
+</li>
+<li><p>前面不稳定的梯度问题是针对sigmoid函数讨论的，对relu，会有什么差异？</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/NN/《神经网络和深度学习》第四章——神经网络可以计算任何函数的可视化证明/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/machine learning/NN/《神经网络和深度学习》第四章——神经网络可以计算任何函数的可视化证明/" class="post-title-link" itemprop="url">《神经网络和深度学习》第四章——神经网络可以计算任何函数的可视化证明</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/NN/" itemprop="url" rel="index"><span itemprop="name">NN</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script><br>神经网络一个最显著的事实就是它可以计算任何的函数。它具有一种<em>普遍性</em>！</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/cluster/cluster evaluation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/machine learning/cluster/cluster evaluation/" class="post-title-link" itemprop="url">cluster evaluation</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/cluster/" itemprop="url" rel="index"><span itemprop="name">cluster</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <script type"text javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+<p>本文总结聚类结果的好坏评估。评估可以分为两大类，已知类别和未知类别。</p>
+<h1 id="已知类别"><a href="#已知类别" class="headerlink" title="已知类别"></a>已知类别</h1><h2 id="Rand-index-amp-Adjusted-Rand-index"><a href="#Rand-index-amp-Adjusted-Rand-index" class="headerlink" title="Rand index &amp; Adjusted Rand index"></a>Rand index &amp; Adjusted Rand index</h2><p>设样本数为\(n\),实际类别信息为\(C \),聚类结果为\(K\),\(a\)表示在\(C \)和\(K\)中都是同类别的元素对数，\(b\)表示在\(C \)和\(K\)中都是不同类别的元素对数，则兰德指数为：<br>$$ RI = \frac{a+b}{C^{2}_{n}}$$<br>显然，Rand index取值范围[0,1],越大聚类效果越好。</p>
+<p>但对于随机结果，并不能保证分数接近零。为了实现这个目标，提出ARI，它具有更高的区分度：<br>$$ ARI = \frac{RI - E[RI]}{\max(RI) - E[RI]}$$</p>
+<p>我一开始觉得RI存在一个问题，那就是只使用元素对去评估效果，可能忽略整体聚类情况。但细想之后发现并不会。因为任意两个元素对都会被计算，因此整体类别情况也会被考虑到。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from sklearn import metrics</span><br><span class="line">&gt;&gt;&gt; labels_true = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]</span><br><span class="line">&gt;&gt;&gt; labels_pred = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; metrics.adjusted_rand_score(labels_true, labels_pred)  </span><br><span class="line"><span class="number">0.24</span></span><br></pre></td></tr></table></figure>
+<h2 id="Mutual-Information-based-scores"><a href="#Mutual-Information-based-scores" class="headerlink" title="Mutual Information based scores"></a>Mutual Information based scores</h2><h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://blog.csdn.net/sinat_26917383/article/details/70577710" target="_blank" rel="noopener">聚类︱python实现 六大 分群质量评估指标（兰德系数、互信息、轮廓系数）</a></p>
 
           
         
@@ -611,6 +2113,225 @@
 <h1 id="score"><a href="#score" class="headerlink" title="score"></a>score</h1><p>以logloss得分为例。</p>
 <p>假设原训练集不均衡。在建模时通过采样使得训练集均衡，然后对测试集进行预测。通过设定threshold，将预测概率0-1化，计算准确率是没有问题的。</p>
 <p>但是，由于采用logloss评分，实际上预测概率会偏大！因为真实的正负样本比例小于0.5！最简单的方法就是将预测结果除以采样后正负样本比例再乘以真实比例！</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/competition/quora/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/machine learning/competition/quora/" class="post-title-link" itemprop="url">quora</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/competition/" itemprop="url" rel="index"><span itemprop="name">competition</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="sources"><a href="#sources" class="headerlink" title="sources"></a>sources</h1><p><a href="https://www.kaggle.com/c/quora-question-pairs" target="_blank" rel="noopener">quora</a></p>
+<h1 id="what-have-I-learned"><a href="#what-have-I-learned" class="headerlink" title="what have I learned?"></a>what have I learned?</h1><p><a href="https://www.kaggle.com/anokas/quora-question-pairs/data-analysis-xgboost-starter-0-35460-lb/notebook" target="_blank" rel="noopener">Data Analysis &amp; XGBoost Starter (0.35460 LB)
+</a></p>
+<ul>
+<li><p>画图时通过<code>plt.yscale(&#39;log&#39;, nonposy=&#39;clip&#39;)</code>可以改变纵轴量级，使得原本因为量级差距巨大而造成的图形更有可看性。</p>
+</li>
+<li><p>通过提交均值来寻找一个基础的benchmark。</p>
+</li>
+<li><p>根据提交均值后的得分估算出测试集中的正样本比例。</p>
+</li>
+<li><p>绘制词云图。</p>
+</li>
+<li><p>用nltk包中的stopwords来进行停用词剔除。</p>
+</li>
+<li><p>计算两个句子共享词时，用共有词的数量除以两个句子长度均值来正则化。</p>
+</li>
+<li><p>能够自己实现并定制tf，idf。</p>
+</li>
+<li><p>平衡数据集比例，使得train和test一致，从而得到好的结果。</p>
+</li>
+<li><p>会使用xgboost的early_stopping_rounds参数</p>
+</li>
+</ul>
+<p><a href="https://www.kaggle.com/philschmidt/quora-question-pairs/quora-eda-model-selection-roc-pr-plots/comments" target="_blank" rel="noopener">Quora EDA &amp; Model selection (ROC, PR plots)
+</a></p>
+<ul>
+<li>优美的降维和可视化技巧。待学习[TBC]</li>
+</ul>
+<p><a href="https://www.kaggle.com/puneetsl/quora-question-pairs/unusual-meaning-map/notebook" target="_blank" rel="noopener">Unusual meaning map
+</a></p>
+<ul>
+<li><p>学习到了nltk.word_tokenize</p>
+</li>
+<li><p>巧妙的特征构造方法，利用笛卡尔积形式计算两个句子各词的相似度。并最后扑展（扩充）成一定维数的特征。</p>
+</li>
+<li><p>进一步了解了w2v和wmd</p>
+</li>
+</ul>
+<p><a href="https://www.kaggle.com/c/quora-question-pairs/discussion/31019" target="_blank" rel="noopener">fm benchmark with tfidf around 29</a></p>
+<ul>
+<li><p>学习到了使用nltk寻找词干，<a href="https://www.kaggle.com/currie32/quora-question-pairs/the-importance-of-cleaning-text/comments" target="_blank" rel="noopener">The Importance of Cleaning Text
+</a>中亦有介绍，更为简单。</p>
+</li>
+<li><p>学习到了使用a.intersection(b)计算集合间的交集。</p>
+</li>
+<li><p>学习到了如何清爽的整理代码，生成特征。</p>
+</li>
+<li><p>学习到了字串的jaccard距离，编辑距离及其计算。</p>
+</li>
+<li><p>给出了fm实现，待学习[TBC]。</p>
+<p><a href="https://www.kaggle.com/c/quora-question-pairs/discussion/30967" target="_blank" rel="noopener">Score 0.3250 (or 0.31) using StackNet with sparse data</a></p>
+<ul>
+<li>stacknet，待学习[TBC]。</li>
+</ul>
+</li>
+</ul>
+<p> # </p>
+<ul>
+<li>crowdfloer</li>
+<li>homedepot</li>
+<li>SemEval<br><a href="https://github.com/rgtjf/Semantic-Texual-Similarity-Toolkits" target="_blank" rel="noopener">https://github.com/rgtjf/Semantic-Texual-Similarity-Toolkits</a></li>
+</ul>
 
           
         
@@ -1203,6 +2924,163 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/data_compute/窗口函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/machine learning/data_compute/窗口函数/" class="post-title-link" itemprop="url">窗口函数</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/data-compute/" itemprop="url" rel="index"><span itemprop="name">data_compute</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://medium.com/jbennetcodes/how-to-get-rid-of-loops-and-use-window-functions-in-pandas-or-spark-sql-907f274850e4" target="_blank" rel="noopener">How to get rid of loops and use window functions, in Pandas or Spark SQL</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/cv/opencv/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1308,163 +3186,6 @@
 <p>下面提供一个具有python3.5+cuda+ffmpeg+opencv环境的dockerfile前半部分。该dockerfile学自<a href="https://hub.docker.com/r/valian/docker-python-opencv-ffmpeg/" target="_blank" rel="noopener">valian/docker-python-opencv-ffmpeg</a>，但做了一些修改，已确保能够跑通。</p>
 <figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">FROM </span><span class="string">tensorflow/</span><span class="string">tensorflow:1.</span>2.<span class="string">1-devel-</span><span class="string">gpu-py3</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">ENV </span><span class="string">PYTHON_VERSION </span>3.5</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install all dependencies for OpenCV 3.2</span></span><br><span class="line"><span class="string">RUN </span><span class="string">apt-get </span>-y <span class="string">update </span>&amp;&amp; <span class="string">apt-get </span>-y <span class="string">install </span><span class="string">python$</span><span class="string">PYTHON_VERSION-dev </span><span class="string">wget </span><span class="string">unzip </span>\</span><br><span class="line">    <span class="string">build-essential </span><span class="string">cmake </span><span class="string">git </span><span class="string">pkg-config </span><span class="string">libatlas-base-</span><span class="string">dev </span><span class="string">gfortran </span>\</span><br><span class="line">    <span class="string">libjasper-dev </span><span class="string">libgtk2.</span><span class="string">0-dev </span><span class="string">libavcodec-dev </span><span class="string">libavformat-dev </span>\</span><br><span class="line">    <span class="string">libswscale-dev </span><span class="string">libjpeg-dev </span><span class="string">libpng-dev </span><span class="string">libtiff-dev </span><span class="string">libjasper-dev </span><span class="string">libv4l-dev </span>\</span><br><span class="line">    &amp;&amp; <span class="string">wget </span><span class="string">https:</span>//<span class="string">bootstrap.</span><span class="string">pypa.</span><span class="string">io/</span><span class="built_in">get-pip.py</span> &amp;&amp; <span class="string">python3 </span><span class="built_in">get-pip.py</span> &amp;&amp; <span class="string">pip3 </span><span class="string">install </span><span class="string">numpy </span>&amp;&amp; <span class="string">rm </span><span class="built_in">get-pip.py</span> \</span><br><span class="line">    &amp;&amp; <span class="string">wget </span><span class="string">https:</span>//<span class="string">github.</span><span class="string">com/</span><span class="string">Itseez/</span><span class="string">opencv/</span><span class="string">archive/</span>3.2.0.<span class="string">zip </span>-O /<span class="string">opencv3.</span><span class="string">zip </span>\</span><br><span class="line">    &amp;&amp; <span class="string">unzip </span>-q /<span class="string">opencv3.</span><span class="string">zip </span>-d / &amp;&amp; <span class="string">mv </span>/<span class="string">opencv-3.</span>2.0 /<span class="string">opencv </span>&amp;&amp; <span class="string">rm </span>/<span class="string">opencv3.</span><span class="string">zip </span>\</span><br><span class="line">    &amp;&amp; <span class="string">wget </span><span class="string">https:</span>//<span class="string">github.</span><span class="string">com/</span><span class="string">Itseez/</span><span class="string">opencv_contrib/</span><span class="string">archive/</span>3.2.0.<span class="string">zip </span>-O <span class="string">opencv_contrib3.</span><span class="string">zip </span>\</span><br><span class="line">    &amp;&amp; <span class="string">unzip </span>-q <span class="string">opencv_contrib3.</span><span class="string">zip </span>-d / &amp;&amp; <span class="string">mv </span>/<span class="string">opencv_contrib-3.</span>2.0 /<span class="string">opencv_contrib </span>&amp;&amp; <span class="string">rm </span><span class="string">opencv_contrib3.</span><span class="string">zip </span>\</span><br><span class="line"></span><br><span class="line">    <span class="comment"># prepare build</span></span><br><span class="line">    &amp;&amp; <span class="string">mkdir </span>/<span class="string">opencv/</span><span class="string">build </span>&amp;&amp; <span class="string">cd </span>/<span class="string">opencv/</span><span class="string">build </span>\</span><br><span class="line">    &amp;&amp; <span class="string">cmake </span>-D <span class="string">CMAKE_BUILD_TYPE=</span><span class="string">RELEASE </span>\</span><br><span class="line">      -D <span class="string">BUILD_PYTHON_SUPPORT=</span><span class="string">ON </span>\</span><br><span class="line">      -D <span class="string">CMAKE_INSTALL_PREFIX=</span>/<span class="string">usr/</span><span class="string">local </span>\</span><br><span class="line">      -D <span class="string">OPENCV_EXTRA_MODULES_PATH=</span>/<span class="string">opencv_contrib/</span><span class="string">modules </span>\</span><br><span class="line">      -D <span class="string">BUILD_EXAMPLES=</span><span class="string">OFF </span>\</span><br><span class="line">      -D <span class="string">PYTHON_DEFAULT_EXECUTABLE=</span>/<span class="string">usr/</span><span class="string">bin/</span><span class="string">python3 </span>\</span><br><span class="line">      -D <span class="string">BUILD_opencv_python3=</span><span class="string">ON </span>\</span><br><span class="line">      -D <span class="string">BUILD_opencv_python2=</span><span class="string">OFF </span>\</span><br><span class="line">      -D <span class="string">WITH_IPP=</span><span class="string">OFF </span>\</span><br><span class="line">      -D <span class="string">WITH_FFMPEG=</span><span class="string">ON </span>\</span><br><span class="line">      -D <span class="string">WITH_V4L=</span><span class="string">ON </span>\</span><br><span class="line">      -D <span class="string">WITH_CUDA=</span><span class="string">ON </span>.. \</span><br><span class="line"></span><br><span class="line">    <span class="comment"># install</span></span><br><span class="line">    &amp;&amp; <span class="string">cd </span>/<span class="string">opencv/</span><span class="string">build </span>&amp;&amp; <span class="string">make </span>-j$(<span class="string">nproc)</span> &amp;&amp; <span class="string">make </span><span class="string">install </span>&amp;&amp; <span class="string">ldconfig </span>\</span><br><span class="line"></span><br><span class="line">    <span class="comment">#clean</span></span><br><span class="line">    &amp;&amp; <span class="string">apt-get </span>-y <span class="string">remove </span><span class="string">build-essential </span><span class="string">cmake </span><span class="string">git </span><span class="string">pkg-config </span><span class="string">libatlas-base-</span><span class="string">dev </span><span class="string">gfortran </span>\</span><br><span class="line">    <span class="string">libjasper-dev </span><span class="string">libgtk2.</span><span class="string">0-dev </span><span class="string">libavcodec-dev </span><span class="string">libavformat-dev </span>\</span><br><span class="line">    <span class="string">libswscale-dev </span><span class="string">libjpeg-dev </span><span class="string">libpng-dev </span><span class="string">libtiff-dev </span><span class="string">libjasper-dev </span><span class="string">libv4l-dev </span>\</span><br><span class="line">    &amp;&amp; <span class="string">apt-get </span><span class="string">clean </span>\</span><br><span class="line">    &amp;&amp; <span class="string">rm </span>-<span class="string">rf </span>/<span class="string">opencv </span>/<span class="string">opencv_contrib </span>/<span class="string">var/</span><span class="string">lib/</span><span class="string">apt/</span><span class="string">lists/</span>*</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define other commands.</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="https://hub.docker.com/r/valian/docker-python-opencv-ffmpeg/" target="_blank" rel="noopener">valian/docker-python-opencv-ffmpeg</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/data_compute/窗口函数/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/machine learning/data_compute/窗口函数/" class="post-title-link" itemprop="url">窗口函数</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/data-compute/" itemprop="url" rel="index"><span itemprop="name">data_compute</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://medium.com/jbennetcodes/how-to-get-rid-of-loops-and-use-window-functions-in-pandas-or-spark-sql-907f274850e4" target="_blank" rel="noopener">How to get rid of loops and use window functions, in Pandas or Spark SQL</a></p>
 
           
         
@@ -2004,1708 +3725,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/dimensionality reduction/reduction/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/machine learning/dimensionality reduction/reduction/" class="post-title-link" itemprop="url">reduction</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/dimensionality-reduction/" itemprop="url" rel="index"><span itemprop="name">dimensionality reduction</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
-<h1 id="一些进行降维的方法"><a href="#一些进行降维的方法" class="headerlink" title="一些进行降维的方法"></a>一些进行降维的方法</h1><ul>
-<li>use clustering to extract feature</li>
-<li>t-sne</li>
-<li>pca</li>
-<li>autoencoder</li>
-<li>any others to reduction?</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/documentation/documentation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/machine learning/documentation/documentation/" class="post-title-link" itemprop="url">documentation</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/documentation/" itemprop="url" rel="index"><span itemprop="name">documentation</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://mqshen.gitbooks.io/prml/Chapter9/mixtures_gaussian.html" target="_blank" rel="noopener">PRML中文版</a></p>
-<p><a href="http://ufldl.stanford.edu/wiki/index.php/UFLDL%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">UFLDL教程</a></p>
-<p><a href="http://www.efimov-ml.com/index.html" target="_blank" rel="noopener">Kaggle开源代码</a></p>
-<p><a href="https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers" target="_blank" rel="noopener">Probabilistic-Programming-and-Bayesian-Methods-for-Hackers</a></p>
-<p><a href="http://yerevann.com/a-guide-to-deep-learning/" target="_blank" rel="noopener">A Guide to Deep Learning by yerevaNN</a></p>
-<p><a href="http://deeplearning.net/reading-list/" target="_blank" rel="noopener">reading list of NN papers</a></p>
-<p><a href="http://mlwave.com/" target="_blank" rel="noopener">Kaggle guide</a></p>
-<p><a href="http://www.efimov-ml.com/index.html" target="_blank" rel="noopener">Kaggle solutions</a></p>
-<p><a href="https://github.com/songrotek/Deep-Learning-Papers-Reading-Roadmap" target="_blank" rel="noopener">Deep Learning Papers Reading Roadmap</a></p>
-<p><a href="http://www.jianshu.com/p/7b896793196b" target="_blank" rel="noopener">数据可视化 - Mosaic Plot(马赛克图)</a> 这个人的blog可以学习下。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/ensemble/GBM and Xgboost/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/machine learning/ensemble/GBM and Xgboost/" class="post-title-link" itemprop="url">GBM and Xgboost</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ensemble/" itemprop="url" rel="index"><span itemprop="name">ensemble</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><script type"text javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
-<h1 id="GBDT概述"><a href="#GBDT概述" class="headerlink" title="GBDT概述"></a>GBDT概述</h1><p>与Adaboost不同，GBM虽然也是加性模型，但它却是通过不断拟合残差来逐步提高模型效果。  </p>
-<p><strong><em>需要强调的是，融合模型融合的是函数空间，而不是参数空间！！！*</em></strong></p>
-<h1 id="梯度提升"><a href="#梯度提升" class="headerlink" title="梯度提升"></a>梯度提升</h1><p>t轮迭代的损失函数为：<br>\begin{split} J_t = L(y,F_t(x)) = L(y,\sum_{t=0}^t h_t(x))\end{split}</p>
-<p>通过梯度下降法优化损失函数：<br>\begin{split} F_{t+1}(x) := F_t(x) - \rho_t \frac{\partial J_t}{\partial F_t(x)} \end{split}<br><strong><em>注意，这里直接优化的是分类器！$\rho$是加法模型的系数（类似于adaboost的系数）,利用牛顿法最小化$J_{t+1}$求得。</em></strong>[TBC]学习率真的是这样??</p>
-<p>注意shrinkage与学习率是两个不同概念,它是在得到新拟合出的模型之后通过乘以收缩率去控制过拟合，类似于动量。也就是说，最终应该有：<br>\begin{split} F_{t+1}(x) = (1 - \text{shrinkage})F_t(x) - \text{shrinkage } \rho_t \frac{\partial J_t}{\partial F_t(x)} \end{split}<br>[TBC]？？是每次迭代之后都直接使用shinkage，还是建好模型以后统一使用shrinkage？</p>
-<p><strong><em>GBM用的都是回归树！</em></strong> 应该是为了计算方便和更加精确。如果是分类问题，最后再对结果进行转换。</p>
-<h1 id="Xgboost"><a href="#Xgboost" class="headerlink" title="Xgboost"></a>Xgboost</h1><p>相较于GBM，引入了L2正则项，将叶节点数和叶节点得分作为罚项显化，并且利用泰勒展开进行优化求解。</p>
-<p>利用得分增益进行树的分裂。</p>
-<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://zkread.com/article/1012129.html" target="_blank" rel="noopener">GBDT（梯度提升决策树）</a></p>
-<p><a href="http://www-stat.stanford.edu/~jhf/ftp/trebst.pdf" target="_blank" rel="noopener">Greedy function approximation: a gradient boosting machine</a></p>
-<p><a href="http://www.chengli.io/tutorials/gradient_boosting.pdf" target="_blank" rel="noopener">A Gentle Introduction to Gradient Boosting</a></p>
-<p><a href="http://xgboost.readthedocs.io/en/latest/model.html" target="_blank" rel="noopener">Xgboost</a></p>
-<p><a href="http://blog.csdn.net/shenxiaoming77/article/details/51542982" target="_blank" rel="noopener">一步一步理解GB、GBDT、xgboost</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/ensemble/gbdt组合特征/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/machine learning/ensemble/gbdt组合特征/" class="post-title-link" itemprop="url">gbdt组合特征</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ensemble/" itemprop="url" rel="index"><span itemprop="name">ensemble</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://blog.csdn.net/zhangf666/article/details/70183788" target="_blank" rel="noopener">XGBoost Plotting API以及GBDT组合特征实践</a></p>
-<p><a href="http://blog.csdn.net/bryan__/article/details/51769118" target="_blank" rel="noopener">利用GBDT模型构造新特征</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/ensemble/gcforest/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/machine learning/ensemble/gcforest/" class="post-title-link" itemprop="url">gcforest</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ensemble/" itemprop="url" rel="index"><span itemprop="name">ensemble</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><script type"text javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
-<h1 id="gcForest"><a href="#gcForest" class="headerlink" title="gcForest"></a>gcForest</h1><p>gcForest包含两大模块：级联森林和多粒度扫描。<br><img src="http://i4.buimg.com/567571/19c73bb7503caa72.png" alt></p>
-<h1 id="多粒度扫描（Multi-Grained-Scanning）"><a href="#多粒度扫描（Multi-Grained-Scanning）" class="headerlink" title="多粒度扫描（Multi-Grained Scanning）"></a>多粒度扫描（Multi-Grained Scanning）</h1><p><img src="http://omdhuynsr.bkt.clouddn.com/17-5-4/47305608-file_1493888234733_e64c.png" alt><br>对特征进行有规则滑动采样，拿采样后数据分别建立标准随机森林和完全随机森林，将输出概率进行拼接构成新的特征向量。</p>
-<h1 id="级联森林（Cascade-Forest）"><a href="#级联森林（Cascade-Forest）" class="headerlink" title="级联森林（Cascade Forest）"></a>级联森林（Cascade Forest）</h1><p><img src="http://omdhuynsr.bkt.clouddn.com/17-5-4/88211704-file_1493888546752_1059d.png" alt><br>利用多个随机森林训练的输出作为新特征和原特征合并，多次级联操作，最终多个森林输出结果取均值，得到最后的类别概率分布。<br>每次级联后验证输出效果是否有提升，没有提升则终止级联，输出结果。</p>
-<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="https://www.qcloud.com/community/article/536731001491381531" target="_blank" rel="noopener">小菜鸟对周志华大神gcForest的理解</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/error-process/Q&A/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/machine learning/error-process/Q&A/" class="post-title-link" itemprop="url">Q&A</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/error-process/" itemprop="url" rel="index"><span itemprop="name">error-process</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="xgboost-feature-names-mismatch"><a href="#xgboost-feature-names-mismatch" class="headerlink" title="xgboost feature_names mismatch"></a>xgboost feature_names mismatch</h1><p>在使用xgboost的时候出现这个问题，就是字面意思，列不匹配。而我出现的这个问题的原因则是因为，我使用了一个稀疏矩阵train_test_split分割后进行训练和预测。但是，分割之后的矩阵很可能出现某列都是0的情况，一旦这样，则进行xgb.DMatrix变换时，会缺失这一列信息（丢弃这一列，），也就出现了列名和实际列数对不上的情况。</p>
-<p>但是这一情况仅仅出现在trian过程，在predict过程进行某列都是0也不影响。</p>
-<h1 id="xgbosot-get-fsocre输出为空字典"><a href="#xgbosot-get-fsocre输出为空字典" class="headerlink" title="xgbosot get_fsocre输出为空字典"></a>xgbosot get_fsocre输出为空字典</h1><p>需要在训练时加上参数 bias_score,奇怪的是这本身就是一个有值的默参，不能理解为什么一定要显式指定。仅为mac测试。</p>
-<h1 id="xgb预测时加上-model-bset-iteration或其他两个参数时，输出概率为负"><a href="#xgb预测时加上-model-bset-iteration或其他两个参数时，输出概率为负" class="headerlink" title="xgb预测时加上 model.bset_iteration或其他两个参数时，输出概率为负"></a>xgb预测时加上 model.bset_iteration或其他两个参数时，输出概率为负</h1><p>因为在传参时没有使用ntree_limit=bst.best_iteration,而是直接传了bst.best_iteration,但是predict方法第二个参数根本不是ntree_limit!所以传参最好正规化，使用参数名=？的方式！</p>
-<h1 id="xgb-的bst-best-iteration和bst-best-ntree-limit有什么区别"><a href="#xgb-的bst-best-iteration和bst-best-ntree-limit有什么区别" class="headerlink" title="xgb 的bst.best_iteration和bst.best_ntree_limit有什么区别"></a>xgb 的bst.best_iteration和bst.best_ntree_limit有什么区别</h1><p>best_iteration是指最佳迭代次数，从0开始计数。best.best_ntree_limit是指最佳树的数量，所以比迭代次数大1，因为树的数量是从1开始数的。</p>
-<p>如果booster=’gbtree’,那么这两个参数都是有的，如果booster=’gblinear’，那么只有best_iteration，因为不存在树的说法。</p>
-<p>在使用bst.predict时，如果想要指定ntree_limit,对于’gbtree’直接使用best_ntree_limit就可以了，对于’gblinear’可以使用best_iteration+1的方式。（是否可以有一样的效果没严格考证）</p>
-<h1 id="sklearn-TfidfVectorizer-变换后出现了没有文本中没有的词，而且词数和文本的词数对不上"><a href="#sklearn-TfidfVectorizer-变换后出现了没有文本中没有的词，而且词数和文本的词数对不上" class="headerlink" title="sklearn TfidfVectorizer 变换后出现了没有文本中没有的词，而且词数和文本的词数对不上"></a>sklearn TfidfVectorizer 变换后出现了没有文本中没有的词，而且词数和文本的词数对不上</h1><p>需要注意TfidfVectorizer有几个参数，lowercase, max_df, min_df，出现没有的词其实是做了小写变换出现的，词数对不上也是这三个参数的原因。</p>
-<h1 id="pandas-groupby组内顺序会按照df本身的内部顺序么？"><a href="#pandas-groupby组内顺序会按照df本身的内部顺序么？" class="headerlink" title="pandas groupby组内顺序会按照df本身的内部顺序么？"></a>pandas groupby组内顺序会按照df本身的内部顺序么？</h1><p>会！</p>
-<p><a href="https://stackoverflow.com/questions/8409498/attributeerror-numpy-ndarray-object-has-no-attribute-append" target="_blank" rel="noopener">[AttributeError: ‘numpy.ndarray’ object has no attribute ‘append’]</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/feature engineering/category encoding/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/machine learning/feature engineering/category encoding/" class="post-title-link" itemprop="url">category encoding</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/feature-engineering/" itemprop="url" rel="index"><span itemprop="name">feature engineering</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>类别变量编码方式：</p>
-<ol>
-<li>Ordinal: 给每个类赋予一个值</li>
-<li>One-Hot: 转化成n个0-1两值列（n为类别数），每一列代表一个类别。case的类别对应的那一列取值为1， 其他列为0</li>
-<li>Binary: 先将每个类赋予一个值，然后将值转化为二进制码，然后将二进制码按字符分裂成多列</li>
-<li>Sum: </li>
-</ol>
-<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://www.willmcginnis.com/2015/11/29/beyond-one-hot-an-exploration-of-categorical-variables/" target="_blank" rel="noopener">BEYOND ONE-HOT: AN EXPLORATION OF CATEGORICAL VARIABLES</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/feature engineering/entity embeddings of categorical variables/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/machine learning/feature engineering/entity embeddings of categorical variables/" class="post-title-link" itemprop="url">entity embeddings of categorical variables</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/feature-engineering/" itemprop="url" rel="index"><span itemprop="name">feature engineering</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>本文为论文<a href="https://arxiv.arg/abs/1604.06737" target="_blank" rel="noopener">《Entity Embeddings of Categorical Variables》</a> 的阅读笔记。</p>
-<ol>
-<li><p>Introduction</p>
-<blockquote>
-<p>In principle a neural network can approximate any continuous function and piece wise continuous function.However, it is not suitable to approximate arbitrary non-continuous functions as it assumes certain level of continuity in its general form.</p>
-</blockquote>
-<p>这一部分首先明确NN适合于拟合连续函数或者分段连续函数，但对于非连续函数拟合效果较差。同时认为大部分数据都是连续的，即使表面看不出来连续性。非连续性这一点在结构化数据的类别变量上表现尤为突出。因此希望找到方法对类别数据进行处理，表征出它们的连续性。一般方法是使用onehot，但会带来两个问题：</p>
-<ol>
-<li>计算资源的巨大需求</li>
-<li>onehot会忽视类别之间的相互关系</li>
-</ol>
-<p>本论文则将提出一种embedding方法用于表征数据内部的连续性，使之适用于NN以及一般机器学习模型。</p>
-<p>​</p>
-</li>
-<li><p>Related Work</p>
-<p>已经有相关工作出现，例如NLP中的词嵌入相关方法。最快的一种方式是使用词的上下文信息来最大化以下目标函数：<br>$$<br>p(\omega_c|\omega) = \frac{\exp(\omega \centerdot \omega_c)}{\sum_i \exp(\omega \centerdot \omega_i)}<br>$$<br>$\omega_c$在$\omega$的上下文窗口中，希望条件概率最大化。求和是针对整个词汇空间。</p>
-<p>​</p>
-</li>
-<li><p>基于树的方法</p>
-<p>由于树方法是本文的主要比较对象，因此做下简单介绍。</p>
-<ul>
-<li><p>单决策树</p>
-<p>决策树将特征空间$X$分割$M$个不同的子空间$R_1, R_2, …,R_M$， 拟合的函数其实是：<br>$$<br>f(x) = \sum\limits_{m=1}^M c_m I(x \in R_m)<br>$$<br>使用均方误差作为损失函数：<br>$$<br>L = \sum\limits_i(y_i - f(x_i))^2<br>$$<br>可以求得最优解（其实就是子空间包含样本label的均值）：<br>$$<br>\hat{c_m} = \frac{1}{\left|R_m\right|}\sum_{x_i \in R_m} y_i<br>$$<br>由于全局优化是困难的，实际上一般采用序贯二分的方法进行学习，也就是M=2。</p>
-<p>​</p>
-</li>
-<li><p>random forest</p>
-<p>样本和特征两方面的bootstrap以及多棵树结果的线性平均在保持偏差效果的同时降低了方差。</p>
-<p>​</p>
-</li>
-<li><p>GBM</p>
-<p>不同于单树的参数优化，GBM是函数优化，每一步都是寻找一个最优函数优化前面的残差。</p>
-<p>​</p>
-</li>
-</ul>
-</li>
-<li><p>Structured data</p>
-<p>解释了下结构化数据是什么。以及说明了nominal numbers（无序）和cardinal numbers（有序）。</p>
-<p>​</p>
-</li>
-<li><p>Entity embedding</p>
-<p>将类别变量onehot以后嵌入到一个低维空间中。具体怎么嵌入合适，论文中没有实在讨论。同时从作者源码看，也仅仅是简单调用了keras的embedding层而已。如果是使用NN的话，可以将embedding设置为可训练的，这样就可以通过label来学习嵌入方式。但如果是非NN，就不好这么做了。</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/imbalance data/learning from imbalance data/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/machine learning/imbalance data/learning from imbalance data/" class="post-title-link" itemprop="url">learning from imbalance data</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/imbalance-data/" itemprop="url" rel="index"><span itemprop="name">imbalance data</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
-<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="https://zhpmatrix.github.io/2017/02/20/learning-from-imbalanced-data/" target="_blank" rel="noopener">Learning from Imbalanced Data</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/machine learning/Fast Effective Rule Induction/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/machine learning/machine learning/Fast Effective Rule Induction/" class="post-title-link" itemprop="url">Fast Effective Rule Induction</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/machine-learning/" itemprop="url" rel="index"><span itemprop="name">machine learning</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
-<p>本文为论文《Fast Effective Rule Induction》的阅读笔记。</p>
-<h1 id="REP-amp-IREP"><a href="#REP-amp-IREP" class="headerlink" title="REP&amp;IREP"></a>REP&amp;IREP</h1><p>REP(reduced error pruning)将数据分成两部分，growing set和pruning set，在growing set上贪婪学习，然后根据pruning set来进行剪枝。REP的时间复杂度较高。</p>
-<p>IREP（incremental reduced error pruning）则是在每一个规则的发现过程中都进行数据集分割，并且学习完规则立刻进行剪枝操作。IREP在精度上略差于C4.5，在large noisy dataset的处理能力也还不错。</p>
-<p>下面是一个作者在文中给出的二分类IREP伪代码：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">	produce IREP(Pos,Neg)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">   Ruleest := ∅</span><br><span class="line">   <span class="keyword">while</span> Pos ≠ ∅ <span class="keyword">do</span></span><br><span class="line">      <span class="comment">/* grow and prune a new rule */</span></span><br><span class="line">      <span class="keyword">split</span> (Pos, Neg) <span class="keyword">into</span> (GrowPos, GrowNeg) <span class="keyword">and</span> (PrunePos, PruneNeg)</span><br><span class="line">      Rule := GrowRule(GrowPos, GrowNeg)</span><br><span class="line">      Rule := PruneRule(Rule, PrunePos, PruneNeg)</span><br><span class="line">      <span class="keyword">if</span> the <span class="keyword">error</span> rate <span class="keyword">of</span> Rule <span class="keyword">on</span> (PrunePos, PruneNeg) exceeds <span class="number">50</span>% <span class="keyword">then</span></span><br><span class="line">         <span class="keyword">return</span> Ruleset</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">         <span class="keyword">add</span> Rule <span class="keyword">to</span> Ruleset</span><br><span class="line">         remove examples covered <span class="keyword">by</span> Rule</span><br><span class="line">         <span class="keyword">from</span> (Pos, Neg)</span><br><span class="line">      endif</span><br><span class="line">   endwhile</span><br><span class="line">   <span class="keyword">return</span> Ruleset</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>其中<br>$$<br>v = PruneRule(Rule, PrunePos, PruneNeg) \equiv \frac{p + (N-n)}{P+N}  \tag{1}<br>$$<br>如果是多分类，则按类的占比从低往高排序${C_1, C_2, , …, C_k}$，先针对$C_1$开始进行规则学习，把该类完全排除后，继续学习$C_2$，依此类推。</p>
-<p>如果某特征$A$中存在缺失值，那么$A=v$(离散)或者$A&lt;=\theta$（连续）这个条件会被认为不cover缺失值样本。我的理解是这样做的含义其实是更倾向于让缺失值归于多数类。</p>
-<p>以上IREP(为方便说明，我自行标记为IREPn)和初始IREP有以下区别：</p>
-<ol>
-<li>IREP原作者有提出两套剪枝算法，分为为IREP和IREP2。IREP使用Equation 1作为剪枝准则，使用$p/(p+n) &lt; N/(P+N)$作为停止准则；IREP2使用$\frac{p}{p+n}$作为剪枝准则，使用$p/(p+n) &lt; 1/2$作为停止准则。本论文作者通过实验发现IREP通常好于IREP2，但也发现如果将IREP的剪枝准则和IREP2的停止准则结合可以显著的改进IREP的效果。</li>
-<li>原始IREP在每次剪枝过程中仅允许剪掉一条规则，而IREPn允许在剪枝准则基础上剪掉任意条规则。</li>
-<li>IREPn支持缺失值处理，数值型变量和多类别变量。</li>
-</ol>
-<h1 id="效率对比"><a href="#效率对比" class="headerlink" title="效率对比"></a>效率对比</h1><p>和C4.5rules进行实验比较:</p>
-<ol>
-<li>C4.5rules时间复杂度为样本量的立方，而IREP则是线性对数的复杂度。</li>
-<li>IREP及其所有变种效果均差于C4.5rules，也差于通过无剪枝的学习方法（FOIL）学到的规则效果。</li>
-<li>IREP在一些数据集上无法收敛，它在少量数据上学习到规则的误差率，当数据量增加后依旧没有显著改善。</li>
-</ol>
-<h1 id="IPEP改进"><a href="#IPEP改进" class="headerlink" title="IPEP改进"></a>IPEP改进</h1><ol>
-<li><p>剪枝规则的改进</p>
-<p>Equation 1的剪枝规则本质上就是$p-n$,受到绝对量影响。比如rule1 cover 2000个正例和1000个负例，rule2 cover 1000个正例和1个负例，使用Equation 1进行评价，则rule1好于rule2。论文作者提出一种改进：<br>$$<br>v^* (Rule, PrunePos, PruneNeg)  \equiv \frac{p-n}{p+n}<br>$$</p>
-</li>
-<li><p>停止规则的改进</p>
-<p>对于有偏样本（比如说正样本占比10%），规则子集的错误率很容易超过50%，由此触发停止规则。但如果这个规则子集的正样本占比能够达到40%，显然这是一个好规则。而且严重有偏样本在prunset上也往往有很大的方差，导致更容易错误率超过50%。因此，50%的停止规则容易导致IREP过早停止学习。作者提出使用最小描述长度来设定停止规则。这样改进后的IREP称为IREP*</p>
-</li>
-<li><p>规则优化</p>
-<p>没看懂？</p>
-<p>​</p>
-</li>
-</ol>
-<h1 id="泛化能力"><a href="#泛化能力" class="headerlink" title="泛化能力"></a>泛化能力</h1><p>RIPPER好于IREP*，略逊于C4.5rules，RIPPER2略优于C4.5rules。</p>
-<h1 id="RIPPERk效率"><a href="#RIPPERk效率" class="headerlink" title="RIPPERk效率"></a>RIPPERk效率</h1><p>论述了RIPPERk的在时间和空间上的高效率。RIPPERk和C4.5rules都是先生成一个初始模型，然后在初始模型上迭代。但对于large noisy datasets，C4.5rules生成的初始模型（完全生成的决策树，由于noisy，可能会细分到每个叶子节点只包含一个样本）会过大，而RIPPEk一开始使用IREP*生成的初始模型的规模则会和目标空间较为接近。另外，在大数据集（样本数超过150）上， RIPPERk优于C4.5rules，反之相反。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -3747,7 +3771,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">358</span>
+                    <span class="site-state-item-count">369</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -4075,7 +4099,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">113</span>
+                      
+                    
+                    <span class="site-state-item-count">114</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>

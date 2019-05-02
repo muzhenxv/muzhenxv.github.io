@@ -285,6 +285,1845 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/develepment/elasticsearch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/development/develepment/elasticsearch/" class="post-title-link" itemprop="url">elasticsearch</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/develepment/" itemprop="url" rel="index"><span itemprop="name">develepment</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>由于工作原因，需要对爬取下来的新闻进行全文实时检索，简单调研后选择elasticsearch完成该功能。</p>
+<h1 id="elasticsearch单机版安装"><a href="#elasticsearch单机版安装" class="headerlink" title="elasticsearch单机版安装"></a>elasticsearch单机版安装</h1><p>选择docker方式进行安装。选择镜像进行拉取</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull daocloud.io<span class="regexp">/library/</span><span class="string">elasticsearch:</span><span class="number">5.4</span><span class="number">.2</span>-alpine</span><br></pre></td></tr></table></figure>
+<p>启动容器后台运行</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -<span class="selector-tag">p</span> <span class="number">9200</span>:<span class="number">9200</span> -<span class="selector-tag">p</span> <span class="number">9300</span>:<span class="number">9300</span> -d -e <span class="string">"discovery.type=single-node"</span> --name elasticsearch daocloud.io/library/elasticsearch:<span class="number">5.4</span>.<span class="number">2</span>-alpine</span><br></pre></td></tr></table></figure>
+<h1 id="安装python-api操作elasticsearch"><a href="#安装python-api操作elasticsearch" class="headerlink" title="安装python api操作elasticsearch"></a>安装python api操作elasticsearch</h1><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 <span class="keyword">install</span> elasticsearch</span><br></pre></td></tr></table></figure>
+<h1 id="python-api-操作说明"><a href="#python-api-操作说明" class="headerlink" title="python api 操作说明"></a>python api 操作说明</h1><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">from elasticsearch import Elasticsearch</span><br><span class="line"></span><br><span class="line"># 建立索引，其中news为Type，可以理解为分组，对应<span class="keyword">python</span> api中的arg doc_type，最好一个索引只含有一个<span class="built_in">type</span>。<span class="number">7</span>.<span class="keyword">x</span>版本elasticsearch据说会取消Type。index_mappings为索引所需要保存的json文件的key-value结构，也就是properties中内容。</span><br><span class="line">es = Elasticsearch()</span><br><span class="line">index_mappings = &#123;</span><br><span class="line">    <span class="string">"mappings"</span>: &#123;</span><br><span class="line">        <span class="string">"news"</span>: &#123;</span><br><span class="line">            <span class="string">"properties"</span>: &#123;</span><br><span class="line">                <span class="string">"url"</span>: &#123;<span class="string">"type"</span>: <span class="string">"text"</span>&#125;,</span><br><span class="line">                <span class="string">"title"</span>: &#123;<span class="string">"type"</span>: <span class="string">"text"</span>&#125;,</span><br><span class="line">                <span class="string">"publish"</span>: &#123;<span class="string">"type"</span>: <span class="string">"string"</span>，<span class="string">"index"</span>: <span class="string">"not_analyzed"</span>&#125;,</span><br><span class="line">                <span class="string">"content"</span>: &#123;<span class="string">"type"</span>: <span class="string">"text"</span>&#125;,</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> not es.indices.<span class="built_in">exists</span>(<span class="string">'defensenews'</span>):</span><br><span class="line">    es.indices.create(<span class="string">'defensenews'</span>, body=index_mappings)</span><br><span class="line"></span><br><span class="line"># 向索引中插入数据</span><br><span class="line">item = &#123;&#125;</span><br><span class="line">item[<span class="string">'url'</span>] = url</span><br><span class="line">item[<span class="string">'title'</span>] = title</span><br><span class="line">item[<span class="string">'publish'</span>] = publish</span><br><span class="line">item[<span class="string">'content'</span>] = content</span><br><span class="line">es.<span class="built_in">index</span>(<span class="string">'defensenews'</span>, doc_type=<span class="string">'news'</span>, body=item)</span><br><span class="line"></span><br><span class="line"># 全文检索,查询content中包含radar的记录,_source指定需要获取的字段名</span><br><span class="line"><span class="keyword">res</span> = es.<span class="built_in">search</span>(<span class="string">"defensenews"</span>, doc_type=<span class="string">'news'</span>, body=&#123;<span class="string">"query"</span>: &#123;<span class="string">"match"</span>: &#123;<span class="string">"content"</span>: <span class="string">"radar"</span>&#125;&#125;&#125;, _source=[<span class="string">'title'</span>])</span><br><span class="line"><span class="keyword">print</span>(<span class="keyword">res</span>)</span><br></pre></td></tr></table></figure>
+<p>对于中文，需要安装ik分词插件（该docker中是否已经集成未测试），在index_mappings中需要指定中文分词器，具体见参考链接。</p>
+<h1 id="时间类型处理"><a href="#时间类型处理" class="headerlink" title="时间类型处理"></a>时间类型处理</h1><p>elasticsearch会识别一定格式的字符串，并自动将之转为时间类型。</p>
+<blockquote>
+<p>至于什么样的字符串es会认为可以转换成date类型，参考<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html" target="_blank" rel="noopener">elasticsearch官网介绍</a></p>
+</blockquote>
+<p>kibana在读取es数据时如果数据不带时区信息则会当成零时区，并根据系统时区自动对数据进行时间转换，因此</p>
+<blockquote>
+<p>所以最佳实践方案就是：我们在往es提交日期数据的时候，直接提交带有时区信息的日期字符串，如：“2016-07-15T12:58:17.136+0800”。</p>
+</blockquote>
+<h1 id="inferences"><a href="#inferences" class="headerlink" title="inferences"></a>inferences</h1><p><a href="http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html" target="_blank" rel="noopener">全文搜索引擎 Elasticsearch 入门教程</a></p>
+<p><a href="http://www.cnblogs.com/yxpblog/p/5141738.html" target="_blank" rel="noopener">python操作Elasticsearch (一、例子)</a></p>
+<p><a href="http://rockybean.info/2015/02/27/elasticsearch-date-type" target="_blank" rel="noopener">Elasticsearch Date类型使用技巧</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/develepment/flask&request/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/development/develepment/flask&request/" class="post-title-link" itemprop="url">flask&request</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/develepment/" itemprop="url" rel="index"><span itemprop="name">develepment</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="调用api方法"><a href="#调用api方法" class="headerlink" title="调用api方法"></a>调用api方法</h1><p>参考<a href="http://www.cnblogs.com/GuoYaxiang/p/6232831.html" target="_blank" rel="noopener">Python3使用urllib访问网页</a></p>
+<p>利用post请求进行调用</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.parse</span><br><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"></span><br><span class="line">url = <span class="string">'http://www.someserver.com/cgi-bin/register.cgi'</span></span><br><span class="line">values = &#123;<span class="string">'name'</span> : <span class="string">'Michael Foord'</span>,</span><br><span class="line">          <span class="string">'location'</span> : <span class="string">'Northampton'</span>,</span><br><span class="line">          <span class="string">'language'</span> : <span class="string">'Python'</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">data</span> = urllib.parse.urlencode(values)</span><br><span class="line"><span class="keyword">data</span> = <span class="keyword">data</span>.encode(<span class="string">'ascii'</span>) # <span class="keyword">data</span> should be bytes</span><br><span class="line">req = urllib.request.Request(url, <span class="keyword">data</span>)</span><br><span class="line"><span class="keyword">with</span> urllib.request.urlopen(req) <span class="keyword">as</span> response:</span><br><span class="line">   the_page = response.read()</span><br></pre></td></tr></table></figure>
+<p>如果不传递data参数，就变成利用get请求调用。get请求有长度限制，具体长度好像随着浏览器不同而不同，因此长字符串的传递使用post请求更为合适。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/develepment/flask/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/development/develepment/flask/" class="post-title-link" itemprop="url">flask</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/develepment/" itemprop="url" rel="index"><span itemprop="name">develepment</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line">app = Flask(__name__)</span><br></pre></td></tr></table></figure>
+<p>app是Flask的实例。<code>__name__</code>可以使得flask可以找到资源对象。如果以上是一个test.py单脚本，那么<code>__name__==&#39;__main__&#39;</code>，如果它是一个<code>__init__.py</code>文件，那么指向的就是这个package的名字。具体见flask官方文档</p>
+<p>将flask放入docker中web服务在外部curl，报curl（56）错误，是因为启动py服务时需要指定host为<code>0.0.0.0</code>， <a href="https://serverfault.com/questions/769578/curl-56-recv-failure-connection-reset-by-peer-when-hitting-docker-container" target="_blank" rel="noopener">curl (56) Recv failure: Connection reset by peer - when hitting docker container</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/develepment/error&solution/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/development/develepment/error&solution/" class="post-title-link" itemprop="url">error&solution</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/develepment/" itemprop="url" rel="index"><span itemprop="name">develepment</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="hexo-exists-Template-render-error"><a href="#hexo-exists-Template-render-error" class="headerlink" title="hexo exists Template render error"></a>hexo exists Template render error</h1><p>在使用<code>hexo g</code>时出现Template render error错误。最后发现是.md文件中一些格式比如\{\{\}\}不被hexo支持解析。</p>
+<p>如果不在代码块中，那么直接加转义符形如<code>\{\{\}\</code>即可，在typera中展示时不会出现转义符。</p>
+<p>如果是在代码块中，也是通过加上转义符破坏\{\{形式，至于是每个括号都加转义符还是只加一个随意，比如这样<code>{\{}\}</code>。不好的地方是在代码块中会原样展现在typera的预览页面上。</p>
+<p><a href="https://github.com/hexojs/hexo/issues/2160" target="_blank" rel="noopener">hexo s failed, generate error</a></p>
+<p><a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">Troubleshooting</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/develepment/kibana/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/development/develepment/kibana/" class="post-title-link" itemprop="url">kibana</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/develepment/" itemprop="url" rel="index"><span itemprop="name">develepment</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>kibana是一款开源分析和可视化平台，设计出来用于和Elasticsearch一起使用。</p>
+<h1 id="安装kibana"><a href="#安装kibana" class="headerlink" title="安装kibana"></a>安装kibana</h1><p>采用docker方式安装</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="builtin-name">run</span> --name mykibana -e <span class="attribute">ELASTICSEARCH_URL</span>=http://&lt;your-ip&gt;:9200 -p 5601:5601 -d daocloud.io/library/kibana:&lt;version&gt;</span><br></pre></td></tr></table></figure>
+<p>其中<code>&lt;your-ip&gt;</code>请填写你的elasticsearch服务使用的ip。如果elasticsearch也是通过docker服务启动的，那么可以通过<code>docker inspect --format &#39;{\{.NetworkSettings.IPAddress}\}&#39; container_id</code>命令查看elasticsearch容器对应的ip地址。其中\为转义为了可以被hexo识别，使用命令时可以不打。</p>
+<p><code>&lt;version&gt;</code>请和elasticsearch保持一致避免出现问题。我的elasticsearch使用的是daocloud.io/library/elasticsearch：5.4.2-alpine，kibana使用的是daocloud.io/library/kibana：5.4.2。</p>
+<h1 id="使用kibana"><a href="#使用kibana" class="headerlink" title="使用kibana"></a>使用kibana</h1><p>chrome通过<code>localhost:5601</code>可以访问kibana。没有错误情况下应该类似下图界面：</p>
+<p><img src="http://omdhuynsr.bkt.clouddn.com/17-10-31/35560171.jpg" alt></p>
+<p>使用kibana的第一步是配置索引。假设elasticsearch中已经有一个defensenews的索引。那么可以将索引匹配模式的名称写成defense*,由于我的这个索引内没有时间数据，因此取消勾选<code>索引包含时间活动</code>这一选项框。然后点击create创建即可。</p>
+<p><img src="http://omdhuynsr.bkt.clouddn.com/17-10-31/77919984.jpg" alt></p>
+<p>在网页左侧的Management栏目下，可以看到defense*索引包含的字段及其类型。</p>
+<p><img src="http://omdhuynsr.bkt.clouddn.com/17-10-31/29438812.jpg" alt></p>
+<p>需要注意，只有具有aggregatable属性的字段才可以进行聚合做图。我的这个索引所有字段类型都是text，因此都无法参与聚合。只需要在创建索引的时候将字段类型定义如下代码中的publish，就可以具有aggregatable属性，更具体的类型设定我没有尝试，请自行挖掘。</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">index_mappings = &#123;</span><br><span class="line">    <span class="string">"mappings"</span>: &#123;</span><br><span class="line">        <span class="string">"news"</span>: &#123;</span><br><span class="line">            <span class="string">"properties"</span>: &#123;</span><br><span class="line">                <span class="string">"url"</span>: &#123;<span class="string">"type"</span>: <span class="string">"text"</span>&#125;,</span><br><span class="line">                <span class="string">"title"</span>: &#123;<span class="string">"type"</span>: <span class="string">"text"</span>&#125;,</span><br><span class="line">                <span class="string">"publish"</span>: &#123;<span class="string">"type"</span>: <span class="string">"string"</span>，<span class="string">"index"</span>: <span class="string">"not_analyzed"</span>&#125;,</span><br><span class="line">                <span class="string">"content"</span>: &#123;<span class="string">"type"</span>: <span class="string">"text"</span>&#125;,</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="inferences"><a href="#inferences" class="headerlink" title="inferences"></a>inferences</h1><p><a href="http://blog.csdn.net/sbsujjbcy/article/details/52335325" target="_blank" rel="noopener">记一次Docker下安装Logstash+Elasticsearch+Kibana经历</a></p>
+<p><a href="http://blog.csdn.net/ming_311/article/details/50619859" target="_blank" rel="noopener">Kibana基本使用</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/develepment/python邮件监控/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/development/develepment/python邮件监控/" class="post-title-link" itemprop="url">python邮件监控</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/develepment/" itemprop="url" rel="index"><span itemprop="name">develepment</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/develepment/scrapy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/development/develepment/scrapy/" class="post-title-link" itemprop="url">scrapy</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/develepment/" itemprop="url" rel="index"><span itemprop="name">develepment</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本篇内容：利用python scrapy爬取某新闻网站新闻，并将新闻存进elasticsearch便于全文检索。</p>
+<h1 id="安装scrapy"><a href="#安装scrapy" class="headerlink" title="安装scrapy"></a>安装scrapy</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple scrapy</span><br></pre></td></tr></table></figure>
+<h1 id="建立项目"><a href="#建立项目" class="headerlink" title="建立项目"></a>建立项目</h1><h2 id="通过命令行在当前目录新建项目"><a href="#通过命令行在当前目录新建项目" class="headerlink" title="通过命令行在当前目录新建项目"></a>通过命令行在当前目录新建项目</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy startproject tutorial</span><br></pre></td></tr></table></figure>
+<h2 id="编写Item类，即实体类"><a href="#编写Item类，即实体类" class="headerlink" title="编写Item类，即实体类"></a>编写Item类，即实体类</h2><p>修改items.py代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 类名随意</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DmozItem</span><span class="params">(scrapy.Item)</span>:</span></span><br><span class="line">    <span class="comment"># define the fields for your item here like:</span></span><br><span class="line">    <span class="comment"># name = scrapy.Field()</span></span><br><span class="line">    url = scrapy.Field()</span><br><span class="line">    title = scrapy.Field()</span><br><span class="line">    publish = scrapy.Field()</span><br><span class="line">    content = scrapy.Field()</span><br></pre></td></tr></table></figure>
+<h2 id="编写spider类"><a href="#编写spider类" class="headerlink" title="编写spider类"></a>编写spider类</h2><p>在spiders文件夹下新建dmoz_spider.py文件：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> scrapy.contrib.linkextractors <span class="keyword">import</span> LinkExtractor</span><br><span class="line"><span class="keyword">from</span> scrapy.contrib.spiders <span class="keyword">import</span> CrawlSpider,Rule</span><br><span class="line"><span class="keyword">from</span> tutorial.items <span class="keyword">import</span> DmozItem</span><br><span class="line"><span class="keyword">from</span> elasticsearch <span class="keyword">import</span> Elasticsearch</span><br><span class="line"></span><br><span class="line">es = Elasticsearch()</span><br><span class="line">index_mappings = &#123;</span><br><span class="line">    <span class="string">"mappings"</span>: &#123;</span><br><span class="line">        <span class="string">"news"</span>: &#123;</span><br><span class="line">            <span class="string">"properties"</span>: &#123;</span><br><span class="line">                <span class="string">"url"</span>: &#123;<span class="string">"type"</span>: <span class="string">"text"</span>&#125;,</span><br><span class="line">                <span class="string">"title"</span>: &#123;<span class="string">"type"</span>: <span class="string">"text"</span>&#125;,</span><br><span class="line">                <span class="string">"publish"</span>: &#123;<span class="string">"type"</span>: <span class="string">"text"</span>&#125;,</span><br><span class="line">                <span class="string">"content"</span>: &#123;<span class="string">"type"</span>: <span class="string">"text"</span>&#125;,</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> es.indices.exists(<span class="string">'defensenews'</span>):</span><br><span class="line">    es.indices.create(<span class="string">'defensenews'</span>, index_mappings)</span><br><span class="line"><span class="comment"># keywords = ['E-2D', 'E-2C', 'DARPA', 'THAAD', 'SMART-L', 'F-22', 'RADAR']</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DmozSpider</span><span class="params">(CrawlSpider)</span>:</span></span><br><span class="line">    name = <span class="string">"dmoz"</span></span><br><span class="line">    allowed_domains = [<span class="string">"defensenews.com"</span>]</span><br><span class="line">    start_urls = [</span><br><span class="line">        <span class="string">"https://www.defensenews.com"</span></span><br><span class="line">    ]</span><br><span class="line">    rules = [Rule(LinkExtractor(allow=<span class="string">r"/.*/2017/\d+/\d+/.*"</span>), follow=<span class="keyword">True</span>, callback=<span class="string">'parse_item'</span>)]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_item</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        url = response.url</span><br><span class="line">        <span class="comment"># 如果item调用下面的实体类，最后得到的item并非字典格式，无法存进es。</span></span><br><span class="line">        <span class="comment"># item = DmozItem()</span></span><br><span class="line">        item = &#123;&#125;</span><br><span class="line">        item[<span class="string">'url'</span>] = [response.url]</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            response = urllib.request.urlopen(url)</span><br><span class="line">            text = response.read().decode(<span class="string">'utf-8'</span>)</span><br><span class="line">            title = re.findall(<span class="string">'head col-sm-12.*?&lt;h1&gt;(.*?)&lt;/h1&gt;'</span>, text, re.S)[<span class="number">0</span>]</span><br><span class="line">            publish = \</span><br><span class="line">                re.findall(<span class="string">'publish addthis.*?&lt;/i&gt;(.*?)&lt;/span&gt;'</span>, text,</span><br><span class="line">                           re.S)[<span class="number">0</span>].strip()</span><br><span class="line">            pattern = <span class="string">"""&lt;div class="row"&gt; &lt;div class="col-md-12 col-xs-12 col-print-12"&gt; &lt;p class="element element-paragraph"&gt;(.*?)&lt;/p&gt; &lt;/div&gt; &lt;/div&gt;"""</span></span><br><span class="line">            content = <span class="string">'&lt;br /&gt;'</span>.join(re.findall(pattern, text, re.S))</span><br><span class="line">            item[<span class="string">'title'</span>] = title</span><br><span class="line">            item[<span class="string">'publish'</span>] = publish</span><br><span class="line">            item[<span class="string">'content'</span>] = content</span><br><span class="line">            es.index(<span class="string">'defensenews'</span>, doc_type=<span class="string">'news'</span>, body=item)</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure>
+<p>allowed_domains限制域名，start_urls设定起始url，可以多个。</p>
+<p>特别注意，类继承的是CrawlSpider，如果只是继承scrapy.Spider,rules无法使用会报错！</p>
+<h1 id="爬虫持久化"><a href="#爬虫持久化" class="headerlink" title="爬虫持久化"></a>爬虫持久化</h1><p>在项目根目录下通过如下命令启动爬虫，其中dmoz为spider类中指定的name值。<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl dmoz -s <span class="attribute">JOBDIR</span>=crawls/dmoz-1</span><br></pre></td></tr></table></figure></p>
+<p>按ctrl-c就可以暂停。再次运行以上命令就可以继续运行。</p>
+<h1 id="inferences"><a href="#inferences" class="headerlink" title="inferences"></a>inferences</h1><p><a href="http://www.cnblogs.com/sirkevin/p/5805795.html" target="_blank" rel="noopener">网络爬虫：使用Scrapy框架编写一个抓取书籍信息的爬虫服务</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/develepment/transformer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/development/develepment/transformer/" class="post-title-link" itemprop="url">transformer</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/develepment/" itemprop="url" rel="index"><span itemprop="name">develepment</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>transformer模块为特征工程模块，encoder为其基本单元，encoder的作用为进行特征变换。</p>
+<p>此文档用于规范encoder类的编写，同时列出各个encoder的参数列表。</p>
+<h1 id="编写规范"><a href="#编写规范" class="headerlink" title="编写规范"></a>编写规范</h1><ol>
+<li><p>类取名应该清晰易懂， 符合一般规范（各单词首字母大写），以Encoder结尾， 例如<code>BaseEncoder</code>, <code>WOEEncoder</code>。对于只适用于cont的Encoder类应该以Cont作为类名开头，对于只适用于cate的Encoder类应该以Cate作为类名开头。</p>
+</li>
+<li><p>类必须包含<code>__init__</code>、<code>fit</code>和<code>transformer</code>方法，transformer模块也只会调用这三个方法</p>
+</li>
+<li><p>fit方法必须形如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 形式1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, df, y=None)</span>:</span></span><br><span class="line">    ···</span><br><span class="line"></span><br><span class="line"><span class="comment"># 形式2</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, df, y)</span>:</span></span><br><span class="line">    ···</span><br><span class="line"></span><br><span class="line"><span class="comment"># 不需要return</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>transformer方法必须形如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">transform</span><span class="params">(self, df)</span>:</span></span><br><span class="line">    <span class="comment"># 一系列处理过程</span></span><br><span class="line">    df_final = df.copy()</span><br><span class="line">    ...</span><br><span class="line">    df_final.columns = df.columns</span><br><span class="line">    <span class="keyword">return</span> df.final</span><br><span class="line"></span><br><span class="line"><span class="comment"># return必须是pandas.DataFrame,不能乱序，顺序必须和传入的df一致(最好保持index和传入的df一致，目前会在外部再做一次index对齐处理防止index不一致,最后列名也需要复原出来，因为某些方法会删掉列名)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>异常处理和错误抛出规范：不要使用<code>try...except...</code>进行异常跳出，目前只需要正常让程序自行报错即可</p>
+</li>
+<li><p>必须有类注释，形如：</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">"""</span><br><span class="line">用于剔除缺失值严重列，同值严重列，不同值严重cate列（字符串列如果取值太过于分散，则信息量过低）。</span><br><span class="line"></span><br><span class="line">适用于cont和cate，支持缺失值, 建议放置在encoder序列第一位次</span><br><span class="line"></span><br><span class="line">Parameters</span><br><span class="line">----------</span><br><span class="line">missing<span class="emphasis">_thr: 0.8, 缺失率高于该值的列会被剔除</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">same_</span>thr: 0.8, 同值率高于该值的列会被剔除</span><br><span class="line"></span><br><span class="line">caate<span class="emphasis">_thr: 0.9， 取值分散率高于该值的字符串列会被剔除</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">Attributes</span></span><br><span class="line"><span class="emphasis">----------</span></span><br><span class="line"><span class="emphasis">missing_</span>cols: list, 被剔除的缺失值列</span><br><span class="line"></span><br><span class="line">same<span class="emphasis">_cols: list, 被剔除的同值列</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">cate_</span>cols: list, 被剔除的取值分散字符串列</span><br><span class="line"></span><br><span class="line">exclude<span class="emphasis">_cols: list, 被剔除的列名</span></span><br><span class="line"><span class="emphasis">"""</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>完成后必须进行单元测试，自测通过</p>
+</li>
+</ol>
+<h1 id="BaseEncoder"><a href="#BaseEncoder" class="headerlink" title="BaseEncoder"></a>BaseEncoder</h1><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">"""</span><br><span class="line">用于剔除缺失值严重列，同值严重列，不同值严重cate列（字符串列如果取值太过于分散，则信息量过低）。</span><br><span class="line"></span><br><span class="line">适用于cont和cate，支持缺失值, 建议放置在encoder序列第一位次</span><br><span class="line"></span><br><span class="line">Parameters</span><br><span class="line">----------</span><br><span class="line">missing<span class="emphasis">_thr: 0.8, 缺失率高于该值的列会被剔除</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">same_</span>thr: 0.8, 同值率高于该值的列会被剔除</span><br><span class="line"></span><br><span class="line">caate<span class="emphasis">_thr: 0.9， 取值分散率高于该值的字符串列会被剔除</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">Attributes</span></span><br><span class="line"><span class="emphasis">----------</span></span><br><span class="line"><span class="emphasis">missing_</span>cols: list, 被剔除的缺失值列</span><br><span class="line"></span><br><span class="line">same<span class="emphasis">_cols: list, 被剔除的同值列</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">cate_</span>cols: list, 被剔除的取值分散字符串列</span><br><span class="line"></span><br><span class="line">exclude<span class="emphasis">_cols: list, 被剔除的列名</span></span><br><span class="line"><span class="emphasis">"""</span></span><br></pre></td></tr></table></figure>
+<h1 id="NothingEncoder"><a href="#NothingEncoder" class="headerlink" title="NothingEncoder"></a>NothingEncoder</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">原样返回，不做任何处理。本用于测试，现在transformer支持在encoders序列为空情况下原样返回，此类已无实际用途。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">适用于cont和cate，支持缺失值</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+<h1 id="DropEncoder"><a href="#DropEncoder" class="headerlink" title="DropEncoder"></a>DropEncoder</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">此类用于返回空df，换言之删除所有字段。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">适用于cont和cate， 支持缺失值</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+<h1 id="ContImupterEncoder"><a href="#ContImupterEncoder" class="headerlink" title="ContImupterEncoder"></a>ContImupterEncoder</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">"""</span><br><span class="line">此类继承自sklearn.preprocessing.Imputer，fit与基类完全一致，transform方法返回变为pandas.DataFrame。</span><br><span class="line"></span><br><span class="line">仅适用于cont， 支持缺失值</span><br><span class="line"></span><br><span class="line">Parameters</span><br><span class="line"><span class="comment">----------</span></span><br><span class="line">missing_values : integer or "NaN", optional (default="NaN")</span><br><span class="line">    The placeholder for the missing values. <span class="keyword">All</span> occurrences <span class="keyword">of</span></span><br><span class="line">    <span class="string">`missing_values`</span> will be imputed. <span class="keyword">For</span> <span class="keyword">missing</span> <span class="keyword">values</span> encoded <span class="keyword">as</span> np.nan,</span><br><span class="line">    <span class="keyword">use</span> the <span class="keyword">string</span> <span class="keyword">value</span> <span class="string">"NaN"</span>.</span><br><span class="line"></span><br><span class="line">strategy : <span class="keyword">string</span>, optional (<span class="keyword">default</span>=<span class="string">"mean"</span>)</span><br><span class="line">    The imputation strategy.</span><br><span class="line"></span><br><span class="line">    - <span class="keyword">If</span> <span class="string">"mean"</span>, <span class="keyword">then</span> <span class="keyword">replace</span> <span class="keyword">missing</span> <span class="keyword">values</span> <span class="keyword">using</span> the mean along</span><br><span class="line">      the axis.</span><br><span class="line">    - <span class="keyword">If</span> <span class="string">"median"</span>, <span class="keyword">then</span> <span class="keyword">replace</span> <span class="keyword">missing</span> <span class="keyword">values</span> <span class="keyword">using</span> the <span class="keyword">median</span> along</span><br><span class="line">      the axis.</span><br><span class="line">    - <span class="keyword">If</span> <span class="string">"most_frequent"</span>, <span class="keyword">then</span> <span class="keyword">replace</span> <span class="keyword">missing</span> <span class="keyword">using</span> the most frequent</span><br><span class="line">      <span class="keyword">value</span> along the axis.</span><br><span class="line"></span><br><span class="line">axis : <span class="built_in">integer</span>, optional (<span class="keyword">default</span>=<span class="number">0</span>)</span><br><span class="line">    The axis along which <span class="keyword">to</span> impute.</span><br><span class="line"></span><br><span class="line">    - <span class="keyword">If</span> <span class="string">`axis=0`</span>, <span class="keyword">then</span> impute along columns.</span><br><span class="line">    - <span class="keyword">If</span> <span class="string">`axis=1`</span>, <span class="keyword">then</span> impute along rows.</span><br><span class="line"></span><br><span class="line">verbose : <span class="built_in">integer</span>, optional (<span class="keyword">default</span>=<span class="number">0</span>)</span><br><span class="line">    Controls the verbosity <span class="keyword">of</span> the imputer.</span><br><span class="line"></span><br><span class="line">copy : <span class="built_in">boolean</span>, optional (<span class="keyword">default</span>=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">If</span> <span class="literal">True</span>, a copy <span class="keyword">of</span> X will be created. <span class="keyword">If</span> <span class="literal">False</span>, imputation will</span><br><span class="line">    be done <span class="keyword">in</span>-place <span class="keyword">whenever</span> possible. Note that, <span class="keyword">in</span> the <span class="keyword">following</span> cases,</span><br><span class="line">    a <span class="keyword">new</span> copy will <span class="keyword">always</span> be made, even <span class="keyword">if</span> <span class="string">`copy=False`</span>:</span><br><span class="line"></span><br><span class="line">    - <span class="keyword">If</span> X <span class="keyword">is</span> <span class="keyword">not</span> an <span class="built_in">array</span> <span class="keyword">of</span> floating <span class="keyword">values</span>;</span><br><span class="line">    - If X is sparse and `missing_values=0`;</span><br><span class="line">    - If `axis=0` and X is encoded as a CSR matrix;</span><br><span class="line">    - If `axis=1` and X is encoded as a CSC matrix.</span><br><span class="line"></span><br><span class="line">Attributes</span><br><span class="line"><span class="comment">----------</span></span><br><span class="line">enc : 实例化的Imputer对象</span><br><span class="line"></span><br><span class="line">enc.statistics_ : array of shape (n_features,)</span><br><span class="line">    The imputation fill value for each feature if axis == 0.</span><br><span class="line"></span><br><span class="line">Notes</span><br><span class="line"><span class="comment">-----</span></span><br><span class="line">- When ``axis=0``, columns which only contained missing <span class="keyword">values</span> <span class="keyword">at</span> <span class="string">`fit`</span></span><br><span class="line">  <span class="keyword">are</span> discarded upon <span class="string">`transform`</span>.</span><br><span class="line">- <span class="keyword">When</span> <span class="string">``</span>axis=<span class="number">1</span><span class="string">``</span>, an <span class="keyword">exception</span> <span class="keyword">is</span> raised <span class="keyword">if</span> there <span class="keyword">are</span> <span class="keyword">rows</span> <span class="keyword">for</span> which it <span class="keyword">is</span></span><br><span class="line">  <span class="keyword">not</span> possible <span class="keyword">to</span> fill <span class="keyword">in</span> the <span class="keyword">missing</span> <span class="keyword">values</span> (e.g., because they <span class="keyword">only</span></span><br><span class="line">  contain <span class="keyword">missing</span> <span class="keyword">values</span>).    </span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+<h1 id="ContBinningEncoder"><a href="#ContBinningEncoder" class="headerlink" title="ContBinningEncoder"></a>ContBinningEncoder</h1><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">"""</span><br><span class="line">将连续型变量转化为离散型</span><br><span class="line"></span><br><span class="line">仅适用于cont， 支持缺失值</span><br><span class="line"></span><br><span class="line">Parameters</span><br><span class="line">----------</span><br><span class="line">diff<span class="emphasis">_thr: 20, 不同取值数高于该值才进行离散化处理，不然原样返回</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">binning_</span>method: <span class="emphasis">'dt'</span>，分箱方法, 可用取值为<span class="emphasis">'dt'</span>， <span class="emphasis">'qcut'</span>， <span class="emphasis">'cut'</span></span><br><span class="line"></span><br><span class="line">bins: 10, 分箱数目， 当binning<span class="emphasis">_method='dt'时，该参数失效</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">**kwargs: 决策树分箱方法使用的决策树参数</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">"""</span></span><br></pre></td></tr></table></figure>
+<h1 id="WOEEncoder"><a href="#WOEEncoder" class="headerlink" title="WOEEncoder"></a>WOEEncoder</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">woe变换</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">适用于cont和cate，但对多取值cont无效，支持缺失值</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Parameters</span></span><br><span class="line"><span class="string">----------</span></span><br><span class="line"><span class="string">diff_thr: 20， 不同取值数小于等于该值的才进行woe变换，不然原样返回</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">woe_min: -20， woe的截断最小值</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">woe_max: 20， woe的截断最大值</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">nan_thr: 0.01， 对缺失值采用平滑方法计算woe值，nan_thr为平滑参数</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/develepment/多线程&多进程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/development/develepment/多线程&多进程/" class="post-title-link" itemprop="url">多线程&多进程</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/develepment/" itemprop="url" rel="index"><span itemprop="name">develepment</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><p>对于单核cpu，同一时间只可能运行一个线程。只是由于线程任务可能存在一些必要的挂起时间（等待I/O等），这个时间被迅速切换来运行下一个线程，从而带来了挂起时间的节约和相应加速。</p>
+<p>多核cpu情况下，多线程则存在核间资源共享的问题。python的GIL机制则是一个相当糟糕的解决方案。使得多线程效率可能还不如单线程。</p>
+<h1 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h1><p>每个核分别处理任务，可以不受其他任务影响的并行。特定需求下，也存在进程间通信的问题。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/git/git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/development/git/git/" class="post-title-link" itemprop="url">git</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Git-fatal-Pathspec-is-in-submodule"><a href="#Git-fatal-Pathspec-is-in-submodule" class="headerlink" title="Git: fatal: Pathspec is in submodule"></a>Git: fatal: Pathspec is in submodule</h1><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git rm <span class="comment">--cached directory</span></span><br><span class="line">git <span class="built_in">add</span> <span class="built_in">directory</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://stackoverflow.com/questions/24472596/git-fatal-pathspec-is-in-submodule" target="_blank" rel="noopener">Git: fatal: Pathspec is in submodule</a></p>
+<h1 id="PR"><a href="#PR" class="headerlink" title="PR"></a>PR</h1><p>使用别人的repo代码，发现问题想要更正以后合并，可以通过以下方法：</p>
+<ol>
+<li>fork repo</li>
+<li>git clone自己fork过来的repo到本地</li>
+<li>本地正常修改提交</li>
+<li>在自己fork的repo上发pr申请，等待原仓库管理员merge</li>
+</ol>
+<h1 id="本地仓库和线上仓库关联"><a href="#本地仓库和线上仓库关联" class="headerlink" title="本地仓库和线上仓库关联"></a>本地仓库和线上仓库关联</h1><p>想要把本地仓库和一个线上的仓库合并：</p>
+<ol>
+<li><p>本地仓库和线上仓库同名</p>
+</li>
+<li><p>如果本地仓库只是文件夹，需要<code>git init</code></p>
+</li>
+<li><p>创建关联，<code>git remote add origin &lt;线上repo ssh地址&gt;</code></p>
+</li>
+<li><p>先把线上仓库拉取合并下来，<code>git pull origin master</code></p>
+</li>
+<li><p>本地仓库推到线上，</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m ""</span><br><span class="line">git push -u origin master #-u是对线上和线下master进行关联，以后就不需要加了</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="创建本地分支并推上线"><a href="#创建本地分支并推上线" class="headerlink" title="创建本地分支并推上线"></a>创建本地分支并推上线</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b test</span><br><span class="line">git add -A</span><br><span class="line">git commit -m "test"</span><br><span class="line">git push -u origin test:test</span><br></pre></td></tr></table></figure>
+<h1 id="本地repo同时推到两个线上repo"><a href="#本地repo同时推到两个线上repo" class="headerlink" title="本地repo同时推到两个线上repo"></a>本地repo同时推到两个线上repo</h1><p>reference: <a href="https://gist.github.com/rvl/c3f156e117e22a25f242" target="_blank" rel="noopener">Pushing to Multiple Git Repos</a></p>
+<p>流程如下：</p>
+<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># remote</span></span><br><span class="line"><span class="string">git </span><span class="string">remote </span><span class="string">add </span><span class="string">github </span><span class="string">git@</span><span class="string">github.</span><span class="string">com:muccg/</span><span class="string">my-project.</span><span class="string">git</span></span><br><span class="line"><span class="string">git </span><span class="string">remote </span><span class="string">add </span><span class="string">bb </span><span class="string">git@</span><span class="string">bitbucket.</span><span class="string">org:ccgmurdoch/</span><span class="string">my-project.</span><span class="string">git</span></span><br><span class="line"><span class="string">#</span> <span class="string">Remote </span><span class="string">Push </span><span class="string">URLs</span></span><br><span class="line"><span class="string">git </span><span class="string">remote </span><span class="built_in">set-url</span> <span class="built_in">--add</span> <span class="built_in">--push</span> <span class="string">origin </span><span class="string">git@</span><span class="string">github.</span><span class="string">com:muccg/</span><span class="string">my-project.</span><span class="string">git</span></span><br><span class="line"><span class="string">git </span><span class="string">remote </span><span class="built_in">set-url</span> <span class="built_in">--add</span> <span class="built_in">--push</span> <span class="string">origin </span><span class="string">git@</span><span class="string">bitbucket.</span><span class="string">org:ccgmurdoch/</span><span class="string">my-project.</span><span class="string">git</span></span><br><span class="line"><span class="string">#</span> <span class="string">pull </span><span class="string">multiple</span></span><br><span class="line"><span class="string">git </span><span class="string">fetch </span><span class="built_in">--all</span></span><br><span class="line"><span class="built_in">git</span> <span class="string">merge </span><span class="string">github/</span><span class="string">next_release </span><span class="string">bb/</span><span class="string">next_release</span></span><br></pre></td></tr></table></figure>
+<p>在pull multiple步骤，可能会报如下错误<code>fatal: refusing to merge unrelated histories</code>,只需要在pull或者merge时加上<code>--allow-unrelated-histories</code>参数，在手动合并代码冲突即可。</p>
+<p>下面提供一个更简单的方案，没有经过严格测试：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改.git/config文件，加入如下一段话</span></span><br><span class="line">[remote <span class="string">"all"</span>]</span><br><span class="line">url = https:<span class="regexp">//gi</span>thub.com<span class="regexp">/segment/</span>test.git</span><br><span class="line">url = https:<span class="regexp">//gi</span>t.oschina.net<span class="regexp">/segment/</span>test.git</span><br><span class="line"><span class="comment"># pull合并代码</span></span><br><span class="line">git pull all master --allow-unrelated-histories</span><br></pre></td></tr></table></figure>
+<p>注意，这个方案另开了一个all分支，可能更安全，也可以直接修改origin。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/environment/IDEA操作技巧/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/development/environment/IDEA操作技巧/" class="post-title-link" itemprop="url">IDEA操作技巧</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本机环境： ubuntu16.04</p>
+<h1 id="IDEA-卡顿"><a href="#IDEA-卡顿" class="headerlink" title="IDEA 卡顿"></a>IDEA 卡顿</h1><p>参考<a href="http://blog.csdn.net/u013068377/article/details/54316965" target="_blank" rel="noopener">解决IDEA卡顿问题及相关基本配置</a></p>
+<p>进入IDEA安装目录，进一步进入bin目录，修改<code>idea64.vmoptions</code>文件（windows下文件名略有区别）</p>
+<p>将文件中<code>-Xmx?m</code> 改为你需要分配的内存数量，比如改为<code>-Xmx2048m</code>。</p>
+<h1 id="IDEA-中文环境"><a href="#IDEA-中文环境" class="headerlink" title="IDEA  中文环境"></a>IDEA  中文环境</h1><p>依旧是修改<code>idea64.vmoptions</code>,在最后增加一行</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-Dfile.<span class="attribute">encoding</span>=utf8</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/environment/centos7.4安装机器学习环境/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -393,6 +2232,174 @@
 <p>参考<a href="https://unix.stackexchange.com/questions/348941/rpmdb-checksum-is-invalid-trying-to-install-gcc-in-a-centos-7-2-docker-image" target="_blank" rel="noopener">Rpmdb checksum is invalid - Trying to install gcc in a CentOS 7.2 docker image</a></p>
 <p>centos中文环境支持，<a href="https://github.com/CentOS/sig-cloud-instance-images/issues/71" target="_blank" rel="noopener">Default locale is set to en_US.UTF-8 but it’s missing</a></p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">RUN</span> localedef -i en_US -f UTF-8 en_US.UTF-8</span><br><span class="line">ENV <span class="attribute">LANG</span>=en_US.UTF-8</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/environment/docker for tensorflow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/development/environment/docker for tensorflow/" class="post-title-link" itemprop="url">docker for tensorflow</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="nvidia-docker"><a href="#nvidia-docker" class="headerlink" title="nvidia-docker"></a>nvidia-docker</h1><p>需要安装nvidia-docker用于docker和宿主机之间的gpu资源共享</p>
+<p><a href="https://github.com/NVIDIA/nvidia-docker" target="_blank" rel="noopener">Docker Engine Utility for NVIDIA GPUs</a> 给出了详细的安装过程。</p>
+<p>对于ubuntu，使用如下命令</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget -P <span class="regexp">/tmp https:/</span><span class="regexp">/github.com/</span>NVIDIA<span class="regexp">/nvidia-docker/</span>releases<span class="regexp">/download/</span>v1<span class="number">.0</span><span class="number">.1</span>/nvidia-docker_1<span class="number">.0</span><span class="number">.1</span><span class="number">-1</span>_amd64.deb</span><br><span class="line">sudo dpkg -i <span class="regexp">/tmp/</span>nvidia-docker*.deb &amp;&amp; rm <span class="regexp">/tmp/</span>nvidia-docker*.deb</span><br></pre></td></tr></table></figure>
+<p>测试是否安装成功：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-docker <span class="built_in">run</span> <span class="comment">--rm nvidia/cuda nvidia-smi</span></span><br></pre></td></tr></table></figure>
+<p>在运行和gpu相关的docker镜像时，把 <code>docker run</code>改成 <code>nvidia-docker run</code>即可。如果报错，可能是plugin没有启动，先后台运行<code>nvidia-docker-plugin</code>。</p>
+<h1 id="tenorflow-gpu-docker"><a href="#tenorflow-gpu-docker" class="headerlink" title="tenorflow-gpu docker"></a>tenorflow-gpu docker</h1><p>我选择的镜像是<code>tensorflow/tensorflow:1.2.1-devel-gpu-py3</code></p>
+<p>具体的可选择镜像可以看<a href="https://github.com/denverdino/tensorflow-docker" target="_blank" rel="noopener">Tensorflow Docker image with Aliyun mirror</a>。其实不需要专门使用阿里云，我没有找到官方镜像名列表，所以拿这个做个镜像名索引而已。。</p>
+<p>如果在run镜像时出现类似这样的报错 <code>An error occurred trying to connect: Get http:///var/run/docker.sock/v1.21/create..container。。EOF</code>，可以采用以下解决方法：</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service docker stop</span><br><span class="line">sudo rm /var/<span class="class"><span class="keyword">lib</span>/<span class="title">docker</span>/<span class="title">network</span>/<span class="title">files</span>/<span class="title">local</span>-<span class="title">kv</span>.<span class="title">db</span></span></span><br><span class="line">service docker start</span><br></pre></td></tr></table></figure>
+<p>也需要重启<code>nvidia-docker-plugin</code>，即可解决。 解决方案参考<a href="https://github.com/moby/moby/issues/17846" target="_blank" rel="noopener">An error occurred trying to connect version 1.9.0</a></p>
 
           
         
@@ -576,174 +2583,6 @@
 <p>在容器内获得宿主机私网ip，先将ip写入容器环境变量 <code>docker run --env hostip=‘ip’ docker-id</code>， 然后在容器内部通过读取环境变量来得到hostip信息。如果是python,可以<code>os.environ[&#39;环境变量名称&#39;]</code>来获取环境变量。</p>
 <h1 id="inference"><a href="#inference" class="headerlink" title="inference"></a>inference</h1><p><a href="http://www.cnblogs.com/q4486233/p/6482711.html" target="_blank" rel="noopener">Docker 容器镜像删除</a></p>
 <p><a href="http://dockone.io/question/441" target="_blank" rel="noopener">如何从容器内部获取主机IP</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/environment/docker for tensorflow/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/development/environment/docker for tensorflow/" class="post-title-link" itemprop="url">docker for tensorflow</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="nvidia-docker"><a href="#nvidia-docker" class="headerlink" title="nvidia-docker"></a>nvidia-docker</h1><p>需要安装nvidia-docker用于docker和宿主机之间的gpu资源共享</p>
-<p><a href="https://github.com/NVIDIA/nvidia-docker" target="_blank" rel="noopener">Docker Engine Utility for NVIDIA GPUs</a> 给出了详细的安装过程。</p>
-<p>对于ubuntu，使用如下命令</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget -P <span class="regexp">/tmp https:/</span><span class="regexp">/github.com/</span>NVIDIA<span class="regexp">/nvidia-docker/</span>releases<span class="regexp">/download/</span>v1<span class="number">.0</span><span class="number">.1</span>/nvidia-docker_1<span class="number">.0</span><span class="number">.1</span><span class="number">-1</span>_amd64.deb</span><br><span class="line">sudo dpkg -i <span class="regexp">/tmp/</span>nvidia-docker*.deb &amp;&amp; rm <span class="regexp">/tmp/</span>nvidia-docker*.deb</span><br></pre></td></tr></table></figure>
-<p>测试是否安装成功：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-docker <span class="built_in">run</span> <span class="comment">--rm nvidia/cuda nvidia-smi</span></span><br></pre></td></tr></table></figure>
-<p>在运行和gpu相关的docker镜像时，把 <code>docker run</code>改成 <code>nvidia-docker run</code>即可。如果报错，可能是plugin没有启动，先后台运行<code>nvidia-docker-plugin</code>。</p>
-<h1 id="tenorflow-gpu-docker"><a href="#tenorflow-gpu-docker" class="headerlink" title="tenorflow-gpu docker"></a>tenorflow-gpu docker</h1><p>我选择的镜像是<code>tensorflow/tensorflow:1.2.1-devel-gpu-py3</code></p>
-<p>具体的可选择镜像可以看<a href="https://github.com/denverdino/tensorflow-docker" target="_blank" rel="noopener">Tensorflow Docker image with Aliyun mirror</a>。其实不需要专门使用阿里云，我没有找到官方镜像名列表，所以拿这个做个镜像名索引而已。。</p>
-<p>如果在run镜像时出现类似这样的报错 <code>An error occurred trying to connect: Get http:///var/run/docker.sock/v1.21/create..container。。EOF</code>，可以采用以下解决方法：</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service docker stop</span><br><span class="line">sudo rm /var/<span class="class"><span class="keyword">lib</span>/<span class="title">docker</span>/<span class="title">network</span>/<span class="title">files</span>/<span class="title">local</span>-<span class="title">kv</span>.<span class="title">db</span></span></span><br><span class="line">service docker start</span><br></pre></td></tr></table></figure>
-<p>也需要重启<code>nvidia-docker-plugin</code>，即可解决。 解决方案参考<a href="https://github.com/moby/moby/issues/17846" target="_blank" rel="noopener">An error occurred trying to connect version 1.9.0</a></p>
 
           
         
@@ -1519,224 +3358,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/environment/host_blog_on_ubuntu16.04/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/development/environment/host_blog_on_ubuntu16.04/" class="post-title-link" itemprop="url">host_blog_on_ubuntu16.04</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Step-1-—-Installing-and-Initializing-Hexo"><a href="#Step-1-—-Installing-and-Initializing-Hexo" class="headerlink" title="Step 1 — Installing and Initializing Hexo"></a>Step 1 — Installing and Initializing Hexo</h1><p>先要安装nodejs和npm，需要注意版本，如果是低版本后面hexo命令很可能报错<a href="https://websiteforstudents.com/install-the-latest-node-js-and-nmp-packages-on-ubuntu-16-04-18-04-lts/" target="_blank" rel="noopener">Install The Latest Node.Js And NPM Packages On Ubuntu 16.04 / 18.04 LTS</a></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Step 1: Add Node.Js PPA</span></span><br><span class="line">apt install curl</span><br><span class="line"><span class="meta">#</span><span class="bash"> There are two repositories you can install… one repository contains the latest Node.js packages and the other has the LTS or (Long Term Support) packages…. <span class="keyword">if</span> you need the latest and greatest, <span class="keyword">then</span> install the first repository…</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> On the other hand, <span class="keyword">if</span> you need a more stable and tested Node.js packages, <span class="keyword">then</span> install the LTS repository….</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Then for the Latest release, add this PPA..</span></span></span><br><span class="line">curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># To install the LTS release, use this PPA</span></span></span><br><span class="line">curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -</span><br><span class="line"><span class="meta">#</span><span class="bash"> Step 2: Install Node.Js And NPM</span></span><br><span class="line">apt install nodejs</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
-<p>安装hexo</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">npm install hexo-server -g</span><br><span class="line">hexo init ~/hexo_blog</span><br></pre></td></tr></table></figure>
-<p>If <code>hexo init ~/hexo_blog</code> get error <code>/usr/bin/env: ‘node’: No such file or directory</code>, fixed by</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /usr/bin/nodejs /usr/bin/node</span><br></pre></td></tr></table></figure>
-<p>then</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/hexo_blog</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<p>use</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-<p>测试hexo功能是否正常</p>
-<h1 id="Step-2-—-Setting-Up-Hexo’s-Main-Configuration-File"><a href="#Step-2-—-Setting-Up-Hexo’s-Main-Configuration-File" class="headerlink" title="Step 2 — Setting Up Hexo’s Main Configuration File"></a>Step 2 — Setting Up Hexo’s Main Configuration File</h1><p>config hexo</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">vi</span> _<span class="selector-tag">config</span><span class="selector-class">.yml</span></span><br></pre></td></tr></table></figure>
-<p>change as(<em>must have a space after the “:”</em>):</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Hexo Configuration  </span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Docs: https://hexo.io/docs/configuration.html</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Source: https://github.com/hexojs/hexo/</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Site 站点信息设置</span></span><br><span class="line">title: the Home of MuZhen #站名</span><br><span class="line">subtitle: #副标题</span><br><span class="line">description: #站描述</span><br><span class="line">author: muzhen #作者</span><br><span class="line">language: en</span><br><span class="line">timezone:</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> URL 链接设置</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span></span></span><br><span class="line">url: http://www.muzhen.tk</span><br><span class="line">root: /</span><br><span class="line">permalink: :year/:month/:day/:title/</span><br><span class="line">permalink_defaults:</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Directory 文件目录</span></span><br><span class="line">source_dir: source</span><br><span class="line">public_dir: public</span><br><span class="line">tag_dir: tags</span><br><span class="line">archive_dir: archives</span><br><span class="line">category_dir: categories</span><br><span class="line">code_dir: downloads/code</span><br><span class="line">i18n_dir: :lang</span><br><span class="line">skip_render:</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Writing 文章</span></span><br><span class="line">new_post_name: :title.md # File name of new posts</span><br><span class="line">default_layout: post</span><br><span class="line">titlecase: false # Transform title into titlecase</span><br><span class="line">external_link: true # Open external links in new tab</span><br><span class="line">filename_case: 0</span><br><span class="line">render_drafts: false</span><br><span class="line">post_asset_folder: false</span><br><span class="line">relative_link: false</span><br><span class="line">future: true</span><br><span class="line">highlight:</span><br><span class="line">  enable: true</span><br><span class="line">  line_number: true</span><br><span class="line">  auto_detect: true</span><br><span class="line">  tab_replace:</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Category &amp; Tag</span></span><br><span class="line">default_category: uncategorized</span><br><span class="line">category_map:</span><br><span class="line">tag_map:</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Date / Time format 日期</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Hexo uses Moment.js to parse and display date</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># You can customize the date format as defined in</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># http://momentjs.com/docs/#/displaying/format/</span></span></span><br><span class="line">date_format: YYYY-MM-DD</span><br><span class="line">time_format: HH:mm:ss</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Pagination 分页</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Set per_page to 0 to disable pagination</span></span></span><br><span class="line">per_page: 20</span><br><span class="line">pagination_dir: page</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Extensions 扩展</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Plugins: https://hexo.io/plugins/</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Themes: https://hexo.io/themes/</span></span></span><br><span class="line">theme: landscape</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Deployment 这里设置了Git获</span></span><br><span class="line"><span class="meta">#</span><span class="bash">这里一定要注意不要写错了，否则部署到Github上会出问题</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Docs: https://hexo.io/docs/deployment.html</span></span></span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:mocorochio/micorochio.github.io.git</span><br><span class="line">  branch: master</span><br><span class="line">  message:</span><br></pre></td></tr></table></figure>
-<h1 id="Step3-install-nginx"><a href="#Step3-install-nginx" class="headerlink" title="Step3-install nginx"></a>Step3-install nginx</h1><ol>
-<li><p>install nginx</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install nginx</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>configure nginx</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/nginx/conf.d/default.conf</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>change like below:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  www.muzhen.tk muzhen.tk;</span><br><span class="line">    root   /home/www/hexo/public;</span><br><span class="line">    location / &#123;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line">     include /etc/nginx/default.d/*.conf;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>use your domain replace <em><a href="http://www.muzhen.tk">www.muzhen.tk</a> muzhen.tk</em></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service nginx start</span><br><span class="line"><span class="meta">#</span><span class="bash"> hexo部署更新</span></span><br><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-<p>如果访问blog页面出现403错误，可能是nginx user配置问题, <a href="https://blog.csdn.net/onlysunnyboy/article/details/75270533" target="_blank" rel="noopener">解决Nginx出现403 forbidden (13: Permission denied)报错的四种方法</a></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/nginx/nginx.conf</span><br><span class="line">​</span><br></pre></td></tr></table></figure>
-<p>comment first line: user /data/www;<br>add line: user root;<br>​<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service nginx <span class="literal">start</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="Step4-important-configure-markdown"><a href="#Step4-important-configure-markdown" class="headerlink" title="Step4-important! configure markdown"></a>Step4-<strong>important!</strong> configure markdown</h1><p><strong><em>这里的配置不仅仅是可以支持latex的问题，还可以避免由于\{\{\}\}导致的hexo g报错Template render error</em></strong></p>
-<p>configure markdown to address the conflict between markdown and latex.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /home/www/hexo/node_modules/hexo-renderer-marked/node_modules/marked/lib</span><br><span class="line">sudo vim marked.js</span><br></pre></td></tr></table></figure>
-<p>replace </p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">escape: /^\\([<span class="string">\\`*&#123;&#125;\[\</span>](<span class="link"></span>)# +\-.!_&gt;])/,</span><br></pre></td></tr></table></figure>
-<p>to </p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">escape: /^\\([<span class="string">`*\[\</span>](<span class="link"></span>)# +\-.!_&gt;])/,</span><br></pre></td></tr></table></figure>
-<p>replace </p>
-<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">em: /^<span class="symbol">\b</span>_((?:[^_]|__)+?)_<span class="symbol">\b</span>|^<span class="symbol">\*</span>((?:<span class="symbol">\*</span><span class="symbol">\*</span>|[<span class="symbol">\s</span><span class="symbol">\S</span>])+?)<span class="symbol">\*</span>(?!<span class="symbol">\*</span>)/,</span><br></pre></td></tr></table></figure>
-<p>to</p>
-<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">em: /^<span class="symbol">\*</span>((?:<span class="symbol">\*</span><span class="symbol">\*</span>|[<span class="symbol">\s</span><span class="symbol">\S</span>])+?)<span class="symbol">\*</span>(?!<span class="symbol">\*</span>)/,</span><br></pre></td></tr></table></figure>
-<p>finally </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-<p>但是在尝试hexo-math或者hexo-render-mathjax之后，在latex支持上没有生效。</p>
-<p>最终的解决方案是利用主题来实现latex支持。具体操作见下一步。</p>
-<h1 id="Step5-modify-theme并进行latex支持"><a href="#Step5-modify-theme并进行latex支持" class="headerlink" title="Step5-modify theme并进行latex支持"></a>Step5-modify theme并进行latex支持</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">apt install git</span><br><span class="line">cd ~/hexo_blog</span><br><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br><span class="line">vi _config.yml</span><br><span class="line"><span class="meta">#</span><span class="bash"> change theme: landscape to theme: next</span></span><br><span class="line">cd themes/next</span><br><span class="line">vim _config.yml</span><br><span class="line"><span class="meta">#</span><span class="bash"> change mathjax <span class="built_in">enable</span> from <span class="literal">false</span> to <span class="literal">true</span></span></span><br></pre></td></tr></table></figure>
-<h1 id="Step6-使用dropbox进行本地blog文件与服务器同步"><a href="#Step6-使用dropbox进行本地blog文件与服务器同步" class="headerlink" title="Step6-使用dropbox进行本地blog文件与服务器同步"></a>Step6-使用dropbox进行本地blog文件与服务器同步</h1><h2 id="1-install-dropbox"><a href="#1-install-dropbox" class="headerlink" title="1. install dropbox"></a>1. install dropbox</h2><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># download dropbox</span></span><br><span class="line"><span class="comment">## 32bit</span></span><br><span class="line"><span class="keyword">cd</span> ~ &amp;&amp; wget -O - <span class="string">"https://www.dropbox.com/download?plat=lnx.x86"</span> | tar xzf -</span><br><span class="line"><span class="comment">## 64bit</span></span><br><span class="line"><span class="keyword">cd</span> ~ &amp;&amp; wget -O - <span class="string">"https://www.dropbox.com/download?plat=lnx.x86_64"</span> | tar xzf -</span><br><span class="line">~<span class="string">/.dropbox-dist/dropboxd</span></span><br><span class="line"><span class="comment"># copy link to chrome and valid</span></span><br><span class="line">wget https:<span class="string">//www.dropbox.com/download</span>?dl=packages/dropbox.py</span><br><span class="line"><span class="comment"># maybe the name of py is not dropbox.py,you only need operate the .py file regardless of its name.</span></span><br><span class="line">chmod +x <span class="string">./dropbox.py</span></span><br><span class="line">~<span class="string">/dropbox.py</span> <span class="keyword">help</span></span><br><span class="line"><span class="comment"># view state</span></span><br><span class="line">~<span class="string">/dropbox.py</span> status</span><br><span class="line"><span class="comment"># start sync</span></span><br><span class="line">~<span class="string">/dropbox.py</span> start</span><br><span class="line"><span class="keyword">cd</span> Dropbox</span><br><span class="line"><span class="comment"># exclude dir which don't need to sync</span></span><br><span class="line">~<span class="string">/dropboxy.py</span> exclude add dirname1 dirname2</span><br></pre></td></tr></table></figure>
-<h2 id="2-建立blog文件链接"><a href="#2-建立blog文件链接" class="headerlink" title="2. 建立blog文件链接"></a>2. 建立blog文件链接</h2><p>dropbox中需要有一个文件夹为_posts,里面放置符合blog格式的markdown文件，建立该文件夹与hexo下对应blog文件存放地址的链接</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 先删除文件夹，不然待会软连接会报错</span></span><br><span class="line">rm -rf /root/hexo_blog/source/_posts</span><br><span class="line"><span class="meta">#</span><span class="bash"> 建立软连接，必须用绝对路径，不然内部结构无法链接成功</span></span><br><span class="line">ln -s /root/Dropbox/_posts/ /root/hexo_blog/source/</span><br></pre></td></tr></table></figure>
-<p>至此，blog就建立完成了。至于github托管可以参见references或者我的另外一篇博客《host-blog-with-hexo-nginx-github》。</p>
-<h1 id="可能遇到的问题"><a href="#可能遇到的问题" class="headerlink" title="可能遇到的问题"></a>可能遇到的问题</h1><ol>
-<li>nodejs版本过低导致的问题</li>
-<li>vps内存不够导致hexo g失败。解决方案是增加或拓展swap分区</li>
-</ol>
-<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://renfuheng.com/2016/08/28/%E5%BF%AB%E9%80%9F%E5%9C%A8vps-centOs-6-%E4%B8%8A%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2%E5%B9%B6push%E4%B8%80%E4%BB%BD%E5%88%B0github/" target="_blank" rel="noopener">install hexo</a></p>
-<p><a href="http://www.jianshu.com/p/0823e387c019" target="_blank" rel="noopener">install git</a></p>
-<p><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">theme next</a></p>
-<p><a href="http://www.jianshu.com/p/393d067dba8d" target="_blank" rel="noopener">next theme set preview</a></p>
-<p><a href="http://www.wuxubj.cn/2016/08/Hexo-nexT-build-personal-blog/" target="_blank" rel="noopener">add search engine</a></p>
-<p><a href="http://www.jianshu.com/p/5d5931289c09" target="_blank" rel="noopener">optimization</a></p>
-<p><a href="https://blog.imfer.me/#!/post/2014-04-25-centos-install-dropbox" target="_blank" rel="noopener">install dropbox</a></p>
-<p><a href="http://blog.csdn.net/emptyset110/article/details/50123231" target="_blank" rel="noopener">搭建一个支持LaTEX的hexo博客</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/environment/install nodejs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2074,1718 +3695,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/environment/jdk/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/development/environment/jdk/" class="post-title-link" itemprop="url">jdk</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="install-jdk"><a href="#install-jdk" class="headerlink" title="install jdk"></a>install jdk</h1><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo<span class="built_in"> add-apt-repository </span>ppa:webupd8team/java</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install oracle-java8-installer</span><br><span class="line"><span class="comment"># check the java version</span></span><br><span class="line">javac -version</span><br><span class="line"><span class="comment"># set java environment variables</span></span><br><span class="line">sudo apt install oracle-java8-set-default</span><br></pre></td></tr></table></figure>
-<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://tipsonubuntu.com/2016/07/31/install-oracle-java-8-9-ubuntu-16-04-linux-mint-18/" target="_blank" rel="noopener">Install Oracle Java 8 / 9 in Ubuntu 16.04, Linux Mint 18</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/environment/jetbrains softwares破解方法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/development/environment/jetbrains softwares破解方法/" class="post-title-link" itemprop="url">jetbrains softwares破解方法</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="搭建本地服务器进行破解"><a href="#搭建本地服务器进行破解" class="headerlink" title="搭建本地服务器进行破解"></a>搭建本地服务器进行破解</h1><p><a href="http://blog.lanyus.com/archives/174.html" target="_blank" rel="noopener">搭建文件下载地址</a></p>
-<p>直接后台run对应版本的文件，比如</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/path_to_file/</span>IntelliJIDEALicenseServer_linux_amd64</span><br></pre></td></tr></table></figure>
-<p>设为开机自启动更加方便</p>
-<p>然后打开软件，进行注册。具体的端口号视所使用文件版本而定。在运行以上文件后输出内容中就包含端口号。</p>
-<p><img src="http://omdhuynsr.bkt.clouddn.com/17-9-3/53896227.jpg" alt></p>
-<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://idea.lanyus.com/" target="_blank" rel="noopener">IntelliJ IDEA 注册码</a></p>
-<p><a href="http://blog.lanyus.com/archives/174.html" target="_blank" rel="noopener">IntelliJ IDEA License Server本地搭建教程</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/environment/jupyter插件/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/development/environment/jupyter插件/" class="post-title-link" itemprop="url">jupyter插件</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>安装jupyter扩展，从而可以使用一些小功能。</p>
-<h1 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h1><p>用conda安装：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda install -c conda-forge jupyter_contrib_nbextensions</span><br><span class="line">conda install -c conda-forge jupyter_nbextensions_configurator</span><br></pre></td></tr></table></figure>
-<p>或者用pip：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip install jupyter_nbextensions_configurator jupyter_contrib_nbextensions</span><br><span class="line">jupyter contrib nbextension install --user</span><br><span class="line">jupyter nbextensions_configurator enable --user</span><br></pre></td></tr></table></figure>
-<p>安装好后在home页有一个Nbextensions选项卡，点进去后就可以勾选想要的插件功能。</p>
-<h1 id="好用的插件"><a href="#好用的插件" class="headerlink" title="好用的插件"></a>好用的插件</h1><ol>
-<li>Table of Contents： 目录</li>
-<li>zenmode：切换jupyter背景</li>
-<li>Codefolding：代码折叠</li>
-<li>Collapsible Headings：目录折叠</li>
-<li>其他：比如高亮选中单词（Highlight selected word），着色(highlighter)，显示执行时间（ExecuteTime），代码格式化（autopep8，需要安装autopep8包）之类</li>
-</ol>
-<h1 id="magic方法"><a href="#magic方法" class="headerlink" title="magic方法"></a>magic方法</h1><ol>
-<li><p>%debug：出错后直接建一个cell打<code>%debug</code>，就可以进入debug模式</p>
-</li>
-<li><p>tqdm_notebook： </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tnrange, tqdm_notebook</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> tqdm_notebook(range(<span class="number">4</span>), desc=<span class="string">'1st loop'</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> tqdm_notebook(range(<span class="number">100</span>), desc=<span class="string">'2nd loop'</span>, leave=<span class="keyword">False</span>):</span><br><span class="line">        sleep(<span class="number">0.01</span>)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="https://mp.weixin.qq.com/s?__biz=MzI3ODkxODU3Mg%3D%3D&amp;mid=2247485697&amp;idx=2&amp;sn=cfd494920bc59c62e192ee475bc01b9d&amp;chksm=eb4eedc2dc3964d40a6df962cde5fdfc6ccd2cbb88c423b24d479754b992e5430cdeebea9da4" target="_blank" rel="noopener">Top 5：五大最实用的Jupyter Notebook扩展插件</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/environment/markdown下latex用法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/development/environment/markdown下latex用法/" class="post-title-link" itemprop="url">markdown下latex用法</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
-<h1 id="使用环境"><a href="#使用环境" class="headerlink" title="使用环境"></a>使用环境</h1><p>我使用的是vscode，直接在markdown中安装markdown+math插件，md文档开头需要添加MathJax引擎,否则一些相关语句markdown+math并不支持：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<ul>
-<li><p>行内公式 $…$</p>
-</li>
-<li><p>行间公式,需要另起一行方可<br>$$…$$</p>
-</li>
-<li><p>公式换行、对齐</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\<span class="keyword">begin</span>&#123;<span class="keyword">split</span>&#125; ... &amp;&amp;= ...\<span class="keyword">newline</span></span><br><span class="line">&amp;&amp;= ... \<span class="keyword">newline</span></span><br><span class="line">&amp;&amp;= ... \<span class="keyword">end</span>&#123;<span class="keyword">split</span>&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>公式换行编号</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;eqnarray*&#125;</span></span> ... &amp;&amp;= ... <span class="tag">\<span class="name">tag</span><span class="string">&#123;1&#125;</span></span> <span class="tag">\<span class="name">newline</span></span></span><br><span class="line">&amp;&amp;= ... <span class="tag">\<span class="name">tag</span><span class="string">&#123;2&#125;</span></span> <span class="tag">\<span class="name">newline</span></span></span><br><span class="line">&amp;&amp;= ... <span class="tag">\<span class="name">tag</span><span class="string">&#123;3&#125;</span></span><span class="tag">\<span class="name">end</span><span class="string">&#123;eqnarray*&#125;</span></span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="向量符号加粗"><a href="#向量符号加粗" class="headerlink" title="向量符号加粗"></a>向量符号加粗</h1><p>对于一般字母<br><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">mathbf</span><span class="string">&#123;u&#125;</span></span></span><br></pre></td></tr></table></figure></p>
-<p>对于希腊字母<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">\b</span>oldsymbol&#123;<span class="symbol">\s</span>igma&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="特殊符号使用"><a href="#特殊符号使用" class="headerlink" title="特殊符号使用"></a>特殊符号使用</h1><p><a href="http://blog.163.com/goldman2000@126/blog/static/167296895201301822448724/" target="_blank" rel="noopener">LaTex常用特殊符号参考</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/environment/set python development environment on the ubuntu16.04/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/development/environment/set python development environment on the ubuntu16.04/" class="post-title-link" itemprop="url">set python development environment on the ubuntu16.04</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="download-anaconda3"><a href="#download-anaconda3" class="headerlink" title="download anaconda3"></a>download anaconda3</h1><p><a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/" target="_blank" rel="noopener">download</a></p>
-<h1 id="install-anaconda3"><a href="#install-anaconda3" class="headerlink" title="install anaconda3"></a>install anaconda3</h1><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> Downloads</span><br><span class="line">bash Anaconda*<span class="string">.sh</span></span><br></pre></td></tr></table></figure>
-<h1 id="pip-install-更换国内镜像源"><a href="#pip-install-更换国内镜像源" class="headerlink" title="pip install 更换国内镜像源"></a>pip install 更换国内镜像源</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> -i https://pypi.tuna.tsinghua.edu.cn/simple <span class="keyword">package</span>-<span class="keyword">name</span></span><br></pre></td></tr></table></figure>
-<p><a href="http://blog.csdn.net/lambert310/article/details/52412059" target="_blank" rel="noopener">更改pip源至国内镜像，显著提升下载速度</a></p>
-<h1 id="永久修改镜像源"><a href="#永久修改镜像源" class="headerlink" title="永久修改镜像源"></a>永久修改镜像源</h1><p>Linux下，修改 ~/.pip/pip.conf (没有就创建一个)， 修改 index-url至tuna，内容如下：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">global</span>]</span><br><span class="line"><span class="built_in">index</span>-url = http<span class="variable">s:</span>//pypi.tuna.tsinghua.edu.<span class="keyword">cn</span>/simple</span><br></pre></td></tr></table></figure>
-<h1 id="pip-下载包"><a href="#pip-下载包" class="headerlink" title="pip 下载包"></a>pip 下载包</h1><p><a href="http://www.cnblogs.com/michael-xiang/p/5690746.html" target="_blank" rel="noopener">断网环境下利用pip安装Python离线安装包</a></p>
-<p>下载已经安装好的包</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="built_in">list</span> <span class="comment">#查看安装的包</span></span><br><span class="line">pip freeze &gt; requirements.txt</span><br><span class="line">pip install <span class="comment">--download d:\python27\packages -r requirements.txt</span></span><br></pre></td></tr></table></figure>
-<p>下载制定的包</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> <span class="comment">--download d:\python27\packages pandas</span></span><br></pre></td></tr></table></figure>
-<h1 id="离线安装打包好的包"><a href="#离线安装打包好的包" class="headerlink" title="离线安装打包好的包"></a>离线安装打包好的包</h1><figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">pip </span><span class="string">install </span><span class="built_in">--no-index</span> <span class="built_in">--find-links=d:\python27\packages</span> -r <span class="string">requirements.</span><span class="string">txt</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">#</span> <span class="string">install </span><span class="string">tensorflow</span></span><br></pre></td></tr></table></figure>
-<h1 id="install-xgboost"><a href="#install-xgboost" class="headerlink" title="install xgboost"></a>install xgboost</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conda <span class="keyword">install</span> libgcc</span><br><span class="line">git <span class="keyword">clone</span> <span class="comment">--recursive https://github.com/dmlc/xgboost</span></span><br><span class="line">cd xgboost; make -j4</span><br><span class="line">pip <span class="keyword">install</span> xgboost</span><br></pre></td></tr></table></figure>
-<p>直接pip install xgboost就可以了，不知道缺少make是否有影响。xgbclassifier没有**kwargs参数，以前装过带这个参数的版本，不知道是版本迭代取消了kwargs参数还是什么原因？</p>
-<h1 id="install-gpu-version-which-default-use-gpu-if-exists-and-keras"><a href="#install-gpu-version-which-default-use-gpu-if-exists-and-keras" class="headerlink" title="install gpu version which default use gpu if exists and keras."></a>install gpu version which default use gpu if exists and keras.</h1><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 <span class="keyword">install</span> tensorflow-gpu</span><br><span class="line">pip3 <span class="keyword">install</span> keras</span><br></pre></td></tr></table></figure>
-<p>这里不要使用conda install，不然容易出现问题。</p>
-<h1 id="configure-jupyter-notebook"><a href="#configure-jupyter-notebook" class="headerlink" title="configure jupyter-notebook"></a>configure jupyter-notebook</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br><span class="line">sudo vim ~/.jupyter/jupyter_notebook_config.py</span><br><span class="line"><span class="comment">//change # c.NotebookApp.notebook_dir = '' to</span></span><br><span class="line"><span class="comment">//notify remove #</span></span><br><span class="line">c<span class="selector-class">.NotebookApp</span><span class="selector-class">.notebook_dir</span> = <span class="string">'your dir_path'</span></span><br><span class="line"><span class="comment">//start jupyter</span></span><br><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure>
-<h1 id="install-pypy"><a href="#install-pypy" class="headerlink" title="install pypy"></a>install pypy</h1><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo<span class="built_in"> add-apt-repository </span>ppa:pypy/ppa</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install pypy pypy-dev</span><br></pre></td></tr></table></figure>
-<h1 id="install-pycharm"><a href="#install-pycharm" class="headerlink" title="install pycharm"></a>install pycharm</h1><p><a href="http://blog.csdn.net/werm520/article/details/41249113" target="_blank" rel="noopener">Ubuntu安装PyCharm</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/environment/terminal技巧/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/development/environment/terminal技巧/" class="post-title-link" itemprop="url">terminal技巧</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="打开文件"><a href="#打开文件" class="headerlink" title="打开文件"></a>打开文件</h1><p>像pdf这样无法使用vim打开的文件如何直接通过终端开启呢？</p>
-<p>mac下使用命令<code>open XXX.pdf</code>，linux下使用<code>xdg-open XXX.pdf</code>，就可以使用该文件对应的默认打开方式在gui界面上开启。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/environment/terminal配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/development/environment/terminal配置/" class="post-title-link" itemprop="url">terminal配置</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="ubuntu-terminator"><a href="#ubuntu-terminator" class="headerlink" title="ubuntu + terminator"></a>ubuntu + terminator</h1><table>
-<thead>
-<tr>
-<th>operator</th>
-<th>terminator</th>
-<th>iterm2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>上下开新窗口</td>
-<td>Ctrl+Shift+O</td>
-<td>shift+command+D</td>
-</tr>
-<tr>
-<td>垂直开新窗口</td>
-<td>Ctrl+Shift+E</td>
-<td>command+D</td>
-</tr>
-<tr>
-<td>向右放大当前窗口</td>
-<td>Ctrl+Shift+Right</td>
-<td></td>
-</tr>
-<tr>
-<td>关闭当前窗口</td>
-<td>ctrl+shift+W</td>
-<td>command+W</td>
-</tr>
-<tr>
-<td>当前窗口最大化</td>
-<td>ctrl+shift+X</td>
-<td>shift+command+enter</td>
-</tr>
-<tr>
-<td>全屏</td>
-<td>f11</td>
-<td>command+enter</td>
-</tr>
-<tr>
-<td>切换窗口</td>
-<td>alt+方向键</td>
-<td>command+中括号</td>
-</tr>
-<tr>
-<td>窗口内容上下滚动</td>
-<td>shift+pgup/pgdn,如果pg键和方向键共用，需要使用fn功能键</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>Ctrl+Shift+O Split terminals Horizontally.（上下开新窗口） </p>
-<p>Ctrl+Shift+E Split terminals Vertically.（垂直开新窗口） </p>
-<p>Ctrl+Shift+Right Move parent dragbar Right.（放大当前窗口 向右） </p>
-<p>Ctrl+Shift+Left Move parent dragbar Left. </p>
-<p>Ctrl+Shift+Up Move parent dragbar Up. </p>
-<p>Ctrl+Shift+Down Move parent dragbar Down. </p>
-<p>Ctrl+Shift+S Hide/Show Scrollbar.（隐藏滚动条） </p>
-<p>Ctrl+Shift+F Search within terminal scrollback </p>
-<p>Ctrl+Shift+N or Ctrl+Tab Move to next terminal within the same tab</p>
-<p>use Ctrl+PageDown to move to the next tab. Ifcycle_term_tab is False, cycle within the same tab will be disabled Ctrl+Shift+P or Ctrl+Shift+Tab Move to previous terminal within the same tab, use Ctrl+PageUp to move to the previous tab. Ifcycle_term_tab is False, cycle within the same tab will be disabled Alt+Up Move to the terminal above the current one.（切换当前窗口） Alt+Down Move to the terminal below the current one. Alt+Left Move to the terminal left of the current one. Alt+Right Move to the terminal right of the current one. Ctrl+Shift+C Copy selected text to clipboard Ctrl+Shift+V Paste clipboard text Ctrl+Shift+W Close the current terminal. Ctrl+Shift+Q Quits Terminator Ctrl+Shift+X （最大化当前窗口） Toggle between showing all terminals and only showing the current one (maximise). Ctrl+Shift+Z Toggle between showing all terminals and only showing a scaled version of the current one (zoom). Ctrl+Shift+T Open new tab Ctrl+Shift+Alt+T Open new tab at root level, if using extreme_tabs. Ctrl+PageDown Move to next Tab Ctrl+PageUp Move to previous Tab Ctrl+Shift+PageDown Swap tab position with next Tab Ctrl+Shift+PageUp Swap tab position with previous Tab Ctrl+Shift+F Open buffer search bar to find substrings in the scrollback buffer. Hit Escape to cancel. Ctrl+Plus (+) Increase font size. Note: this may require you to press shift, depending on your keyboard Ctrl+Minus (-) Decrease font size. Note: this may require you to press shift, depending on your keyboard Ctrl+Zero (0) Restore font size to original setting. F11 Toggle fullscreen（放大当前窗口） Ctrl+Shift+R Reset terminal state Ctrl+Shift+G Reset terminal state and clear window</p>
-<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://blog.csdn.net/scholar_ii/article/details/17371265" target="_blank" rel="noopener">Ubuntu terminator 多窗口终端的快捷键(转)</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/environment/typora/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/development/environment/typora/" class="post-title-link" itemprop="url">typora</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>typora是一款markdown编辑器，可以很好的兼容latex，书写内容可以直接以预览形式出现，支持转pdf，代码块支持各种语言形式和高亮, 非常好用。</p>
-<p>在ubuntu上使用时，会出现切换源码快捷键ctrl+/无效。可能是被输入法占用为全选快捷键。可以通过更改配置文件的方式更改快捷键设置。</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">atl+f -&gt; preferences -&gt; openadvanced<span class="built_in"> settings </span>-&gt; conf.user.json -&gt; 在keyBinding中加入<span class="string">"Source Code Mode"</span>: <span class="string">"Ctrl+Shift+M"</span> -&gt; restart typora</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/environment/ubuntu install nodejs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/development/environment/ubuntu install nodejs/" class="post-title-link" itemprop="url">ubuntu install nodejs</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>我在电脑上安装使用hexo，以及vscode安装使用leetcode插件时均出现问题，因为nodejs版本过低。因此进行了nodejs重装。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 检查是否电脑上已经安装以及版本号</span></span><br><span class="line">node -v</span><br><span class="line"><span class="meta">#</span><span class="bash"> 移除旧版本</span></span><br><span class="line">sudo apt-get purge --auto-remove nodejs</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装，根据需要选择版本</span></span><br><span class="line">curl -sL https://deb.nodesource.com/setup_11.x | sudo bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br><span class="line"><span class="meta">#</span><span class="bash"> 检查安装</span></span><br><span class="line">node -v</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/environment/ubuntu install scala and spark/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/development/environment/ubuntu install scala and spark/" class="post-title-link" itemprop="url">ubuntu install scala and spark</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="install-java"><a href="#install-java" class="headerlink" title="install java"></a>install java</h1><p>先检查是否已经安装java<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure></p>
-<p>如果没有，按照如下步骤安装</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:webupd8team/java</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install oracle-java8-installer</span><br><span class="line"><span class="meta">#</span><span class="bash"> check the java version</span></span><br><span class="line">javac -version</span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">set</span> java environment variables</span></span><br><span class="line">sudo apt install oracle-java8-set-default</span><br></pre></td></tr></table></figure>
-<h1 id="install-scala"><a href="#install-scala" class="headerlink" title="install scala"></a>install scala</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install scala</span><br></pre></td></tr></table></figure>
-<p>直接这样安装可能scala版本较低，可以<a href="https://www.scala-lang.org/download/" target="_blank" rel="noopener">官网</a>下载deb包然后<code>sudo dpkg -i *.deb</code>安装。</p>
-<h1 id="install-spark"><a href="#install-spark" class="headerlink" title="install spark"></a>install spark</h1><p>去<a href="https://spark.apache.org/downloads.html" target="_blank" rel="noopener">官网</a>下载spark，注意选择清华源（mirrors.tuna.tsinghua.edu.cn）。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar xvf spark-2.0.2-bin-hadoop2.7.tgz</span><br><span class="line">cd spark-2.0.2-bin-hadoop2.7/bin</span><br><span class="line">./spark-shell</span><br></pre></td></tr></table></figure>
-<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="https://medium.com/@josemarcialportilla/installing-scala-and-spark-on-ubuntu-5665ee4b62b1" target="_blank" rel="noopener">Installing Scala and Spark on Ubuntu</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -3827,7 +3741,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">358</span>
+                    <span class="site-state-item-count">369</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -4155,7 +4069,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">113</span>
+                      
+                    
+                    <span class="site-state-item-count">114</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>

@@ -285,6 +285,1987 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/python/pip/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/python/pip/" class="post-title-link" itemprop="url">pip</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="pip-install-更换国内镜像源"><a href="#pip-install-更换国内镜像源" class="headerlink" title="pip install 更换国内镜像源"></a>pip install 更换国内镜像源</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip isntall -<span class="selector-tag">i</span> https:<span class="comment">//pypi.tuna.tsinghua.edu.cn/simple package-name</span></span><br></pre></td></tr></table></figure>
+<p><a href="http://blog.csdn.net/lambert310/article/details/52412059" target="_blank" rel="noopener">更改pip源至国内镜像，显著提升下载速度</a></p>
+<h1 id="永久修改镜像源"><a href="#永久修改镜像源" class="headerlink" title="永久修改镜像源"></a>永久修改镜像源</h1><p>Linux下，修改 ~/.pip/pip.conf (没有就创建一个)， 修改 index-url至tuna，内容如下：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">global</span>]</span><br><span class="line"><span class="built_in">index</span>-url = http<span class="variable">s:</span>//pypi.tuna.tsinghua.edu.<span class="keyword">cn</span>/simple</span><br></pre></td></tr></table></figure>
+<h1 id="pip-下载包"><a href="#pip-下载包" class="headerlink" title="pip 下载包"></a>pip 下载包</h1><p><a href="http://www.cnblogs.com/michael-xiang/p/5690746.html" target="_blank" rel="noopener">断网环境下利用pip安装Python离线安装包</a></p>
+<p>下载已经安装好的包</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="built_in">list</span> <span class="comment">#查看安装的包</span></span><br><span class="line">pip freeze &gt; requirements.txt</span><br><span class="line">pip install <span class="comment">--download d:\python27\packages -r requirements.txt</span></span><br></pre></td></tr></table></figure>
+<p>下载指定的包</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> <span class="comment">--download d:\python27\packages pandas</span></span><br></pre></td></tr></table></figure>
+<h1 id="离线安装打包好的包"><a href="#离线安装打包好的包" class="headerlink" title="离线安装打包好的包"></a>离线安装打包好的包</h1><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --<span class="keyword">no</span>-<span class="built_in">index</span> --<span class="keyword">find</span>-links=d:\python27\packages -r requirements.txt</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/python/process/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/python/process/" class="post-title-link" itemprop="url">process</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="subprocess"><a href="#subprocess" class="headerlink" title="subprocess"></a>subprocess</h1><p>当在脚本中调用<code>process = subprocess.Popen(cmd)</code>方法时，如果不再其后加上<code>process.wait()</code>方法，那么其后所有代码将继续执行下去。换言之，将会有一个异步的效果。</p>
+<p>在子进程执行结束之前，<code>process.poll()</code>将无返回值（<code>process.poll() is None</code>），结束之后，将返回一个非None值。</p>
+<p>可以使用<code>process.kill()</code>方法杀掉子进程。</p>
+<p>但如果该子进程本身也调用了一个子进程，则以上方法无法杀掉其调用的子进程。此时，采用一下方法：<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">process = subprocess.Popen(cmd, preexec_fn=<span class="built_in">os</span>.setsid)</span><br><span class="line"><span class="built_in">os</span>.killpg(<span class="built_in">os</span>.getpgid(process.pid), signal.SIGTERM)</span><br></pre></td></tr></table></figure></p>
+<p>如此一来，就可以杀掉子进程相关的整个进程组。</p>
+<h1 id="multiprocess"><a href="#multiprocess" class="headerlink" title="multiprocess"></a>multiprocess</h1><p>当在类里面调用multiprocessing时将会失效。解决方法是使用pathos.multiprocessing。</p>
+<p><a href="https://stackoverflow.com/questions/29816361/python-multiprocessing-pool-ignores-class-method" target="_blank" rel="noopener">Python multiprocessing.Pool ignores class method</a></p>
+<h1 id="subprocess-无法识别-‘-’，’-gt-’等管道符，重定向符号"><a href="#subprocess-无法识别-‘-’，’-gt-’等管道符，重定向符号" class="headerlink" title="subprocess 无法识别 ‘|’，’&gt;’等管道符，重定向符号"></a>subprocess 无法识别 ‘|’，’&gt;’等管道符，重定向符号</h1><h1 id="进程间通信"><a href="#进程间通信" class="headerlink" title="进程间通信"></a>进程间通信</h1><p><a href="http://www.cnblogs.com/menkeyi/p/5810684.html" target="_blank" rel="noopener">python 进程间通信(上)</a></p>
+<p><a href="http://www.cnblogs.com/menkeyi/p/5822082.html" target="_blank" rel="noopener">python 进程间通信(下)</a></p>
+<p><a href="https://stackoverflow.com/questions/4381673/python-subprocess-why-wont-the-list-of-arguments-work-analogous-to-the-full-sh" target="_blank" rel="noopener">Python subprocess: why won’t the list of arguments work analogous to the full shell string?</a></p>
+<p><a href="https://stackoverflow.com/questions/4965159/python-how-to-redirect-output-with-subprocess" target="_blank" rel="noopener">Python: How to Redirect Output with Subprocess?</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/python/python发送邮件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/python/python发送邮件/" class="post-title-link" itemprop="url">python发送邮件</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>利用python自动发送邮件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> email <span class="keyword">import</span> encoders</span><br><span class="line"><span class="keyword">from</span> email.header <span class="keyword">import</span> Header</span><br><span class="line"><span class="keyword">from</span> email.mime.text <span class="keyword">import</span> MIMEText</span><br><span class="line"><span class="keyword">import</span>  smtplib</span><br><span class="line"><span class="keyword">import</span> traceback</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_mail</span><span class="params">(content, to_list=None,sub=<span class="string">'btc monitor'</span>)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> to_list <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">        to_list = [xxx@qq.com]</span><br><span class="line">    <span class="comment">#设置服务器，用户名、口令以及邮箱的后缀</span></span><br><span class="line">    mail_host=<span class="string">"smtp.qq.com"</span></span><br><span class="line">    mail_user=<span class="string">"xxx@qq.com"</span></span><br><span class="line">    mail_pass=<span class="string">"onmxnrxwtuxbhjha"</span></span><br><span class="line">    mail_postfix=<span class="string">"qq.com"</span></span><br><span class="line"></span><br><span class="line">    me=mail_user+<span class="string">"&lt;"</span>+mail_user+<span class="string">"@"</span>+mail_postfix+<span class="string">"&gt;"</span></span><br><span class="line"></span><br><span class="line">    msg = MIMEText(content)</span><br><span class="line"></span><br><span class="line">    msg[<span class="string">'From'</span>]=Header(<span class="string">'trade monitor'</span>,<span class="string">'utf-8'</span>)</span><br><span class="line">    msg[<span class="string">'To'</span>]=Header(<span class="string">'muzhen'</span>,<span class="string">'utf-8'</span>)</span><br><span class="line">    msg[<span class="string">'Subject'</span>]=Header(sub,<span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        s = smtplib.SMTP(mail_host, <span class="number">25</span>)</span><br><span class="line">        s.starttls()</span><br><span class="line">        s.login(mail_user,mail_pass)</span><br><span class="line">        s.sendmail(mail_user, to_list, msg.as_string())</span><br><span class="line">        s.close()</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(traceback.format_exc())</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    strcontent = <span class="string">"这里是报警内容，根据实际监控的情况加"</span></span><br><span class="line">    mailto_list = [<span class="string">'xxx@qq.com'</span>]</span><br><span class="line">    <span class="keyword">for</span> mailto <span class="keyword">in</span> mailto_list:</span><br><span class="line">        send_mail(strcontent, mailto, <span class="string">"xxx monitor and report"</span>)</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/python/python数据结构/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/python/python数据结构/" class="post-title-link" itemprop="url">python数据结构</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>dict是有序的，顺序为key的插入顺序</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/python/py脚本加密/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/python/py脚本加密/" class="post-title-link" itemprop="url">py脚本加密</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="编译成pyc"><a href="#编译成pyc" class="headerlink" title="编译成pyc"></a>编译成pyc</h1><p><strong>要强调的是，编译pyc和运行pyc的python环境必须一致，不然无法运行。</strong></p>
+<p>pyc的运行方式和相互import方式和py脚本完全一样。</p>
+<p>对于一个完整项目进行pyc加密的脚本：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">import compileall</span><br><span class="line">import sys</span><br><span class="line">import <span class="built_in">os</span></span><br><span class="line">import shutil</span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line">    <span class="built_in">path</span> = sys.argv[<span class="number">1</span>]</span><br><span class="line">except:</span><br><span class="line">    <span class="built_in">path</span> = <span class="string">'/home/muzhen/database/repositories/ae-server-confusion'</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">path</span>)</span><br><span class="line"></span><br><span class="line">def confusion(<span class="built_in">path</span>):</span><br><span class="line">    <span class="keyword">for</span> root,dirs,files <span class="keyword">in</span> <span class="built_in">os</span>.walk(<span class="built_in">path</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">os</span>.<span class="built_in">path</span>.basename(root) == <span class="string">'__pycache__'</span>:</span><br><span class="line">            shutil.rmtree(root)</span><br><span class="line">    <span class="keyword">for</span> root,dirs,files <span class="keyword">in</span> <span class="built_in">os</span>.walk(<span class="built_in">path</span>):</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">            <span class="keyword">if</span> file.rsplit(<span class="string">'.'</span>,<span class="number">1</span>)[<span class="number">-1</span>] == <span class="string">'pyc'</span>:</span><br><span class="line">                <span class="built_in">os</span>.<span class="built_in">remove</span>(<span class="built_in">os</span>.<span class="built_in">path</span>.join(root,file))</span><br><span class="line">    </span><br><span class="line">    compileall.compile_dir(<span class="built_in">path</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> root,dirs,files <span class="keyword">in</span> <span class="built_in">os</span>.walk(<span class="built_in">path</span>):</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">            <span class="keyword">if</span> file.rsplit(<span class="string">'.'</span>,<span class="number">1</span>)[<span class="number">-1</span>] == <span class="string">'pyc'</span>:</span><br><span class="line">                <span class="built_in">print</span>(file)</span><br><span class="line">                src = <span class="built_in">os</span>.<span class="built_in">path</span>.join(root,file)</span><br><span class="line">                file_n = file.rsplit(<span class="string">'.'</span>,<span class="number">2</span>)[<span class="number">0</span>] + <span class="string">'.pyc'</span></span><br><span class="line">                file_n_del = file.rsplit(<span class="string">'.'</span>,<span class="number">2</span>)[<span class="number">0</span>] + <span class="string">'.py'</span></span><br><span class="line">                dst = <span class="built_in">os</span>.<span class="built_in">path</span>.join(<span class="built_in">os</span>.<span class="built_in">path</span>.dirname(root),file_n)</span><br><span class="line">                dst_del = <span class="built_in">os</span>.<span class="built_in">path</span>.join(<span class="built_in">os</span>.<span class="built_in">path</span>.dirname(root),file_n_del)</span><br><span class="line">                shutil.copy(src,dst)</span><br><span class="line">                <span class="built_in">os</span>.<span class="built_in">remove</span>(dst_del)</span><br><span class="line">    <span class="keyword">for</span> root,dirs,files <span class="keyword">in</span> <span class="built_in">os</span>.walk(<span class="built_in">path</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">os</span>.<span class="built_in">path</span>.basename(root) == <span class="string">'__pycache__'</span>:</span><br><span class="line">            shutil.rmtree(root)    </span><br><span class="line">            </span><br><span class="line">confusion(<span class="built_in">path</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="https://my.oschina.net/wizardpisces/blog/107445" target="_blank" rel="noopener">python下编译py成pyc和pyo</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/python/queue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/python/queue/" class="post-title-link" itemprop="url">queue</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="http://www.cnblogs.com/itogo/p/5635629.html" target="_blank" rel="noopener">python队列Queue</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/python/tensor&array&broadcast/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/python/tensor&array&broadcast/" class="post-title-link" itemprop="url">tensor&array&broadcast</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本篇解释array和tensor的相关问题。目前为止，我觉得tensorflow的tensor和numpy的arary是一样的东西，一样的使用方法。因此，下文以array统一替代。</p>
+<h1 id="shape"><a href="#shape" class="headerlink" title="shape"></a>shape</h1><p>常数是0维张量，列向量是1维张量！</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">import</span> <span class="selector-tag">numpy</span> <span class="selector-tag">as</span> <span class="selector-tag">np</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">np</span><span class="selector-class">.array</span>(2)<span class="selector-class">.shape</span></span><br><span class="line"><span class="selector-tag">Out</span><span class="selector-attr">[15]</span>: ()</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">np</span><span class="selector-class">.array</span>(<span class="selector-attr">[1,2,3]</span>)<span class="selector-class">.shape</span></span><br><span class="line"><span class="selector-tag">Out</span><span class="selector-attr">[16]</span>: (3,)</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">np</span><span class="selector-class">.array</span>(<span class="selector-attr">[[1]</span>, <span class="selector-attr">[3]</span>, <span class="selector-attr">[2]</span>])<span class="selector-class">.shape</span></span><br><span class="line"><span class="selector-tag">Out</span><span class="selector-attr">[17]</span>: (3, 1)</span><br></pre></td></tr></table></figure>
+<h1 id="reshape"><a href="#reshape" class="headerlink" title="reshape"></a>reshape</h1><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">a = np.array(range(<span class="number">9</span>))</span><br><span class="line"></span><br><span class="line">a</span><br><span class="line">Out[<span class="number">19</span>]: array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>])</span><br><span class="line"></span><br><span class="line">a.shape</span><br><span class="line">Out[<span class="number">20</span>]: (<span class="number">9</span>,)</span><br><span class="line"></span><br><span class="line">a.reshape((<span class="number">3</span>,<span class="number">3</span>))</span><br><span class="line">Out[<span class="number">21</span>]: </span><br><span class="line">array(<span class="string">[[0, 1, 2],</span></span><br><span class="line"><span class="string">       [3, 4, 5],</span></span><br><span class="line"><span class="string">       [6, 7, 8]]</span>)</span><br><span class="line"></span><br><span class="line">a.reshape((<span class="number">3</span>,<span class="number">3</span>,<span class="number">1</span>))</span><br><span class="line">Out[<span class="number">22</span>]: </span><br><span class="line">array(<span class="string">[[[0],</span></span><br><span class="line"><span class="string">        [1],</span></span><br><span class="line"><span class="string">        [2]]</span>,</span><br><span class="line"></span><br><span class="line">       <span class="string">[[3],</span></span><br><span class="line"><span class="string">        [4],</span></span><br><span class="line"><span class="string">        [5]]</span>,</span><br><span class="line"></span><br><span class="line">       <span class="string">[[6],</span></span><br><span class="line"><span class="string">        [7],</span></span><br><span class="line"><span class="string">        [8]]</span>])</span><br><span class="line"></span><br><span class="line">a.reshape((<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>))</span><br><span class="line">Out[<span class="number">23</span>]: </span><br><span class="line">array(<span class="string">[[[0, 1, 2]]</span>,</span><br><span class="line"></span><br><span class="line">       <span class="string">[[3, 4, 5]]</span>,</span><br><span class="line"></span><br><span class="line">       <span class="string">[[6, 7, 8]]</span>])</span><br></pre></td></tr></table></figure>
+<p>在reshape的时候，是从最后一个维度开始，往前推。最后一个维度也可以理解为张量的最小单元。</p>
+<h1 id="broadcast"><a href="#broadcast" class="headerlink" title="broadcast"></a>broadcast</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> = np.array(range(<span class="number">8</span>)).reshape((<span class="number">2</span>, <span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">a</span><br><span class="line">Out[<span class="number">28</span>]: </span><br><span class="line">array([[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">       [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>]])</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">b</span> = np.array(range(<span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">b</span><br><span class="line">Out[<span class="number">30</span>]: array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">a</span> + b</span><br><span class="line">Out[<span class="number">31</span>]: </span><br><span class="line">array([[ <span class="number">0</span>,  <span class="number">2</span>,  <span class="number">4</span>,  <span class="number">6</span>],</span><br><span class="line">       [ <span class="number">4</span>,  <span class="number">6</span>,  <span class="number">8</span>, <span class="number">10</span>]])</span><br><span class="line"></span><br><span class="line">c = np.array([<span class="number">0</span>,<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">a</span> + c</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line"></span><br><span class="line">  File <span class="string">"&lt;ipython-input-34-ca57d551b7f3&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="selector-tag">a</span> + c</span><br><span class="line"></span><br><span class="line">ValueError: operands could not be broadcast together with shapes (<span class="number">2</span>,<span class="number">4</span>) (<span class="number">2</span>,)</span><br></pre></td></tr></table></figure>
+<p>对于两个shape不一致的数组，广播时将低维度的数组b和高维数组a的子单元进行匹配。或者说将低维数组通过复制的方式reshape成和高维数组一致的形状然后计算。</p>
+<p>再看一个例子：<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">d = np.array(range(5)).reshape((5, 1))</span><br><span class="line"></span><br><span class="line">d</span><br><span class="line">Out<span class="comment">[43]</span>: </span><br><span class="line">array(<span class="comment">[<span class="comment">[0]</span>,</span></span><br><span class="line"><span class="comment">       <span class="comment">[1]</span>,</span></span><br><span class="line"><span class="comment">       <span class="comment">[2]</span>,</span></span><br><span class="line"><span class="comment">       <span class="comment">[3]</span>,</span></span><br><span class="line"><span class="comment">       <span class="comment">[4]</span>]</span>)</span><br><span class="line"></span><br><span class="line">b</span><br><span class="line">Out<span class="comment">[44]</span>: array(<span class="comment">[0, 1, 2, 3]</span>)</span><br><span class="line"></span><br><span class="line">d + b</span><br><span class="line">Out<span class="comment">[45]</span>: </span><br><span class="line">array(<span class="comment">[<span class="comment">[0, 1, 2, 3]</span>,</span></span><br><span class="line"><span class="comment">       <span class="comment">[1, 2, 3, 4]</span>,</span></span><br><span class="line"><span class="comment">       <span class="comment">[2, 3, 4, 5]</span>,</span></span><br><span class="line"><span class="comment">       <span class="comment">[3, 4, 5, 6]</span>,</span></span><br><span class="line"><span class="comment">       <span class="comment">[4, 5, 6, 7]</span>]</span>)</span><br></pre></td></tr></table></figure></p>
+<p>这里b按照d的第一维度做了延展，接着d按照b的第二维度做了延展，从而两者形状一致。那么，上一个例子中，为什么a + c会报错呢？不妨再尝试下：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">f</span><br><span class="line">Out[<span class="number">47</span>]: </span><br><span class="line">array(<span class="string">[[0, 1],</span></span><br><span class="line"><span class="string">       [2, 3],</span></span><br><span class="line"><span class="string">       [4, 5],</span></span><br><span class="line"><span class="string">       [6, 7],</span></span><br><span class="line"><span class="string">       [8, 9]]</span>)</span><br><span class="line"></span><br><span class="line">f + b</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line"></span><br><span class="line">  File <span class="string">"&lt;ipython-input-48-2174dbbc2903&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    f + b</span><br><span class="line"></span><br><span class="line">ValueError: operands could <span class="keyword">not</span> be broadcast together with shapes (<span class="number">5</span>,<span class="number">2</span>) (<span class="number">4</span>,)</span><br></pre></td></tr></table></figure>
+<p>由此，可以推断，仅仅是不存在的维度或者维度长度为1的维度可以进行复制延展。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/python/traceback/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/python/traceback/" class="post-title-link" itemprop="url">traceback</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="或许详细的异常信息"><a href="#或许详细的异常信息" class="headerlink" title="或许详细的异常信息"></a>或许详细的异常信息</h1><p>当通过<code>try...except...</code>进行处理时，往往需要打印出来详细的一场信息，方便debug。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> traceback</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    print(str(e))</span><br><span class="line">    print(traceback.format_exc())</span><br></pre></td></tr></table></figure>
+<p>这里主要区分<code>str(e)</code>和<code>traceback.format_exc()</code>两种异常或许方式。</p>
+<ul>
+<li><p>str(e)<br>仅仅给出最简单的异常信息，不包括异常信息的类型，更不包括改异常对应的一系列有问题的代码。</p>
+</li>
+<li><p>traceback.format_exc()<br>给出详细的异常信息，与python在命令行运行程序出现错误信息一致。</p>
+</li>
+</ul>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://www.cnblogs.com/klchang/p/4635040.html" target="_blank" rel="noopener">Python中获取异常（Exception）信息</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/python/unittest/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/python/unittest/" class="post-title-link" itemprop="url">unittest</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>单元测试是对程序中最小的可测试模块——函数来进行测试。被测对象一定要有输出结果，哪怕是异常也需要有异常输出，只有这样单元测试才能够捕获返回值，并且与预期值进行比较，从而得出测试通过与否。</p>
+<p>但是对于python自带的exception或者error输出，其实不显式指定是捕获不到的，那么应当如何处理这种情况呢？我个人的理解是这并不重要。比如因为传参类型报错，我们不可能对于各种情况都去进行unittest，并且都去在原函数中写exception，何况python自己就会报错告诉我们错在哪里。我们写unittest应该是我们所希望实现的函数功能是不是得到了正确实现，而不是报错。换言之，函数虽然可以运行但其实和我们预想的不一样这才是我们真正需要担心并unittest的地方！</p>
+<h1 id="unittest-框架"><a href="#unittest-框架" class="headerlink" title="unittest 框架"></a>unittest 框架</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cls</span><br><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">clsTestCase</span><span class="params">(unittest.TestCase)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setUp</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.cls = cls()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">teardown</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.cls = <span class="keyword">None</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_func1</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.assertEqual(self.cls.func1,expect1)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_func2</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.assertRaises(Exception,self.cls.func2,func2_params)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ <span class="string">'__main__'</span>:</span><br><span class="line">    unittest.main()</span><br></pre></td></tr></table></figure>
+<p>unittest代码基本是以上代码格式，需要注意的点：</p>
+<ol>
+<li>cls为需要测试的类。一般把unittest类名起为clsTestCase</li>
+<li>class需要继承unittest.TestCase</li>
+<li>需要测试的函数必须都以test开头命名，不然测试不到。</li>
+<li>如果是测试Exception，func的参数不能直接传进func里面，而应该写成 <code>self.assertRaises(Exception,self.cls.func2,func2_params)</code></li>
+<li>最好有def setUp 和 def teardown 两个函数，用于对class中每个test函数测试前的初始化和测试后的清空。</li>
+</ol>
+<h1 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h1><p>如果希望对输出每个test func的测试情况，可以这样：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    <span class="comment">#unittest.main()</span></span><br><span class="line">    suite = unittest.TestLoader<span class="params">()</span><span class="string">.loadTestsFromTestCase</span><span class="params">(clsTestCase)</span></span><br><span class="line">    unittest.TextTestRunner<span class="params">(<span class="attr">verbosity</span>=2)</span><span class="string">.run</span><span class="params">(suite)</span></span><br></pre></td></tr></table></figure>
+<h1 id="setUp-amp-teardown"><a href="#setUp-amp-teardown" class="headerlink" title="setUp&amp;teardown"></a>setUp&amp;teardown</h1><p>unittest module包含了编写运行unittest的功能，自定义的test class都要继承unitest.TestCase类，<strong>test method要以test开头，运行顺序根据test method的名字排序</strong>，特殊方法:  </p>
+<ol>
+<li>setup():每个测试函数运行前运行  </li>
+<li>teardown():每个测试函数运行完后执行  </li>
+<li>setUpClass():必须使用@classmethod 装饰器,所有test运行前运行一次  </li>
+<li>tearDownClass():必须使用@classmethod装饰器,所有test运行完后运行一次  </li>
+</ol>
+<h1 id="unittest-skip"><a href="#unittest-skip" class="headerlink" title="unittest.skip"></a>unittest.skip</h1><p>可以使用unitest.skip装饰器族跳过test method或者test class,这些装饰器包括:  </p>
+<ol>
+<li>@unittest.skip(reason):无条件跳过测试，reason描述为什么跳过测试   </li>
+<li>@unittest.skipif(conditition,reason):condititon为true时跳过测试  </li>
+<li>@unittest.skipunless(condition,reason):condition不是true时跳过测试  </li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#这是一个自定义的skip decorrator</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">skipUnlessHasattr</span><span class="params">(obj, attr)</span>:</span></span><br><span class="line">  <span class="keyword">if</span> hasattr(obj, attr):</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> func: func</span><br><span class="line">  <span class="keyword">return</span> unittest.skip(<span class="string">"&#123;!r&#125; doesn't have &#123;!r&#125;"</span>.format(obj, attr))</span><br></pre></td></tr></table></figure>
+<h1 id="其他特殊方法"><a href="#其他特殊方法" class="headerlink" title="其他特殊方法"></a>其他特殊方法</h1><p>使用@unittest.expectedFailure装饰器，如果test失败了，这个test不计入失败的case数目</p>
+<h1 id="How-to-unit-test-complex-methods"><a href="#How-to-unit-test-complex-methods" class="headerlink" title="How to unit test complex methods"></a>How to unit test complex methods</h1><p><a href="https://stackoverflow.com/questions/257551/how-to-unit-test-complex-methods" target="_blank" rel="noopener">How to unit test complex methods</a></p>
+<h1 id="测试代码覆盖率"><a href="#测试代码覆盖率" class="headerlink" title="测试代码覆盖率"></a>测试代码覆盖率</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装所需包</span></span><br><span class="line">pip install coverage</span><br><span class="line"><span class="meta">#</span><span class="bash"> terminal运行unittest脚本</span></span><br><span class="line">coverage run test_mymath.py</span><br><span class="line"><span class="meta">#</span><span class="bash"> 在终端打印出信息</span></span><br><span class="line">coverage report -m</span><br><span class="line"><span class="meta">#</span><span class="bash"> 生成html文件夹</span></span><br><span class="line">coverage html</span><br><span class="line"><span class="meta">#</span><span class="bash"> 用浏览器打开其中index.html</span></span><br></pre></td></tr></table></figure>
+<h1 id="unittest报告"><a href="#unittest报告" class="headerlink" title="unittest报告"></a>unittest报告</h1><p><a href="https://github.com/muzhenxu/HTMLTestRunner_PY3" target="_blank" rel="noopener">HTMLTestRunner_PY3</a> repo提供了报告生成脚本和使用范例。范例中也提供了测试用例集合的构造方法。</p>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://www.jb51.net/article/55623.htm" target="_blank" rel="noopener">Python中unittest用法实例</a>  </p>
+<p><a href="http://www.tuicool.com/articles/RbEby2a" target="_blank" rel="noopener">如何测试代码覆盖率：coverage.py 简介</a>  </p>
+<p><a href="https://stackoverflow.com/questions/257551/how-to-unit-test-complex-methods" target="_blank" rel="noopener">How to unit test complex methods</a></p>
+<p><a href="https://www.cnblogs.com/znyyy/p/8086281.html" target="_blank" rel="noopener">Python3 unittest单元测试</a></p>
+<p><a href="https://www.cnblogs.com/feng0815/p/8045850.html" target="_blank" rel="noopener">Python单元测试unittest</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/python/修改文件内容和修改时间/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/python/修改文件内容和修改时间/" class="post-title-link" itemprop="url">修改文件内容和修改时间</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h1><ul>
+<li>查找路径下全部文件全路径</li>
+<li>修改文件内容</li>
+<li>修改文件创建时间和修改时间</li>
+</ul>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">import <span class="built_in">time</span></span><br><span class="line">import <span class="built_in">os</span></span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line">root_path = <span class="string">'/home/linker-will/Dropbox/_posts'</span></span><br><span class="line">time_list = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> root,dirs,files <span class="keyword">in</span> <span class="built_in">os</span>.walk(root_path):        </span><br><span class="line">    <span class="keyword">for</span> filespath <span class="keyword">in</span> files:</span><br><span class="line">        f_path = <span class="built_in">os</span>.<span class="built_in">path</span>.join(root,filespath)</span><br><span class="line">        categories = <span class="built_in">os</span>.<span class="built_in">path</span>.basename(<span class="built_in">os</span>.<span class="built_in">path</span>.dirname(f_path))</span><br><span class="line">        f_name = <span class="built_in">os</span>.<span class="built_in">path</span>.basename(f_path)[:<span class="number">-3</span>]</span><br><span class="line">        mtime = <span class="built_in">os</span>.<span class="built_in">path</span>.getmtime(f_path)</span><br><span class="line">        ctime = <span class="built_in">os</span>.<span class="built_in">path</span>.getctime(f_path)</span><br><span class="line">        local_time = <span class="built_in">time</span>.localtime(<span class="built_in">os</span>.<span class="built_in">path</span>.getmtime(f_path))</span><br><span class="line">        f_mtime = <span class="built_in">time</span>.strftime(<span class="string">'%Y-%m-%d %H:%M:%S'</span>,local_time)</span><br><span class="line">        </span><br><span class="line">        f = <span class="built_in">open</span>(f_path,<span class="string">'r'</span>)</span><br><span class="line">        old = f.<span class="built_in">read</span>()</span><br><span class="line">        <span class="keyword">if</span> categories == <span class="string">'_posts'</span>:</span><br><span class="line">            <span class="built_in">print</span>(filespath,<span class="string">"don't have dirname"</span>)</span><br><span class="line">            pass</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(re.findall(<span class="string">'title:.*\ndate:.*\ncategories:.*'</span>,old)) == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(filespath,<span class="string">"don't have title format"</span>)</span><br><span class="line">            pass</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(re.findall(<span class="string">'\[TBC\]'</span>,old)) != <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(filespath,<span class="string">"[TBC]"</span>)</span><br><span class="line">        </span><br><span class="line">        data = re.<span class="built_in">sub</span>(<span class="string">'title:.*\ndate:.*\ncategories:.*'</span>,\</span><br><span class="line">               <span class="string">'title: %s\ndate: %s\ncategories: %s'</span>%(f_name,f_mtime,categories),old)</span><br><span class="line">        f.<span class="built_in">close</span>()</span><br><span class="line">        f = <span class="built_in">open</span>(f_path,<span class="string">'w'</span>)</span><br><span class="line">        f.<span class="built_in">write</span>(data)</span><br><span class="line">        f.<span class="built_in">close</span>()</span><br><span class="line">        <span class="built_in">os</span>.utime(f_path,times=(ctime,mtime))</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/python/常用函数与技巧/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/python/常用函数与技巧/" class="post-title-link" itemprop="url">常用函数与技巧</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+<h1 id="for-loop-variables"><a href="#for-loop-variables" class="headerlink" title="for loop variables"></a>for loop variables</h1><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">g = <span class="built_in">globals</span>()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">    g[<span class="string">'df_&#123;&#125;'</span>.<span class="built_in">format</span>(i)] = i</span><br></pre></td></tr></table></figure>
+<h1 id="列表计数"><a href="#列表计数" class="headerlink" title="列表计数"></a>列表计数</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line">counts = Counter(str)</span><br></pre></td></tr></table></figure>
+<h1 id="df去除常数列"><a href="#df去除常数列" class="headerlink" title="df去除常数列"></a>df去除常数列</h1><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">indices</span> = df.apply(pd.Series.nunique)</span><br><span class="line"><span class="attr">df</span>= df[indices[indices&gt;<span class="number">1</span>].index]</span><br></pre></td></tr></table></figure>
+<p>以下方法更高效<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df = df<span class="selector-class">.loc</span>[:, (df != df<span class="selector-class">.ix</span>[<span class="number">0</span>]).any()]</span><br></pre></td></tr></table></figure></p>
+<h1 id="list-累减累加"><a href="#list-累减累加" class="headerlink" title="list 累减累加"></a>list 累减累加</h1><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">np</span>.<span class="built_in">diff</span>(l)</span><br></pre></td></tr></table></figure>
+<h1 id="convert-string-representation-of-list-to-list"><a href="#convert-string-representation-of-list-to-list" class="headerlink" title="convert string representation of list to list"></a><a href="https://stackoverflow.com/questions/1894269/convert-string-representation-of-list-to-list-in-python" target="_blank" rel="noopener">convert string representation of list to list</a></h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> ast</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = <span class="string">u'[ "A","B","C" , " D"]'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = ast.literal_eval(x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x</span><br><span class="line">[<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">' D'</span>]</span><br></pre></td></tr></table></figure>
+<h1 id="call-a-function-from-string-name"><a href="#call-a-function-from-string-name" class="headerlink" title="call a function from string name"></a><a href="https://stackoverflow.com/questions/7936572/python-call-a-function-from-string-name" target="_blank" rel="noopener">call a function from string name</a></h1><p>有时候，我们需要调用一个方法，但是这个方法名字却是用字符串形式拿到的。比如开头提到的for loop variables情况。</p>
+<p>首先，可以使用eval方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eval(<span class="string">'int'</span>)(<span class="number">6.4</span>)</span><br></pre></td></tr></table></figure>
+<p>但是据说这种方法存在危险，见<a href="https://nedbatchelder.com/blog/201206/eval_really_is_dangerous.html" target="_blank" rel="noopener">Eval really is dangerous</a>，还未细看，[TBC]。</p>
+<p>其次，就是字典和<code>getattr</code>方法，还未细看[TBC]。</p>
+<h1 id="在函数内部获取函数名"><a href="#在函数内部获取函数名" class="headerlink" title="在函数内部获取函数名"></a>在函数内部获取函数名</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> inspect</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">()</span>:</span></span><br><span class="line">    print(inspect.stack()[<span class="number">0</span>][<span class="number">3</span>])</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">test()</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/python/指针问题和变量类型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/python/指针问题和变量类型/" class="post-title-link" itemprop="url">指针问题和变量类型</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="指针问题"><a href="#指针问题" class="headerlink" title="指针问题"></a>指针问题</h1><h1 id="不可变和可变类型"><a href="#不可变和可变类型" class="headerlink" title="不可变和可变类型"></a>不可变和可变类型</h1><p>看下面一段代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f1</span><span class="params">(l, ruleset=None)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> ruleset <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">        ruleset = []</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> l:</span><br><span class="line">        gain = f2(x, ruleset)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> gain</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f2</span><span class="params">(x, ruleset)</span>:</span></span><br><span class="line">    ruleset.append(x)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> x &lt; <span class="number">5</span>:</span><br><span class="line">        print(<span class="number">-1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-10</span></span><br><span class="line"></span><br><span class="line">    a = np.mean(ruleset)</span><br><span class="line">    print(a)</span><br><span class="line">    ruleset.pop()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line">f1(range(<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+<p>输出或许和你想的并不一样，并不是-1,-1,-1,-1,-1,5,6,7,8,9。list是可变类型，传进函数后在函数中所做的改变在函数外依旧是有效的，并不存在局部保护。</p>
+<p>[TBC]</p>
+<p><a href="http://blog.csdn.net/gavinxlf/article/details/52227967" target="_blank" rel="noopener">python 使用list.append()后前面的数据被后面的数据覆盖-解决办法</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/python/构建Python包/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1198,163 +3179,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/database/hive/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/development/database/hive/" class="post-title-link" itemprop="url">hive</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/database/" itemprop="url" rel="index"><span itemprop="name">database</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>csv存进hive发现记录数变多，很有可能是因为字段中混入了换行符。一般在存储之前先进行处理，把换行符(\n)、分割符（hive默认\x01）先替换掉。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/database/mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1459,6 +3283,163 @@
 <p>如果只是安装mysql客户端用来链接远程服务器mysql的话，好像也要全装？可以只装mysql-client试下。</p>
 <p><a href="http://www.linuxidc.com/Linux/2014-03/97440.htm" target="_blank" rel="noopener">Ubuntu 安装MySQL和简单操作</a></p>
 <h1 id="ubuntu-mysql-客户端"><a href="#ubuntu-mysql-客户端" class="headerlink" title="ubuntu mysql 客户端"></a>ubuntu mysql 客户端</h1><p><a href="https://www.jetbrains.com/datagrip/" target="_blank" rel="noopener">Datagrip Jetbrains</a> 挺好。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/database/hive/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/development/database/hive/" class="post-title-link" itemprop="url">hive</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/database/" itemprop="url" rel="index"><span itemprop="name">database</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>csv存进hive发现记录数变多，很有可能是因为字段中混入了换行符。一般在存储之前先进行处理，把换行符(\n)、分割符（hive默认\x01）先替换掉。</p>
 
           
         
@@ -1671,2013 +3652,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/develepment/debug/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/development/develepment/debug/" class="post-title-link" itemprop="url">debug</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/develepment/" itemprop="url" rel="index"><span itemprop="name">develepment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>本篇为debug的一些总结</p>
-<ol>
-<li><p>使用print进行问题的定位和明晰。如果pirnt无反应可能是因为本身print的就是none。最好的办法是标准格式，比如 <code>print(&#39;------------params: &#39;, params)</code>，这样即使是none值也可以看的很清楚。</p>
-</li>
-<li><p>如果出错的地方自己始终觉得没问题，那么就应该怀疑自己对错误的定位本身就出了问题。因此，当定位到一个大问题之后，首先应该做的是梳理清楚各条通向该行code的逻辑线，而不是闷着头盯着一条线死干。</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/develepment/elasticsearch/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/development/develepment/elasticsearch/" class="post-title-link" itemprop="url">elasticsearch</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/develepment/" itemprop="url" rel="index"><span itemprop="name">develepment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>由于工作原因，需要对爬取下来的新闻进行全文实时检索，简单调研后选择elasticsearch完成该功能。</p>
-<h1 id="elasticsearch单机版安装"><a href="#elasticsearch单机版安装" class="headerlink" title="elasticsearch单机版安装"></a>elasticsearch单机版安装</h1><p>选择docker方式进行安装。选择镜像进行拉取</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull daocloud.io<span class="regexp">/library/</span><span class="string">elasticsearch:</span><span class="number">5.4</span><span class="number">.2</span>-alpine</span><br></pre></td></tr></table></figure>
-<p>启动容器后台运行</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -<span class="selector-tag">p</span> <span class="number">9200</span>:<span class="number">9200</span> -<span class="selector-tag">p</span> <span class="number">9300</span>:<span class="number">9300</span> -d -e <span class="string">"discovery.type=single-node"</span> --name elasticsearch daocloud.io/library/elasticsearch:<span class="number">5.4</span>.<span class="number">2</span>-alpine</span><br></pre></td></tr></table></figure>
-<h1 id="安装python-api操作elasticsearch"><a href="#安装python-api操作elasticsearch" class="headerlink" title="安装python api操作elasticsearch"></a>安装python api操作elasticsearch</h1><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 <span class="keyword">install</span> elasticsearch</span><br></pre></td></tr></table></figure>
-<h1 id="python-api-操作说明"><a href="#python-api-操作说明" class="headerlink" title="python api 操作说明"></a>python api 操作说明</h1><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">from elasticsearch import Elasticsearch</span><br><span class="line"></span><br><span class="line"># 建立索引，其中news为Type，可以理解为分组，对应<span class="keyword">python</span> api中的arg doc_type，最好一个索引只含有一个<span class="built_in">type</span>。<span class="number">7</span>.<span class="keyword">x</span>版本elasticsearch据说会取消Type。index_mappings为索引所需要保存的json文件的key-value结构，也就是properties中内容。</span><br><span class="line">es = Elasticsearch()</span><br><span class="line">index_mappings = &#123;</span><br><span class="line">    <span class="string">"mappings"</span>: &#123;</span><br><span class="line">        <span class="string">"news"</span>: &#123;</span><br><span class="line">            <span class="string">"properties"</span>: &#123;</span><br><span class="line">                <span class="string">"url"</span>: &#123;<span class="string">"type"</span>: <span class="string">"text"</span>&#125;,</span><br><span class="line">                <span class="string">"title"</span>: &#123;<span class="string">"type"</span>: <span class="string">"text"</span>&#125;,</span><br><span class="line">                <span class="string">"publish"</span>: &#123;<span class="string">"type"</span>: <span class="string">"string"</span>，<span class="string">"index"</span>: <span class="string">"not_analyzed"</span>&#125;,</span><br><span class="line">                <span class="string">"content"</span>: &#123;<span class="string">"type"</span>: <span class="string">"text"</span>&#125;,</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> not es.indices.<span class="built_in">exists</span>(<span class="string">'defensenews'</span>):</span><br><span class="line">    es.indices.create(<span class="string">'defensenews'</span>, body=index_mappings)</span><br><span class="line"></span><br><span class="line"># 向索引中插入数据</span><br><span class="line">item = &#123;&#125;</span><br><span class="line">item[<span class="string">'url'</span>] = url</span><br><span class="line">item[<span class="string">'title'</span>] = title</span><br><span class="line">item[<span class="string">'publish'</span>] = publish</span><br><span class="line">item[<span class="string">'content'</span>] = content</span><br><span class="line">es.<span class="built_in">index</span>(<span class="string">'defensenews'</span>, doc_type=<span class="string">'news'</span>, body=item)</span><br><span class="line"></span><br><span class="line"># 全文检索,查询content中包含radar的记录,_source指定需要获取的字段名</span><br><span class="line"><span class="keyword">res</span> = es.<span class="built_in">search</span>(<span class="string">"defensenews"</span>, doc_type=<span class="string">'news'</span>, body=&#123;<span class="string">"query"</span>: &#123;<span class="string">"match"</span>: &#123;<span class="string">"content"</span>: <span class="string">"radar"</span>&#125;&#125;&#125;, _source=[<span class="string">'title'</span>])</span><br><span class="line"><span class="keyword">print</span>(<span class="keyword">res</span>)</span><br></pre></td></tr></table></figure>
-<p>对于中文，需要安装ik分词插件（该docker中是否已经集成未测试），在index_mappings中需要指定中文分词器，具体见参考链接。</p>
-<h1 id="时间类型处理"><a href="#时间类型处理" class="headerlink" title="时间类型处理"></a>时间类型处理</h1><p>elasticsearch会识别一定格式的字符串，并自动将之转为时间类型。</p>
-<blockquote>
-<p>至于什么样的字符串es会认为可以转换成date类型，参考<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html" target="_blank" rel="noopener">elasticsearch官网介绍</a></p>
-</blockquote>
-<p>kibana在读取es数据时如果数据不带时区信息则会当成零时区，并根据系统时区自动对数据进行时间转换，因此</p>
-<blockquote>
-<p>所以最佳实践方案就是：我们在往es提交日期数据的时候，直接提交带有时区信息的日期字符串，如：“2016-07-15T12:58:17.136+0800”。</p>
-</blockquote>
-<h1 id="inferences"><a href="#inferences" class="headerlink" title="inferences"></a>inferences</h1><p><a href="http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html" target="_blank" rel="noopener">全文搜索引擎 Elasticsearch 入门教程</a></p>
-<p><a href="http://www.cnblogs.com/yxpblog/p/5141738.html" target="_blank" rel="noopener">python操作Elasticsearch (一、例子)</a></p>
-<p><a href="http://rockybean.info/2015/02/27/elasticsearch-date-type" target="_blank" rel="noopener">Elasticsearch Date类型使用技巧</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/develepment/error&solution/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/development/develepment/error&solution/" class="post-title-link" itemprop="url">error&solution</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/develepment/" itemprop="url" rel="index"><span itemprop="name">develepment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="hexo-exists-Template-render-error"><a href="#hexo-exists-Template-render-error" class="headerlink" title="hexo exists Template render error"></a>hexo exists Template render error</h1><p>在使用<code>hexo g</code>时出现Template render error错误。最后发现是.md文件中一些格式比如\{\{\}\}不被hexo支持解析。</p>
-<p>如果不在代码块中，那么直接加转义符形如<code>\{\{\}\</code>即可，在typera中展示时不会出现转义符。</p>
-<p>如果是在代码块中，也是通过加上转义符破坏\{\{形式，至于是每个括号都加转义符还是只加一个随意，比如这样<code>{\{}\}</code>。不好的地方是在代码块中会原样展现在typera的预览页面上。</p>
-<p><a href="https://github.com/hexojs/hexo/issues/2160" target="_blank" rel="noopener">hexo s failed, generate error</a></p>
-<p><a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">Troubleshooting</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/develepment/flask&request/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/development/develepment/flask&request/" class="post-title-link" itemprop="url">flask&request</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/develepment/" itemprop="url" rel="index"><span itemprop="name">develepment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="调用api方法"><a href="#调用api方法" class="headerlink" title="调用api方法"></a>调用api方法</h1><p>参考<a href="http://www.cnblogs.com/GuoYaxiang/p/6232831.html" target="_blank" rel="noopener">Python3使用urllib访问网页</a></p>
-<p>利用post请求进行调用</p>
-<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.parse</span><br><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"></span><br><span class="line">url = <span class="string">'http://www.someserver.com/cgi-bin/register.cgi'</span></span><br><span class="line">values = &#123;<span class="string">'name'</span> : <span class="string">'Michael Foord'</span>,</span><br><span class="line">          <span class="string">'location'</span> : <span class="string">'Northampton'</span>,</span><br><span class="line">          <span class="string">'language'</span> : <span class="string">'Python'</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">data</span> = urllib.parse.urlencode(values)</span><br><span class="line"><span class="keyword">data</span> = <span class="keyword">data</span>.encode(<span class="string">'ascii'</span>) # <span class="keyword">data</span> should be bytes</span><br><span class="line">req = urllib.request.Request(url, <span class="keyword">data</span>)</span><br><span class="line"><span class="keyword">with</span> urllib.request.urlopen(req) <span class="keyword">as</span> response:</span><br><span class="line">   the_page = response.read()</span><br></pre></td></tr></table></figure>
-<p>如果不传递data参数，就变成利用get请求调用。get请求有长度限制，具体长度好像随着浏览器不同而不同，因此长字符串的传递使用post请求更为合适。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/develepment/flask/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/development/develepment/flask/" class="post-title-link" itemprop="url">flask</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/develepment/" itemprop="url" rel="index"><span itemprop="name">develepment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line">app = Flask(__name__)</span><br></pre></td></tr></table></figure>
-<p>app是Flask的实例。<code>__name__</code>可以使得flask可以找到资源对象。如果以上是一个test.py单脚本，那么<code>__name__==&#39;__main__&#39;</code>，如果它是一个<code>__init__.py</code>文件，那么指向的就是这个package的名字。具体见flask官方文档</p>
-<p>将flask放入docker中web服务在外部curl，报curl（56）错误，是因为启动py服务时需要指定host为<code>0.0.0.0</code>， <a href="https://serverfault.com/questions/769578/curl-56-recv-failure-connection-reset-by-peer-when-hitting-docker-container" target="_blank" rel="noopener">curl (56) Recv failure: Connection reset by peer - when hitting docker container</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/develepment/kibana/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/development/develepment/kibana/" class="post-title-link" itemprop="url">kibana</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/develepment/" itemprop="url" rel="index"><span itemprop="name">develepment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>kibana是一款开源分析和可视化平台，设计出来用于和Elasticsearch一起使用。</p>
-<h1 id="安装kibana"><a href="#安装kibana" class="headerlink" title="安装kibana"></a>安装kibana</h1><p>采用docker方式安装</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="builtin-name">run</span> --name mykibana -e <span class="attribute">ELASTICSEARCH_URL</span>=http://&lt;your-ip&gt;:9200 -p 5601:5601 -d daocloud.io/library/kibana:&lt;version&gt;</span><br></pre></td></tr></table></figure>
-<p>其中<code>&lt;your-ip&gt;</code>请填写你的elasticsearch服务使用的ip。如果elasticsearch也是通过docker服务启动的，那么可以通过<code>docker inspect --format &#39;{\{.NetworkSettings.IPAddress}\}&#39; container_id</code>命令查看elasticsearch容器对应的ip地址。其中\为转义为了可以被hexo识别，使用命令时可以不打。</p>
-<p><code>&lt;version&gt;</code>请和elasticsearch保持一致避免出现问题。我的elasticsearch使用的是daocloud.io/library/elasticsearch：5.4.2-alpine，kibana使用的是daocloud.io/library/kibana：5.4.2。</p>
-<h1 id="使用kibana"><a href="#使用kibana" class="headerlink" title="使用kibana"></a>使用kibana</h1><p>chrome通过<code>localhost:5601</code>可以访问kibana。没有错误情况下应该类似下图界面：</p>
-<p><img src="http://omdhuynsr.bkt.clouddn.com/17-10-31/35560171.jpg" alt></p>
-<p>使用kibana的第一步是配置索引。假设elasticsearch中已经有一个defensenews的索引。那么可以将索引匹配模式的名称写成defense*,由于我的这个索引内没有时间数据，因此取消勾选<code>索引包含时间活动</code>这一选项框。然后点击create创建即可。</p>
-<p><img src="http://omdhuynsr.bkt.clouddn.com/17-10-31/77919984.jpg" alt></p>
-<p>在网页左侧的Management栏目下，可以看到defense*索引包含的字段及其类型。</p>
-<p><img src="http://omdhuynsr.bkt.clouddn.com/17-10-31/29438812.jpg" alt></p>
-<p>需要注意，只有具有aggregatable属性的字段才可以进行聚合做图。我的这个索引所有字段类型都是text，因此都无法参与聚合。只需要在创建索引的时候将字段类型定义如下代码中的publish，就可以具有aggregatable属性，更具体的类型设定我没有尝试，请自行挖掘。</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">index_mappings = &#123;</span><br><span class="line">    <span class="string">"mappings"</span>: &#123;</span><br><span class="line">        <span class="string">"news"</span>: &#123;</span><br><span class="line">            <span class="string">"properties"</span>: &#123;</span><br><span class="line">                <span class="string">"url"</span>: &#123;<span class="string">"type"</span>: <span class="string">"text"</span>&#125;,</span><br><span class="line">                <span class="string">"title"</span>: &#123;<span class="string">"type"</span>: <span class="string">"text"</span>&#125;,</span><br><span class="line">                <span class="string">"publish"</span>: &#123;<span class="string">"type"</span>: <span class="string">"string"</span>，<span class="string">"index"</span>: <span class="string">"not_analyzed"</span>&#125;,</span><br><span class="line">                <span class="string">"content"</span>: &#123;<span class="string">"type"</span>: <span class="string">"text"</span>&#125;,</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="inferences"><a href="#inferences" class="headerlink" title="inferences"></a>inferences</h1><p><a href="http://blog.csdn.net/sbsujjbcy/article/details/52335325" target="_blank" rel="noopener">记一次Docker下安装Logstash+Elasticsearch+Kibana经历</a></p>
-<p><a href="http://blog.csdn.net/ming_311/article/details/50619859" target="_blank" rel="noopener">Kibana基本使用</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/develepment/python邮件监控/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/development/develepment/python邮件监控/" class="post-title-link" itemprop="url">python邮件监控</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/develepment/" itemprop="url" rel="index"><span itemprop="name">develepment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/develepment/scrapy/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/development/develepment/scrapy/" class="post-title-link" itemprop="url">scrapy</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/develepment/" itemprop="url" rel="index"><span itemprop="name">develepment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>本篇内容：利用python scrapy爬取某新闻网站新闻，并将新闻存进elasticsearch便于全文检索。</p>
-<h1 id="安装scrapy"><a href="#安装scrapy" class="headerlink" title="安装scrapy"></a>安装scrapy</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple scrapy</span><br></pre></td></tr></table></figure>
-<h1 id="建立项目"><a href="#建立项目" class="headerlink" title="建立项目"></a>建立项目</h1><h2 id="通过命令行在当前目录新建项目"><a href="#通过命令行在当前目录新建项目" class="headerlink" title="通过命令行在当前目录新建项目"></a>通过命令行在当前目录新建项目</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy startproject tutorial</span><br></pre></td></tr></table></figure>
-<h2 id="编写Item类，即实体类"><a href="#编写Item类，即实体类" class="headerlink" title="编写Item类，即实体类"></a>编写Item类，即实体类</h2><p>修改items.py代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 类名随意</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DmozItem</span><span class="params">(scrapy.Item)</span>:</span></span><br><span class="line">    <span class="comment"># define the fields for your item here like:</span></span><br><span class="line">    <span class="comment"># name = scrapy.Field()</span></span><br><span class="line">    url = scrapy.Field()</span><br><span class="line">    title = scrapy.Field()</span><br><span class="line">    publish = scrapy.Field()</span><br><span class="line">    content = scrapy.Field()</span><br></pre></td></tr></table></figure>
-<h2 id="编写spider类"><a href="#编写spider类" class="headerlink" title="编写spider类"></a>编写spider类</h2><p>在spiders文件夹下新建dmoz_spider.py文件：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> scrapy.contrib.linkextractors <span class="keyword">import</span> LinkExtractor</span><br><span class="line"><span class="keyword">from</span> scrapy.contrib.spiders <span class="keyword">import</span> CrawlSpider,Rule</span><br><span class="line"><span class="keyword">from</span> tutorial.items <span class="keyword">import</span> DmozItem</span><br><span class="line"><span class="keyword">from</span> elasticsearch <span class="keyword">import</span> Elasticsearch</span><br><span class="line"></span><br><span class="line">es = Elasticsearch()</span><br><span class="line">index_mappings = &#123;</span><br><span class="line">    <span class="string">"mappings"</span>: &#123;</span><br><span class="line">        <span class="string">"news"</span>: &#123;</span><br><span class="line">            <span class="string">"properties"</span>: &#123;</span><br><span class="line">                <span class="string">"url"</span>: &#123;<span class="string">"type"</span>: <span class="string">"text"</span>&#125;,</span><br><span class="line">                <span class="string">"title"</span>: &#123;<span class="string">"type"</span>: <span class="string">"text"</span>&#125;,</span><br><span class="line">                <span class="string">"publish"</span>: &#123;<span class="string">"type"</span>: <span class="string">"text"</span>&#125;,</span><br><span class="line">                <span class="string">"content"</span>: &#123;<span class="string">"type"</span>: <span class="string">"text"</span>&#125;,</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> es.indices.exists(<span class="string">'defensenews'</span>):</span><br><span class="line">    es.indices.create(<span class="string">'defensenews'</span>, index_mappings)</span><br><span class="line"><span class="comment"># keywords = ['E-2D', 'E-2C', 'DARPA', 'THAAD', 'SMART-L', 'F-22', 'RADAR']</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DmozSpider</span><span class="params">(CrawlSpider)</span>:</span></span><br><span class="line">    name = <span class="string">"dmoz"</span></span><br><span class="line">    allowed_domains = [<span class="string">"defensenews.com"</span>]</span><br><span class="line">    start_urls = [</span><br><span class="line">        <span class="string">"https://www.defensenews.com"</span></span><br><span class="line">    ]</span><br><span class="line">    rules = [Rule(LinkExtractor(allow=<span class="string">r"/.*/2017/\d+/\d+/.*"</span>), follow=<span class="keyword">True</span>, callback=<span class="string">'parse_item'</span>)]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_item</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        url = response.url</span><br><span class="line">        <span class="comment"># 如果item调用下面的实体类，最后得到的item并非字典格式，无法存进es。</span></span><br><span class="line">        <span class="comment"># item = DmozItem()</span></span><br><span class="line">        item = &#123;&#125;</span><br><span class="line">        item[<span class="string">'url'</span>] = [response.url]</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            response = urllib.request.urlopen(url)</span><br><span class="line">            text = response.read().decode(<span class="string">'utf-8'</span>)</span><br><span class="line">            title = re.findall(<span class="string">'head col-sm-12.*?&lt;h1&gt;(.*?)&lt;/h1&gt;'</span>, text, re.S)[<span class="number">0</span>]</span><br><span class="line">            publish = \</span><br><span class="line">                re.findall(<span class="string">'publish addthis.*?&lt;/i&gt;(.*?)&lt;/span&gt;'</span>, text,</span><br><span class="line">                           re.S)[<span class="number">0</span>].strip()</span><br><span class="line">            pattern = <span class="string">"""&lt;div class="row"&gt; &lt;div class="col-md-12 col-xs-12 col-print-12"&gt; &lt;p class="element element-paragraph"&gt;(.*?)&lt;/p&gt; &lt;/div&gt; &lt;/div&gt;"""</span></span><br><span class="line">            content = <span class="string">'&lt;br /&gt;'</span>.join(re.findall(pattern, text, re.S))</span><br><span class="line">            item[<span class="string">'title'</span>] = title</span><br><span class="line">            item[<span class="string">'publish'</span>] = publish</span><br><span class="line">            item[<span class="string">'content'</span>] = content</span><br><span class="line">            es.index(<span class="string">'defensenews'</span>, doc_type=<span class="string">'news'</span>, body=item)</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure>
-<p>allowed_domains限制域名，start_urls设定起始url，可以多个。</p>
-<p>特别注意，类继承的是CrawlSpider，如果只是继承scrapy.Spider,rules无法使用会报错！</p>
-<h1 id="爬虫持久化"><a href="#爬虫持久化" class="headerlink" title="爬虫持久化"></a>爬虫持久化</h1><p>在项目根目录下通过如下命令启动爬虫，其中dmoz为spider类中指定的name值。<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl dmoz -s <span class="attribute">JOBDIR</span>=crawls/dmoz-1</span><br></pre></td></tr></table></figure></p>
-<p>按ctrl-c就可以暂停。再次运行以上命令就可以继续运行。</p>
-<h1 id="inferences"><a href="#inferences" class="headerlink" title="inferences"></a>inferences</h1><p><a href="http://www.cnblogs.com/sirkevin/p/5805795.html" target="_blank" rel="noopener">网络爬虫：使用Scrapy框架编写一个抓取书籍信息的爬虫服务</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/develepment/transformer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/development/develepment/transformer/" class="post-title-link" itemprop="url">transformer</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/develepment/" itemprop="url" rel="index"><span itemprop="name">develepment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>transformer模块为特征工程模块，encoder为其基本单元，encoder的作用为进行特征变换。</p>
-<p>此文档用于规范encoder类的编写，同时列出各个encoder的参数列表。</p>
-<h1 id="编写规范"><a href="#编写规范" class="headerlink" title="编写规范"></a>编写规范</h1><ol>
-<li><p>类取名应该清晰易懂， 符合一般规范（各单词首字母大写），以Encoder结尾， 例如<code>BaseEncoder</code>, <code>WOEEncoder</code>。对于只适用于cont的Encoder类应该以Cont作为类名开头，对于只适用于cate的Encoder类应该以Cate作为类名开头。</p>
-</li>
-<li><p>类必须包含<code>__init__</code>、<code>fit</code>和<code>transformer</code>方法，transformer模块也只会调用这三个方法</p>
-</li>
-<li><p>fit方法必须形如：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 形式1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, df, y=None)</span>:</span></span><br><span class="line">    ···</span><br><span class="line"></span><br><span class="line"><span class="comment"># 形式2</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, df, y)</span>:</span></span><br><span class="line">    ···</span><br><span class="line"></span><br><span class="line"><span class="comment"># 不需要return</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>transformer方法必须形如：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">transform</span><span class="params">(self, df)</span>:</span></span><br><span class="line">    <span class="comment"># 一系列处理过程</span></span><br><span class="line">    df_final = df.copy()</span><br><span class="line">    ...</span><br><span class="line">    df_final.columns = df.columns</span><br><span class="line">    <span class="keyword">return</span> df.final</span><br><span class="line"></span><br><span class="line"><span class="comment"># return必须是pandas.DataFrame,不能乱序，顺序必须和传入的df一致(最好保持index和传入的df一致，目前会在外部再做一次index对齐处理防止index不一致,最后列名也需要复原出来，因为某些方法会删掉列名)</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>异常处理和错误抛出规范：不要使用<code>try...except...</code>进行异常跳出，目前只需要正常让程序自行报错即可</p>
-</li>
-<li><p>必须有类注释，形如：</p>
-<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">"""</span><br><span class="line">用于剔除缺失值严重列，同值严重列，不同值严重cate列（字符串列如果取值太过于分散，则信息量过低）。</span><br><span class="line"></span><br><span class="line">适用于cont和cate，支持缺失值, 建议放置在encoder序列第一位次</span><br><span class="line"></span><br><span class="line">Parameters</span><br><span class="line">----------</span><br><span class="line">missing<span class="emphasis">_thr: 0.8, 缺失率高于该值的列会被剔除</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">same_</span>thr: 0.8, 同值率高于该值的列会被剔除</span><br><span class="line"></span><br><span class="line">caate<span class="emphasis">_thr: 0.9， 取值分散率高于该值的字符串列会被剔除</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">Attributes</span></span><br><span class="line"><span class="emphasis">----------</span></span><br><span class="line"><span class="emphasis">missing_</span>cols: list, 被剔除的缺失值列</span><br><span class="line"></span><br><span class="line">same<span class="emphasis">_cols: list, 被剔除的同值列</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">cate_</span>cols: list, 被剔除的取值分散字符串列</span><br><span class="line"></span><br><span class="line">exclude<span class="emphasis">_cols: list, 被剔除的列名</span></span><br><span class="line"><span class="emphasis">"""</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>完成后必须进行单元测试，自测通过</p>
-</li>
-</ol>
-<h1 id="BaseEncoder"><a href="#BaseEncoder" class="headerlink" title="BaseEncoder"></a>BaseEncoder</h1><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">"""</span><br><span class="line">用于剔除缺失值严重列，同值严重列，不同值严重cate列（字符串列如果取值太过于分散，则信息量过低）。</span><br><span class="line"></span><br><span class="line">适用于cont和cate，支持缺失值, 建议放置在encoder序列第一位次</span><br><span class="line"></span><br><span class="line">Parameters</span><br><span class="line">----------</span><br><span class="line">missing<span class="emphasis">_thr: 0.8, 缺失率高于该值的列会被剔除</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">same_</span>thr: 0.8, 同值率高于该值的列会被剔除</span><br><span class="line"></span><br><span class="line">caate<span class="emphasis">_thr: 0.9， 取值分散率高于该值的字符串列会被剔除</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">Attributes</span></span><br><span class="line"><span class="emphasis">----------</span></span><br><span class="line"><span class="emphasis">missing_</span>cols: list, 被剔除的缺失值列</span><br><span class="line"></span><br><span class="line">same<span class="emphasis">_cols: list, 被剔除的同值列</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">cate_</span>cols: list, 被剔除的取值分散字符串列</span><br><span class="line"></span><br><span class="line">exclude<span class="emphasis">_cols: list, 被剔除的列名</span></span><br><span class="line"><span class="emphasis">"""</span></span><br></pre></td></tr></table></figure>
-<h1 id="NothingEncoder"><a href="#NothingEncoder" class="headerlink" title="NothingEncoder"></a>NothingEncoder</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">原样返回，不做任何处理。本用于测试，现在transformer支持在encoders序列为空情况下原样返回，此类已无实际用途。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">适用于cont和cate，支持缺失值</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
-<h1 id="DropEncoder"><a href="#DropEncoder" class="headerlink" title="DropEncoder"></a>DropEncoder</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">此类用于返回空df，换言之删除所有字段。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">适用于cont和cate， 支持缺失值</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
-<h1 id="ContImupterEncoder"><a href="#ContImupterEncoder" class="headerlink" title="ContImupterEncoder"></a>ContImupterEncoder</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">"""</span><br><span class="line">此类继承自sklearn.preprocessing.Imputer，fit与基类完全一致，transform方法返回变为pandas.DataFrame。</span><br><span class="line"></span><br><span class="line">仅适用于cont， 支持缺失值</span><br><span class="line"></span><br><span class="line">Parameters</span><br><span class="line"><span class="comment">----------</span></span><br><span class="line">missing_values : integer or "NaN", optional (default="NaN")</span><br><span class="line">    The placeholder for the missing values. <span class="keyword">All</span> occurrences <span class="keyword">of</span></span><br><span class="line">    <span class="string">`missing_values`</span> will be imputed. <span class="keyword">For</span> <span class="keyword">missing</span> <span class="keyword">values</span> encoded <span class="keyword">as</span> np.nan,</span><br><span class="line">    <span class="keyword">use</span> the <span class="keyword">string</span> <span class="keyword">value</span> <span class="string">"NaN"</span>.</span><br><span class="line"></span><br><span class="line">strategy : <span class="keyword">string</span>, optional (<span class="keyword">default</span>=<span class="string">"mean"</span>)</span><br><span class="line">    The imputation strategy.</span><br><span class="line"></span><br><span class="line">    - <span class="keyword">If</span> <span class="string">"mean"</span>, <span class="keyword">then</span> <span class="keyword">replace</span> <span class="keyword">missing</span> <span class="keyword">values</span> <span class="keyword">using</span> the mean along</span><br><span class="line">      the axis.</span><br><span class="line">    - <span class="keyword">If</span> <span class="string">"median"</span>, <span class="keyword">then</span> <span class="keyword">replace</span> <span class="keyword">missing</span> <span class="keyword">values</span> <span class="keyword">using</span> the <span class="keyword">median</span> along</span><br><span class="line">      the axis.</span><br><span class="line">    - <span class="keyword">If</span> <span class="string">"most_frequent"</span>, <span class="keyword">then</span> <span class="keyword">replace</span> <span class="keyword">missing</span> <span class="keyword">using</span> the most frequent</span><br><span class="line">      <span class="keyword">value</span> along the axis.</span><br><span class="line"></span><br><span class="line">axis : <span class="built_in">integer</span>, optional (<span class="keyword">default</span>=<span class="number">0</span>)</span><br><span class="line">    The axis along which <span class="keyword">to</span> impute.</span><br><span class="line"></span><br><span class="line">    - <span class="keyword">If</span> <span class="string">`axis=0`</span>, <span class="keyword">then</span> impute along columns.</span><br><span class="line">    - <span class="keyword">If</span> <span class="string">`axis=1`</span>, <span class="keyword">then</span> impute along rows.</span><br><span class="line"></span><br><span class="line">verbose : <span class="built_in">integer</span>, optional (<span class="keyword">default</span>=<span class="number">0</span>)</span><br><span class="line">    Controls the verbosity <span class="keyword">of</span> the imputer.</span><br><span class="line"></span><br><span class="line">copy : <span class="built_in">boolean</span>, optional (<span class="keyword">default</span>=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">If</span> <span class="literal">True</span>, a copy <span class="keyword">of</span> X will be created. <span class="keyword">If</span> <span class="literal">False</span>, imputation will</span><br><span class="line">    be done <span class="keyword">in</span>-place <span class="keyword">whenever</span> possible. Note that, <span class="keyword">in</span> the <span class="keyword">following</span> cases,</span><br><span class="line">    a <span class="keyword">new</span> copy will <span class="keyword">always</span> be made, even <span class="keyword">if</span> <span class="string">`copy=False`</span>:</span><br><span class="line"></span><br><span class="line">    - <span class="keyword">If</span> X <span class="keyword">is</span> <span class="keyword">not</span> an <span class="built_in">array</span> <span class="keyword">of</span> floating <span class="keyword">values</span>;</span><br><span class="line">    - If X is sparse and `missing_values=0`;</span><br><span class="line">    - If `axis=0` and X is encoded as a CSR matrix;</span><br><span class="line">    - If `axis=1` and X is encoded as a CSC matrix.</span><br><span class="line"></span><br><span class="line">Attributes</span><br><span class="line"><span class="comment">----------</span></span><br><span class="line">enc : 实例化的Imputer对象</span><br><span class="line"></span><br><span class="line">enc.statistics_ : array of shape (n_features,)</span><br><span class="line">    The imputation fill value for each feature if axis == 0.</span><br><span class="line"></span><br><span class="line">Notes</span><br><span class="line"><span class="comment">-----</span></span><br><span class="line">- When ``axis=0``, columns which only contained missing <span class="keyword">values</span> <span class="keyword">at</span> <span class="string">`fit`</span></span><br><span class="line">  <span class="keyword">are</span> discarded upon <span class="string">`transform`</span>.</span><br><span class="line">- <span class="keyword">When</span> <span class="string">``</span>axis=<span class="number">1</span><span class="string">``</span>, an <span class="keyword">exception</span> <span class="keyword">is</span> raised <span class="keyword">if</span> there <span class="keyword">are</span> <span class="keyword">rows</span> <span class="keyword">for</span> which it <span class="keyword">is</span></span><br><span class="line">  <span class="keyword">not</span> possible <span class="keyword">to</span> fill <span class="keyword">in</span> the <span class="keyword">missing</span> <span class="keyword">values</span> (e.g., because they <span class="keyword">only</span></span><br><span class="line">  contain <span class="keyword">missing</span> <span class="keyword">values</span>).    </span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
-<h1 id="ContBinningEncoder"><a href="#ContBinningEncoder" class="headerlink" title="ContBinningEncoder"></a>ContBinningEncoder</h1><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">"""</span><br><span class="line">将连续型变量转化为离散型</span><br><span class="line"></span><br><span class="line">仅适用于cont， 支持缺失值</span><br><span class="line"></span><br><span class="line">Parameters</span><br><span class="line">----------</span><br><span class="line">diff<span class="emphasis">_thr: 20, 不同取值数高于该值才进行离散化处理，不然原样返回</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">binning_</span>method: <span class="emphasis">'dt'</span>，分箱方法, 可用取值为<span class="emphasis">'dt'</span>， <span class="emphasis">'qcut'</span>， <span class="emphasis">'cut'</span></span><br><span class="line"></span><br><span class="line">bins: 10, 分箱数目， 当binning<span class="emphasis">_method='dt'时，该参数失效</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">**kwargs: 决策树分箱方法使用的决策树参数</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">"""</span></span><br></pre></td></tr></table></figure>
-<h1 id="WOEEncoder"><a href="#WOEEncoder" class="headerlink" title="WOEEncoder"></a>WOEEncoder</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">woe变换</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">适用于cont和cate，但对多取值cont无效，支持缺失值</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Parameters</span></span><br><span class="line"><span class="string">----------</span></span><br><span class="line"><span class="string">diff_thr: 20， 不同取值数小于等于该值的才进行woe变换，不然原样返回</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">woe_min: -20， woe的截断最小值</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">woe_max: 20， woe的截断最大值</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">nan_thr: 0.01， 对缺失值采用平滑方法计算woe值，nan_thr为平滑参数</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/develepment/多线程&多进程/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/development/develepment/多线程&多进程/" class="post-title-link" itemprop="url">多线程&多进程</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/develepment/" itemprop="url" rel="index"><span itemprop="name">develepment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><p>对于单核cpu，同一时间只可能运行一个线程。只是由于线程任务可能存在一些必要的挂起时间（等待I/O等），这个时间被迅速切换来运行下一个线程，从而带来了挂起时间的节约和相应加速。</p>
-<p>多核cpu情况下，多线程则存在核间资源共享的问题。python的GIL机制则是一个相当糟糕的解决方案。使得多线程效率可能还不如单线程。</p>
-<h1 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h1><p>每个核分别处理任务，可以不受其他任务影响的并行。特定需求下，也存在进程间通信的问题。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/git/git/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/development/git/git/" class="post-title-link" itemprop="url">git</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Git-fatal-Pathspec-is-in-submodule"><a href="#Git-fatal-Pathspec-is-in-submodule" class="headerlink" title="Git: fatal: Pathspec is in submodule"></a>Git: fatal: Pathspec is in submodule</h1><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git rm <span class="comment">--cached directory</span></span><br><span class="line">git <span class="built_in">add</span> <span class="built_in">directory</span></span><br></pre></td></tr></table></figure>
-<p><a href="https://stackoverflow.com/questions/24472596/git-fatal-pathspec-is-in-submodule" target="_blank" rel="noopener">Git: fatal: Pathspec is in submodule</a></p>
-<h1 id="PR"><a href="#PR" class="headerlink" title="PR"></a>PR</h1><p>使用别人的repo代码，发现问题想要更正以后合并，可以通过以下方法：</p>
-<ol>
-<li>fork repo</li>
-<li>git clone自己fork过来的repo到本地</li>
-<li>本地正常修改提交</li>
-<li>在自己fork的repo上发pr申请，等待原仓库管理员merge</li>
-</ol>
-<h1 id="本地仓库和线上仓库关联"><a href="#本地仓库和线上仓库关联" class="headerlink" title="本地仓库和线上仓库关联"></a>本地仓库和线上仓库关联</h1><p>想要把本地仓库和一个线上的仓库合并：</p>
-<ol>
-<li><p>本地仓库和线上仓库同名</p>
-</li>
-<li><p>如果本地仓库只是文件夹，需要<code>git init</code></p>
-</li>
-<li><p>创建关联，<code>git remote add origin &lt;线上repo ssh地址&gt;</code></p>
-</li>
-<li><p>先把线上仓库拉取合并下来，<code>git pull origin master</code></p>
-</li>
-<li><p>本地仓库推到线上，</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m ""</span><br><span class="line">git push -u origin master #-u是对线上和线下master进行关联，以后就不需要加了</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="创建本地分支并推上线"><a href="#创建本地分支并推上线" class="headerlink" title="创建本地分支并推上线"></a>创建本地分支并推上线</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b test</span><br><span class="line">git add -A</span><br><span class="line">git commit -m "test"</span><br><span class="line">git push -u origin test:test</span><br></pre></td></tr></table></figure>
-<h1 id="本地repo同时推到两个线上repo"><a href="#本地repo同时推到两个线上repo" class="headerlink" title="本地repo同时推到两个线上repo"></a>本地repo同时推到两个线上repo</h1><p>reference: <a href="https://gist.github.com/rvl/c3f156e117e22a25f242" target="_blank" rel="noopener">Pushing to Multiple Git Repos</a></p>
-<p>流程如下：</p>
-<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># remote</span></span><br><span class="line"><span class="string">git </span><span class="string">remote </span><span class="string">add </span><span class="string">github </span><span class="string">git@</span><span class="string">github.</span><span class="string">com:muccg/</span><span class="string">my-project.</span><span class="string">git</span></span><br><span class="line"><span class="string">git </span><span class="string">remote </span><span class="string">add </span><span class="string">bb </span><span class="string">git@</span><span class="string">bitbucket.</span><span class="string">org:ccgmurdoch/</span><span class="string">my-project.</span><span class="string">git</span></span><br><span class="line"><span class="string">#</span> <span class="string">Remote </span><span class="string">Push </span><span class="string">URLs</span></span><br><span class="line"><span class="string">git </span><span class="string">remote </span><span class="built_in">set-url</span> <span class="built_in">--add</span> <span class="built_in">--push</span> <span class="string">origin </span><span class="string">git@</span><span class="string">github.</span><span class="string">com:muccg/</span><span class="string">my-project.</span><span class="string">git</span></span><br><span class="line"><span class="string">git </span><span class="string">remote </span><span class="built_in">set-url</span> <span class="built_in">--add</span> <span class="built_in">--push</span> <span class="string">origin </span><span class="string">git@</span><span class="string">bitbucket.</span><span class="string">org:ccgmurdoch/</span><span class="string">my-project.</span><span class="string">git</span></span><br><span class="line"><span class="string">#</span> <span class="string">pull </span><span class="string">multiple</span></span><br><span class="line"><span class="string">git </span><span class="string">fetch </span><span class="built_in">--all</span></span><br><span class="line"><span class="built_in">git</span> <span class="string">merge </span><span class="string">github/</span><span class="string">next_release </span><span class="string">bb/</span><span class="string">next_release</span></span><br></pre></td></tr></table></figure>
-<p>在pull multiple步骤，可能会报如下错误<code>fatal: refusing to merge unrelated histories</code>,只需要在pull或者merge时加上<code>--allow-unrelated-histories</code>参数，在手动合并代码冲突即可。</p>
-<p>下面提供一个更简单的方案，没有经过严格测试：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改.git/config文件，加入如下一段话</span></span><br><span class="line">[remote <span class="string">"all"</span>]</span><br><span class="line">url = https:<span class="regexp">//gi</span>thub.com<span class="regexp">/segment/</span>test.git</span><br><span class="line">url = https:<span class="regexp">//gi</span>t.oschina.net<span class="regexp">/segment/</span>test.git</span><br><span class="line"><span class="comment"># pull合并代码</span></span><br><span class="line">git pull all master --allow-unrelated-histories</span><br></pre></td></tr></table></figure>
-<p>注意，这个方案另开了一个all分支，可能更安全，也可以直接修改origin。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/development/environment/IDEA操作技巧/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/development/environment/IDEA操作技巧/" class="post-title-link" itemprop="url">IDEA操作技巧</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/environment/" itemprop="url" rel="index"><span itemprop="name">environment</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>本机环境： ubuntu16.04</p>
-<h1 id="IDEA-卡顿"><a href="#IDEA-卡顿" class="headerlink" title="IDEA 卡顿"></a>IDEA 卡顿</h1><p>参考<a href="http://blog.csdn.net/u013068377/article/details/54316965" target="_blank" rel="noopener">解决IDEA卡顿问题及相关基本配置</a></p>
-<p>进入IDEA安装目录，进一步进入bin目录，修改<code>idea64.vmoptions</code>文件（windows下文件名略有区别）</p>
-<p>将文件中<code>-Xmx?m</code> 改为你需要分配的内存数量，比如改为<code>-Xmx2048m</code>。</p>
-<h1 id="IDEA-中文环境"><a href="#IDEA-中文环境" class="headerlink" title="IDEA  中文环境"></a>IDEA  中文环境</h1><p>依旧是修改<code>idea64.vmoptions</code>,在最后增加一行</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-Dfile.<span class="attribute">encoding</span>=utf8</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -3719,7 +3698,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">358</span>
+                    <span class="site-state-item-count">369</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -4047,7 +4026,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">113</span>
+                      
+                    
+                    <span class="site-state-item-count">114</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>

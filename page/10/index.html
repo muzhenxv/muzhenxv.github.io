@@ -285,6 +285,1738 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/statistics/参数估计方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/machine learning/statistics/参数估计方法/" class="post-title-link" itemprop="url">参数估计方法</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/statistics/" itemprop="url" rel="index"><span itemprop="name">statistics</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="极大似然估计（MLE，Maximum-Likelihood）"><a href="#极大似然估计（MLE，Maximum-Likelihood）" class="headerlink" title="极大似然估计（MLE，Maximum Likelihood）"></a>极大似然估计（MLE，Maximum Likelihood）</h1><ol>
+<li><p>模型确定，参数未知（参数是固定的未知值，而非随机数）</p>
+</li>
+<li><p>$x_i$ 为iid样本(独立同分布)</p>
+</li>
+<li><p>使得样本出现概率（即似然函数）最大的参数最有可能是真实参数</p>
+</li>
+</ol>
+<p>即是求<br>$$\arg\max_\mu p(\mathbf{X};\mu)$$<br>其中：<br>$$p(\mathbf{x};\mu) = \prod_{i} p(x_i;\mu)$$<br>实际计算中，常常等价地处理对数似然函数。</p>
+<h1 id="最大后验估计（MAP-maximum-a-posteriori）"><a href="#最大后验估计（MAP-maximum-a-posteriori）" class="headerlink" title="最大后验估计（MAP,maximum a posteriori）"></a>最大后验估计（MAP,maximum a posteriori）</h1><ul>
+<li>参数具有先验概率$p(\mu)$</li>
+</ul>
+<p>因此，问题转化为求给定观测值情况下使后验概率最大的$\mu$：<br>\begin{split} \hat{\mu_{MAP}} &amp;= \arg\max_{\mu} p(\mu|\mathbf{X}) \newline<br>&amp;= \arg\max_{\mu} \frac{p(\mathbf{X}|\mu)p(\mu)}{p(\mathbf{X})} \newline<br>&amp;=\arg\max_{\mu} p(\mathbf{X}|\mu)p(\mu) \end{split}</p>
+<h1 id="MAP与Bayes估计-联系与区别"><a href="#MAP与Bayes估计-联系与区别" class="headerlink" title="MAP与Bayes估计 联系与区别"></a>MAP与Bayes估计 联系与区别</h1><p>[TBC]</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/statistics/方差、偏差、噪声/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/machine learning/statistics/方差、偏差、噪声/" class="post-title-link" itemprop="url">方差、偏差、噪声</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/statistics/" itemprop="url" rel="index"><span itemprop="name">statistics</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<h1 id="误差-随机误差和系统误差之间的关系"><a href="#误差-随机误差和系统误差之间的关系" class="headerlink" title="误差,随机误差和系统误差之间的关系"></a><a href="http://www.gfjl.org/thread-175264-1-1.html" target="_blank" rel="noopener">误差,随机误差和系统误差之间的关系</a></h1><p>误差的来源可以分为系统误差（又称可定误差）、随机误差（又称未定误差）和毛误差（又称过失误差）</p>
+<p>系统误差(System error)分为固定误差与比例误差，原因可能有仪器本身误差(instrumental errors)、采用方法的误差(method errors)、个人误差(personal errors)、环境误差（Environmental error）。理论上系统误差可以通过一定的手段(如:校正)来消除。举例而言，天平的两臂应是等长的，可实际上是不可能完全相等的；天平配置的相同质量的砝码应是一样的，可实际上它们不可能达到一样。</p>
+<p>随机误差(Random error)，无法控制的变因，会使得测量值产生随机分布的误差。它服从统计学上所谓的“正态分布”或称“高斯分布”，它是不可消除的，在这个意义上，测量对象的真值是永远不可知的，只能通过多次测量获得的均值尽量逼近。系统误差以相同的方式影响所有测量值，将它们推向同一个方向；随机误差，则随着不同次的测量而变化，有时候向上或向下。</p>
+<p>毛误差(Gross error)，毛误差主要是由于测量者的疏忽犯下不应有的错误造成的。例如读数错误、记录错误、测量时发生未察觉的异常情况等等，这种误差是可以避免的(如:舍弃有关数据重新测量)。</p>
+<ul>
+<li>系统误差中的个人误差(personal errors)与毛误差(Gross error)的差别<br>个人误差又称人员误差，是由于测定人员的分辨力、反应速度的差异和固有习惯引起的误差。这类误差往往因人而异，因而可以采取让不同人员进行分析，以平均值报告分析结果的方法予以限制。<br>毛误差主要是由于测量者的疏忽所造成的。</li>
+</ul>
+<p>残差是原值与拟合值的差――与预测有关，残差大小可以衡量预测的准确性。残差越大表示预测越不准确。残差与数据本身的分布特性，回归方程的选择有关。</p>
+<h1 id="总平方和（SST）、回归平方和（SSR）与残差平方和（SSE）"><a href="#总平方和（SST）、回归平方和（SSR）与残差平方和（SSE）" class="headerlink" title="总平方和（SST）、回归平方和（SSR）与残差平方和（SSE）"></a>总平方和（SST）、回归平方和（SSR）与残差平方和（SSE）</h1><p>\begin{split} &amp;&amp;SST = \sum_{i=1}^n(y_i-\overline{y})^2 \newline<br>&amp;&amp;SSE = \sum_{i=1}^n(y_i - \hat{y_i})^2 \newline<br>&amp;&amp;SSR = \sum_{i=1}^n(\hat{y_i}-\overline{y})^2 \end{split}</p>
+<p>SST是真值与均值的差平方和：衡量的是被解释变量(Y)波动的程度或不确定性的程度<br>SSR是估值与均值的差平方和：衡量的是被解释变量(Y)不确定性程度中能被解释变量(X)解释的部分<br>SSE是真值与估值的差平方和：衡量的是被解释变量(Y)不确定性程度中不能被解释变量(X)解释的部分<br>SSE很容易理解，SSR可以理解为SST-SSE的余项。</p>
+<h1 id="偏差和方差"><a href="#偏差和方差" class="headerlink" title="偏差和方差"></a>偏差和方差</h1><p>偏差刻画的是真值与预测值之间的偏离程度。  </p>
+<p>方差刻画的是模型在不同的样本集上performance的波动情况。</p>
+<p>详参周志华《机器学习》(P45):</p>
+<p>\begin{split} E_D[(f(x;D)-y_D)^2] &amp;&amp;= E_D[(f(x;D) - \overline{f}(x))^2] + (\overline{f}(x) - y)^2 +E_D[(y_D - y)^2] \newline<br>&amp;&amp;= var(x) + bias^2(x) + \epsilon^2 \newline<br>&amp;&amp; \overline{f}(x) = E_D[(f(x;D))] \newline<br>&amp;&amp; y_D \text{为x在数据集D中的标记; } y \text{为x真实标记; } f(x;D) \text{为算法在D上预测标记 }\end{split}</p>
+<p>范化误差可以分解为偏差，方差与噪声之和。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/vision/决策树可视化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/machine learning/vision/决策树可视化/" class="post-title-link" itemprop="url">决策树可视化</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/vision/" itemprop="url" rel="index"><span itemprop="name">vision</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>需要安装以下packages</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> graphviz</span><br><span class="line">pip <span class="keyword">install</span> pydotplus</span><br></pre></td></tr></table></figure>
+<p>绘制决策树的代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> export_graphviz</span><br><span class="line"><span class="keyword">import</span> traceback</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">visualize_tree</span><span class="params">(dt, path=None, feature_names=None)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    决策树可视化</span></span><br><span class="line"><span class="string">    :param dt: sklearn.tree.DecisionTreeClassifier().fit后的实例</span></span><br><span class="line"><span class="string">    :param path: 图片保存父路径</span></span><br><span class="line"><span class="string">    :param feature_names: 特征名，默认取data.columns</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> path <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">        dot_path = <span class="string">'dt.dot'</span></span><br><span class="line">        png_path = <span class="string">'dt.png'</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        dot_path = os.path.join(path, <span class="string">'dt.dot'</span>)</span><br><span class="line">        png_path = os.path.join(path, <span class="string">'dt.png'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> feature_names <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">        feature_names = [<span class="string">'feature_%s'</span>%i <span class="keyword">for</span> i <span class="keyword">in</span> range(dt.n_features_)]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> open(dot_path, <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        export_graphviz(dt, out_file=f,</span><br><span class="line">                        feature_names=feature_names)</span><br><span class="line"></span><br><span class="line">    command = [<span class="string">"dot"</span>, <span class="string">"-Tpng"</span>, dot_path, <span class="string">"-o"</span>, png_path]</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        subprocess.check_call(command)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(traceback.format_exc())</span><br><span class="line">        exit(<span class="string">"Could not run dot, ie graphviz, to produce visualization"</span>)</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/visualize/mosaic plot/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/machine learning/visualize/mosaic plot/" class="post-title-link" itemprop="url">mosaic plot</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/visualize/" itemprop="url" rel="index"><span itemprop="name">visualize</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>马赛克图，其实就是把多个变量之间的关系按照比例图形化出来。</p>
+<p>详参references</p>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="http://www.jianshu.com/p/7b896793196b" target="_blank" rel="noopener">数据可视化 - Mosaic Plot(马赛克图)</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/visualize/facets/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/machine learning/visualize/facets/" class="post-title-link" itemprop="url">facets</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/visualize/" itemprop="url" rel="index"><span itemprop="name">visualize</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>首先需要有jupyter环境。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/PAIR-code/facets</span><br><span class="line">cd facets</span><br><span class="line"></span><br><span class="line">jupyter nbextension install facets-dist/ --user</span><br><span class="line"></span><br><span class="line">pip install protobuf</span><br></pre></td></tr></table></figure>
+<h1 id="references"><a href="#references" class="headerlink" title="references"></a>references</h1><p><a href="https://github.com/PAIR-code/facets" target="_blank" rel="noopener">github pair facets</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/visualize/决策树可视化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/machine learning/visualize/决策树可视化/" class="post-title-link" itemprop="url">决策树可视化</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/visualize/" itemprop="url" rel="index"><span itemprop="name">visualize</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>需要安装以下packages</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install python-pydot python-pydot-ng graphviz</span><br><span class="line">pip install graphviz</span><br><span class="line">pip install pydotplus</span><br></pre></td></tr></table></figure>
+<p>绘制决策树的代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> export_graphviz</span><br><span class="line"><span class="keyword">import</span> traceback</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">visualize_tree</span><span class="params">(dt, path=None, feature_names=None)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    决策树可视化</span></span><br><span class="line"><span class="string">    :param dt: sklearn.tree.DecisionTreeClassifier().fit后的实例</span></span><br><span class="line"><span class="string">    :param path: 图片保存父路径</span></span><br><span class="line"><span class="string">    :param feature_names: 特征名，默认取data.columns</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> path <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">        dot_path = <span class="string">'dt.dot'</span></span><br><span class="line">        png_path = <span class="string">'dt.png'</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        dot_path = os.path.join(path, <span class="string">'dt.dot'</span>)</span><br><span class="line">        png_path = os.path.join(path, <span class="string">'dt.png'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> feature_names <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">        feature_names = [<span class="string">'feature_%s'</span>%i <span class="keyword">for</span> i <span class="keyword">in</span> range(dt.n_features_)]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> open(dot_path, <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        export_graphviz(dt, out_file=f,</span><br><span class="line">                        feature_names=feature_names)</span><br><span class="line"></span><br><span class="line">    command = [<span class="string">"dot"</span>, <span class="string">"-Tpng"</span>, dot_path, <span class="string">"-o"</span>, png_path]</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        subprocess.check_call(command)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(traceback.format_exc())</span><br><span class="line">        exit(<span class="string">"Could not run dot, ie graphviz, to produce visualization"</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h1><p><a href="https://askubuntu.com/questions/917030/how-to-install-pydot-and-graphviz" target="_blank" rel="noopener">How to install pydot and graphviz</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/visualize/数据探索/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/machine learning/visualize/数据探索/" class="post-title-link" itemprop="url">数据探索</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/visualize/" itemprop="url" rel="index"><span itemprop="name">visualize</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一般的数据可视化方法进行分布观察有这些：</p>
+<ol>
+<li>散点图</li>
+<li>箱型图</li>
+<li>核密度图</li>
+</ol>
+<p>这里着重以下方法：</p>
+<ol>
+<li><p>pairplot</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#  pairplot显示不同特征之间的关系 </span></span><br><span class="line">sns.pairplot(iris.drop(<span class="string">"Id"</span>, axis=<span class="number">1</span>), hue=<span class="string">"Species"</span>, size=<span class="number">3</span>, diag_kind=<span class="string">"kde"</span>)</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>pandas箱型图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用Pandas 快速做出每个特征在不同种类下的箱线图  </span></span><br><span class="line">iris.drop(<span class="string">"Id"</span>, axis=<span class="number">1</span>).boxplot(by=<span class="string">"Species"</span>, figsize=(<span class="number">12</span>, <span class="number">6</span>))</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>调和曲线图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 他是将高维的点 化为二维的曲线，曲线是一条傅里叶函数的样子，参数项为不同的特征值，臆想出来了自变量t,这样每个点都是一条曲线</span></span><br><span class="line"><span class="comment"># 画图的函数在下面，我们会发现相同种类的线总是缠绵在一起，可以和聚类混在一起噢，事实上他们与欧氏距离是有关系的  </span></span><br><span class="line"><span class="keyword">from</span> pandas.tools.plotting <span class="keyword">import</span> andrews_curves  </span><br><span class="line">andrews_curves(iris.drop(<span class="string">"Id"</span>, axis=<span class="number">1</span>), <span class="string">"Species"</span>)</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>轮廓图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 轮廓图也是看高维数据的一种方法，将不同的特征放在横坐标，然后将各点的特征值放在纵坐标就可以了  </span></span><br><span class="line"><span class="keyword">from</span> pandas.tools.plotting <span class="keyword">import</span> parallel_coordinates  </span><br><span class="line">parallel_coordinates(iris.drop(<span class="string">"Id"</span>, axis=<span class="number">1</span>), <span class="string">"Species"</span>)</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>radviz</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这也是一种将高维点表现在二维平面的方法，具体作图方法应该在上面的网址上应该有  </span></span><br><span class="line"><span class="keyword">from</span> pandas.tools.plotting <span class="keyword">import</span> radviz  </span><br><span class="line">radviz(iris.drop(<span class="string">"Id"</span>, axis=<span class="number">1</span>), <span class="string">"Species"</span>)</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ol>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><p><a href="https://www.kaggle.com/benhamner/python-data-visualizations" target="_blank" rel="noopener">Python Data Visualizations</a></p>
+<p><a href="https://blog.csdn.net/bea_tree/article/details/50757338" target="_blank" rel="noopener">基于Python的数据可视化 matplotlib seaborn pandas</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/book review/《中华帝制的衰落》魏斐德/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/pansee/book review/《中华帝制的衰落》魏斐德/" class="post-title-link" itemprop="url">《中华帝制的衰落》魏斐德</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/book-review/" itemprop="url" rel="index"><span itemprop="name">book review</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="第一章-农民"><a href="#第一章-农民" class="headerlink" title="第一章 农民"></a>第一章 农民</h1><h2 id="农民的传统形象"><a href="#农民的传统形象" class="headerlink" title="农民的传统形象"></a>农民的传统形象</h2><p><strong>农民双重性</strong>，两种截然相反的描述：勤劳的自耕农，叛党。</p>
+<h2 id="农民与土地所有权"><a href="#农民与土地所有权" class="headerlink" title="农民与土地所有权"></a>农民与土地所有权</h2><p>虽然存在封邑制和贵族对大批土地的占有，但出于中央政府的控制和约束农民的困难（可以轻易逃离封地），只能将土地租给佃农，而无法将农民掌控为奴隶。</p>
+<p>另一方面，至少在清朝以来，由于不遵循长子继承制，家田越分越小，以及土地抵押等情况，也导致土地占有情况被均化。</p>
+<p>##　华北的土地与劳动力</p>
+<p>农业技术的发展，但并非通过改良设备，而是通过增加家庭劳动力的收入，来达到增产的目的。</p>
+<p>因此，通过增加家庭人口，来达到最佳土地配比，使得总产量增加，产出更多粮食，并反过来推动人口进一步增加，以推动总产量进一步成比增加。这是一个牧场博弈问题，最终的结果失因为人口的增加导致可耕种土地的减少，最后很多农民都到了生存线以下。剩余的劳动力将会寻找家庭手工业，城市打工这样的出路，而这些额外的收入将会被用于土地购买。这样便又形成了投资土地——土地抵押寻求贷款以便有更多的土地进行产出这样的信用制度之中。而一旦遭遇旱灾，洪灾，农民的生产链断裂，沦为难民，便开始加入叛军的队伍。</p>
+<blockquote>
+<p>华北农业经济之所以陷入危机，都是因为技术落后，而非财富分配不均。</p>
+</blockquote>
+<h2 id="华南的人文地理"><a href="#华南的人文地理" class="headerlink" title="华南的人文地理"></a>华南的人文地理</h2><p>更为严重的贫富分化</p>
+<h2 id="人际关系与阶级冲突"><a href="#人际关系与阶级冲突" class="headerlink" title="人际关系与阶级冲突"></a>人际关系与阶级冲突</h2><p>农民和士绅之间的和谐与冲突被人口的剧烈增长所打破。</p>
+<h1 id="第二章-士绅"><a href="#第二章-士绅" class="headerlink" title="第二章 士绅"></a>第二章 士绅</h1><p>##　士绅的双重性</p>
+<blockquote>
+<p>但在县衙官员和农民之间，一般还有个被称为“士绅”的群体……将士绅的官僚特质和贵族倾向都体现的淋漓尽致。</p>
+</blockquote>
+<h2 id="士绅的官僚层面"><a href="#士绅的官僚层面" class="headerlink" title="士绅的官僚层面"></a>士绅的官僚层面</h2><p>科学制度带来了精英阶层的流动，巩固了皇权的统治。但是小比例的晋升空间依旧会带来不满情绪。</p>
+<blockquote>
+<p>很多叛乱甚至一些大规模暴动的领导者，不是政见不同的下层士绅，就是为了通过更高级别的科考，耗时多年的应考者。</p>
+</blockquote>
+<h2 id="地方声望：作为一个阶层的士绅"><a href="#地方声望：作为一个阶层的士绅" class="headerlink" title="地方声望：作为一个阶层的士绅"></a>地方声望：作为一个阶层的士绅</h2><blockquote>
+<p>因此，“士”的定义便从“获得功名的个体”转变为“社会地位显赫的世家或大族”。</p>
+</blockquote>
+<p>王朝晚期多阶层社会的复杂性，不同社会群体处于明显的变化之中</p>
+<h2 id="公用事业与个人利益"><a href="#公用事业与个人利益" class="headerlink" title="公用事业与个人利益"></a>公用事业与个人利益</h2><p>士绅承担社会角色的道德性的一分为二。</p>
+<p>儒家理想的公共事业与士绅的利己主义的冲突。</p>
+<h2 id="士绅在地方政府中的角色"><a href="#士绅在地方政府中的角色" class="headerlink" title="士绅在地方政府中的角色"></a>士绅在地方政府中的角色</h2><p>士绅充当了非正式行政官员的角色辅助行政管理</p>
+<p>##　士绅收入与腐败</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/machine learning/visualize/plt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/machine learning/visualize/plt/" class="post-title-link" itemprop="url">plt</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/visualize/" itemprop="url" rel="index"><span itemprop="name">visualize</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+<h1 id="plt-yscale"><a href="#plt-yscale" class="headerlink" title="plt.yscale()"></a>plt.yscale()</h1><p>该方法用于对y轴进行放缩，从而使得不同量级的y轴取值可以在同一副图中较为清晰的展现。</p>
+<p>下面以<code>plt.yscale(&#39;log&#39;)</code>为例。</p>
+<p>在不做放缩情况下，画出的图如下：</p>
+<p><img src="http://omdhuynsr.bkt.clouddn.com/17-3-24/47395322-file_1490351231756_6c40.png" alt></p>
+<p>进行缩放后形如：</p>
+<p><img src="http://omdhuynsr.bkt.clouddn.com/17-3-24/20432659-file_1490351272092_d9bc.png" alt></p>
+<p>这里是以10为底进行的y轴数值变换。变换后y值应该是在0到6之间。但我们可以看到上图纵坐标在显示上再次通过以10为底的指数进行了还原。但图形依旧是以经过对数变换之后的数值来绘制的。</p>
+<h1 id="sns-color-palette"><a href="#sns-color-palette" class="headerlink" title="sns.color_palette()"></a>sns.color_palette()</h1><p>这个函数可以生成一个array，每个元素代表一个颜色坐标</p>
+<h1 id="词云图"><a href="#词云图" class="headerlink" title="词云图"></a>词云图</h1><p>输入为字符串<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from wordcloud <span class="built_in">import</span> WordCloud</span><br><span class="line"><span class="attr">cloud</span> = WordCloud(<span class="attr">width=1440,</span> <span class="attr">height=1080).generate(str)</span></span><br><span class="line">plt.figure(<span class="attr">figsize=(20,</span> <span class="number">15</span>))</span><br><span class="line">plt.imshow(cloud)</span><br><span class="line">plt.axis('off')</span><br></pre></td></tr></table></figure></p>
+<h1 id="series画图"><a href="#series画图" class="headerlink" title="series画图"></a>series画图</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pd<span class="selector-class">.Series</span><span class="selector-class">.plot</span><span class="selector-class">.bar</span>()</span><br><span class="line">pd<span class="selector-class">.Series</span><span class="selector-class">.plot</span><span class="selector-class">.hist</span>()</span><br></pre></td></tr></table></figure>
+<h1 id="plt-ion"><a href="#plt-ion" class="headerlink" title="plt.ion()"></a>plt.ion()</h1><p>开启交互模式。开启后继续运行相关绘图语句会出现反应。不然会无反应。</p>
+<p>以下代码会在图上加标题。<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">plt</span><span class="selector-class">.ion</span>()</span><br><span class="line"><span class="selector-tag">plt</span><span class="selector-class">.plot</span>([<span class="number">1.6</span>,<span class="number">2.7</span>])</span><br><span class="line"><span class="selector-tag">plt</span><span class="selector-class">.show</span>()</span><br><span class="line"><span class="selector-tag">plt</span><span class="selector-class">.title</span>(<span class="string">'test'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>以下代码不会在图上加标题，默认是交互模式关闭。<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">plt</span><span class="selector-class">.ioff</span>()</span><br><span class="line"><span class="selector-tag">plt</span><span class="selector-class">.plot</span>([<span class="number">1.6</span>,<span class="number">2.7</span>])</span><br><span class="line"><span class="selector-tag">plt</span><span class="selector-class">.show</span>()</span><br><span class="line"><span class="selector-tag">plt</span><span class="selector-class">.title</span>(<span class="string">'test'</span>)</span><br></pre></td></tr></table></figure></p>
+<h1 id="figure-subplot-ax的含义"><a href="#figure-subplot-ax的含义" class="headerlink" title="figure subplot ax的含义"></a>figure subplot ax的含义</h1><p>figure是图像</p>
+<p>subplot是子图</p>
+<p>ax是画布？</p>
+<h1 id="移除曲线"><a href="#移除曲线" class="headerlink" title="移除曲线"></a>移除曲线</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">line_name</span><span class="selector-class">.pop</span>(0)<span class="selector-class">.remove</span>()</span><br></pre></td></tr></table></figure>
+<h1 id="名称太长无法在图中完整显示"><a href="#名称太长无法在图中完整显示" class="headerlink" title="名称太长无法在图中完整显示"></a>名称太长无法在图中完整显示</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">plt</span><span class="selector-class">.tight_layout</span>()</span><br></pre></td></tr></table></figure>
+<h1 id="matplotlib-中文乱码问题"><a href="#matplotlib-中文乱码问题" class="headerlink" title="matplotlib 中文乱码问题"></a>matplotlib 中文乱码问题</h1><p>网上有些比较直接的解决方法，比如 <a href="https://segmentfault.com/a/1190000005144275" target="_blank" rel="noopener">python matplotlib 中文显示参数设置</a>，然而我试了没用。</p>
+<p>这些不管用的方法主要有两种：</p>
+<ol>
+<li>每次编写代码时进行参数设置</li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#coding</span>:utf-<span class="number">8</span></span><br><span class="line">import matplotlib<span class="selector-class">.pyplot</span> as plt</span><br><span class="line">plt<span class="selector-class">.rcParams</span>[<span class="string">'font.sans-serif'</span>]=[<span class="string">'SimHei'</span>] #用来正常显示中文标签</span><br><span class="line">plt<span class="selector-class">.rcParams</span>[<span class="string">'axes.unicode_minus'</span>]=False #用来正常显示负号</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>修改matplotlib配置文件</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib</span><br><span class="line">matplotlib.matplotlib_fname() <span class="comment">#将会获得matplotlib包所在文件夹</span></span><br></pre></td></tr></table></figure>
+<p>然后进入文件夹（path\to\matplotlib\mpl-data）该文件夹下就能看到matplotlibrc配置文件。</p>
+<p>1）打开该配置文件，找到下面这行：</p>
+<p><code>#font.serif : Bitstream Vera Serif, New Century Schoolbook, Century Schoolbook L, Utopia, ITC Bookman, Bookman, Nimbus Roman No9 L, Times New Roman, Times, Palatino, Charter, serif</code><br>然后，将前面的注释去掉！</p>
+<p>2）找中文字体放到matplotlib字体库中。</p>
+<p>ubuntu下通过<code>fc-list :lang=zh</code> 查看中文字体路径，注意<code>:</code>前有空格。随便选一个复制到path\to\matplotlib\mpl-data\fonts\ttf文件夹下，命名为Vera.ttf</p>
+<p>注明：这一步的作用其实就是将matplotlib中一个默认的字体替换为我们复制过来的中文字体，将这个中文字体命名改为matplotlib中有的字体名。</p>
+<p>我也查了一些应对方法，比如<a href="https://stackoverflow.com/questions/42097053/matplotlib-cannot-find-basic-fonts" target="_blank" rel="noopener">Matplotlib cannot find basic fonts</a>，然而依旧不管用。</p>
+<p>这些修复方法也有两种：</p>
+<ol>
+<li><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Stopping Jupyter</span><br><span class="line">Installing font-<span class="string">manager:</span> sudo apt install font-manager</span><br><span class="line">Cleaning the matplotlib cache <span class="string">directory:</span> rm <span class="regexp">~/.cache/</span>matplotlib -fr</span><br><span class="line">Restarting Jupyter.</span><br></pre></td></tr></table></figure>
+</li>
+<li></li>
+</ol>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> install msttcorefonts -qq</span><br></pre></td></tr></table></figure>
+<p>最终我找到<a href="http://blog.csdn.net/dgatiger/article/details/50414549" target="_blank" rel="noopener">在代码中指定字体配置</a>的方法解决了这个问题。利用fontproperties进行字体指定，但是这样做的坏处是每一句和画图有关牵涉到中文的都得指定下，不能全局一次性解决。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding:utf-8  </span></span><br><span class="line"><span class="keyword">import</span> matplotlib  </span><br><span class="line">matplotlib.use(<span class="string">'qt4agg'</span>)  </span><br><span class="line"><span class="keyword">from</span> matplotlib.font_manager <span class="keyword">import</span> *  </span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt  </span><br><span class="line"><span class="comment">#定义自定义字体，文件名从1.b查看系统中文字体中来  </span></span><br><span class="line">myfont = FontProperties(fname=<span class="string">'/usr/share/fonts/wqy-zenhei/wqy-zenhei.ttc'</span>)  </span><br><span class="line"><span class="comment">#解决负号'-'显示为方块的问题  </span></span><br><span class="line">matplotlib.rcParams[<span class="string">'axes.unicode_minus'</span>]=<span class="keyword">False</span>  </span><br><span class="line">plt.plot([<span class="number">-1</span>,<span class="number">2</span>,<span class="number">-5</span>,<span class="number">3</span>])  </span><br><span class="line">plt.title(<span class="string">u'中文'</span>,fontproperties=myfont)  </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/book review/《书中之书讲演录》读书杂感系列·序、第一讲、第二讲/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/pansee/book review/《书中之书讲演录》读书杂感系列·序、第一讲、第二讲/" class="post-title-link" itemprop="url">《书中之书讲演录》读书杂感系列·序、第一讲、第二讲</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/book-review/" itemprop="url" rel="index"><span itemprop="name">book review</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>感谢尹霞姊妹。</p>
+<p>感谢阿风哥。</p>
+<p>感谢我所接触的归正宗的众兄弟姊妹们。</p>
+<p>回南京以来，不断地与归正宗的朋友们接触，也感到基督教文化的博大精深。再次感谢尹霞姊妹不辞路远的带我参加仙林片的主日。感谢受洗班的众兄弟姊妹们的接纳与照顾。再次感谢阿风哥的赠书《圣经》与《书中之书讲演录》。<br>《书中之书讲演录》是南师大齐宏伟老师暨齐长老的课堂讲演集录。副标题是《圣经》文化今读。一直以来，都将《圣经》视为故事集，虽然其中包罗万象，富有哲理寓意，但是也未尝没有可与之比肩的。更何况，还有文采更华美精致，故事更曲折动人，寓意更深刻哲思的作品存在，有何故去读一本除了有着偌大的声名与悠久的历史之外并无出众之处的书呢？</p>
+<p>这里有一个历史文化源流的问题。西方文化存在着希腊源流和希伯来源流。虽然后现代主义有作者已死的观念，但那是另一个视角的问题，当然可以根据作品内容合理的通过自我视角进行阐发和诠释，但同时并不应该忽略作品原意。我想，阅读作品尤其是经典首先应该是一个学习的过程，其后才是一个与作者对话，自我关联与阐释的过程。如果拿到一本书便开始大加批评，那么不过是在寻找一个新的表现途径来包装自己原有的思想学识罢了。</p>
+<p>如果将圣经作为一部文学作品或是寓言集或是哲学作品来看显然就显得不够杰出，但需要意识到的是，有太多伟大的文学作品或其他类型作品都必须回归《圣经》去进行解析，不然不过是扭曲歪解或者不达真意。这是就《圣经》的背景价值来谈。而至于《圣经》本身的内容与价值，齐老师在《第二讲 《圣经》作为圣言浅谈》中有具体的讲述，此处不再赘述。</p>
+<p>《圣经》的创作是一个上帝有机默示的过程。当然，这点对于非基督徒显然是难以接受的。那么，一个非基督徒应该用怎样的视角去阅读《圣经》呢？齐老师在第一讲和第二讲中多次强调了“同情性理解”。只有先放下自己的偏见和傲慢去贴近他人，尝试接受他人的前提假设，才能够去理解他人在说什么。</p>
+<p>“所以，他（北大教授赵敦华）建议对《圣经》的研究需要去揣摩其信念‘前设’，否则很容易陷入‘教外言教’的浅陋与‘理性主义’的狂妄。”（书19页）前提假设是什么并不妨碍读者据此去理解和学习这一体系之中的精妙正确之处。而至于前提假设对不对则是另一个层面的问题。将好像科学和哲学的关系。在一个科学的既有界定之内去探讨具体的科学问题是一个层面，探讨科学本身的范围与方法论原理是另一个层面的问题。二者并不相互影响与妨碍，也绝非是非要搞清楚科学界定才行的。若是如此，作为一个显然错误的理性人假设，经济学就毫无意义了。</p>
+<p>而为学，为人，对待事情需要有的另一态度则是客观性，尽量保证信息的完全性。既不过分带入自己的主观偏见，也不可偏听偏信。基督教是黑暗中世纪的根源还是福音？达尔文进化论是否真的解决了人类的来源问题，创造说是否是不合科学的臆想？这些问题既不该不知而轻信，也不该囿于既有观念而有所执。事实如何，还是拿前沿的，有说服力的学术研究来说。</p>
+<p>最后，是关于真理的问题。理性不等于真理！人的理性是有其局限性的。休谟与波普尔对于归纳法的批判已经说明了这个问题。过分的强调理性而忽略非理性过程或者把非理性过程置于次要地位都是没有依凭的，正如福柯在《疯癫与文明》中对于理性的批判。而灵性修养则是非理性过程中一个重要部分，这也正是希伯来精神与中国部分传统文化所重视的方面。至于绝对真理，或者用一个不至于引起误解的说法，绝对准则是否存在，这又牵涉到后现代性的解构主义的问题。容后详述。</p>
+<p>附读书笔记：</p>
+<p>第一讲 漫谈“书中之书”的影响</p>
+<p>一、 希伯来精神</p>
+<p>二、 圣经的影响：</p>
+<ol>
+<li>以色列民族，美国</li>
+<li>中世纪</li>
+<li>给了科学研究十项重要预设、进化论批判</li>
+<li>其他方面</li>
+</ol>
+<p>第二讲 《圣经》作为圣言浅谈</p>
+<p>一、 信念前设、同情性理解</p>
+<p>二、 有机默示</p>
+<p>三、 圣言特质</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/book review/《书中之书讲演录》读书杂感系列·第三讲、第四讲/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1722,176 +3454,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/book review/《科学发现的逻辑》/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/pansee/book review/《科学发现的逻辑》/" class="post-title-link" itemprop="url">《科学发现的逻辑》</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/book-review/" itemprop="url" rel="index"><span itemprop="name">book review</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>2013年11月17日星期日</p>
-<p>人到了一定阶段，总归不再能被表象与粗浅的事实所满足，也就因而开始探求事物背后所潜藏的东西，开始进行一些本体方面的探求。关于本体论与认识论的问题也就成为哲学思辨的核心问题。</p>
-<p>在马克思主义哲学中，本体论问题在于物质与意识何者为第一性的问题，并据此区分唯物主义与唯心主义。窃以为，本体论问题的解答无法离开人的认识过程。自大陆理性主义与英国经验主义的争论以来，休谟以怀疑主义的视角进行了逻辑归纳法的批判，并表明了本体的不可知性。止于此，绝对化的谈论唯物和唯心已经没有太大的价值，毕竟任何的唯物客观终归要经由人这一过程，这也就势必无法确定性的剔除主观性。这也造成了对形而上学的价值的怀疑，及其与经验科学的差别分野。<br>继休谟之后，马赫的彻底经验主义将之推向极端，片面的强调经验的重要性，而否决了概念的意义。庞加莱意识到了概念、理论的作用，并进行了约定主义的创建。但约定的合理性与修改原则依旧是一个缺乏标准的问题。维特根斯坦则通过实证性原则彻底否决了形而上学，但其同时也否决了科学的意义，毕竟没有哪个科学理论可以被完全实证。这样的观点显然有所偏颇，否认了形而上学的指导意义等。波普尔如此谈及哲学的主要问题，“对诉诸经验权威进行批判分析”，实在精当！<br>回归到《科学发现的逻辑》，此书主要讨论了形而上学与经验科学的划界问题以及科学发现的逻辑。</p>
-<p>开篇进行了归纳法批判，首先是单称陈述推导出全称陈述的不合理性，其次是妄图将归纳法建基于经验之上势必导致无穷后退，并表明了归纳法无法保证理论的正确性。止于此，经验科学的可证实性特征遭到挑战。我们可以很轻松的列出一个反例来否决理论，却无法通过罗列与归纳来证实理论。当然，此处的理论是一个关乎普遍概念的理论，若是局限于某一可数范围，自然可以穷尽之证明之，此类缺乏普遍性，也不被称之为理论。以此表明了以归纳方法作为经验科学的特征所存在的问题。</p>
-<p>而实证主义者则以“意义”这一自然主义观点来作为形而上学和经验科学的分界。但此分界模糊不清，毕竟“意义”这一主观性判断有人来定，并最终导致了除自然科学外其他一切都是无意义的，这也正是某些实证主义者所喜闻乐见的观点。由此，方法论在自然主义视角下也被视为一种经验科学，方如此，才能有其意义。但问题恰恰在于，经验科学所讨论的问题是经验的，但经验科学的自身问题却应当是一种形而上学。这里所犯的错误是，先入式的以经验科学的思维与观点来考虑问题，如此一来势必抹杀经验科学与形而上学的区别，并否决掉一切的非经验科学观点。如果需要讨论一个东西本有的意义，势必应当站在更高一级的层面上，而不能落入该物自身的窠臼中。</p>
-<p>波普尔由此而提出了单方向的证伪原则作为形而上学与经验科学的划界标准。对于可证伪性，有如下几种反对意见的出现（原文第六节“作为划界标准的可证伪性”第十八页）。</p>
-<p>第一， 科学应该给我们肯定性信息，而波普尔的建议则是一种否定性要求。波普尔如此回应，“一个科学陈述由于它的逻辑特性与可能的单称陈述冲突的可能越大，他所传达的关于世界的肯定性信息量就越大”。“律”者，所禁越多，所述越多！</p>
-<p>第二， 将波普尔对归纳主义划界标准的批判转过来反对其自己。对此问题，波普尔以可证实性和可证伪性的不对称为根据。这个不对称来自于全称陈述与单称陈述的逻辑形式。当然，随之而来的是一些人针对此不对称特性的批判。关于此，波普尔以划界的不对称性来回应，表明逻辑上的对称性与完备性。但此处的问题是，关于不对称性的问题，并不仅仅是一个逻辑问题，它还牵涉到实际运用与现实意义等。</p>
-<p>第三， 则是约定主义的若干反对意见（原文第十九节五十五页）。“按照约定主义的观点，自然定律不能为观察所证伪，因为需要这些自然定律来决定观察，特别是科学的测量是什么。”在具体的方法上，可以采用显定义、对实验家和理论家的苛责以及最为主要的引入特设性辅助假说。对于此，波普尔强调应以一切可能方式面临证伪，而关于辅助假说的引入，则是使用这样的规则，引入之后并不减少反而增加可证伪性的辅助假说才是可接受的。</p>
-<p>另外一个至关重要的问题则是经验基础问题。这里存在弗里斯的三难推理问题。亦即教条主义、无穷后退与心理学主义之间的选择。要么教条的接受一个科学陈述，要么要求所有的陈述都要被合乎逻辑的证明。要想避免教条主义与无穷后退的危险，似乎只能求助于心理学主义，“陈述不但可以为陈述所证明，也可以为知觉经验所证明”。（原文第二十五节“作为经验基础的直觉经验：心理学主义”第七十页）对于心理学主义，波普尔从归纳和普遍概念的角度加以批判，“在这陈述中出现的普遍概念不能和任何特殊的知觉经验发生相互关系”。其从基础陈述的相对性角度来解决这个问题（详参第二十九节“基础陈述的相对性 弗里斯的三难推理的解决”第八十一页）。</p>
-<p>由于论及相对性，就势必要讨论科学陈述的客观性和主观确性问题。波普尔以主体间的可相互检验来加以确实。除此之外其还提到客体或言实验的可复制效应。</p>
-<p>往下则是可证伪性、可检验度、简单性等观念的分析。这里不再详述，仅仅简单言及简单性观念。排除美学的和实用的简单性概念，而从可证伪度的角度加以阐述。“可检验度=高先验不可几性=参数少=简单性”（原文第四十三节“简单性和可证伪度”第一百一十八页注释）。</p>
-<p>而关于波普尔所创逻辑概率体系以及关于量子论的若干意见不纳入本文描述范围，将在日后结合经典的统计概率体系，凯恩斯的主观概率来加以对比阐述。</p>
-<p>余之文辞鄙薄，见识粗浅，还望览阅诸君不吝批评指正。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/book review/《老人与海》/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2057,7 +3619,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/book review/《莫里哀传》/">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/book review/《科学发现的逻辑》/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="muzhen">
@@ -2077,7 +3639,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/02/28/pansee/book review/《莫里哀传》/" class="post-title-link" itemprop="url">《莫里哀传》</a>
+                <a href="/2019/02/28/pansee/book review/《科学发现的逻辑》/" class="post-title-link" itemprop="url">《科学发现的逻辑》</a>
               
             
           </h1>
@@ -2157,1657 +3719,20 @@
       
         
           
-            <p>喜剧的界定？幽默的界定？只是普通的调笑闹剧，还是针砭时弊？</p>
-<p>不管什么情况下，讽刺总是有益于进步的？无则加勉，有则改之。但是就医患关系而言，如果再添油加醋的进行讽刺，可能会适得其反。</p>
-<p>针砭时弊的作品其实也有局限，局限于时代。</p>
-<p>莫里哀精于事故和朝堂，善于适当妥协。</p>
-<blockquote>
-<p>喜剧一定要服从于他的观众，观众是创作灵感和力量的源泉</p>
-</blockquote>
-<p>不能苟同。真正好的作品或许可以直击每个人的心灵，让每个人都能感动。但也有可能超越一般人的理解层次只能为小部分人理解。大众往往是麻木的，而且是无法唤醒的。通过变局，通过口号，譬如说鸦片战争，五四运动，往往带来的也不过是惯性而已。真正的思考与自我检视依旧匮乏。</p>
-<p>这本书太过于从政治社会格局的角度去分析论述，反而遗漏了莫里哀喜剧作品本身的审美价值的探索和批评。我没有看过莫里哀，而看了此书以后我也毫无兴趣看莫里哀的作品了。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/book review/《规训与惩罚》/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/pansee/book review/《规训与惩罚》/" class="post-title-link" itemprop="url">《规训与惩罚》</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/book-review/" itemprop="url" rel="index"><span itemprop="name">book review</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="第一部分-酷刑"><a href="#第一部分-酷刑" class="headerlink" title="第一部分 酷刑"></a>第一部分 酷刑</h1><h2 id="第一章-犯人的肉体"><a href="#第一章-犯人的肉体" class="headerlink" title="第一章 犯人的肉体"></a>第一章 犯人的肉体</h2><p>首先举了两个例子：当众分尸的酷刑以及少年犯严格的日常作息。</p>
-<blockquote>
-<p>这是传统司法“丑闻”迭出、名声扫地的时代，也是改革方案纷至沓来、层出不穷的时代。</p>
-</blockquote>
-<p>了解“丑闻”迭出、名声扫地这一背景显然对于理解司法改革非常重要。</p>
-<blockquote>
-<p>作为一种公共景观的酷刑消失了。</p>
-</blockquote>
-<blockquote>
-<p>这种惩罚方式，其野蛮程度不亚于，甚至超过犯罪本身，它使观众习惯于本来想让他们厌恶的暴行…公开处决此时已被视为一个再次煽起暴力火焰的壁炉。</p>
-</blockquote>
-<blockquote>
-<p>因此，公开处决的消失就不仅标志着这种场面的衰落，而且标志着对肉体控制的放松。</p>
-</blockquote>
-<blockquote>
-<p>肉体和痛苦不是法律惩罚行动的最终目标。</p>
-</blockquote>
-<blockquote>
-<p>现代处决仪式证实了这一双重进程：示终场面的消失和痛苦的消除…处决只伤害生命而非肉体。</p>
-</blockquote>
-<blockquote>
-<p>其目的就是对一个拥有各种权利，包括生存权的司法对象行使法律，而不是对一个有疼痛感觉的肉体行使法律。</p>
-</blockquote>
-<blockquote>
-<p>英国是公开处决消失得最迟缓的国家之一。</p>
-</blockquote>
-<p>英美法系和大陆法系的区别应当有助于理解这一点。</p>
-<blockquote>
-<p>我们必须指出，那么多的防范措施表明，时至今日死刑依然是一种景观，因而必须切实地禁止围观。</p>
-</blockquote>
-<blockquote>
-<p>犯人应该比其他人受更多的肉体痛苦。把惩罚与附加的肉体痛苦分开是难以做到的。怎么可能有一种非肉体的惩罚呢？因此，在现代刑事司法体系中存留着“酷刑”的痕迹。这种痕迹从未完全抹掉，而是逐渐被非肉体刑罚体系包裹起来。</p>
-</blockquote>
-<blockquote>
-<p>如果说最严厉的刑罚不再施加于肉体，那么它施加到什么上了呢？…既然对象不再是肉体，那就必然是灵魂。曾经降临在肉体的死亡应该被代之以深入灵魂、思想、意志和欲求的惩罚。</p>
-</blockquote>
-<blockquote>
-<p>这些观念名义上是解释人们的行为，实际上成为给每个人下定义的工具。</p>
-</blockquote>
-<blockquote>
-<p>不仅控制了犯罪，而且控制个人，不仅控制他们的行为，而且控制他们的现在的、将来的、可能的状况…逐渐开始审判罪行之外的东西，即罪犯的”灵魂“。</p>
-</blockquote>
-<h2 id="第二章-断头台的场面"><a href="#第二章-断头台的场面" class="headerlink" title="第二章 断头台的场面"></a>第二章 断头台的场面</h2><h1 id="第二部分-惩罚"><a href="#第二部分-惩罚" class="headerlink" title="第二部分 惩罚"></a>第二部分 惩罚</h1><h2 id="第一章-普遍的惩罚"><a href="#第一章-普遍的惩罚" class="headerlink" title="第一章 普遍的惩罚"></a>第一章 普遍的惩罚</h2><blockquote>
-<p>就权利方面而言，公开处决暴露了它的专横、暴虐、报复心以及“用惩罚取乐的残忍”，因此它在颠覆权力。“</p>
-</blockquote>
-<p>为什么说是在颠覆权力。因为这里有潜在的风险，也就是民众会因之学会血债血偿，暴力对抗。“暴政面对着叛乱，二者互为因果……刑事司法不应该报复，而只应该给予惩罚。”</p>
-<p>然后便有”排除酷刑的惩罚“这一要求的提出。它出于内心或者义愤，”为了尊重人而应该不加触动……人的尺度“。但是，福柯敏锐着提出这样的问题：</p>
-<blockquote>
-<p>为什么人们会对酷刑怀有普遍的恐怖和强烈要求惩罚应该“人道”？……“尺度”和“人道”，而这两个因素是如何结合在统一的战略中呢？……必须描述这种扑朔迷离的“仁慈”的起源和早期状况。</p>
-</blockquote>
-<p>这就是思想家和普通人的差距。对于普通人而言，刑罚以人道为尺度完全就是顺理成章的事。对于思想家，却会意识到刑罚和人道并不是那么自然关联的。</p>
-<p>18世纪的刑法放宽过程，犯罪的暴烈程度和惩罚的激烈程度都有所减弱，“但这是以更多的干预为代价的”。</p>
-<p>犯罪的形式，内容，主体的变化。人身侵犯减少，财产犯罪增加。过失犯罪减少，职业犯罪增加。大规模犯罪集团减少，小集团增加。从“群众性犯罪”转向“边际犯罪”。成为专业人员的禁地。</p>
-<p>“早在惩罚变得不那么严峻以前，犯罪就变得没有那么暴烈了。”</p>
-<p>推动这些变化的若干历史进程：第一，经济发展……;其次，法律更加严峻（与前面矛盾？）。</p>
-<blockquote>
-<p>与其说是对犯人的人性的尊重……不如说是追求更精细的司法、对社会实体做出更周密的刑法测定的趋势。</p>
-</blockquote>
-<p>为什么会改革？是什么力量推动了这样的改革？改革是改的什么？</p>
-<blockquote>
-<p>他们所抨击的是传统司法中惩罚的过分性质。……与其说是惩罚权力的滥用造成的，不如说是与某种无规则状态联系在一起。</p>
-</blockquote>
-<p>旧有的权力结构无规则，各级权力机构权力过大而混乱无章。最后集中于君主的至上权力。</p>
-<blockquote>
-<p>改革者的批评与其说是针对当权者的缺点或容忍，不如说是针对一种糟糕的权力体制。</p>
-</blockquote>
-<p>改革运动的真正目标是确立更为合理的权力分布。</p>
-<blockquote>
-<p>减轻惩罚的严酷性目的在于使惩罚更具有普遍性和必要性，使惩罚权力更深地嵌入社会本身。</p>
-</blockquote>
-<p>灰色非法活动</p>
-<p>本章关键字：改革</p>
-<p>改革主体？改革对象？改革原因？改革成效？</p>
-<p>背景：</p>
-<p>权力变质：化公为私/权力混淆/特权<br>权力功能失调与君主的至上权力有关。改革的真正目标就是建立一个新的合理的权力结构。那么谁才会有这样的改革需求呢？</p>
-<p>需要考察在现有权力结构内的利益受害者。</p>
-<p>非法活动：容忍——鼓励（资产阶级新兴，抗税/走私等）——反对的过程（财产侵犯）</p>
-<p>应对：非法行使权力（欺诈、偷税、不正当商业活动）和非法占有财产（盗窃）的分离。前者罚款，后者惩罚。</p>
-<p>改革产生于反对至上君权和反对非法活动的汇合处。公开处决正是这两者的一个鲜明体现。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/book review/《进化！进化？达尔文背后的战争》/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/pansee/book review/《进化！进化？达尔文背后的战争》/" class="post-title-link" itemprop="url">《进化！进化？达尔文背后的战争》</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/book-review/" itemprop="url" rel="index"><span itemprop="name">book review</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="01-一个严重的问题：我们从何而来"><a href="#01-一个严重的问题：我们从何而来" class="headerlink" title="01 一个严重的问题：我们从何而来"></a>01 一个严重的问题：我们从何而来</h1><blockquote>
-<p>休谟指责设计论说……无疑这个上帝是一个低能儿。（P8）<br>休谟对于自然神学的批判是怎样的？[TBC]</p>
-</blockquote>
-<blockquote>
-<p>科学界迫切的任务是，需要彻底排除超自然的力量，向自然寻求真正的规律，以科学的态度研究生物和人的由来。（P14）</p>
-</blockquote>
-<p>应该先明确何为科学。然后再看科学界迫切的任务是什么？科学是否需要排除超自然的力量，不能兼容？研究生物和人的由来难道成了整个科学界的任务？</p>
-<h1 id="02-拉马克主义，以及铁匠的儿子和老鼠的尾巴"><a href="#02-拉马克主义，以及铁匠的儿子和老鼠的尾巴" class="headerlink" title="02 拉马克主义，以及铁匠的儿子和老鼠的尾巴"></a>02 拉马克主义，以及铁匠的儿子和老鼠的尾巴</h1><blockquote>
-<p>根据自己的这一观点，出于学术上争论的目的，居维叶对提出了进化论的老同事拉马克竭尽嘲笑讽刺之能事。（P14）</p>
-</blockquote>
-<p>居维叶何以对拉马克的观点和证据视而不见？如果没有看到，是何缘故？如果看到了，又是怎样去作出辩驳和批评的呢？</p>
-<blockquote>
-<p>“用进废退”“获得性遗传”（P15）</p>
-</blockquote>
-<p>退不是指退步，向不好的方向发展。只是指因为官能派不上用场而退化这一中性的事实性描述而已。</p>
-<p>“获得性遗传”并没有能在书中被严肃的解释。</p>
-<p>需要考虑遗传退火的问题。或许不是用进废退。而是持续不断的基因变化以及更适合环境的基因在竞争中获胜，从而造成用进废退的表象。应该搞清楚何为因何为果。</p>
-<blockquote>
-<p>他认为物种只是一个认为的概念，事实上并不存在。（P16）</p>
-</blockquote>
-<p>这是一个概念厘定问题。还是有必要深思一下的。必须搞清楚在怎样的问题下应当关注怎样的概念，才不至于落入无意义的逻辑语辞游戏，也不至于忽略真正的细节和逻辑关键。</p>
-<blockquote>
-<p>如果有喜欢人文学科的朋友们加入到这个讨论中来的话，无疑会把这个讨论搅得一团糟……而纯正的进化理论，必须把这种力量排除在外，因为对动物的“意志”的依赖，一不留意，就会滑向“神的意志”，有变为自然神学的危险。（P18）</p>
-</blockquote>
-<p>“纯正的进化理论”？谁来定义纯正？前文就以出现这样的问题，作者无任何论证的将科学和神学、人文主观进行想当然的割裂，好像这是一个不言自明的真理与共识一样。这样的态度是非常危险的，尤其作为科普读物。既然是科普，那么不管是个人私货还是未经定论的事情，甚至于哪怕相对定论的事情，都应当清晰的论述清楚它的前设，推理，结论并其存在的漏洞以及未竟之处。尤其是前设和缺陷最为重要。如若不然，不过是普及了知识，却愚弄了思想。</p>
-<p>人文主观的力量或许并没有那么小，不仅是潜藏在社会诸领域之下的巨龙，足以影响到人类所以为的客观领域也未可知。</p>
-<p>自然神学从本书一开始就已经成为了被批评的靶子，然而仅仅只是被零散的论述，而且对于其死而不僵甚至于重新活跃到目前为止并没有论述。</p>
-<p>关于“科学”问题，有必要回顾波普尔的科学哲学。如有精力，日后补足。[TBC]</p>
-<blockquote>
-<p>但由于受到了居维叶的打压，所以在当时的影响较小。（P19）</p>
-</blockquote>
-<p>读到本章结束，我的感觉是虽然达尔文及达尔文主义者对拉马克之思想也有嘲笑讽刺但止于学术，而居维叶则还进行了人身攻击，有学品人品皆欠佳之嫌。这是作者言辞的误导还是确实如此呢？</p>
-<blockquote>
-<p>达尔文没有度过拉马克的原著……（P19）</p>
-</blockquote>
-<p>没读过原著，却对拉马克有各种批评和赞美……这治学的态度可不严谨。或许是当时难以搞到原著资料？</p>
-<h1 id="地质学的发展与《圣经》的尴尬"><a href="#地质学的发展与《圣经》的尴尬" class="headerlink" title="地质学的发展与《圣经》的尴尬"></a>地质学的发展与《圣经》的尴尬</h1>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/book review/《霍乱时期的爱情》/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/pansee/book review/《霍乱时期的爱情》/" class="post-title-link" itemprop="url">《霍乱时期的爱情》</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/book-review/" itemprop="url" rel="index"><span itemprop="name">book review</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>霍乱时期的爱情</p>
-<p>【哥伦比亚】加西亚·马尔克斯</p>
-<p>德圣阿莫尔——黑白混血女人，流亡而隐秘的爱情</p>
-<p>乌尔比诺——达萨，门庭和地位的爱情</p>
-<p>青年阿尔萨——青年达萨，青春而迷蒙的爱情</p>
-<p>青年德尔布兰达——老情人，跨代而不实的爱情</p>
-<p>德尔布兰达——丈夫，稳定重于幸福的爱情</p>
-<p>达萨父亲——达萨母亲，青春而反叛的爱情</p>
-<p>老乌尔比诺——林奇小姐，呼唤年轻和新鲜的爱情</p>
-<p>阿尔萨——诸多偶遇，偶然而迸发的爱情</p>
-<p>阿尔萨——诸多寡妇，放荡而坚贞的爱情</p>
-<p>阿尔萨——诸多寡妇或独身，肉欲而慰藉的爱情</p>
-<p>阿尔萨——诸多有夫之妇，放纵而挣脱的爱情</p>
-<p>阿尔萨——卡西尼亚，互助、报恩、精神的爱情</p>
-<p>阿尔萨——维尼西亚，本能、亲情而阴谋的爱情</p>
-<p>阿尔萨母亲——阿尔萨父亲，偷猎而责任的爱情</p>
-<p>老年阿尔萨——老年达萨，记忆而更新的爱情</p>
-<p>时间的流淌——衰老与永恒</p>
-<p>阶层的分别——隔离与同质</p>
-<p>世界的改变——更易与长存</p>
-<p>2014年6月2日星期一</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/book review/人类群星闪耀时/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/pansee/book review/人类群星闪耀时/" class="post-title-link" itemprop="url">人类群星闪耀时</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/book-review/" itemprop="url" rel="index"><span itemprop="name">book review</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/book review/信息简史——詹姆斯·格雷克/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/pansee/book review/信息简史——詹姆斯·格雷克/" class="post-title-link" itemprop="url">信息简史——詹姆斯·格雷克</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/book-review/" itemprop="url" rel="index"><span itemprop="name">book review</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><blockquote>
-<p>它看不见摸不着，但当科学家最终开始理解信息时，他们好奇信息是否才是真正基本得东西，甚至比物质本身更基本。</p>
-</blockquote>
-<p>将宇宙理解为一台大型计算机，那么空间就不是问题，量子纠缠也可以理解，毕竟信息不是依空间分布在内存条表面的。</p>
-<h1 id="第1章-会说话的鼓"><a href="#第1章-会说话的鼓" class="headerlink" title="第1章 会说话的鼓"></a>第1章 会说话的鼓</h1><blockquote>
-<p>为了克服歧义和进行纠错而专门引入额外的比特</p>
-</blockquote>
-<p>冗余在特定情况下也是有用的。</p>
-<blockquote>
-<p>可用的符号越少，为表示给定信息量所需传递的符号数就得越多。</p>
-</blockquote>
-<h1 id="第2章-持久的文字"><a href="#第2章-持久的文字" class="headerlink" title="第2章 持久的文字"></a>第2章 持久的文字</h1><blockquote>
-<p>试想这样一种文化，在其中没有人是“查阅”东西。……人类历经数千年才把这种将语言表达成符号系统的能力内化为第二天性。而一旦习得之后，回归天真无邪的退路就不复存在了。已经忘了从什么时候开始，我们只有在看到一个词时，才能产生关于这个词的感受。</p>
-</blockquote>
-<blockquote>
-<p>文字，作为一种技术，使用时需要提前考虑清楚并掌握特殊i技能。而语言则不是一种技术，无论多么成熟、多么发达的语言，都不能被视作心外之物，因为语言是心智本身的功能。……但当词语被具象化在一张纸或一块石头上时，它就成了一种独立存在的人工品。它是工具的产物，同时本身又是一种工具。</p>
-</blockquote>
-<blockquote>
-<p>文字带来的将是思想的贫瘠：</p>
-<blockquote>
-<p>你这个发明结果会使学会文字的人们善忘，因为他们就不再努力记忆了。</p>
-</blockquote>
-</blockquote>
-<p>口语面对面交流，可以充分调动感官，从而能够更加精准的进行表达，也能更加贴近现实的去理解。而现实的生活赋予了人最直接的创造力。</p>
-<p>书面文字的出现，使得信息传播变得僵硬死板，脱离现实，成为概念。这样的概念形态容易使人似懂非懂，当一个词无法在脑海中还原为它的现实状态时，就是支离破碎、无意义的。所幸，通过逻辑和字典，文字得意义得以贯通，落于实地。</p>
-<h1 id="第3章-两本字典"><a href="#第3章-两本字典" class="headerlink" title="第3章 两本字典"></a>第3章 两本字典</h1><blockquote>
-<p>语言是对共同经验的一种量度，而后者源于互连通性。……互联网正在以完全不同的方式改变着语言。这种不同之处在于，它不带偏见地涵盖了从最大到最小的尺度。</p>
-</blockquote>
-<p>连通性依旧是必须的。只是原先连通性依靠地理上的连通性，而网络使得地理隔离被打破。</p>
-<p>旧词新义，新词的不断涌现，如果只是依靠滞后的字典和印刷物是无法提供支撑，也无法及时响应的。</p>
-<h1 id="第4章-将思想的力量注入齿轮机械"><a href="#第4章-将思想的力量注入齿轮机械" class="headerlink" title="第4章 将思想的力量注入齿轮机械"></a>第4章 将思想的力量注入齿轮机械</h1><blockquote>
-<p>知识的价值与发现的成本，需要核算和权衡。</p>
-</blockquote>
-<p>过往几个世纪科学的发展不仅仅得益于天才式的灵感，也得益于计算能力的加强，或者说信息获取成本的降低，工程能力的提升。</p>
-<h1 id="第5章-地球的神经系统"><a href="#第5章-地球的神经系统" class="headerlink" title="第5章 地球的神经系统"></a>第5章 地球的神经系统</h1><p>前面几章更关注的是信息传播方式的演变带来的含义变化，从口语到文字到数。第4章已经开始考量信息的获取和计算成本问题。本章则是信息传播方式带来的速度和成本变化。并经由成本出现压缩信息再解密的编码传输方式。</p>
-<p>经由电报带动的密码学热潮，进一步推动了符号和数学的结合，将逻辑学收入麾下。至此，语言（符号）不仅仅是表达的工具，也是思维的工具。</p>
-<h1 id="第6章-新电线，新逻辑"><a href="#第6章-新电线，新逻辑" class="headerlink" title="第6章 新电线，新逻辑"></a>第6章 新电线，新逻辑</h1><p>絮叨了香农以及和他相关的一些人事物（电话、贝尔实验室、普林斯顿高等研究院、哥德尔（数学的不完全性）、哈特利）的情况。</p>
-<h1 id="第7章-信息论"><a href="#第7章-信息论" class="headerlink" title="第7章 信息论"></a>第7章 信息论</h1><p>介绍香农熵。</p>
-<h1 id="第8章-信息转向"><a href="#第8章-信息转向" class="headerlink" title="第8章 信息转向"></a>第8章 信息转向</h1><h1 id="第9章-熵及其妖"><a href="#第9章-熵及其妖" class="headerlink" title="第9章 熵及其妖"></a>第9章 熵及其妖</h1><h1 id="第10章-生命的编码"><a href="#第10章-生命的编码" class="headerlink" title="第10章 生命的编码"></a>第10章 生命的编码</h1><h1 id="第11章-跃入基因池"><a href="#第11章-跃入基因池" class="headerlink" title="第11章 跃入基因池"></a>第11章 跃入基因池</h1><blockquote>
-<p>莫诺提出了一个类比：正如在无生命世界之上有生物圈，在生物圈之上也有个“抽象王国“。那么这个抽象王国的居民又是什么呢？是思想。……思想有”传播力“（”或者说，感染力“）……思想与其所安身的神经元”一样真实“，并且思想拥有力量……莫诺曾表示”不会冒昧提出一个思想的选择淘汰理论“，但有人愿意一试。P308</p>
-</blockquote>
-<p>如果书基因还停留在有形的物质层面上，模因概念的提出则是进一步的抽象和范围延展。各种各样的信息随着时间演变优胜劣汰，自然选择。而人只是信息的载具。就好像很多时候人的行为或者思想往往出于习惯、或者是随大流， 个体性在自然选择与竞逐的洪流下显得微不足道。甚至于所谓个性也不是一些小众的信息罢了。</p>
-<h1 id="第12章-认识随机性"><a href="#第12章-认识随机性" class="headerlink" title="第12章 认识随机性"></a>第12章 认识随机性</h1><blockquote>
-<p>“或然性不过是我们的无知的一种量度。” P323</p>
-</blockquote>
-<blockquote>
-<p>一个数只要是可计算的，即它能够被一个可定义的计算机程序生成，那它就不是随机的。因此，可计算性是随机性的一种量度。</p>
-<p>对图灵来说，可计算性是个非此即彼的特性——一个给定的数或者可计算，或者不可计算。但对于随机性，我们有时会说有些数比其他数更随机——他们更缺乏模式，更无序。于是蔡廷指出，模式和秩序表达的是可计算性，而算法生成模式，因而我们可以通过算法的长短来度量可计算性。给定一个数（表示为任意长度的一个字符串），我们可以问：能够生成这个数的最短程序的长度是多少？利用图灵机，这个问题可以求得一个确定的答案，其长度可以用比特来度量。</p>
-<p>蔡廷为随机性给出的算法定义，同样也适用于信息：算法的长短度量了给定字符串里含有多少信息。</p>
-<p>在混乱中找出秩序，找出模式，这也正式科学家的工作。……</p>
-<p>但如果这位科学家能发现一种算法可以生成同样的序列，长度却短得多，那他就可以确信这个事件不是随机的。而他也会说，自己发现了一种理论。P328</p>
-</blockquote>
-<p>科学的工作就是”偷懒“，找到或逼近最佳处理路径。 </p>
-<h1 id="第13章-信息是物理的"><a href="#第13章-信息是物理的" class="headerlink" title="第13章 信息是物理的"></a>第13章 信息是物理的</h1><h1 id="第14章-洪流过后"><a href="#第14章-洪流过后" class="headerlink" title="第14章 洪流过后"></a>第14章 洪流过后</h1>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/book review/包法利主义——福楼拜《包法利夫人》书评/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/pansee/book review/包法利主义——福楼拜《包法利夫人》书评/" class="post-title-link" itemprop="url">包法利主义——福楼拜《包法利夫人》书评</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/book-review/" itemprop="url" rel="index"><span itemprop="name">book review</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>每天早上出家门看到一楼的阳台里有条狗在那蹲着，偶尔中午回家还是小小的阳台里蹲着，晚上回家依旧是在一隅之地上蹲着，不过有时立起身子挪移个一米路换个位置罢了。</p>
-<p>我在想，如果说仅仅为了一顿饭就放弃自由，放弃梦想，终日如此无所事事甘受束缚是否值得呢？只是，如果去追求自由，追求梦想，怕是最终连这一口饭都没得吃，以至于穷困潦倒饿死街头吧？</p>
-<p>对于这样的矛盾，福楼拜的包法利夫人为我们演绎出了一场精彩的超越之旅。文学评论家对于包法利夫人的这一人生行旅有诸多解读，也因此而衍生出包法利主义的概念，亦即自己对于不可实现的另一个自己的幻想。</p>
-<p>每个人的心中都有着欲念，当然，你也可以美其名曰梦想，但自身对于自身的否定和超越总是存在的。此处所言及的否定不是一种狭隘的贬义的否定，而是上升与超越之中必然出现的对于现下的部分否定，特此解释。而大多数人对于自己所抱有的浪漫的爱情，荣耀的名誉，英雄的能为，却又在其升起之时便给否定了，这便是自己经常对自己所说的：不可能！不切实际！你还是醒醒吧！</p>
-<p>爱玛·包法利之所以在她的贪婪肉欲之下尚且能够引起读者的同情，就在于她自身的勇气，超越的尝试，哪怕她的超越是不成功的，是与她所期望的截然相反的一种异化。</p>
-<p>由此不难想到陀氏在《白痴》中所述，世上有两种平凡人，一种不自知自己的平凡而为自己的“不平凡”沾沾自喜，一种自知自己的平凡，却又无法出逃对于不平凡的渴求，只好深深痛苦于自己的平凡！</p>
-<p>在此书的阅读之后，我有这样几个理解和疑惑之处。</p>
-<p>第一，人的价值观与宗教信仰的变异。</p>
-<p>小说中对于宗教信仰的描写是很淡的以至于不细读都无法考虑到这一点。但是，我们不妨看看爱玛少女时期的修道院经历，以及爱玛死后神甫与药店老板的一段对话：</p>
-<blockquote>
-<p>神甫：“可怜的人如果她能及时向上帝祷告或许就不会死去了。”<br>药店老板：“呵，上帝带给我们的好处在于也仅仅在于社会生活中一种道德法则的引进罢了。你还是去看看卢梭，看看伏尔泰，看看《百科全书》吧！”</p>
-</blockquote>
-<p>由此可以看到，虽然小说中并没有对于宗教信仰大书特书，但是在这些些微的描写之中我们依旧可以认识到宗教信仰与当时社会背景下的科学发展（医学本身就是一种解剖上帝的学科！）和民主诉求之间的冲突，以及当时人们价值观的转变倾向，<br>不再是全然的宗教徒，而“仅仅是一种道德准则”也反映了对于道德本身神性化的一种轻蔑，取而代之的是对于道德不过一种社会发展规则的理性认知。</p>
-<p>不妨再注意下这样两个细节：</p>
-<ol>
-<li>罗道尔夫为了与爱玛分手而写的信中提到“这全部是命运的错”！</li>
-<li>包法利医生在死前对罗道尔夫讲到：“我原谅你了，这全是命运的错”！</li>
-</ol>
-<p>命运，这是一个有趣的词汇。当我们遇到一些自身无能为力的事情时，我们就会转而言之时命不济。哈！还记得被称为霸王的项羽是死前是如何说的么？“然今卒困于此，此天之亡我也，非战之罪！”此番话出口，倒是有愧于霸王之名了。堂堂霸王，焉能受缚于天？纵然败于天，也是己之无能，焉能推之天之亡我！</p>
-<p>第二，谈异化性以及社会生活下的选择问题。</p>
-<p>小说中爱玛在一段时间生病了，包法利医生的母亲如此说道：“她就应该每天干干手工艺活，那样就不会生病了。”由此，不妨可以推出以爱玛和包法利母亲为代表的两类人，一类是终日汲汲营营于物质利益，而最终被物质异化，一类是脱离现实的物质束缚而终日怀揣文学式的幻梦，纯粹的精神主义者。当然，此处的精神主义又不同于犬儒主义。观者自知其意，不再赘述。而无论是为物质所异化以至于成为无生命的行尸走肉还是沉迷于幻想以至于被现实生活溺死，其活法都沾满了痛苦与不幸。由此，我们自然可以简单的说到我们应该尊重世俗的规则，但是需要懂得在忙碌于物质的世俗之中去创造小小的值得一笑的惊喜与浪漫，以此度过我们的愉悦而美丽的人生，亦即所谓中庸主义。只是，话说起来轻巧，如何在实际面临时能够说服自己摆脱幻想或是从物欲中挣扎出来怕就不是那么容易了。更何况，我一直认为，这样的折中与妥协未必正确，不过是条自以为可行的错误路径罢了，不仅如此，还反映了自己的懦弱以及对于自身不论肉体抑或灵魂二者之一乃至于二者的出卖与背叛。</p>
-<p>对于我以上所说两类表征性人物的划分，如果考虑到当时社会上有大量爱玛处境无所事事的女性，爱玛的女性结构也相对常见，因此可能福楼拜本身没有这样明确的表征意义划分。但我想，按照后现代主义的观点，作者已死。小说写出来之后，便全然由读者自己去解读了，因此我们不必纠结与以上分析是否符合作者原意，乃至于是否符合小说内容，只要它本身的论述具有一定价值就足矣！</p>
-<p>第三，谈超越与循环波动问题。</p>
-<p>对于包法利夫人的人生经历，我们可以从超越的角度来进行解读，也即一个不甘于平庸，渴望生活于一种浪漫的文学世界的女子对于现实世界的无聊与无奈的超越，对于自我价值的一种实现。</p>
-<p>对于爱玛此人，其实可以结合其经历进行现代意义上的精神分析。但是，笔者今日无意于此，故而仅仅分析其感情走向。出入修道院学习，她表现得是对于上帝的崇敬，母亲去世的消息令她转而热衷于文学式的浪漫，因而有了轻蔑上帝之倾向。回家之后与包法利的初次结实虽然不甚激动但亦是欣喜，结婚之后对于热情的消退以及对于包法利的嫌恶带来的感情低迷。以此种种，不再详述。但可以经由分析发现爱玛的感情和精神世界是一起一落的，换言之亦即正弦式的波浪运动，就是我所谓的循环波动，而并不存在一个超越问题。当然，一旦对其感情波动的原因进行分析，就可以发现爱玛始终是有一个幻梦的，亦即所欲成为的另一个自己，超越！故而，循环波动的提出本身难以站住脚，但对于其感情和精神状态的分析还是有一定的助益的。在循环波动的理论下，我们可以想见人的感情和精神状态以致延展于价值观的不可塑性。换言之，就是在收到各种外力影响后，导致的价值观变化，这显然与往常所谓的江山易改本性难移相冲突。但是两者又未必不可兼容。纵然本性难移，但是不同情境下人的做事方法很可能会因时变易，乃至于和她的本性相冲突。在行动和价值的矛盾中而有种种戏剧性的滋生！</p>
-<p>对于《包法利夫人》，权且做以上解读。事实上，包法利夫人之所以可以不朽，可以深入人心，正是在于不论何种时候，人们总是一方面为生活与现实所迫，一方面在心中深藏对于文学和浪漫的向往，真是基于此，才能有如斯精彩的矛盾冲突，有如斯精彩的人生选择。如果仅仅一味的世俗化或者一味的文学化，倒是有可能因此而失去了一份挣扎的精彩，一份超越与突破之后的感动。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/book review/午夜之子——萨曼·鲁西迪/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/pansee/book review/午夜之子——萨曼·鲁西迪/" class="post-title-link" itemprop="url">午夜之子——萨曼·鲁西迪</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/book-review/" itemprop="url" rel="index"><span itemprop="name">book review</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="中间开洞的床单"><a href="#中间开洞的床单" class="headerlink" title="中间开洞的床单"></a>中间开洞的床单</h1>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/book review/半生缘——张爱玲/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/pansee/book review/半生缘——张爱玲/" class="post-title-link" itemprop="url">半生缘——张爱玲</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/book-review/" itemprop="url" rel="index"><span itemprop="name">book review</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>姐姐前半生为了家庭做了舞女，后半生为了自己的幸福，设局让丈夫强奸并囚禁了妹妹。也因此毁掉了妹妹的大好姻缘。多年之后，妹妹和当初的爱人相见，互诉衷肠，慨叹半生缘浅。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/02/28/pansee/book review/大教堂——卡佛/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muzhen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="the Home of MuZhen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/pansee/book review/大教堂——卡佛/" class="post-title-link" itemprop="url">大教堂——卡佛</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-28 20:45:06" itemprop="dateCreated datePublished" datetime="2019-02-28T20:45:06+08:00">2019-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/book-review/" itemprop="url" rel="index"><span itemprop="name">book review</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>生活的真实。生活中的细碎与琐屑，却是一个又一个的转折点。</p>
-<h1 id="序"><a href="#序" class="headerlink" title="序"></a>序</h1><h1 id="羽毛"><a href="#羽毛" class="headerlink" title="羽毛"></a>羽毛</h1><p>杰克和弗兰不想要孩子。一天，巴德和奥拉夫妇请他们到家吃晚饭。弗兰不乐意去。巴德家有一个出生没很久的难看的孩子，还养了一只孔雀。奥拉特意留着巴德带她去整牙时的牙套用来提醒自己感谢巴德为她做的许多事。临走时巴德一家送了他们几根孔雀的羽毛。弗兰喜欢他们的孩子，回去后杰克和弗兰也生了一个孩子。这一晚成为了他们生活的转折。但是后来，杰克对巴德变得小心起来，杰克一家的生活变得无聊，琐碎。对那一晚的回忆也很厌恶。</p>
-<p>很多重大的决定都在不经意间做出，受不经意的事情影响。对于一件事的评价也往往前后不一。甚至于没来由的怨怼。别人生活的甜蜜而幸福，到了自己这里可能就是琐屑与枯燥。</p>
-<h1 id="瑟夫的房子"><a href="#瑟夫的房子" class="headerlink" title="瑟夫的房子"></a>瑟夫的房子</h1><p>魏斯戒了酒，租下了海边瑟夫的房子，请求前妻过来一起住。原先，因为酗酒，魏斯毁了整个家庭。他们的夏天很愉快，然而瑟夫突然出现，告诉他们需要搬离。魏斯很气恼，也很希望能重新做一次父亲。但他觉得发生的就是发生了，无法重来。</p>
-<p>略悲观。不能重来，过往的辛辣与苦楚无法改变。至少还有现在和未来可以努力甜蜜。</p>
-<h1 id="保鲜"><a href="#保鲜" class="headerlink" title="保鲜"></a>保鲜</h1><p>丈夫失业了，此后每天躺在沙发上，无所事事。</p>
-<p>人就这样被打垮了，被工作，被贫困，被男性的尊严。在沙发上再也起不来。</p>
-<h1 id="软座包厢"><a href="#软座包厢" class="headerlink" title="软座包厢"></a>软座包厢</h1><p>离异的男人坐火车去见多年不见的儿子。即将到站时，手表被偷了。心中烦躁，进一步觉得来见男孩是愚蠢的行为。最终没有下车，过站而去。</p>
-<p>人很怯懦，也很迷茫。并不十分清楚的知道应该做什么，怎么做。一时的兴起，从而对某些事情抱有巨大的希望。又因为一些小事的联动反应而懊恼悔恨。不过只是在徘徊，被琐屑、焦躁、无望推动前行。</p>
-<h1 id="好事一小件"><a href="#好事一小件" class="headerlink" title="好事一小件"></a>好事一小件</h1><p>母亲为孩子定了生日蛋糕。生日当天，孩子出了车祸，昏迷死亡。蛋糕师为母亲没有来拿蛋糕而频繁电话骚扰。夫妻找到蛋糕店，想要把悲伤和愤怒发泄在蛋糕师身上，蛋糕师知道情况后安慰他们，最终和解。</p>
-<p>生老病死，一旦降临，也只能面对。肇事逃逸，电话骚扰，蓄意凶杀，穷苦度日，一切那么远，又是那么近。痛苦无可避免，也只好用甜美的蛋糕来安慰。</p>
-<h1 id="维他命"><a href="#维他命" class="headerlink" title="维他命"></a>维他命</h1><p>帕蒂一开始卖维他命很成功，有着两个得力助手希拉和唐娜，随着市场衰败却无力继续。希拉是同性恋，喜欢帕蒂，遭到拒绝，辞职离开。帕蒂男友勾搭唐娜去酒吧，遭到黑人侮辱。姐妹团分崩离析，帕蒂和男友的生活继续。</p>
-<p>真现实。</p>
-<h1 id="小心"><a href="#小心" class="headerlink" title="小心"></a>小心</h1><p>登特小姐枪杀了玩弄她感情的男人后坐在火车候车室中目睹一对老年男女对话，最后三人一起上了火车。</p>
-<p>不再有逃离，而是漂泊与麻木。</p>
-<h1 id="发烧"><a href="#发烧" class="headerlink" title="发烧"></a>发烧</h1><p>卡莱尔的妻子与他的同事私奔。卡莱尔陷入情感的痛苦和照顾孩子的麻烦之中。卡莱尔夫人依旧会打电话来关心卡莱尔，并且帮卡莱尔找到了非常好的保姆韦伯斯特夫人。一天，卡莱尔发了高烧，韦伯斯特夫人贴心的照顾了他，但在离开时却提出了离职，要去远方的儿子那里帮忙。卡莱尔在那一刻对妻子的离去释怀了。</p>
-<p>分合自然，执着过，放下。</p>
-<h1 id="马笼头"><a href="#马笼头" class="headerlink" title="马笼头"></a>马笼头</h1><p>霍利斯赌马输光了家产，带着妻子儿女以及马笼头背井离乡住进了汽车旅馆。在一次夜晚的狂欢中，霍利斯摔破了头，脑袋出了问题。过了一段时间，霍利斯一家离开了。房间里留下了马笼头。</p>
-<p>每个家庭，每个人都是马，都生活拖拽着往前走。</p>
-<h1 id="大教堂"><a href="#大教堂" class="headerlink" title="大教堂"></a>大教堂</h1><p>盲人来家里做客。盲人对电视上的大教堂感兴趣，请丈夫描述，并邀请丈夫一起闭着眼睛画出来。</p>
-<p>心为形役。丢了形，见了心。</p>
-<h1 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h1><p>生活的真实。生活中的细碎与琐屑，却是一个又一个的转折点。</p>
+            <p>2013年11月17日星期日</p>
+<p>人到了一定阶段，总归不再能被表象与粗浅的事实所满足，也就因而开始探求事物背后所潜藏的东西，开始进行一些本体方面的探求。关于本体论与认识论的问题也就成为哲学思辨的核心问题。</p>
+<p>在马克思主义哲学中，本体论问题在于物质与意识何者为第一性的问题，并据此区分唯物主义与唯心主义。窃以为，本体论问题的解答无法离开人的认识过程。自大陆理性主义与英国经验主义的争论以来，休谟以怀疑主义的视角进行了逻辑归纳法的批判，并表明了本体的不可知性。止于此，绝对化的谈论唯物和唯心已经没有太大的价值，毕竟任何的唯物客观终归要经由人这一过程，这也就势必无法确定性的剔除主观性。这也造成了对形而上学的价值的怀疑，及其与经验科学的差别分野。<br>继休谟之后，马赫的彻底经验主义将之推向极端，片面的强调经验的重要性，而否决了概念的意义。庞加莱意识到了概念、理论的作用，并进行了约定主义的创建。但约定的合理性与修改原则依旧是一个缺乏标准的问题。维特根斯坦则通过实证性原则彻底否决了形而上学，但其同时也否决了科学的意义，毕竟没有哪个科学理论可以被完全实证。这样的观点显然有所偏颇，否认了形而上学的指导意义等。波普尔如此谈及哲学的主要问题，“对诉诸经验权威进行批判分析”，实在精当！<br>回归到《科学发现的逻辑》，此书主要讨论了形而上学与经验科学的划界问题以及科学发现的逻辑。</p>
+<p>开篇进行了归纳法批判，首先是单称陈述推导出全称陈述的不合理性，其次是妄图将归纳法建基于经验之上势必导致无穷后退，并表明了归纳法无法保证理论的正确性。止于此，经验科学的可证实性特征遭到挑战。我们可以很轻松的列出一个反例来否决理论，却无法通过罗列与归纳来证实理论。当然，此处的理论是一个关乎普遍概念的理论，若是局限于某一可数范围，自然可以穷尽之证明之，此类缺乏普遍性，也不被称之为理论。以此表明了以归纳方法作为经验科学的特征所存在的问题。</p>
+<p>而实证主义者则以“意义”这一自然主义观点来作为形而上学和经验科学的分界。但此分界模糊不清，毕竟“意义”这一主观性判断有人来定，并最终导致了除自然科学外其他一切都是无意义的，这也正是某些实证主义者所喜闻乐见的观点。由此，方法论在自然主义视角下也被视为一种经验科学，方如此，才能有其意义。但问题恰恰在于，经验科学所讨论的问题是经验的，但经验科学的自身问题却应当是一种形而上学。这里所犯的错误是，先入式的以经验科学的思维与观点来考虑问题，如此一来势必抹杀经验科学与形而上学的区别，并否决掉一切的非经验科学观点。如果需要讨论一个东西本有的意义，势必应当站在更高一级的层面上，而不能落入该物自身的窠臼中。</p>
+<p>波普尔由此而提出了单方向的证伪原则作为形而上学与经验科学的划界标准。对于可证伪性，有如下几种反对意见的出现（原文第六节“作为划界标准的可证伪性”第十八页）。</p>
+<p>第一， 科学应该给我们肯定性信息，而波普尔的建议则是一种否定性要求。波普尔如此回应，“一个科学陈述由于它的逻辑特性与可能的单称陈述冲突的可能越大，他所传达的关于世界的肯定性信息量就越大”。“律”者，所禁越多，所述越多！</p>
+<p>第二， 将波普尔对归纳主义划界标准的批判转过来反对其自己。对此问题，波普尔以可证实性和可证伪性的不对称为根据。这个不对称来自于全称陈述与单称陈述的逻辑形式。当然，随之而来的是一些人针对此不对称特性的批判。关于此，波普尔以划界的不对称性来回应，表明逻辑上的对称性与完备性。但此处的问题是，关于不对称性的问题，并不仅仅是一个逻辑问题，它还牵涉到实际运用与现实意义等。</p>
+<p>第三， 则是约定主义的若干反对意见（原文第十九节五十五页）。“按照约定主义的观点，自然定律不能为观察所证伪，因为需要这些自然定律来决定观察，特别是科学的测量是什么。”在具体的方法上，可以采用显定义、对实验家和理论家的苛责以及最为主要的引入特设性辅助假说。对于此，波普尔强调应以一切可能方式面临证伪，而关于辅助假说的引入，则是使用这样的规则，引入之后并不减少反而增加可证伪性的辅助假说才是可接受的。</p>
+<p>另外一个至关重要的问题则是经验基础问题。这里存在弗里斯的三难推理问题。亦即教条主义、无穷后退与心理学主义之间的选择。要么教条的接受一个科学陈述，要么要求所有的陈述都要被合乎逻辑的证明。要想避免教条主义与无穷后退的危险，似乎只能求助于心理学主义，“陈述不但可以为陈述所证明，也可以为知觉经验所证明”。（原文第二十五节“作为经验基础的直觉经验：心理学主义”第七十页）对于心理学主义，波普尔从归纳和普遍概念的角度加以批判，“在这陈述中出现的普遍概念不能和任何特殊的知觉经验发生相互关系”。其从基础陈述的相对性角度来解决这个问题（详参第二十九节“基础陈述的相对性 弗里斯的三难推理的解决”第八十一页）。</p>
+<p>由于论及相对性，就势必要讨论科学陈述的客观性和主观确性问题。波普尔以主体间的可相互检验来加以确实。除此之外其还提到客体或言实验的可复制效应。</p>
+<p>往下则是可证伪性、可检验度、简单性等观念的分析。这里不再详述，仅仅简单言及简单性观念。排除美学的和实用的简单性概念，而从可证伪度的角度加以阐述。“可检验度=高先验不可几性=参数少=简单性”（原文第四十三节“简单性和可证伪度”第一百一十八页注释）。</p>
+<p>而关于波普尔所创逻辑概率体系以及关于量子论的若干意见不纳入本文描述范围，将在日后结合经典的统计概率体系，凯恩斯的主观概率来加以对比阐述。</p>
+<p>余之文辞鄙薄，见识粗浅，还望览阅诸君不吝批评指正。</p>
 
           
         
@@ -3853,7 +3778,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -3895,7 +3820,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">358</span>
+                    <span class="site-state-item-count">369</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -4223,7 +4148,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">113</span>
+                      
+                    
+                    <span class="site-state-item-count">114</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>

@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="稀疏矩阵：当一个矩阵内含有大量0值的时候，可以采用特定的存储方式，大大的降低矩阵存储的空间代价。 python中常用的是scipy.sparse.csr_matrix以及scipy.sparse.csc_matrix。另外就是libsvm格式也比较常用。 scipy.sparse.csr_matrix这种方法是将矩阵按照行压缩。csr_matrix = Compressed Sparse Row">
+<meta name="keywords" content="python,sparse">
+<meta property="og:type" content="article">
+<meta property="og:title" content="scipy稀疏矩阵">
+<meta property="og:url" content="http://www.muzhen.tk/2019/04/23/python/scipy稀疏矩阵/index.html">
+<meta property="og:site_name" content="the Home of MuZhen">
+<meta property="og:description" content="稀疏矩阵：当一个矩阵内含有大量0值的时候，可以采用特定的存储方式，大大的降低矩阵存储的空间代价。 python中常用的是scipy.sparse.csr_matrix以及scipy.sparse.csc_matrix。另外就是libsvm格式也比较常用。 scipy.sparse.csr_matrix这种方法是将矩阵按照行压缩。csr_matrix = Compressed Sparse Row">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-04-23T07:58:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="scipy稀疏矩阵">
+<meta name="twitter:description" content="稀疏矩阵：当一个矩阵内含有大量0值的时候，可以采用特定的存储方式，大大的降低矩阵存储的空间代价。 python中常用的是scipy.sparse.csr_matrix以及scipy.sparse.csc_matrix。另外就是libsvm格式也比较常用。 scipy.sparse.csr_matrix这种方法是将矩阵按照行压缩。csr_matrix = Compressed Sparse Row">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.muzhen.tk/2019/04/23/python/scipy稀疏矩阵/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>scipy稀疏矩阵 | the Home of MuZhen</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">the Home of MuZhen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.muzhen.tk/2019/04/23/python/scipy稀疏矩阵/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muzhen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="the Home of MuZhen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">scipy稀疏矩阵
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-23 15:58:43" itemprop="dateCreated datePublished" datetime="2019-04-23T15:58:43+08:00">2019-04-23</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>稀疏矩阵：当一个矩阵内含有大量0值的时候，可以采用特定的存储方式，大大的降低矩阵存储的空间代价。</p>
+<p>python中常用的是scipy.sparse.csr_matrix以及scipy.sparse.csc_matrix。另外就是libsvm格式也比较常用。</p>
+<h1 id="scipy-sparse-csr-matrix"><a href="#scipy-sparse-csr-matrix" class="headerlink" title="scipy.sparse.csr_matrix"></a>scipy.sparse.csr_matrix</h1><p>这种方法是将矩阵按照行压缩。csr_matrix = Compressed Sparse Row matrix</p>
+<p>压缩之后的对象具有三个属性:</p>
+<ul>
+<li>indices： 用于记录存在非0值得列标</li>
+<li>data：用于记录非0值的具体数值</li>
+<li>indptr：用于记录每行对应的data和indices切割起始点</li>
+</ul>
+<p>首先看一个具体的示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#  示例解读</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>indptr = np.array([<span class="number">0</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">6</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>indices = np.array([<span class="number">0</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>data = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>csr_matrix((data, indices, indptr), shape=(<span class="number">3</span>, <span class="number">3</span>)).toarray()</span><br><span class="line">array([[<span class="number">1</span>, <span class="number">0</span>, <span class="number">2</span>],</span><br><span class="line">       [<span class="number">0</span>, <span class="number">0</span>, <span class="number">3</span>],</span><br><span class="line">       [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line"><span class="comment"># 按row行来压缩</span></span><br><span class="line"><span class="comment"># 对于第i行，非0数据列是indices[indptr[i]:indptr[i+1]] 数据是data[indptr[i]:indptr[i+1]]</span></span><br><span class="line"><span class="comment"># 在本例中</span></span><br><span class="line"><span class="comment"># 第0行，有非0的数据列是indices[indptr[0]:indptr[1]] = indices[0:2] = [0,2]</span></span><br><span class="line"><span class="comment"># 数据是data[indptr[0]:indptr[1]] = data[0:2] = [1,2],所以在第0行第0列是1，第2列是2</span></span><br><span class="line"><span class="comment"># 第1行，有非0的数据列是indices[indptr[1]:indptr[2]] = indices[2:3] = [2]</span></span><br><span class="line"><span class="comment"># 数据是data[indptr[1]:indptr[2] = data[2:3] = [3],所以在第1行第2列是3</span></span><br><span class="line"><span class="comment"># 第2行，有非0的数据列是indices[indptr[2]:indptr[3]] = indices[3:6] = [0,1,2]</span></span><br><span class="line"><span class="comment"># 数据是data[indptr[2]:indptr[3]] = data[3:6] = [4,5,6],所以在第2行第0列是4，第1列是5,第2列是6</span></span><br><span class="line">--------------------- </span><br><span class="line">作者：爆米花好美啊 </span><br><span class="line">来源：CSDN </span><br><span class="line">原文：https://blog.csdn.net/u013010889/article/details/<span class="number">53305595</span> </span><br><span class="line">版权声明：本文为博主原创文章，转载请附上博文链接！</span><br></pre></td></tr></table></figure>
+<p>下面我们考虑两个特殊的情况：</p>
+<ul>
+<li>矩阵中某一行全部为0</li>
+<li>矩阵中有缺失值</li>
+</ul>
+<h2 id="矩阵中某一行全部为0"><a href="#矩阵中某一行全部为0" class="headerlink" title="矩阵中某一行全部为0"></a>矩阵中某一行全部为0</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> scipy.sparse <span class="keyword">import</span> csr_matrix</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = np.array([[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>], [<span class="number">1</span>,<span class="number">2</span>,<span class="number">0</span>], [<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>], [<span class="number">1</span>,<span class="number">2</span>,<span class="number">9</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">"matrix: "</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(a)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>csr = csr_matrix(a)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">"csr.indices: "</span>, csr.indices)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">"csr.indptr: "</span>, csr.indptr)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">'csr.data: '</span>, csr.data)</span><br><span class="line">matrix: </span><br><span class="line">[[<span class="number">0</span> <span class="number">0</span> <span class="number">0</span>]</span><br><span class="line"> [<span class="number">1</span> <span class="number">2</span> <span class="number">0</span>]</span><br><span class="line"> [<span class="number">0</span> <span class="number">0</span> <span class="number">0</span>]</span><br><span class="line"> [<span class="number">1</span> <span class="number">2</span> <span class="number">9</span>]]</span><br><span class="line">csr.indices:  [<span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">2</span>]</span><br><span class="line">csr.indptr:  [<span class="number">0</span> <span class="number">0</span> <span class="number">2</span> <span class="number">2</span> <span class="number">5</span>]</span><br><span class="line">csr.data:  [<span class="number">1</span> <span class="number">2</span> <span class="number">1</span> <span class="number">2</span> <span class="number">9</span>]</span><br></pre></td></tr></table></figure>
+<p>可以看到，第一行全部为0，对应的indptr切片范围是0：0。可以看下这样的切片得到的什么？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>l = [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>l[<span class="number">0</span>:<span class="number">0</span>]</span><br><span class="line">[]</span><br></pre></td></tr></table></figure>
+<p>可以看到，这样的切片得到的是一个空list。</p>
+<p>总结一下，如果某一行为0， 那么indptr属性对应这行的切割索引上下限一致，而data属性和indices属性则没有任何元素占位情况。</p>
+<h2 id="矩阵中存在缺失值"><a href="#矩阵中存在缺失值" class="headerlink" title="矩阵中存在缺失值"></a>矩阵中存在缺失值</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> scipy.sparse <span class="keyword">import</span> csr_matrix</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = np.array([[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>], [<span class="number">1</span>,<span class="number">2</span>,np.nan], [<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>], [<span class="number">1</span>,<span class="number">2</span>,<span class="number">9</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">"matrix: "</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(a)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>csr = csr_matrix(a)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">"csr.indices: "</span>, csr.indices)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">"csr.indptr: "</span>, csr.indptr)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">'csr.data: '</span>, csr.data)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(csr.toarray()[<span class="number">1</span>,<span class="number">2</span>])</span><br><span class="line">matrix: </span><br><span class="line">[[ <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>]</span><br><span class="line"> [ <span class="number">1.</span>  <span class="number">2.</span> nan]</span><br><span class="line"> [ <span class="number">0.</span>  <span class="number">0.</span>  <span class="number">0.</span>]</span><br><span class="line"> [ <span class="number">1.</span>  <span class="number">2.</span>  <span class="number">9.</span>]]</span><br><span class="line">csr.indices:  [<span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">0</span> <span class="number">1</span> <span class="number">2</span>]</span><br><span class="line">csr.indptr:  [<span class="number">0</span> <span class="number">0</span> <span class="number">3</span> <span class="number">3</span> <span class="number">6</span>]</span><br><span class="line">csr.data:  [ <span class="number">1.</span>  <span class="number">2.</span> nan  <span class="number">1.</span>  <span class="number">2.</span>  <span class="number">9.</span>]</span><br><span class="line">numpy.float64</span><br></pre></td></tr></table></figure>
+<p>可以看到，缺失值是正常视为非0值存储的。但是需要注意，只支持np.nan类型，不支持None。</p>
+<h1 id="scipy-sparse-csc-matrix"><a href="#scipy-sparse-csc-matrix" class="headerlink" title="scipy.sparse.csc_matrix"></a>scipy.sparse.csc_matrix</h1><p>这种方法是将矩阵按照列压缩。csc_matrix = Compressed Sparse Column matrix</p>
+<p>和csr_matrix一致，这里给出一个示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#  示例解读</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>indptr = np.array([<span class="number">0</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">6</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>indices = np.array([<span class="number">0</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>data = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>csc_matrix((data, indices, indptr), shape=(<span class="number">3</span>, <span class="number">3</span>)).toarray()</span><br><span class="line">array([[<span class="number">1</span>, <span class="number">0</span>, <span class="number">4</span>],</span><br><span class="line">       [<span class="number">0</span>, <span class="number">0</span>, <span class="number">5</span>],</span><br><span class="line">       [<span class="number">2</span>, <span class="number">3</span>, <span class="number">6</span>]])</span><br><span class="line"><span class="comment"># 按col列来压缩</span></span><br><span class="line"><span class="comment"># 对于第i列，非0数据行是indices[indptr[i]:indptr[i+1]] 数据是data[indptr[i]:indptr[i+1]]</span></span><br><span class="line"><span class="comment"># 在本例中</span></span><br><span class="line"><span class="comment"># 第0列，有非0的数据行是indices[indptr[0]:indptr[1]] = indices[0:2] = [0,2]</span></span><br><span class="line"><span class="comment"># 数据是data[indptr[0]:indptr[1]] = data[0:2] = [1,2],所以在第0列第0行是1，第2行是2</span></span><br><span class="line"><span class="comment"># 第1行，有非0的数据行是indices[indptr[1]:indptr[2]] = indices[2:3] = [2]</span></span><br><span class="line"><span class="comment"># 数据是data[indptr[1]:indptr[2] = data[2:3] = [3],所以在第1列第2行是3</span></span><br><span class="line"><span class="comment"># 第2行，有非0的数据行是indices[indptr[2]:indptr[3]] = indices[3:6] = [0,1,2]</span></span><br><span class="line"><span class="comment"># 数据是data[indptr[2]:indptr[3]] = data[3:6] = [4,5,6],所以在第2列第0行是4，第1行是5,第2行是6</span></span><br><span class="line">--------------------- </span><br><span class="line">作者：爆米花好美啊 </span><br><span class="line">来源：CSDN </span><br><span class="line">原文：https://blog.csdn.net/u013010889/article/details/<span class="number">53305595</span> </span><br><span class="line">版权声明：本文为博主原创文章，转载请附上博文链接！</span><br></pre></td></tr></table></figure>
+<h1 id="libsvm"><a href="#libsvm" class="headerlink" title="libsvm"></a>libsvm</h1><p>libsvm在机器学习中是更为常见的跨语言的一种稀疏矩阵压缩存储方式。一般可以直接用于模型训练。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">libsvm</span>使用的训练数据和检验数据文件格式如下：</span><br><span class="line"> <span class="selector-attr">[label]</span> <span class="selector-attr">[index1]</span>:<span class="selector-attr">[value1]</span> <span class="selector-attr">[index2]</span>:<span class="selector-attr">[value2]</span> …</span><br><span class="line"> <span class="selector-attr">[label]</span> <span class="selector-attr">[index1]</span>:<span class="selector-attr">[value1]</span> <span class="selector-attr">[index2]</span>:<span class="selector-attr">[value2]</span> …</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">label</span>  目标值，就是说<span class="selector-tag">class</span>（属于哪一类），就是你要分类的种类，通常是一些整数。</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">index</span> 是有顺序的索引，通常是连续的整数。就是指特征编号，必须按照升序排列</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">value</span> 就是特征值，用来<span class="selector-tag">train</span>的数据，通常是一堆实数组成。</span><br><span class="line"></span><br><span class="line">例如：</span><br><span class="line">  1 1<span class="selector-pseudo">:0.6875</span> 2<span class="selector-pseudo">:0.1875</span> 3<span class="selector-pseudo">:0.015625</span> 4<span class="selector-pseudo">:0.109375</span></span><br><span class="line">  0 1<span class="selector-pseudo">:0.7875</span> 2<span class="selector-pseudo">:0.1875</span> 4<span class="selector-pseudo">:0.109375</span></span><br></pre></td></tr></table></figure>
+<p>这里依旧存在两个问题：</p>
+<ul>
+<li>缺失值如何存储</li>
+<li>模型拿到这个libsvm文件以后，如何快速的知道它的特征维度</li>
+</ul>
+<p>经过测试，Python sklearn.datasets.dump_svmlight_file方法不支持缺失值存储。pyspark的libsvm方法虽然可以支持缺失值，但是在xgb调用的时候会报错。</p>
+<p>一个简单的处理方式是填充一个特定值（比如-999）再存储。在调用xgb的时候可以通过如下方式指明缺失值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xgboost <span class="keyword">as</span> xgb</span><br><span class="line">dtrain = xgb.DMatrix(<span class="string">"train_libsvm"</span>, missing=<span class="number">-999</span>)</span><br><span class="line">clf = xgb.train(params=&#123;...&#125;, dtrain)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/sparse/" rel="tag"># sparse</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/15/machine learning/NN/deeplearningai深度学习笔记/" rel="next" title="deeplearningai深度学习笔记">
+                <i class="fa fa-chevron-left"></i> deeplearningai深度学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/27/pansee/book review/人生海海——麦家/" rel="prev" title="人生海海——麦家">
+                人生海海——麦家 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">muzhen</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">369</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">114</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#scipy-sparse-csr-matrix"><span class="nav-number">1.</span> <span class="nav-text">scipy.sparse.csr_matrix</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵中某一行全部为0"><span class="nav-number">1.1.</span> <span class="nav-text">矩阵中某一行全部为0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵中存在缺失值"><span class="nav-number">1.2.</span> <span class="nav-text">矩阵中存在缺失值</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#scipy-sparse-csc-matrix"><span class="nav-number">2.</span> <span class="nav-text">scipy.sparse.csc_matrix</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#libsvm"><span class="nav-number">3.</span> <span class="nav-text">libsvm</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">muzhen</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
